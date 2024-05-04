@@ -1,11 +1,9 @@
 import { ReactNode } from 'react';
 import { Montserrat } from 'next/font/google';
 
-import { Header } from '@/layouts';
-
 import '@/styles/globals.css';
 
-const montserrat = Montserrat({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin', 'cyrillic'] });
 
 export default function RootLayout({
   children,
@@ -14,11 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ua" className="scroll-smooth ">
-      <body className={`${montserrat.className} antialiased`}>
-        <Header />
-
-        {children}
-      </body>
+      <body className={`${montserrat.className} antialiased`}>{children}</body>
     </html>
   );
 }
