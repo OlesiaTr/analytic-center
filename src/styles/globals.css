@@ -3,5 +3,54 @@
 @tailwind utilities;
 
 .section {
-  color: red;
+  @apply mx-auto flex max-w-screen-xxl flex-col px-4 py-9  md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
 }
+
+/* HERO START */
+.hero {
+  background-image: url('../../public/images/hero-tab.jpg');
+  background-repeat: no-repeat;
+  background-position: right 25% top 0;
+  background-size:
+    160% 100%,
+    cover;
+}
+
+@media (min-width: 480px) {
+  .hero {
+    background-image: url('../../public/images/hero-tab.jpg');
+    background-position: center top 0;
+    background-size:
+      100% 500px,
+      cover;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    background-size:
+      1046px 630px,
+      cover;
+    background-position: top 0 right 30%;
+    background-image: url('../../public/images/hero-tab.jpg');
+  }
+}
+
+@media (min-width: 1046px) {
+  .hero {
+    background-size:
+      100% 760px,
+      cover;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero {
+    background-size:
+      1440px 100%,
+      cover;
+    background-position: center top 0;
+  }
+}
+
+/* HERO END */
