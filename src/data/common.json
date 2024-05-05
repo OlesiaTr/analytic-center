@@ -55,5 +55,46 @@
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
     "redirectionTo": "/conferences"
+  },
+  "partners": {
+    "title": "Партнери"
+  },
+  "sliderControls": {
+    "prevBtnAriaLabel": "Back button to flip through the slides",
+    "nextBtnAriaLabel": "Forward button to flip through the slides",
+    "prevBtnText": "Prev",
+    "nextBtnText": "Next"
+  },
+  "upcomingMonographs": {
+    "title": "Запрошуються до написання монографії",
+    "list": [
+      {
+        "id": "0",
+        "imgSrc": "/images/monographs/mono-01-05-24.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Цифрова епоха: міждисциплінарний дискурс”",
+        "title": "“Цифрова епоха: міждисциплінарний дискурс”",
+        "date": "02.05.2024",
+        "linkToDownload": "#"
+      },
+      {
+        "id": "1",
+        "imgSrc": "/images/monographs/mono-02-05-24.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Україна в умовах російської агресії: виклики та відповіді”",
+        "title": "“Україна в умовах російської агресії: виклики та відповіді”",
+        "date": "12.05.2024",
+        "linkToDownload": "#"
+      },
+      {
+        "id": "2",
+        "imgSrc": "/images/monographs/mono-03-05-24.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
+        "title": "“Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
+        "date": "22.05.2024",
+        "linkToDownload": "#"
+      }
+    ],
+    "button": "Дізнатися більше",
+    "buttonDownload": "Завантажити",
+    "redirectionTo": "/monographs"
   }
 }
