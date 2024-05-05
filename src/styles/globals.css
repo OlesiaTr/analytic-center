@@ -12,16 +12,30 @@
   background-repeat: no-repeat;
   background-position: right 25% top 0;
   background-size:
-    160% 100%,
+    720px 100%,
     cover;
+}
+
+@media (min-width: 375px) {
+  .hero {
+    background-size:
+      780px 110%,
+      cover;
+  }
+}
+
+@media (min-width: 425px) {
+  .hero {
+    background-size:
+      800px 110%,
+      cover;
+  }
 }
 
 @media (min-width: 480px) {
   .hero {
-    background-image: url('../../public/images/hero-tab.jpg');
-    background-position: center top 0;
     background-size:
-      100% 500px,
+      900px 110%,
       cover;
   }
 }
@@ -29,7 +43,7 @@
 @media (min-width: 768px) {
   .hero {
     background-size:
-      1046px 630px,
+      1010px 630px,
       cover;
     background-position: top 0 right 30%;
     background-image: url('../../public/images/hero-tab.jpg');
@@ -39,7 +53,7 @@
 @media (min-width: 1046px) {
   .hero {
     background-size:
-      100% 760px,
+      1130px 760px,
       cover;
   }
 }
@@ -47,10 +61,47 @@
 @media (min-width: 1280px) {
   .hero {
     background-size:
-      1440px 100%,
+      1360px 100%,
       cover;
     background-position: center top 0;
   }
 }
 
 /* HERO END */
+
+/* --------------------------------------------------------------- */
+
+/* SWIPER START */
+
+.swiper-button-prev {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 41' fill='none'%3E%3Cpath d='M22 34.7857L8.25 20.5L22 6.21429L19.25 0.5L0 20.5L19.25 40.5L22 34.7857Z' fill='%23565656'/%3E%3C/svg%3E");
+}
+
+.swiper-button-next {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40' fill='none'%3E%3Cpath d='M0 5.71429L13.75 20L0 34.2857L2.75 40L22 20L2.75 0L0 5.71429Z' fill='%23565656'/%3E%3C/svg%3E");
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 18px !important;
+  width: 9px !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #565656;
+  content: ' ' !important;
+}
+
+@media (min-width: 480px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    height: 40px !important;
+    width: 22px !important;
+  }
+}
+
+/* SWIPER END */
