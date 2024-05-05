@@ -26,7 +26,7 @@ export const MobileMenu: FC<Props> = ({ closeModal }) => {
                     ? `${linkTo === '/' ? 'index' : linkTo}.html`
                     : linkTo
                 }
-                className="active:text-accentLight text-xl font-medium leading-normal text-white transition hover:text-accent"
+                className="text-xl font-medium leading-normal text-white transition hover:text-accent active:text-accentLight"
               >
                 {name}
               </a>
