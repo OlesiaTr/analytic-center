@@ -18,8 +18,10 @@ export const Button: FC<Props> = ({
   return (
     <button
       className={clsx(
-        `w-full rounded-lg py-[10.5px] font-semibold md:max-w-[302px] md:px-12 md:py-4  ${styles}`,
-        isAccentBtn ? 'bg-accent text-black' : 'bg-mainBg text-white',
+        `w-full rounded-lg py-[10.5px] font-semibold transition md:max-w-[302px] md:px-12 md:py-4 ${styles}`,
+        isAccentBtn
+          ? 'bg-accent text-black hover:bg-accentLight active:bg-accentDark'
+          : 'bg-mainBg text-white hover:bg-mainBgLight active:bg-mainBgDark',
         withIcon && 'flex justify-center gap-[10px]',
       )}
       type="button"

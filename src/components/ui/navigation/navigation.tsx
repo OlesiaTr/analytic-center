@@ -26,7 +26,7 @@ export const Navigation: FC<Props> = ({ location, links }) => {
                   ? `${linkTo === '/' ? 'index' : linkTo}.html`
                   : linkTo
               }
-              className="flex py-[46px] "
+              className="flex py-[46px] transition hover:text-accent active:text-accentLight "
             >
               {name}
             </a>
