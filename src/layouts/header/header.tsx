@@ -8,6 +8,7 @@ import { MobileMenu } from '@/components/base';
 import { Logo } from '@/components/svg-icons';
 import { MenuBtn, Navigation } from '@/components/ui';
 import { useViewportSize } from '@/utils';
+import { isProduction } from '@/configs';
 
 export interface Props {
   isHomePage?: boolean;
@@ -27,12 +28,17 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
         isHomePage ? 'absolute bg-transparent ' : 'sticky bg-headerBg  ',
       )}
     >
-      <div className="flex items-center justify-between p-4  md:px-14 xl:px-20">
-        {width !== null && width < VIEWPORT_MD ? (
-          <Logo width={50} height={36} />
-        ) : (
-          <Logo />
-        )}
+      <div className="flex items-center justify-between px-4 pt-4 md:px-14  lg:pt-0 xl:px-20">
+        <a
+          href={isProduction() ? 'index.html' : LINKS[0].linkTo}
+          className="transition hover:scale-110"
+        >
+          {width !== null && width < VIEWPORT_MD ? (
+            <Logo width={50} height={36} />
+          ) : (
+            <Logo />
+          )}
+        </a>
 
         <Navigation location="header" links={LINKS} />
 
