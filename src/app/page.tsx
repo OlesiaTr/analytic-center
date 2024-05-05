@@ -1,6 +1,7 @@
 import { Header } from '@/layouts';
 import {
   CenterShortVersion,
+  GrantsShortVersion,
   Hero,
   Partners,
   UpcomingConferences,
@@ -22,6 +23,8 @@ export default function Home() {
         <Partners />
 
         <UpcomingMonographs />
+
+        <GrantsShortVersion />
       </main>
     </>
   );

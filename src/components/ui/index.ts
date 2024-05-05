@@ -4,6 +4,8 @@ export { ButtonLink } from './button-link';
 
 export { CoverCard } from './cover-card';
 
+export { GrantList } from './grant-list';
+
 export { MenuBtn } from './menu-btn';
 
 export { Navigation } from './navigation';
