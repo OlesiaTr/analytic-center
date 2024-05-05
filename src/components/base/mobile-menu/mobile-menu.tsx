@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Dispatch, FC, SetStateAction } from 'react';
+
 import { LINKS } from '@/constants';
 import { isProduction } from '@/configs';
 
@@ -25,7 +26,7 @@ export const MobileMenu: FC<Props> = ({ closeModal }) => {
                     ? `${linkTo === '/' ? 'index' : linkTo}.html`
                     : linkTo
                 }
-                className="text-xl font-medium leading-normal text-white"
+                className="active:text-accentLight text-xl font-medium leading-normal text-white transition hover:text-accent"
               >
                 {name}
               </a>
