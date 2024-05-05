@@ -1,12 +1,11 @@
 'use client';
+
 import { ButtonLink, Title } from '@/components/ui';
 import { isProduction } from '@/configs';
 import { VIEWPORT_LG } from '@/constants';
-import data from '@/data/common.json';
 import { useViewportSize } from '@/utils';
-// import Image from 'next-export-optimize-images/image'
 
-export interface Props {}
+import data from '@/data/common.json';
 
 export const CenterShortVersion = () => {
   const { title, imgAlt, description, button, redirectionTo } =

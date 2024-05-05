@@ -1,7 +1,7 @@
 import { Slider, Title } from '@/components/ui';
+import { PARTNERS_IMAGES } from '@/data/images';
 
 import data from '@/data/common.json';
-import { PARTNERS_IMAGES } from '@/data/images';
 
 export const Partners = () => {
   const { title } = data.partners;

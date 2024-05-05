@@ -11,13 +11,11 @@ export const useViewportSize = () => {
       setViewportSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
-    // Set initial values for client-side rendering
     if (typeof window !== 'undefined') {
       handleResize();
       window.addEventListener('resize', handleResize);
     }
 
-    // Cleanup event listener
     return () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('resize', handleResize);

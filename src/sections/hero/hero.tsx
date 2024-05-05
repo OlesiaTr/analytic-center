@@ -1,13 +1,15 @@
 'use client';
+
 import { ButtonLink } from '@/components/ui';
-import data from '@/data/common.json';
 import { isProduction } from '@/configs';
+
+import data from '@/data/common.json';
 
 export const Hero = () => {
   const { title, label, button, redirectionTo } = data.hero;
 
   return (
-    <section className="section hero min-h-[488px] !pt-[172px] pb-14 md:pb-[196px] md:pt-[276px]">
+    <section className="hero m-auto min-h-[488px]  max-w-screen-xxl px-4 pb-14 pt-[172px] md:px-14 md:pb-[196px] lg:pt-[276px] xl:px-20">
       <h1 className=" mb-8 flex flex-col text-[19px] font-bold uppercase leading-[1.05] text-white sm:text-2xl md:text-3xl lg:text-[40px] xl:mb-16 xl:text-6xl xl:leading-none">
         <span className=" mb-[9px] xl:mb-6 ">{title.topLine}</span>
 

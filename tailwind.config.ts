@@ -25,11 +25,16 @@ const config: Config = {
       },
       boxShadow: {
         DEFAULT: '0px 2px 5px 0px rgba(0, 0, 0, 0.15)',
+        inner: '-1px -1px 5px 0px rgba(0, 0, 0, 0.15) inset',
       },
       colors: {
         main: '#565656',
         accent: '#FBCD21',
-        mainBg: '#0065B2;',
+        accentLight: '#F9DA66',
+        accentDark: '#DFB107',
+        mainBg: '#0065B2',
+        mainBgLight: '#4A98D4',
+        mainBgDark: '#043B65',
         headerBg: 'rgba(68, 127, 172, 0.82)',
         footerBg: '#0E2B42',
         chocolate: '#442103',

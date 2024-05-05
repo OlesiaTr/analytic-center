@@ -4,11 +4,12 @@ import React, { FC } from 'react';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Autoplay, A11y } from 'swiper/modules';
 
+import { SlideComponent } from '@/components/ui';
+
 import data from '@/data/common.json';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { SlideComponent } from '@/components/ui';
 
 export interface Props {
   slidesData: {
