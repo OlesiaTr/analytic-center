@@ -24,7 +24,7 @@ export const UpcomingConferences = () => {
 
       <ButtonLink
         label={button}
-        styles="min-w-[302px] m-auto"
+        styles="sm:min-w-[302px] m-auto"
         isAccentBtn
         href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
       />

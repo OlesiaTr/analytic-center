@@ -29,7 +29,7 @@ export const CenterShortVersion = () => {
           {width !== null && width < VIEWPORT_LG ? (
             <ButtonLink
               label={button}
-              styles="min-w-[302px]"
+              styles="sm:min-w-[302px] m-auto"
               isAccentBtn
               href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
             />

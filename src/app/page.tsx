@@ -3,6 +3,7 @@ import {
   CenterShortVersion,
   GrantsShortVersion,
   Hero,
+  News,
   Partners,
   UpcomingConferences,
   UpcomingMonographs,
@@ -25,6 +26,8 @@ export default function Home() {
         <UpcomingMonographs />
 
         <GrantsShortVersion />
+
+        <News />
       </main>
     </>
   );

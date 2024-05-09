@@ -8,4 +8,6 @@ export { Hero } from './hero';
 
 export { UpcomingMonographs } from './monographs';
 
+export { News } from './news';
+
 export { Partners } from './partners';

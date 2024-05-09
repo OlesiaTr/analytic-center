@@ -15,7 +15,7 @@ export const UpcomingMonographs = () => {
 
       <ButtonLink
         label={button}
-        styles="min-w-[302px] m-auto"
+        styles="sm:min-w-[302px] m-auto"
         href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
       />
     </section>
