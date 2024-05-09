@@ -6,6 +6,10 @@
   @apply mx-auto flex max-w-screen-xxl flex-col px-4 py-9  md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
 }
 
+.active {
+  @apply block;
+}
+
 /* HERO START */
 .hero {
   background-image: url('../../public/images/hero-tab.jpg');
