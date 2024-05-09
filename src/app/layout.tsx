@@ -1,11 +1,16 @@
 import { ReactNode } from 'react';
 import { Montserrat } from 'next/font/google';
+import type { Metadata } from 'next';
 
 import { Footer } from '@/layouts';
+
+import meta from '@/data/meta/meta';
 
 import '@/styles/globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin', 'cyrillic'] });
+
+export const metadata: Metadata = meta;
 
 export default function RootLayout({
   children,

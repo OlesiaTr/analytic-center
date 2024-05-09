@@ -1,16 +1,23 @@
-import { CenterShortVersion } from '@/sections';
 import React, { FC } from 'react';
+import type { Metadata } from 'next';
+
+import { Title } from '@/components/ui';
+
+import data from '@/data/about-center.json';
+import meta from '@/data/meta/meta.json';
 
 export interface Props {}
 
+export const metadata: Metadata = meta['about-center'];
+
 const Page: FC<Props> = () => {
+  const { title } = data;
+
   return (
     <main>
-      About Center page
-      <CenterShortVersion />
-      <CenterShortVersion />
-      <CenterShortVersion />
-      <CenterShortVersion />
+      <section className="section">
+        <Title title={title} />
+      </section>
     </main>
   );
 };

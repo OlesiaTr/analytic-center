@@ -1,0 +1,33 @@
+{
+    "name": "Аналітичний центр сучасної гуманітаристики",
+    "short_name": "АЦСГ",
+    "title": "Аналітичний центр сучасної гуманітаристики",
+    "description": "Створено для сприяння розвиткові наукового студіювання взаємовідносин людини та сучасного світу",
+    "start_url": "/",
+    "locale": "ua",
+  "keywords": "Аналітичний центр сучасної гуманітаристики, аналітичний центр, монографії, конференція, науковці, гранти, публікації",
+    "icons": [
+      {
+        "src": "/meta/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "/meta/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+      "images": [
+    {
+      "url": "/meta/og-image.jpg",
+      "width": 1440,
+      "height": 880,
+      "alt": "Аналітичний центр сучасної гуманітаристики"
+    }
+  ],
+  "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display":"standalone"
+}
