@@ -7,7 +7,24 @@
 }
 
 .active {
-  @apply block;
+  @apply inline-flex;
+}
+
+.grant {
+  border-radius: 8px;
+  border-bottom: 1px solid #afbaca;
+  background: #f9fafb;
+}
+
+/* ICONS */
+.icon-option-one:hover {
+  svg:hover path {
+    fill: rgba(68, 127, 172, 0.82);
+  }
+
+  svg:hover rect {
+    stroke: rgba(68, 127, 172, 0.82);
+  }
 }
 
 /* HERO START */
