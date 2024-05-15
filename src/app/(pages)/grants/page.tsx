@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import type { Metadata } from 'next';
 
 import { Title } from '@/components/ui';
+import { GrantsExpendedVersion } from '@/sections';
 
 import data from '@/data/grants.json';
 import meta from '@/data/meta/meta.json';
@@ -17,6 +18,8 @@ const Page: FC<Props> = () => {
     <main>
       <section className="section">
         <Title title={title} />
+
+        <GrantsExpendedVersion />
       </section>
     </main>
   );
