@@ -15,7 +15,7 @@ const Page: FC<Props> = () => {
 
   return (
     <main>
-      <section className="section">
+      <section className="section h-[50vh]">
         <Title title={title} />
       </section>
     </main>
