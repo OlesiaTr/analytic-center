@@ -28,7 +28,7 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
         isHomePage ? 'absolute bg-transparent ' : 'sticky bg-headerBg  ',
       )}
     >
-      <div className="flex items-center justify-between px-4 pt-4 md:px-14  lg:pt-0 xl:px-20">
+      <div className="flex items-center justify-between p-4 md:px-14  lg:py-0 xl:px-20">
         <a
           href={isProduction() ? 'index.html' : LINKS[0].linkTo}
           className="transition hover:scale-110"

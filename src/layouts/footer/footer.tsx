@@ -26,7 +26,7 @@ export const Footer = () => {
         <div className="hidden sm:block">
           <Navigation
             links={LINKS}
-            linkStyles="py-1 lg:pt-0 lg:pb-[46px]"
+            linkStyles="!py-1 lg:!pt-0 lg:!pb-[46px]"
             listStyles="flex-col lg:flex-row"
           />
         </div>
