@@ -13,10 +13,10 @@ export interface Props {
 }
 
 export const GrantList: FC<Props> = ({ list, withAnswers = false }) => {
-  const [active, setActive] = useState<null | number>(null);
+  const [active, setActive] = useState<number>(0);
 
   const toggleActive = (id: number) => {
-    setActive(active === id ? null : id);
+    setActive(id);
   };
 
   return (
@@ -25,7 +25,7 @@ export const GrantList: FC<Props> = ({ list, withAnswers = false }) => {
         <li
           key={id}
           className={clsx(
-            ' flex cursor-pointer justify-between rounded-lg bg-white px-4 py-5 transition md:py-7 ',
+            'grant flex cursor-pointer justify-between rounded-lg bg-white px-4 py-5 transition md:py-7 ',
             active === id && 'active',
           )}
           onClick={() => toggleActive(id)}
