@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Button } from '@/components/ui';
+import { ButtonLink } from '@/components/ui';
 
 export interface Props {
   card: {
@@ -15,13 +15,7 @@ export interface Props {
 }
 
 export const SlideCoverCard: FC<Props> = ({ card, buttonDownload }) => {
-  const {
-    imgSrc,
-    imgAlt,
-    title,
-    date,
-    // linkToDownload,
-  } = card;
+  const { imgSrc, imgAlt, title, date, linkToDownload } = card;
 
   return (
     <>
@@ -39,11 +33,13 @@ export const SlideCoverCard: FC<Props> = ({ card, buttonDownload }) => {
             {date}
           </span>
 
-          <Button
+          <ButtonLink
             label={buttonDownload}
+            href={linkToDownload}
             isAccentBtn
             withIcon
             styles="max-w-[270px] min-w-[220px] py-4 mt-4 mx-auto"
+            linkToDownload
           />
         </div>
       </div>
