@@ -20,4 +20,9 @@ export const PARTNERS_IMAGES = [
     alt: 'Лого Національного юридичного університету імені Ярослава Мудрого',
     linkTo: 'https://nlu.edu.ua/',
   },
+  {
+    image: '/images/partners/davis-center.png',
+    alt: 'Лого Центру російських та євразійських досліджень Девіса',
+    linkTo: 'https://daviscenter.fas.harvard.edu/',
+  },
 ];
