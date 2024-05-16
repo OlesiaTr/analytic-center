@@ -212,4 +212,15 @@ export const ORGANIZATION_MEMBERS = [
     name: 'Юр’єв Євген Дмитрович',
     position: 'Студент',
   },
+  {
+    image:
+      'https://drive.google.com/thumbnail?id=1nSTzBRrgsOWBKonXApHN6WO-jkqK81Eu&sz=w1000',
+    name: 'Дольська Ольга Олексіївна',
+    position: 'Докторка філософських наук, професорка',
+    googlescholar:
+      'https://scholar.google.com.ua/citations?user=jqrzrrgAAAAJ&hl=ru',
+    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0035877',
+    orcid: 'https://orcid.org/0000-0002-9577-8282',
+    wos: 'https://www.webofscience.com/wos/author/record/2146955',
+  },
 ];
