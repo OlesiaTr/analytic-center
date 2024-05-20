@@ -223,4 +223,16 @@ export const ORGANIZATION_MEMBERS = [
     orcid: 'https://orcid.org/0000-0002-9577-8282',
     wos: 'https://www.webofscience.com/wos/author/record/2146955',
   },
+  {
+    image:
+      'https://drive.google.com/thumbnail?id=1JQqJaO7WcSayc_0Mep5fayx_IbWhROK-&sz=w1000',
+    name: 'Коротков Дмитро Сергійович',
+    position: 'Кандидат політичних наук, доцент',
+    googlescholar:
+      'https://scholar.google.com.ua/citations?user=aqEsqVIAAAAJ&hl=ru',
+    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0042130',
+    orcid: 'https://orcid.org/0000-0003-2732-0824',
+    scopus: 'https://www.scopus.com/authid/detail.uri?authorId=58899850600',
+    wos: 'https://www.webofscience.com/wos/author/record/JNS-6417-2023',
+  },
 ];
