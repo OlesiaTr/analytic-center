@@ -18,5 +18,21 @@
   },
   "organizationMembers": {
     "title": "Члени організації"
+  },
+  "organizationStatute": {
+    "list": [
+      {
+        "title": "СТАТУТ ГРОМАДСЬКОЇ ОРГАНІЗАЦІЇ",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1DYzQiV3sA_l7g7a-AJU1XDZzUEO47PK7"
+      },
+      {
+        "title": "Пояснення до п. 2.3",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1_kL0Kc14tjo_3sN2sPCtW5wotc_Mf4mj"
+      },
+      {
+        "title": "ПОЛОЖЕННЯ про членство в громадській організації",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1kHrF8OScEjQ8ohrpCnaXodATO1TRTQKG"
+      }
+    ]
   }
 }

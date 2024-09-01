@@ -1,1 +1,17 @@
-{ "title": "Монографії" }
+{
+  "title": "Монографії",
+  "archivedMonographs": {
+    "title": "Архів монографій",
+    "list": [
+      {
+        "id": "0",
+        "imgSrc": "/images/monographs/mono-01-05-24.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Цифрова епоха: міждисциплінарний дискурс”",
+        "title": "“Цифрова епоха: міждисциплінарний дискурс”",
+        "date": "25.07.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1Rf7cFuszrQy_bpHv9-gULr5yVRB9luuH"
+      }
+    ],
+    "buttonDownload": "Завантажити"
+  }
+}

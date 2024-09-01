@@ -25,26 +25,15 @@
     "title": "Найближчі конференції",
     "list": [
       {
-        "id": "0",
-        "imgSrc": "/images/conferences/conf-04-06-24.jpg",
-        "imgAlt": "Зображення обкладенки конференції від 04 червня 2024 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
-        "title": "XXV всеукраїнська науково-практична конференція",
+        "id": "3",
+        "imgSrc": "/images/conferences/conf-29-08-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 29 серпня 2024 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "title": "XXVI Всеукраїнська науково-практична конференція",
         "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
-        "date": "04.06.2024",
-        "day": "04",
-        "month": "06",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1vqZ7GXnvPRec2EKWr5nbvEYOGoufCJS0"
-      },
-      {
-        "id": "1",
-        "imgSrc": "/images/conferences/conf-18-06-24.jpg",
-        "imgAlt": "Зображення обкладенки конференції від 18 червня 2024 року: “Україна в умовах сучасного турбулентного світу”",
-        "title": "XXXVI  харківські політологічні читання",
-        "description": "“Україна в умовах сучасного турбулентного світу”",
-        "date": "18.06.2024",
-        "day": "18",
-        "month": "06",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1nIEoYjAfMs50idRRmtKyjaSxJ8rmnL2C"
+        "date": "29.08.2024",
+        "day": "29",
+        "month": "08",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=11Jhtw7fyVfZfyb2HxXZVx0EOg7W685X7"
       }
     ],
     "button": "Дізнатися більше",
@@ -65,34 +54,24 @@
     "title": "Запрошуються до написання монографії",
     "list": [
       {
-        "id": "0",
-        "imgSrc": "/images/monographs/mono-03-05-24.jpg",
-        "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
-        "title": "“Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
-        "date": "20.06.2024",
-        "day": "20",
-        "month": "06",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1vwgjwXNidsPt529DZlPKZe7E71KjOCfG"
-      },
-      {
         "id": "1",
         "imgSrc": "/images/monographs/mono-02-05-24.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Україна в умовах російської агресії: виклики та відповіді”",
         "title": "“Україна в умовах російської агресії: виклики та відповіді”",
-        "date": "10.07.2024",
+        "date": "10.08.2024",
         "day": "10",
-        "month": "07",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1_sVZW-TdBckM_Hi6NmWQ0A9O3oVJDNvh"
+        "month": "08",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1f_gQ5OOrMok8gPZw1XrjMSHBte0SnJrr"
       },
       {
         "id": "2",
-        "imgSrc": "/images/monographs/mono-01-05-24.jpg",
-        "imgAlt": "Зображення обкладенки монографії: “Цифрова епоха: міждисциплінарний дискурс”",
-        "title": "“Цифрова епоха: міждисциплінарний дискурс”",
-        "date": "25.07.2024",
+        "imgSrc": "/images/monographs/mono-03-05-24.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
+        "title": "“Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
+        "date": "25.12.2024",
         "day": "25",
-        "month": "07",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1juFP5zW-Wnzu2rimQS7cS0MafLTQutZU"
+        "month": "12",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1-PUgNzQOmks52ErBlopw5x74BzB2U_j8"
       }
     ],
     "button": "Дізнатися більше",

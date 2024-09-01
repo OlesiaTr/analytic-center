@@ -26,5 +26,38 @@
       { "question": "Назва секції та УДК тез", "answer": "" },
       { "question": "Назва доповіді", "answer": "" }
     ]
+  },
+  "upcomingConferences": {
+    "title": "Архів конференцій",
+    "list": [
+      {
+        "id": "2",
+        "imgSrc": "/images/conferences/conf-16-07-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 16 липня 2024 року: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "title": "Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "16.07.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=10o3E2JZQsiWI_2qtI9og50IZu5bVCPS_"
+      },
+      {
+        "id": "1",
+        "imgSrc": "/images/conferences/conf-18-06-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 18 червня 2024 року: “Україна в умовах сучасного турбулентного світу”",
+        "title": "XXXVI  харківські політологічні читання",
+        "description": "“Україна в умовах сучасного турбулентного світу”",
+        "date": "18.06.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=11vXABuQUTQ8hJtpMfLXOIV59b8FMVLn6"
+      },
+      {
+        "id": "0",
+        "imgSrc": "/images/conferences/conf-04-06-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 04 червня 2024 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "title": "XXV всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "04.06.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1tGZv4v4RPu0xUMc8fT0GUM_C7CVrbI_i"
+      }
+    ],
+    "buttonDownload": "Завантажити"
   }
 }
