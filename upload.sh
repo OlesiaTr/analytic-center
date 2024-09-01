@@ -3,7 +3,7 @@
 # ADD YOUR BUCKETNAME HERE (no quotes necessary)
 # For example:
 # BUCKETNAME=somerandombucket123
-BUCKETNAME=acmhs-site-bucket
+BUCKETNAME=acmhs-site-bucket-2
 
 echo "Removing out folder..."
 sleep 1;
