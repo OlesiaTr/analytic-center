@@ -235,4 +235,22 @@ export const ORGANIZATION_MEMBERS = [
     scopus: 'https://www.scopus.com/authid/detail.uri?authorId=58899850600',
     wos: 'https://www.webofscience.com/wos/author/record/JNS-6417-2023',
   },
+  {
+    image:
+      'https://drive.google.com/thumbnail?id=1JseAOhLcaMi2lmXhPEZxEq9110kIdwJt&sz=w1000',
+    name: 'Шакун Наталія Валеріївна,',
+    position: 'Кандидатка філософських наук, доцентка',
+    googlescholar:
+      'https://scholar.google.co.th/citations?user=TSFVBaEAAAAJ&hl=uk',
+    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0083286',
+    orcid: 'https://orcid.org/0000-0003-2761-9965',
+    scopus: 'https://www.scopus.com/authid/detail.uri?authorId=57780240800',
+    wos: '',
+  },
+  {
+    image:
+      'https://drive.google.com/thumbnail?id=1nET5v5q1ChfKBqlGq-poQy9Do1roVk6H&sz=w1000',
+    name: 'Гордієнко Наталія Юріївна',
+    position: 'Громадська діячка',
+  },
 ];
