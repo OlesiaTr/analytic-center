@@ -6,6 +6,8 @@ export { CoverCard } from './cover-card';
 
 export { GrantList } from './grant-list';
 
+export { LibraryCard } from './library-card';
+
 export { MenuBtn } from './menu-btn';
 
 export { Navigation } from './navigation';
