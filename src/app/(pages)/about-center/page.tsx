@@ -9,6 +9,7 @@ import {
   ORGANIZATION_MEMBERS,
   SUPERVISORY_BOARD,
 } from '@/data/images';
+import { OrganizationStatute } from '@/sections';
 
 export const metadata: Metadata = meta['about-center'];
 
@@ -42,6 +43,8 @@ const Page = () => {
           ))}
         </ul>
       </section>
+
+      <OrganizationStatute />
 
       <section className="section ">
         <Title title={academicCouncil.title} />

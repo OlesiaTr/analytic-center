@@ -5,6 +5,7 @@ import { Title } from '@/components/ui';
 
 import data from '@/data/library.json';
 import meta from '@/data/meta/meta.json';
+import { BookCollection } from '@/sections';
 
 export interface Props {}
 
@@ -15,8 +16,10 @@ const Page: FC<Props> = () => {
 
   return (
     <main>
-      <section className="section h-[50vh]">
+      <section className="section">
         <Title title={title} />
+
+        <BookCollection />
       </section>
     </main>
   );
