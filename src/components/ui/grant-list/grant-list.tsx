@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FC } from 'react';
+import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
@@ -12,7 +12,7 @@ export interface Props {
   withAnswers?: boolean;
 }
 
-export const GrantList: FC<Props> = ({ list, withAnswers = false }) => {
+export const GrantList = ({ list, withAnswers = false }: Props) => {
   const [active, setActive] = useState<number>(0);
 
   const toggleActive = (id: number) => {
@@ -25,8 +25,9 @@ export const GrantList: FC<Props> = ({ list, withAnswers = false }) => {
         <li
           key={id}
           className={clsx(
-            'grant flex cursor-pointer justify-between rounded-lg bg-white px-4 py-5 transition md:py-7 ',
+            'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7 ',
             active === id && 'active',
+            withAnswers && 'cursor-pointer',
           )}
           onClick={() => toggleActive(id)}
         >
