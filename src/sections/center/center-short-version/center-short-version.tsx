@@ -22,7 +22,7 @@ export const CenterShortVersion = () => {
         </div>
 
         <div className="flex flex-col justify-around lg:max-w-[420px] xl:max-w-[520px] xl:justify-between xxl:max-w-[628px]">
-          <p className=" mb-6 text-sm leading-[1.43] tracking-[0.5px] md:mb-10 md:text-xl lg:mb-16 lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8] ">
+          <p className=" mb-6 text-sm leading-[1.43] tracking-[0.5px] text-main md:mb-10 md:text-xl lg:mb-16 lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8] ">
             {description}
           </p>
 
