@@ -1,13 +1,26 @@
-export { CenterShortVersion } from './center';
+export { CenterShortVersion, OrganizationStatute } from './center';
 
-export { UpcomingConferences } from './conferences';
+export {
+  AboutAuthors,
+  ReleasedConferences,
+  UpcomingConferences,
+  UpcomingConferencesExpanded,
+} from './conferences';
 
-export { GrantsShortVersion } from './grants';
+export { GrantsExpendedVersion, GrantsShortVersion } from './grants';
 
 export { Hero } from './hero';
 
-export { UpcomingMonographs } from './monographs';
+export { BookCollection } from './library';
+
+export {
+  ReleasedMonographs,
+  UpcomingMonographs,
+  UpcomingMonographsExpanded,
+} from './monographs';
 
 export { News } from './news';
 
 export { Partners } from './partners';
+
+export { SourceDescription } from './useful-info';
