@@ -1,0 +1,1 @@
+export {GrantDetails} from './grant-details'

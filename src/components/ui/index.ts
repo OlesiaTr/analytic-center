@@ -4,6 +4,8 @@ export { ButtonLink } from './button-link';
 
 export { CoverCard } from './cover-card';
 
+export {GrantDetails} from './grant-details';
+
 export { GrantList } from './grant-list';
 
 export { LibraryCard } from './library-card';
