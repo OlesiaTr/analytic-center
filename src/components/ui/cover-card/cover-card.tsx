@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-
 import { ButtonLink } from '@/components/ui';
+import clsx from 'clsx';
 
 export interface Props {
   card: {
@@ -8,16 +7,16 @@ export interface Props {
     imgSrc: string;
     imgAlt: string;
     title: string;
-    description: string;
     date: string;
-    day: string;
-    month: string;
     linkToDownload: string;
+    day?: string;
+    month?: string;
+    description?: string;
   };
   buttonDownload: string;
 }
 
-export const CoverCard: FC<Props> = ({ card, buttonDownload }) => {
+export const CoverCard = ({ card, buttonDownload }: Props) => {
   const { imgSrc, imgAlt, title, description, date, linkToDownload } = card;
 
   return (
@@ -26,13 +25,20 @@ export const CoverCard: FC<Props> = ({ card, buttonDownload }) => {
         <img src={imgSrc} alt={imgAlt} height={378} />
       </div>
 
-      <div className="flex h-[250px] flex-col items-center justify-between p-4 md:py-6">
+      <div
+        className={clsx(
+          'flex flex-col items-center justify-between p-4 md:py-6',
+          description ? 'h-[250px]' : 'h-[200px]',
+        )}
+      >
         <div>
           <h3 className="mb-6 font-bold uppercase leading-tight tracking-[-0.003px]">
             {title}
           </h3>
 
-          <p className="text-xs font-medium leading-snug">{description}</p>
+          {description && (
+            <p className="text-xs font-medium leading-snug">{description}</p>
+          )}
         </div>
 
         <div className="w-full">
