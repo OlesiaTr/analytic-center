@@ -9,6 +9,8 @@ export const UpcomingConferencesExpanded = () => {
   const { list, linkDownload, buttonDownload } = commonData.upcomingConferences;
   const { width } = useViewportSize();
 
+  if (!list.length) return null;
+
   return (
     <>
       {width !== null && width < VIEWPORT_LG ? (

@@ -3,9 +3,23 @@ import { isProduction } from '@/configs';
 
 import data from '@/data/common.json';
 
+      // {
+      //   "id": "4",
+      //   "imgSrc": "/images/conferences/conf-27-09-24.jpg",
+      //   "imgAlt": "Зображення обкладенки конференції від 27 вересня 2024 року: “Українська національна ідея в сучасному міждисциплінарному дискурсі”",
+      //   "title": "XXXVII Харківські політологічні читання",
+      //   "description": "“Українська національна ідея в сучасному міждисциплінарному дискурсі”",
+      //   "date": "27.09.2024",
+      //   "day": "27",
+      //   "month": "09",
+      //   "linkToDownload": "https://docs.google.com/uc?export=download&id=1MeC8dywKICjBhQjjqEwjkRsauQ8_XSI5"
+      // }
+
 export const UpcomingConferences = () => {
   const { title, list, button, buttonDownload, redirectionTo } =
     data.upcomingConferences;
+
+    if(!list.length) return null;
 
   return (
     <section className="section bg-mainBg">

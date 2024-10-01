@@ -30,6 +30,15 @@
   "upcomingConferences": {
     "title": "Архів конференцій",
     "list": [
+            {
+        "id": "4",
+        "imgSrc": "/images/conferences/conf-27-09-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 27 вересня 2024 року: “Українська національна ідея в сучасному міждисциплінарному дискурсі”",
+        "title": "XXXVII Харківські політологічні читання",
+        "description": "“Українська національна ідея в сучасному міждисциплінарному дискурсі”",
+        "date": "27.09.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1XLsDwRj9HIfr2l1vtC8V7am4EF_L1O7V"
+      },
       {
         "id": "3",
         "imgSrc": "/images/conferences/conf-29-08-24.jpg",
