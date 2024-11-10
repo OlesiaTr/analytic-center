@@ -2,22 +2,19 @@ import { ButtonLink, CoverCard, Title } from '@/components/ui';
 import { isProduction } from '@/configs';
 
 import data from '@/data/common.json';
+import { Conference } from '../types';
 
-      // {
-      //   "id": "4",
-      //   "imgSrc": "/images/conferences/conf-27-09-24.jpg",
-      //   "imgAlt": "Зображення обкладенки конференції від 27 вересня 2024 року: “Українська національна ідея в сучасному міждисциплінарному дискурсі”",
-      //   "title": "XXXVII Харківські політологічні читання",
-      //   "description": "“Українська національна ідея в сучасному міждисциплінарному дискурсі”",
-      //   "date": "27.09.2024",
-      //   "day": "27",
-      //   "month": "09",
-      //   "linkToDownload": "https://docs.google.com/uc?export=download&id=1MeC8dywKICjBhQjjqEwjkRsauQ8_XSI5"
-      // }
+      interface UpcomingConferencesDataProps {
+        title: string;
+        list: Conference[];
+        button: string;
+        buttonDownload: string;
+        redirectionTo: string;
+      }
 
 export const UpcomingConferences = () => {
   const { title, list, button, buttonDownload, redirectionTo } =
-    data.upcomingConferences;
+    data.upcomingConferences as UpcomingConferencesDataProps;
 
     if(!list.length) return null;
 

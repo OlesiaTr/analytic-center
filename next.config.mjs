@@ -1,4 +1,4 @@
-const BUCKET_NAME = 'acmhs-site-bucket-2';
+const BUCKET_NAME = 'acmhs-site-bucket-3';
 const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */

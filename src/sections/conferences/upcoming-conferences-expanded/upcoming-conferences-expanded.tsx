@@ -4,9 +4,14 @@ import { CoverCard, WideCoverCard } from '@/components/ui';
 import { VIEWPORT_LG } from '@/constants';
 import commonData from '@/data/common.json';
 import { useViewportSize } from '@/utils';
+import { Conference } from '../types';
 
 export const UpcomingConferencesExpanded = () => {
-  const { list, linkDownload, buttonDownload } = commonData.upcomingConferences;
+  const { list, linkDownload, buttonDownload } = commonData.upcomingConferences as {
+    list: Conference[];
+    linkDownload: string;
+    buttonDownload: string;
+  };
   const { width } = useViewportSize();
 
   if (!list.length) return null;

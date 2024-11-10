@@ -24,6 +24,17 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
+            {
+        "id": "5",
+        "imgSrc": "/images/conferences/conf-29-11-24.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 29 листопада 2024 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього",
+        "title": "XXVII Всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "29.11.2024",
+        "day": "29",
+        "month": "11",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1tfoRFwGO8imm6k1QbK9siblcB4pJ1CLQ"
+      }
     ],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
@@ -44,13 +55,33 @@
     "list": [
       {
         "id": "2",
+        "imgSrc": "/images/monographs/mono-25-11-24.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Турбулентність глобальних геополітичних процесів і проблеми національної безпеки”",
+        "title": "“Турбулентність глобальних геополітичних процесів і проблеми національної безпеки”",
+        "date": "10.12.2024",
+        "day": "10",
+        "month": "12",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1YEI3qfep2zDaqeF9C_rvCP8wag6I_YF2"
+      },
+      {
+        "id": "3",
         "imgSrc": "/images/monographs/mono-03-05-24.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
         "title": "“Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
-        "date": "25.12.2024",
+        "date": "10.01.2025",
+        "day": "10",
+        "month": "01",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1VUgaCTj_OKZIH9-BqI7MalQ6kUPQ8HlA"
+      }, 
+      {
+        "id": "4",
+        "imgSrc": "/images/monographs/mono-25-01-25.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Деструктивні мегатенденції сучасностіЖ від пандемії до війни”",
+        "title": "“Деструктивні мегатенденції сучасностіЖ від пандемії до війни”",
+        "date": "25.01.2025",
         "day": "25",
-        "month": "12",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1-PUgNzQOmks52ErBlopw5x74BzB2U_j8"
+        "month": "01",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1W2mn9V5fC4hvI8mufhfWMxyJXG_nFYSE"
       }
     ],
     "button": "Дізнатися більше",

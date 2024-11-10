@@ -30,6 +30,15 @@
   "upcomingConferences": {
     "title": "Архів конференцій",
     "list": [
+      {
+        "id": "5",
+        "imgSrc": "/images/conferences/conf-31-10-24.jpeg",
+        "imgAlt": "Зображення обкладенки конференції від 31 жовтня 2024 року: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "title": "II Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "31.10.2024",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1yALUHAMZN8yo3KF7JIOdwegBdoE2azc5"
+      },
             {
         "id": "4",
         "imgSrc": "/images/conferences/conf-27-09-24.jpg",
