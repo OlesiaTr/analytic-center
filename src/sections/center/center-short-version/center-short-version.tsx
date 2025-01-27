@@ -1,7 +1,6 @@
 'use client';
 
 import { ButtonLink, Title } from '@/components/ui';
-import { isProduction } from '@/configs';
 import { VIEWPORT_LG } from '@/constants';
 import { useViewportSize } from '@/utils';
 
@@ -31,13 +30,13 @@ export const CenterShortVersion = () => {
               label={button}
               styles="sm:min-w-[302px] m-auto"
               isAccentBtn
-              href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
+              href={redirectionTo}
             />
           ) : (
             <ButtonLink
               label={button}
               styles="min-w-[302px]"
-              href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
+              href={redirectionTo}
             />
           )}
         </div>

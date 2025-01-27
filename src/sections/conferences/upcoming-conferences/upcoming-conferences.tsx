@@ -1,5 +1,4 @@
 import { ButtonLink, CoverCard, Title } from '@/components/ui';
-import { isProduction } from '@/configs';
 
 import data from '@/data/common.json';
 import { Conference } from '../types';
@@ -49,7 +48,7 @@ export const UpcomingConferences = () => {
         label={button}
         styles="sm:min-w-[302px] m-auto"
         isAccentBtn
-        href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
+        href={redirectionTo}
       />
     </section>
   );

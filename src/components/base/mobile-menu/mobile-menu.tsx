@@ -3,7 +3,6 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 
 import { LINKS } from '@/constants';
-import { isProduction } from '@/configs';
 
 export interface Props {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -22,9 +21,7 @@ export const MobileMenu: FC<Props> = ({ closeModal }) => {
             >
               <a
                 href={
-                  isProduction()
-                    ? `${linkTo === '/' ? 'index' : linkTo}.html`
-                    : linkTo
+                  linkTo
                 }
                 className="text-xl font-medium leading-normal text-white transition hover:text-accent active:text-accentLight"
               >

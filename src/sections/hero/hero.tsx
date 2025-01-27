@@ -1,7 +1,6 @@
 'use client';
 
 import { ButtonLink } from '@/components/ui';
-import { isProduction } from '@/configs';
 
 import data from '@/data/common.json';
 
@@ -22,7 +21,7 @@ export const Hero = () => {
 
       <ButtonLink
         label={button}
-        href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
+        href={redirectionTo}
       />
     </section>
   );

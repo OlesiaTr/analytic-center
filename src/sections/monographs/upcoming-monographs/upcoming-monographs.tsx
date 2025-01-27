@@ -1,5 +1,4 @@
 import { ButtonLink, SliderCoverCard, Title } from '@/components/ui';
-import { isProduction } from '@/configs';
 
 import data from '@/data/common.json';
 
@@ -16,7 +15,7 @@ export const UpcomingMonographs = () => {
       <ButtonLink
         label={button}
         styles="sm:min-w-[302px] m-auto"
-        href={isProduction() ? `${redirectionTo}.html` : redirectionTo}
+        href={redirectionTo}
       />
     </section>
   );

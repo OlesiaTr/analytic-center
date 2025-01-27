@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/16/solid';
 
-import { isProduction } from '@/configs';
 
 export interface Props {
   location?: string;
@@ -31,7 +30,7 @@ export const Navigation: FC<Props> = ({
         {location === 'header' && (
           <li>
             <a
-              href={isProduction() ? 'index.html' : links[0].linkTo}
+              href={links[0].linkTo}
               className={clsx(
                 'flex py-8 text-white transition hover:text-accent active:text-accentLight ',
               )}
@@ -43,7 +42,7 @@ export const Navigation: FC<Props> = ({
         {links.slice(1).map(({ name, linkTo }, id) => (
           <li key={id}>
             <a
-              href={isProduction() ? `${linkTo}.html` : linkTo}
+              href={linkTo}
               className={clsx(
                 'flex py-[46px] text-white transition hover:text-accent active:text-accentLight ',
                 linkStyles,
