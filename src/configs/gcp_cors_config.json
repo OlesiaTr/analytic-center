@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["https://acmhs.in.ua"],
+    "origin": ["https://acmhs.in.ua", "analytic-center.vercel.app"],
     "responseHeader": ["*"],
     "method": ["GET"],
     "maxAgeSeconds": 3600
