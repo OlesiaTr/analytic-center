@@ -24,16 +24,27 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
-            {
-        "id": "7",
-        "imgSrc": "/images/conferences/conf-27-12-24.jpg",
-        "imgAlt": "Зображення обкладенки конференції від 27 грудня 2024 року: “Україна в умовах російської агресії: уроки сьогодення та погрози майбутнього",
-        "title": "XXХVIІІ Харківські політологічні читання",
-        "description": "“Україна в умовах російської агресії: уроки сьогодення та погрози майбутнього”",
-        "date": "27.12.2024",
-        "day": "27",
-        "month": "12",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1TJBXrdK_GpaajoSDHfmhXl9gSWohFftP"
+      {
+        "id": "8",
+        "imgSrc": "/images/conferences/conf-31-01-25.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 31 січня 2025 року: “Глобальний світ і Україна: сучасні виклики та пошук відповідей",
+        "title": "IІІ Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "31.01.2025",
+        "day": "31",
+        "month": "01",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1Fga0FFs5otplWjt7mFNvg74sUh0rxbWG"
+      },
+      {
+        "id": "9",
+        "imgSrc": "/images/conferences/conf-28-02-25.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 28 лютого 2025 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього",
+        "title": "XXVIІІ Всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "28.02.2025",
+        "day": "28",
+        "month": "02",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1k16EvFOFKyIHCte8Zj8lavXLrr04KSSG"
       }
     ],
     "button": "Дізнатися більше",
@@ -54,16 +65,6 @@
     "title": "Запрошуються до написання монографії",
     "list": [
       {
-        "id": "2",
-        "imgSrc": "/images/monographs/mono-25-11-24.jpeg",
-        "imgAlt": "Зображення обкладенки монографії: “Турбулентність глобальних геополітичних процесів і проблеми національної безпеки”",
-        "title": "“Турбулентність глобальних геополітичних процесів і проблеми національної безпеки”",
-        "date": "10.12.2024",
-        "day": "10",
-        "month": "12",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1YEI3qfep2zDaqeF9C_rvCP8wag6I_YF2"
-      },
-      {
         "id": "3",
         "imgSrc": "/images/monographs/mono-03-05-24.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
@@ -82,6 +83,16 @@
         "day": "25",
         "month": "01",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1W2mn9V5fC4hvI8mufhfWMxyJXG_nFYSE"
+      },
+      {
+        "id": "5",
+        "imgSrc": "/images/monographs/mono-10-03-25.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Громадянське суспільство України: стан і перспективи розвитку в умовах російсько-української війни”",
+        "title": "“Громадянське суспільство України: стан і перспективи розвитку в умовах російсько-української війни”",
+        "date": "10.03.2025",
+        "day": "10",
+        "month": "03",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1wHu14iaCMhGGEpLrwu2FfXtE4ZwGcU2b"
       }
     ],
     "button": "Дізнатися більше",

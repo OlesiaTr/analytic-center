@@ -1,7 +1,7 @@
 export const SUPERVISORY_BOARD = [
   {
     image:
-      'https://drive.google.com/thumbnail?id=1w6im7lrqsWPCUMw4RWNAJvJEEPPyQ78a&sz=w1000',
+      'https://drive.google.com/thumbnail?id=1U58VsqcAN0CygDRdtkMts_VzRelpb3Pz&sz=w1000',
     name: 'Чернишова Таїсія Олексіївна',
     position: 'Кандидатка філологічних наук, доцентка, голова наглядової ради',
     googlescholar:
