@@ -12,7 +12,7 @@ export const ReleasedMonographs = () => {
         {list.map(card => (
           <li
             key={card.id}
-            className="w-[328px] rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
+            className="flex w-[328px] flex-col justify-between rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
           >
             <CoverCard card={card} buttonDownload={buttonDownload} />
           </li>

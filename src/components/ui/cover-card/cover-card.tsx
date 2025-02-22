@@ -27,12 +27,12 @@ export const CoverCard = ({ card, buttonDownload }: Props) => {
 
       <div
         className={clsx(
-          'flex flex-col items-center justify-between p-4 md:py-6',
+          'flex flex-col items-center justify-between px-4 pt-4 md:pt-6 md:pb-2',
           description ? 'h-[250px]' : 'h-[200px]',
         )}
       >
         <div>
-          <h3 className="mb-6 font-bold uppercase leading-tight tracking-[-0.003px]">
+          <h3 className="font-bold uppercase leading-tight tracking-[-0.003px]">
             {title}
           </h3>
 
@@ -42,7 +42,7 @@ export const CoverCard = ({ card, buttonDownload }: Props) => {
         </div>
 
         <div className="w-full">
-          <span className="mb-6 inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate">
+          <span className="mb-2 inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate">
             {date}
           </span>
 
