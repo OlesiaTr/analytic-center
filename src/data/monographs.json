@@ -4,6 +4,14 @@
     "title": "Архів монографій",
     "list": [
       {
+        "id": "4",
+        "imgSrc": "/images/monographs/mono-25-01-25.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Деструктивні мегатенденції сучасності: від пандемії до війни”",
+        "title": "“Деструктивні мегатенденції сучасності: від пандемії до війни”",
+        "date": "25.01.2025",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1b5VeZAcHwWXj1bJo-VgiuSOnXQ2iMwaJ"
+      },
+      {
         "id": "3",
         "imgSrc": "/images/monographs/mono-03-05-24.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
