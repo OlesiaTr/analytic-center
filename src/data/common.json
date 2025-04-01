@@ -34,6 +34,17 @@
         "day": "28",
         "month": "03",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1SOHUly0HcAAFe3gFrsq6e3lOnrsrlrlW"
+      },
+      {
+        "id": "11",
+        "imgSrc": "/images/conferences/conf-26-04-25.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 26 квітня 2025 року: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "title": "IV Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "26.04.2025",
+        "day": "26",
+        "month": "04",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=13U-N47bqlJECmBN7WffHKpmwWrh3vdDo"
       }
     ],
     "button": "Дізнатися більше",
@@ -72,6 +83,16 @@
         "day": "10",
         "month": "05",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1vsTSSN2OeH1fRAKbiWLNIt8cz2VzrZfz"
+      },
+      {
+        "id": "7",
+        "imgSrc": "/images/monographs/mono-15-09-25.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Людина в цифровому суспільстві: сучасні тренди”",
+        "title": "“Людина в цифровому суспільстві: сучасні тренди”",
+        "date": "15.09.2025",
+        "day": "15",
+        "month": "09",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1QFl-dU58KwGMf_zuilatbCAMPHisPnqN"
       }
     ],
     "button": "Дізнатися більше",
