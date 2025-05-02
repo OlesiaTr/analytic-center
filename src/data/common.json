@@ -24,17 +24,6 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
-      {
-        "id": "11",
-        "imgSrc": "/images/conferences/conf-26-04-25.jpg",
-        "imgAlt": "Зображення обкладенки конференції від 26 квітня 2025 року: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
-        "title": "IV Всеукраїнська науково-практична конференція",
-        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
-        "date": "26.04.2025",
-        "day": "26",
-        "month": "04",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=13U-N47bqlJECmBN7WffHKpmwWrh3vdDo"
-      }
     ],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
