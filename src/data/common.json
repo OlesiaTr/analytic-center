@@ -24,6 +24,17 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
+      {
+        "id": "12",
+        "imgSrc": "/images/conferences/conf-30-09-25.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 30 вересня 2025 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "title": "ХХІХ Всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "30.09.2025",
+        "day": "30",
+        "month": "09",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1pveQTj41URj8Lx8AHzTVGvwi97boSMeu"
+      }
     ],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
@@ -71,6 +82,16 @@
         "day": "15",
         "month": "09",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1QFl-dU58KwGMf_zuilatbCAMPHisPnqN"
+      },
+      {
+        "id": "8",
+        "imgSrc": "/images/monographs/mono-10-12-25.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Україна перед викликами сьогодення: в пошуках оптимальної моделі розвитку”",
+        "title": "“Україна перед викликами сьогодення: в пошуках оптимальної моделі розвитку”",
+        "date": "10.12.2025",
+        "day": "10",
+        "month": "12",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1Gf3XY7ATRrx5GHQG-6z4djLyIlNqnS9U"
       }
     ],
     "button": "Дізнатися більше",
