@@ -3,6 +3,14 @@
   "archivedMonographs": {
     "title": "Архів монографій",
     "list": [
+            {
+        "id": "4",
+        "imgSrc": "/images/monographs/mono-nlu.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Громадянське суспільство України: стан і перспективи розвитку в умовах російсько-української війни”",
+        "title": "“Громадянське суспільство України: стан і перспективи розвитку в умовах російсько-української війни”",
+        "date": "29.04.2025",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1NUyUKf7olnaZHdeprSiHod_h1rE0jv8W"
+      },
       {
         "id": "4",
         "imgSrc": "/images/monographs/mono-25-01-25.jpeg",
