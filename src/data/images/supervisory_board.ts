@@ -20,14 +20,11 @@ export const SUPERVISORY_BOARD = [
   },
   {
     image:
-      'https://drive.google.com/thumbnail?id=14gV3f9AyPpiu5ruk_I5GrShfSCi2P92f&sz=w1000',
-    name: 'Кальницький Едуард Анатолійович',
+      'https://drive.google.com/thumbnail?id=1JSqqj8z1ZPedBuqi00D5bWQXulBB-o-i&sz=w1000',
+    name: 'Кротюк Василь Андрійович',
     position: 'Кандидат філософських наук, доцент',
     googlescholar:
-      'https://scholar.google.com.ua/citations?hl=ru&authuser=0&pli=1&user=QhX6cpYAAAAJ',
-    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0028988',
-    orcid: 'https://orcid.org/0000-0002-1777-9992',
-    scopus: 'https://www.scopus.com/authid/detail.uri?authorId=57202915267',
-    wos: 'https://www.webofscience.com/wos/author/record/2209885',
+      'https://scholar.google.com.ua/citations?user=LJgftkAAAAAJ&hl=ru',
+    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0110620',
   },
 ];

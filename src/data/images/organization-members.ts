@@ -86,15 +86,6 @@ export const ORGANIZATION_MEMBERS = [
   },
   {
     image:
-      'https://drive.google.com/thumbnail?id=1JSqqj8z1ZPedBuqi00D5bWQXulBB-o-i&sz=w1000',
-    name: 'Кротюк Василь Андрійович',
-    position: 'Кандидат філософських наук, доцент',
-    googlescholar:
-      'https://scholar.google.com.ua/citations?user=LJgftkAAAAAJ&hl=ru',
-    naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0110620',
-  },
-  {
-    image:
       'https://drive.google.com/thumbnail?id=1aM4VfYhpaaTPc7-xKeKI7WC4KLDTdS36&sz=w1000',
     name: 'Лизогуб Віталій Анатолійович',
     position: 'Кандидат юридичних наук, доцент',
