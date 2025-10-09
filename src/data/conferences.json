@@ -30,6 +30,15 @@
   "upcomingConferences": {
     "title": "Архів конференцій",
     "list": [
+            {
+        "id": "12",
+        "imgSrc": "/images/conferences/conf-30-09-25.jpg",
+        "imgAlt": "Зображення обкладенки конференції від 30 вересня 2025 року: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "title": "ХХІХ Всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "30.09.2025",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1R2YLrmvdbpYRihyZAS9uHyxx3C92kVmK"
+      },
       {
         "id": "11",
         "imgSrc": "/images/conferences/conf-26-04-25.jpg",
