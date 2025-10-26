@@ -244,4 +244,15 @@ export const ORGANIZATION_MEMBERS = [
     name: 'Гордієнко Наталія Юріївна',
     position: 'Громадська діячка',
   },
+    {
+    image:
+      'https://drive.google.com/thumbnail?id=1BVH5NllRdS_eJOSxJ3bWRln2GdMiC1Au&sz=w1000',
+    name: 'Андрущенко Олеся Петрівна',
+    position: 'Докторка філософії за спеціальністю 08 ‒ Право',
+    googlescholar:
+      'https://scholar.google.com.ua/citations?user=ZCZo6soAAAAJ&hl=uk',
+    orcid: 'https://orcid.org/0009-0004-1759-1166',
+    scopus: 'https://www.scopus.com/authid/detail.uri?authorId=59418080900',
+    wos: 'https://www.webofscience.com/wos/author/record/MIU-4452-2025',
+  },
 ];

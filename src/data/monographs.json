@@ -4,6 +4,14 @@
     "title": "Архів монографій",
     "list": [
             {
+        "id": "7",
+        "imgSrc": "/images/monographs/mono-15-09-25.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Людина в цифровому суспільстві: сучасні тренди”",
+        "title": "“Людина в цифровому суспільстві: сучасні тренди”",
+        "date": "15.09.2025",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1LNqtG5NOabUsP-1kUqRDMOCFqOlRiva5"
+      },
+            {
         "id": "6",
         "imgSrc": "/images/monographs/mono-25-05-15.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Геополітичний ландшафт сучасного світу та місце в ньому України”",
