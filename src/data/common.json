@@ -24,17 +24,6 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
-      {
-        "id": "13",
-        "imgSrc": "/images/conferences/conf-31-10-25.jpg",
-        "imgAlt": "Зображення обкладенки конференції від 31 жовтня 2025 року: “Трансформація світового порядку в ХХІ столітті та її вплив на життя українського суспільства”",
-        "title": "ХL Харківські політологічні читання",
-        "description": "“Трансформація світового порядку в ХХІ столітті та її вплив на життя українського суспільства”",
-        "date": "31.10.2025",
-        "day": "31",
-        "month": "10",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1xczmpvqbpX0mOKCqqQ87XFCvHgQa5Cu9"
-      },
             {
         "id": "14",
         "imgSrc": "/images/conferences/conf-28-11-25.jpg",
