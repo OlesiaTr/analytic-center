@@ -24,6 +24,17 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
+      {
+        "id": "16",
+        "imgSrc": "/images/conferences/conf-30-01-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Україна в часи випробувань: соціальні, культурні та політичні трансформації”",
+        "title": "ХLІ Харківські політологічні читання",
+        "description": "“Україна в часи випробувань: соціальні, культурні та політичні трансформації”",
+        "date": "30.01.2026",
+        "day": "30",
+        "month": "01",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1Kfex-2UJZHD5pgH23nln-vkpTsGsq7-a"
+      }
     ],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
@@ -51,6 +62,36 @@
         "day": "25",
         "month": "12",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1dFllsfvnD1Aha8JfKhfi5FrG-wGMgKa9"
+      },
+      {
+        "id": "9",
+        "imgSrc": "/images/monographs/mono-28-02-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Війна як модус соціального буття в міждисциплінарному науковому дискурсі”",
+        "title": "“Війна як модус соціального буття в міждисциплінарному науковому дискурсі”",
+        "date": "28.02.2026",
+        "day": "28",
+        "month": "02",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1fGFSwDX0FA_OJ2Sq6Ip0mTPYmQ_0i2fx"
+      },
+      {
+        "id": "10",
+        "imgSrc": "/images/monographs/mono-30-04-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Травмований світ: сучасні конфлікти та управління ними”",
+        "title": "“Травмований світ: сучасні конфлікти та управління ними”",
+        "date": "30.04.2026",
+        "day": "30",
+        "month": "04",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1bdBGUy0cVqlXBYLGlRCtTh12hPGxTocX"
+      },
+      {
+        "id": "11",
+        "imgSrc": "/images/monographs/mono-30-06-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Інформаційна війна та її вплив на суспільство”",
+        "title": "“Інформаційна війна та її вплив на суспільство”",
+        "date": "30.06.2026",
+        "day": "30",
+        "month": "06",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=17JGC3T7oB3sBNQHJvCxX9wJx7Vmm9ttK"
       }
     ],
     "button": "Дізнатися більше",
