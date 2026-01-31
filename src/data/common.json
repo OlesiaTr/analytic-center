@@ -34,6 +34,17 @@
         "day": "30",
         "month": "01",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1Kfex-2UJZHD5pgH23nln-vkpTsGsq7-a"
+      },
+            {
+        "id": "17",
+        "imgSrc": "/images/conferences/conf-27-02-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "title": "VІ Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "27.02.2026",
+        "day": "27",
+        "month": "02",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1f8YdnL6ChqSfCNljI1hhG1HFzVR8MWQn"
       }
     ],
     "button": "Дізнатися більше",
@@ -53,16 +64,7 @@
   "upcomingMonographs": {
     "title": "Запрошуються до написання монографії",
     "list": [
-      {
-        "id": "8",
-        "imgSrc": "/images/monographs/mono-10-12-25.jpg",
-        "imgAlt": "Зображення обкладенки монографії: “Україна перед викликами сьогодення: в пошуках оптимальної моделі розвитку”",
-        "title": "“Україна перед викликами сьогодення: в пошуках оптимальної моделі розвитку”",
-        "date": "25.12.2025",
-        "day": "25",
-        "month": "12",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1dFllsfvnD1Aha8JfKhfi5FrG-wGMgKa9"
-      },
+
       {
         "id": "9",
         "imgSrc": "/images/monographs/mono-28-02-26.jpeg",
