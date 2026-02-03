@@ -1,21 +1,15 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
-npm run fix 
-
-git add .
+npm run fix
 
 # Check ESLint Standards
 npm run lint ||
 (
-        echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
+        echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤
                 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
+        false;
 )
 
 # If everything passes... Now we can commit
@@ -24,7 +18,7 @@ echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build no
 npm run test-all ||
 (
     echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌
-            Next build failed: View the errors above to see why. 
+            Next build failed: View the errors above to see why.
     '
     false;
 )
