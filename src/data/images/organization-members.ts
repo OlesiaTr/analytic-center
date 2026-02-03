@@ -244,7 +244,7 @@ export const ORGANIZATION_MEMBERS = [
     name: 'Гордієнко Наталія Юріївна',
     position: 'Громадська діячка',
   },
-    {
+  {
     image:
       'https://drive.google.com/thumbnail?id=1BVH5NllRdS_eJOSxJ3bWRln2GdMiC1Au&sz=w1000',
     name: 'Андрущенко Олеся Петрівна',

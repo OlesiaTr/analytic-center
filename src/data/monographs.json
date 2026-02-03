@@ -3,7 +3,7 @@
   "archivedMonographs": {
     "title": "Архів монографій",
     "list": [
-            {
+      {
         "id": "8",
         "imgSrc": "/images/monographs/mono-10-12-25.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Україна перед викликами сьогодення: в пошуках оптимальної моделі розвитку”",
@@ -11,7 +11,7 @@
         "date": "25.12.2025",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1jmDeUBz1yyvLWeSs2haj2Ytnr1tFaJHN"
       },
-            {
+      {
         "id": "7",
         "imgSrc": "/images/monographs/mono-15-09-25.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Людина в цифровому суспільстві: сучасні тренди”",
@@ -19,7 +19,7 @@
         "date": "15.09.2025",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1LNqtG5NOabUsP-1kUqRDMOCFqOlRiva5"
       },
-            {
+      {
         "id": "6",
         "imgSrc": "/images/monographs/mono-25-05-15.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Геополітичний ландшафт сучасного світу та місце в ньому України”",
@@ -27,7 +27,7 @@
         "date": "15.06.2025",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1GbTQYOv0OlvELqGKKE40qFc2IDGUi7gF"
       },
-            {
+      {
         "id": "5",
         "imgSrc": "/images/monographs/mono-nlu.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Громадянське суспільство України: стан і перспективи розвитку в умовах російсько-української війни”",
@@ -50,7 +50,7 @@
         "title": "“Сучасна гуманітаристика: актуальні питання та перспективи розвитку”",
         "date": "10.01.2025",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1mK6faMHl6XM-4sbkoUwPRnacM8Fo1A5Y"
-      }, 
+      },
       {
         "id": "2",
         "imgSrc": "/images/monographs/mono-25-11-24.jpeg",

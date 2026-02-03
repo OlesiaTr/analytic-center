@@ -35,7 +35,7 @@
         "month": "01",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1Kfex-2UJZHD5pgH23nln-vkpTsGsq7-a"
       },
-            {
+      {
         "id": "17",
         "imgSrc": "/images/conferences/conf-27-02-26.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
@@ -64,7 +64,6 @@
   "upcomingMonographs": {
     "title": "Запрошуються до написання монографії",
     "list": [
-
       {
         "id": "9",
         "imgSrc": "/images/monographs/mono-28-02-26.jpeg",

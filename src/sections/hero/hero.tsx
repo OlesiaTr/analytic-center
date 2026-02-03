@@ -19,10 +19,7 @@ export const Hero = () => {
         {label}
       </p>
 
-      <ButtonLink
-        label={button}
-        href={redirectionTo}
-      />
+      <ButtonLink label={button} href={redirectionTo} />
     </section>
   );
 };

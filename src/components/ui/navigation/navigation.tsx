@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/16/solid';
 
-
 export interface Props {
   location?: string;
   links: readonly {

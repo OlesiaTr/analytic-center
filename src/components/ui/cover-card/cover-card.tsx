@@ -27,7 +27,7 @@ export const CoverCard = ({ card, buttonDownload }: Props) => {
 
       <div
         className={clsx(
-          'flex flex-col items-center justify-between px-4 pt-4 md:pt-6 md:pb-2',
+          'flex flex-col items-center justify-between px-4 pt-4 md:pb-2 md:pt-6',
           description ? 'h-[250px]' : 'h-[200px]',
         )}
       >

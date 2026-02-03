@@ -1,1 +1,1 @@
-export {GrantDetails} from './grant-details'
+export { GrantDetails } from './grant-details';

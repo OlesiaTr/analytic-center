@@ -49,7 +49,7 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
             )}
           </li>
 
-          {active === id && (
+          {active === id &&
             grantsList[active].programs.map((details, id) => (
               <GrantDetails
                 key={id}
@@ -57,11 +57,11 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
                 description={details.description}
                 date={details.date}
                 linkTo={details.linkTo}
-                descriptionList={'descriptionList' in details ? details.descriptionList : null}
+                descriptionList={
+                  'descriptionList' in details ? details.descriptionList : null
+                }
               />
-            ))
-
-          )}
+            ))}
         </Fragment>
       ))}
     </ul>

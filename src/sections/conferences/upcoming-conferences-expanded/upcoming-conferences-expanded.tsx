@@ -7,11 +7,12 @@ import { useViewportSize } from '@/utils';
 import { Conference } from '../types';
 
 export const UpcomingConferencesExpanded = () => {
-  const { list, linkDownload, buttonDownload } = commonData.upcomingConferences as {
-    list: Conference[];
-    linkDownload: string;
-    buttonDownload: string;
-  };
+  const { list, linkDownload, buttonDownload } =
+    commonData.upcomingConferences as {
+      list: Conference[];
+      linkDownload: string;
+      buttonDownload: string;
+    };
   const { width } = useViewportSize();
 
   if (!list.length) return null;

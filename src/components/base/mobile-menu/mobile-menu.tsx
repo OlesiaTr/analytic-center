@@ -20,9 +20,7 @@ export const MobileMenu: FC<Props> = ({ closeModal }) => {
               onClick={() => closeModal(false)}
             >
               <a
-                href={
-                  linkTo
-                }
+                href={linkTo}
                 className="text-xl font-medium leading-normal text-white transition hover:text-accent active:text-accentLight"
               >
                 {name}

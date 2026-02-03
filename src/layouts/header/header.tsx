@@ -28,10 +28,7 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
       )}
     >
       <div className="flex items-center justify-between p-4 md:px-14  lg:py-0 xl:px-20">
-        <a
-          href={LINKS[0].linkTo}
-          className="transition hover:scale-110"
-        >
+        <a href={LINKS[0].linkTo} className="transition hover:scale-110">
           {width !== null && width < VIEWPORT_MD ? (
             <Logo width={50} height={36} />
           ) : (
