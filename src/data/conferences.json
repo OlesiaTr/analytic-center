@@ -30,6 +30,15 @@
   "upcomingConferences": {
     "title": "Архів конференцій",
     "list": [
+            {
+        "id": "16",
+        "imgSrc": "/images/conferences/conf-30-01-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Україна в часи випробувань: соціальні, культурні та політичні трансформації”",
+        "title": "ХLІ Харківські політологічні читання",
+        "description": "“Україна в часи випробувань: соціальні, культурні та політичні трансформації”",
+        "date": "30.01.2026",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1_yCYcJtvhLgqDxxuPEoXKtXtMkeSfUd-"
+      },
       {
         "id": "15",
         "imgSrc": "/images/conferences/conf-26-12-25.jpg",
