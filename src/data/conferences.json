@@ -30,7 +30,16 @@
   "upcomingConferences": {
     "title": "Архів конференцій",
     "list": [
-            {
+      {
+        "id": "17",
+        "imgSrc": "/images/conferences/conf-27-02-26.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "title": "VІ Всеукраїнська науково-практична конференція",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
+        "date": "27.02.2026",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1LcCqpx_rtKsRHh73IE6ucYW2OfNw5GhT"
+      },
+      {
         "id": "16",
         "imgSrc": "/images/conferences/conf-30-01-26.jpeg",
         "imgAlt": "Зображення обкладенки монографії: “Україна в часи випробувань: соціальні, культурні та політичні трансформації”",

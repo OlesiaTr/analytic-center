@@ -24,7 +24,7 @@
   "upcomingConferences": {
     "title": "Найближчі конференції",
     "list": [
-            {
+      {
         "id": "18",
         "imgSrc": "/images/conferences/conf-27-03-26.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Реальність у режимі кризи: міждисциплінарні студії”",
@@ -34,17 +34,6 @@
         "day": "27",
         "month": "03",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1hCCBur-AGF00b4ezMMes7GzHPgotU-jw"
-      },
-      {
-        "id": "17",
-        "imgSrc": "/images/conferences/conf-27-02-26.jpg",
-        "imgAlt": "Зображення обкладенки монографії: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
-        "title": "VІ Всеукраїнська науково-практична конференція",
-        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
-        "date": "27.02.2026",
-        "day": "27",
-        "month": "02",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1f8YdnL6ChqSfCNljI1hhG1HFzVR8MWQn"
       }
     ],
     "button": "Дізнатися більше",
