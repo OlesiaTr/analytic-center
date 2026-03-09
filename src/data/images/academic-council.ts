@@ -1,7 +1,6 @@
 export const ACADEMIC_COUNCIL = [
   {
-    image:
-      'https://drive.google.com/thumbnail?id=15cAKACPc207jL3Fh9Fz5YNEKZI5_5Jaz&sz=w1000',
+    image: '/images/members/ac-trebin.jpg',
     name: 'Требін Михайло Петрович',
     position: 'Доктор філософських наук, професор, голова Вченої ради',
     googlescholar:
@@ -16,8 +15,7 @@ export const ACADEMIC_COUNCIL = [
       'https://www.scopus.com/authid/detail.uri?authorId=58532573700&origin=recordPage',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1W8BYivVbZ4O8g7zeN2C-XzA12loSWD3c&sz=w1000',
+    image: '/images/members/ac-prudnikov-v.jpg',
     name: 'Прудников Віктор Анатолійович',
     position: 'Кандидат юридичних наук, доцент, заступник голови Вченої ради',
     googlescholar:
@@ -26,9 +24,8 @@ export const ACADEMIC_COUNCIL = [
       'http://irbis-nbuv.gov.ua/cgi-bin/suak/corp.exe?&I21DBN=SAUA&P21DBN=SAUA&S21STN=1&S21REF=10&S21FMT=elib_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=ID=&S21COLORTERMS=0&S21STR=1489053',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1ZfJfngUc_tsj9RHR8Vk_IDnOxC-oRRJz&sz=w1000',
-    name: 'Бліхар В’ячеслав Степанович',
+    image: '/images/members/ac-blikhar.jpg',
+    name: `Бліхар В'ячеслав Степанович`,
     position: 'Доктор філософських наук, професор',
     googlescholar:
       'https://scholar.google.com.ua/citations?user=wl-RQ0wAAAAJ&hl=uk',
@@ -39,8 +36,7 @@ export const ACADEMIC_COUNCIL = [
     wos: 'https://www.webofscience.com/wos/author/record/850900',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1DZOE5p4_kWmc-FviJzcnqNkRnZMa0EKi&sz=w1000',
+    image: '/images/members/ac-herasina.jpg',
     name: 'Герасіна Людмила Миколаївна',
     position: 'Докторка соціологічних наук, професорка',
     googlescholar:
@@ -50,8 +46,7 @@ export const ACADEMIC_COUNCIL = [
       'https://www.researchgate.net/scientific-contributions/Ludmila-Mikolaivna-Gerasina-2150839509',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1PbjtD6OpEA9em8Ii_RKe9fVeE9MyUEUT&sz=w1000',
+    image: '/images/members/ac-denysenko.jpg',
     name: 'Денисенко Ірина Дмитрівна',
     position: 'Докторка філософських наук, професорка',
     googlescholar:
@@ -60,8 +55,7 @@ export const ACADEMIC_COUNCIL = [
       'http://irbis-nbuv.gov.ua/cgi-bin/suak/corp.exe?&I21DBN=SAUA&P21DBN=SAUA&S21STN=1&S21REF=10&S21FMT=elib_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=ID=&S21COLORTERMS=0&S21STR=0011059',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1Ew6GVchnqBxuV5ncFAAnIJI4_EwvEIFN&sz=w1000',
+    image: '/images/members/ac-dmytryk.jpg',
     name: 'Дмитрик Ольга Олександрівна',
     position: 'Докторка юридичних наук, професорка',
     googlescholar:
@@ -74,8 +68,7 @@ export const ACADEMIC_COUNCIL = [
     wos: 'https://www.webofscience.com/wos/author/record/2076193',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1RTi6eE4Ddjs7Sg3edrYqrERD2BdvMP12&sz=w1000',
+    image: '/images/members/ac-kozlovets.jpg',
     name: 'Козловець Микола Адамович',
     position: 'Доктор філософських наук, професор',
     googlescholar:
@@ -87,8 +80,7 @@ export const ACADEMIC_COUNCIL = [
     wos: 'https://www.webofscience.com/wos/author/record/2028255',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=184w6Gf4lHW8kgmr_r7JNEPgM895-CZLX&sz=w1000',
+    image: '/images/members/ac-kuz.jpg',
     name: 'Кузь Олег Миколайович',
     position: 'Доктор філософських наук, професор',
     googlescholar:
@@ -98,8 +90,7 @@ export const ACADEMIC_COUNCIL = [
     orcid: 'https://orcid.org/0000-0003-1359-2466',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1-Xgpe4LyhOrL05yaMDO9tQG4kdVdpX62&sz=w1000',
+    image: '/images/members/ac-kuts.jpg',
     name: 'Куц Галина Михайлівна',
     position: 'Докторка політичних наук, професорка',
     googlescholar:
@@ -109,8 +100,7 @@ export const ACADEMIC_COUNCIL = [
     orcid: 'https://orcid.org/0000-0002-7263-1958',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1r_Xbz0oOEw6WHTSWMVAAgJxksGVsjNHh&sz=w1000',
+    image: '/images/members/ac-panfilov.jpg',
     name: 'Панфілов Олександр Юрійович',
     position: 'Доктор філософських наук, професор',
     googlescholar:
@@ -122,8 +112,7 @@ export const ACADEMIC_COUNCIL = [
     wos: 'https://www.webofscience.com/wos/author/record/415115',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1DMsNNnoMKtBRkPe1m8B7XHNEObkYSSo6&sz=w1000',
+    image: '/images/members/ac-pohribna.jpg',
     name: 'Погрібна Вікторія Леонідівна',
     position: 'Докторка соціологічних наук, професорка',
     googlescholar:
@@ -132,8 +121,7 @@ export const ACADEMIC_COUNCIL = [
       'http://irbis-nbuv.gov.ua/cgi-bin/suak/corp.exe?&I21DBN=SAUA&P21DBN=SAUA&S21STN=1&S21REF=10&S21FMT=elib_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=ID=&S21COLORTERMS=0&S21STR=0012414',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1pxsg7ZWXUpVO76kzbudxBkjUahDzdW35&sz=w1000',
+    image: '/images/members/ac-ponomarenko.jpg',
     name: 'Пономаренко Юрій Анатолійович',
     position: 'Доктор юридичних наук, доцент',
     googlescholar:
@@ -145,8 +133,7 @@ export const ACADEMIC_COUNCIL = [
       'https://www.scopus.com/authid/detail.uri?authorId=57218544843&amp;eid=2-s2.0-85089547474',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1TXHjw3m-85t_gqRhA2-y2Y22Uhr-NltQ&sz=w1000',
+    image: '/images/members/ac-protsiuk.jpg',
     name: 'Процюк Ігор Валерійович',
     position: 'Доктор юридичних наук, професор',
     googlescholar:
@@ -155,8 +142,7 @@ export const ACADEMIC_COUNCIL = [
     wos: 'https://www.webofscience.com/wos/author/record/2098464',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=1HB5kOjfpOYw-PxGv7wDVz5-0ODv3pAnZ&sz=w1000',
+    image: '/images/members/ac-smolianiuk.jpg',
     name: 'Смолянюк Володимир Федорович',
     position: 'Доктор політичних наук, професор',
     googlescholar:
@@ -166,8 +152,7 @@ export const ACADEMIC_COUNCIL = [
       'https://www.researchgate.net/scientific-contributions/V-F-Smolanuk-2150848904',
   },
   {
-    image:
-      'https://drive.google.com/thumbnail?id=183_f4aP8LIQtNcDpgY7ZqbVMbO9mNcXj&sz=w1000',
+    image: '/images/members/ac-shevchenko.jpg',
     name: 'Шевченко Людмила Степанівна',
     position: 'Докторка економічних наук, професорка',
     googlescholar:
