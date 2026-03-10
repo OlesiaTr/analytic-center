@@ -235,5 +235,7 @@ export const ORGANIZATION_MEMBERS = [
     position: 'Кандидат філософських наук, доцент',
     googlescholar:
       'https://scholar.google.com/citations?user=deUrG9YAAAAJ&hl=uk',
+    orcid: 'https://orcid.org/0000-0001-5113-3901',
+    naukivci: 'https://irbis-nbuv.gov.ua/ASUA/1470091',
   },
 ];
