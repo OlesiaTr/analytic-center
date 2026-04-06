@@ -31,6 +31,15 @@
     "title": "Архів конференцій",
     "list": [
       {
+        "id": "18",
+        "imgSrc": "/images/conferences/conf-27-03-26.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Реальність у режимі кризи: міждисциплінарні студії”",
+        "title": "Всеукраїнська науково-практична конференція",
+        "description": "“Реальність у режимі кризи: міждисциплінарні студії”",
+        "date": "27.03.2026",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1tbhBauTxIV4olzjwhymLh0rADdmQN4zV"
+      },
+      {
         "id": "17",
         "imgSrc": "/images/conferences/conf-27-02-26.jpg",
         "imgAlt": "Зображення обкладенки монографії: “Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
