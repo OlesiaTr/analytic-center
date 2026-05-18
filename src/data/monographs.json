@@ -4,6 +4,14 @@
     "title": "Архів монографій",
     "list": [
       {
+        "id": "10",
+        "imgSrc": "/images/monographs/mono-30-04-26.jpeg",
+        "imgAlt": "Зображення обкладенки монографії: “Травмований світ: сучасні конфлікти та управління ними”",
+        "title": "“Травмований світ: сучасні конфлікти та управління ними”",
+        "date": "30.04.2026",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1WpBYJqiCDSkp79ydoAwiMmntyu43C_SD"
+      },
+      {
         "id": "9",
         "imgSrc": "/images/monographs/mono-28-02-26.jpeg",
         "imgAlt": "Зображення обкладенки монографії: “Війна як модус соціального буття в міждисциплінарному науковому дискурсі”",
