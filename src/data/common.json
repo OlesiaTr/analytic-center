@@ -23,19 +23,7 @@
   },
   "upcomingConferences": {
     "title": "Найближчі конференції",
-    "list": [
-      {
-        "id": "20",
-        "imgSrc": "/images/conferences/conf-29-05-26.jpg",
-        "imgAlt": "Зображення обкладенки монографії: “Глобальні виклики ХХІ століття: міждисциплінарні перспективи”",
-        "title": "Всеукраїнська науково-практична конференція",
-        "description": "“Глобальні виклики ХХІ століття: міждисциплінарні перспективи”",
-        "date": "29.05.2026",
-        "day": "29",
-        "month": "05",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1MBEPBTMHDz8nYHqXZDOihjZ3Iu3gyeiL"
-      }
-    ],
+    "list": [],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
     "linkDownload": "Завантажити інформаційний буклет конференції",
