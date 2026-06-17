@@ -23,7 +23,19 @@
   },
   "upcomingConferences": {
     "title": "Найближчі конференції",
-    "list": [],
+    "list": [
+      {
+        "id": "21",
+        "imgSrc": "/images/conferences/conf-30-09-26.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "title": "ХХХІ Всеукраїнська науково-практична конференція",
+        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
+        "date": "30.09.2026",
+        "day": "30",
+        "month": "09",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1PfrwYEVmE_rcNRF8P8a_tgrC5jUiDwV4"
+      }
+    ],
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
     "linkDownload": "Завантажити інформаційний буклет конференції",
@@ -60,6 +72,16 @@
         "day": "10",
         "month": "09",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1tvLGeBWt3NB2trqECKObSJ5EMoEOcHPz"
+      },
+      {
+        "id": "13",
+        "imgSrc": "/images/monographs/mono-31-10-26.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Глобальна реконфігурація світового порядку: ґенеза багатополярності, регіональні амбіції та нові формати партнерства”",
+        "title": "“Глобальна реконфігурація світового порядку: ґенеза багатополярності, регіональні амбіції та нові формати партнерства”",
+        "date": "31.10.2026",
+        "day": "31",
+        "month": "10",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1dh15k9kHa4_-KZhvZHQ-30UvEfp9OsDL"
       }
     ],
     "button": "Дізнатися більше",
