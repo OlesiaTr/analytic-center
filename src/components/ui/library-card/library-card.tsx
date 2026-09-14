@@ -18,7 +18,13 @@ export const LibraryCard = ({ card, buttonDownload }: Props) => {
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img src={imgSrc} alt={imgAlt} className="m-auto max-h-[200px]" />
+        <img
+          src={imgSrc}
+          alt={imgAlt}
+          loading="lazy"
+          decoding="async"
+          className="m-auto max-h-[200px]"
+        />
       </div>
 
       <div className="flex h-[210px] flex-col items-center justify-between p-4 md:py-6">

@@ -17,7 +17,12 @@ export const CenterShortVersion = () => {
 
       <div className="flex justify-between">
         <div className="hidden max-w-[420px]  lg:block  xl:max-h-[593px] xl:max-w-[519px]">
-          <img src="/images/about_center-tab.jpg" alt={imgAlt} />
+          <img
+            src="/images/about_center-tab.webp"
+            alt={imgAlt}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div className="flex flex-col justify-around lg:max-w-[420px] xl:max-w-[520px] xl:justify-between xxl:max-w-[628px]">

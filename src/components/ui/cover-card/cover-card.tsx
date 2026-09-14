@@ -22,7 +22,13 @@ export const CoverCard = ({ card, buttonDownload }: Props) => {
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img src={imgSrc} alt={imgAlt} height={378} />
+        <img
+          src={imgSrc}
+          alt={imgAlt}
+          loading="lazy"
+          decoding="async"
+          height={378}
+        />
       </div>
 
       <div

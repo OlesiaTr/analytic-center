@@ -18,6 +18,8 @@ export const News = () => {
               <img
                 src={imgSrc}
                 alt={imgAlt}
+                loading="lazy"
+                decoding="async"
                 width={160}
                 height={160}
                 className="m-auto inline-block"

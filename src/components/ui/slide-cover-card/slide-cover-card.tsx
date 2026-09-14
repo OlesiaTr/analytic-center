@@ -20,7 +20,13 @@ export const SlideCoverCard: FC<Props> = ({ card, buttonDownload }) => {
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img src={imgSrc} alt={imgAlt} height={378} />
+        <img
+          src={imgSrc}
+          alt={imgAlt}
+          loading="lazy"
+          decoding="async"
+          height={378}
+        />
       </div>
 
       <div className="m-auto flex h-[205px] max-w-[440px] flex-col items-center justify-between p-4 md:py-6">

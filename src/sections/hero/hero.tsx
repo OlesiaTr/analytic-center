@@ -9,6 +9,10 @@ export const Hero = () => {
 
   return (
     <section className="hero m-auto min-h-[488px]  max-w-screen-xxl px-4 pb-14 pt-[172px] md:px-14 md:pb-[196px] lg:pt-[276px] xl:px-20">
+      {/* The hero image is a CSS background, which the browser only discovers after
+          the stylesheet is parsed. Preloading it here lets the HTML preload scanner
+          start the fetch immediately — it is the LCP element on this page. */}
+      <link rel="preload" as="image" href="/images/hero-tab.webp" />
       <h1 className=" mb-8 flex flex-col text-[19px] font-bold uppercase leading-[1.05] text-white sm:text-2xl md:text-3xl lg:text-[40px] xl:mb-16 xl:text-6xl xl:leading-none">
         <span className=" mb-[9px] xl:mb-6 ">{title.topLine}</span>
 

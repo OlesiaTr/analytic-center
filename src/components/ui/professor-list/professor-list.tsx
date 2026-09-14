@@ -46,6 +46,8 @@ export const ProfessorList: FC<Props> = ({ list }) => {
               <img
                 src={image}
                 alt={name}
+                loading="lazy"
+                decoding="async"
                 width={374}
                 height={416}
                 className="h-[416px] object-cover"

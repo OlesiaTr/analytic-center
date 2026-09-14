@@ -29,7 +29,7 @@
 
 /* HERO START */
 .hero {
-  background-image: url('../../public/images/hero-tab.jpg');
+  background-image: url('/images/hero-tab.webp');
   background-repeat: no-repeat;
   background-position: right 25% top 0;
   background-size:
@@ -67,7 +67,7 @@
       1010px 630px,
       cover;
     background-position: top 0 right 30%;
-    background-image: url('../../public/images/hero-tab.jpg');
+    background-image: url('/images/hero-tab.webp');
   }
 }
 

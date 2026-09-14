@@ -1,6 +1,6 @@
 export const ORGANIZATION_MEMBERS = [
   {
-    image: '/images/members/om-vodnik.jpg',
+    image: '/images/members/om-vodnik.webp',
     name: 'Воднік Валентина Давидівна',
     position: 'Кандидатка філософських наук, доцентка',
     googlescholar:
@@ -8,7 +8,7 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/1261787',
   },
   {
-    image: '/images/members/om-hodz.jpg',
+    image: '/images/members/om-hodz.webp',
     name: 'Годзь Наталія Борисівна',
     position: 'Докторка філософських наук, доцентка',
     googlescholar:
@@ -18,7 +18,7 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0105199',
   },
   {
-    image: '/images/members/om-danylian-o.jpg',
+    image: '/images/members/om-danylian-o.webp',
     name: 'Данильян Олег Геннадійович',
     position: 'Доктор філософських наук, професор',
     googlescholar: 'https://scholar.google.ru/citations?user=WkAsY-wAAAAJ',
@@ -28,7 +28,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/916028',
   },
   {
-    image: '/images/members/om-danylian-v.jpg',
+    image: '/images/members/om-danylian-v.webp',
     name: `Даніл'ян Вадим Олегович`,
     position: 'Кандидат філософських наук, доцент',
     googlescholar:
@@ -37,7 +37,7 @@ export const ORGANIZATION_MEMBERS = [
     orcid: 'https://orcid.org/0000-0003-3469-9887',
   },
   {
-    image: '/images/members/om-dzoban.jpg',
+    image: '/images/members/om-dzoban.webp',
     name: 'Дзьобань Олександр Петрович',
     position: 'Доктор філософських наук, професор',
     googlescholar: 'https://scholar.google.ru/citations?user=gcBhdisAAAAJ',
@@ -48,7 +48,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/325314',
   },
   {
-    image: '/images/members/om-zinchenko.jpg',
+    image: '/images/members/om-zinchenko.webp',
     name: 'Зінченко Олена Володимирівна',
     position: 'Докторка історичних наук, професорка',
     googlescholar:
@@ -60,7 +60,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/GSI-4531-2022',
   },
   {
-    image: '/images/members/om-kovalenko.jpg',
+    image: '/images/members/om-kovalenko.webp',
     name: 'Коваленко Інна Ігорівна',
     position: 'Кандидатка філософських наук, доцентка',
     googlescholar:
@@ -72,12 +72,12 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/879272',
   },
   {
-    image: '/images/members/om-kochetkov.jpg',
+    image: '/images/members/om-kochetkov.webp',
     name: `Кочетков Олег В'ячеславович`,
     position: 'Громадський діяч',
   },
   {
-    image: '/images/members/om-lyzohub.jpg',
+    image: '/images/members/om-lyzohub.webp',
     name: 'Лизогуб Віталій Анатолійович',
     position: 'Кандидат юридичних наук, доцент',
     googlescholar:
@@ -86,7 +86,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/2093202',
   },
   {
-    image: '/images/members/om-lozovoi.jpg',
+    image: '/images/members/om-lozovoi.webp',
     name: 'Лозовой Віктор Олексійович',
     position: 'Доктор філософських наук, професор',
     googlescholar:
@@ -94,7 +94,7 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/1260270',
   },
   {
-    image: '/images/members/om-pasichnyk.jpg',
+    image: '/images/members/om-pasichnyk.webp',
     name: 'Пасічник Володимир Іванович',
     position: 'Кандидат психологічних наук, доцент',
     googlescholar:
@@ -102,13 +102,13 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0106815',
   },
   {
-    image: '/images/members/om-petrova.jpg',
+    image: '/images/members/om-petrova.webp',
     name: 'Петрова Людмила Олександрівна',
     position: 'Кандидатка філософських наук, доцентка',
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0064227',
   },
   {
-    image: '/images/members/om-pyvovarov.jpg',
+    image: '/images/members/om-pyvovarov.webp',
     name: 'Пивоваров Василь Миколайович',
     position: 'Кандидат філологічних наук, доцент',
     googlescholar:
@@ -119,7 +119,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/2968936',
   },
   {
-    image: '/images/members/om-pidkurkova.jpg',
+    image: '/images/members/om-pidkurkova.webp',
     name: 'Підкуркова Ірина Валеріївна',
     position: 'Кандидатка соціологічних наук, доцентка',
     googlescholar:
@@ -128,12 +128,12 @@ export const ORGANIZATION_MEMBERS = [
     orcid: 'https://orcid.org/0000-0003-4797-3718',
   },
   {
-    image: '/images/members/om-prudnikov-ya.jpg',
+    image: '/images/members/om-prudnikov-ya.webp',
     name: 'Прудников Ярослав Вікторович',
     position: 'Адвокат',
   },
   {
-    image: '/images/members/om-prudnykova.jpg',
+    image: '/images/members/om-prudnykova.webp',
     name: 'Прудникова Олена Вікторівна',
     position: 'Докторка філософських наук, професорка',
     googlescholar:
@@ -143,7 +143,7 @@ export const ORGANIZATION_MEMBERS = [
     scopus: 'https://www.scopus.com/authid/detail.uri?authorId=57408891300',
   },
   {
-    image: '/images/members/om-sakhan.jpg',
+    image: '/images/members/om-sakhan.webp',
     name: 'Сахань Олена Миколаївна',
     position: 'Кандидатка соціологічних наук, доцентка',
     googlescholar:
@@ -151,7 +151,7 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0136465',
   },
   {
-    image: '/images/members/om-stasevska.jpg',
+    image: '/images/members/om-stasevska.webp',
     name: 'Стасевська Оксана Анатоліївна',
     position: 'Кандидатка філософських наук, доцентка',
     googlescholar:
@@ -159,7 +159,7 @@ export const ORGANIZATION_MEMBERS = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/1467966',
   },
   {
-    image: '/images/members/om-tararoiev.jpg',
+    image: '/images/members/om-tararoiev.webp',
     name: 'Тарароєв Яків Володимирович',
     position: 'Доктор філософських наук, професор',
     googlescholar:
@@ -169,7 +169,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/ABA-8199-2020',
   },
   {
-    image: '/images/members/om-umanets.jpg',
+    image: '/images/members/om-umanets.webp',
     name: 'Уманець Ольга Віталіївна',
     position: 'Кандидатка мистецтвознавства, доцентка',
     googlescholar: 'https://scholar.google.ru/citations?user=-vEVG7wAAAAJ',
@@ -178,12 +178,12 @@ export const ORGANIZATION_MEMBERS = [
     scopus: 'https://www.scopus.com/authid/detail.uri?authorId=57409577000',
   },
   {
-    image: '/images/members/om-yuriev.jpg',
+    image: '/images/members/om-yuriev.webp',
     name: `Юр'єв Євген Дмитрович`,
     position: 'Студент',
   },
   {
-    image: '/images/members/om-dolska.jpg',
+    image: '/images/members/om-dolska.webp',
     name: 'Дольська Ольга Олексіївна',
     position: 'Докторка філософських наук, професорка',
     googlescholar:
@@ -193,7 +193,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/2146955',
   },
   {
-    image: '/images/members/om-korotkov.jpg',
+    image: '/images/members/om-korotkov.webp',
     name: 'Коротков Дмитро Сергійович',
     position: 'Кандидат політичних наук, доцент',
     googlescholar:
@@ -204,7 +204,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/JNS-6417-2023',
   },
   {
-    image: '/images/members/om-shakun.jpg',
+    image: '/images/members/om-shakun.webp',
     name: 'Шакун Наталія Валеріївна,',
     position: 'Кандидатка філософських наук, доцентка',
     googlescholar:
@@ -215,12 +215,12 @@ export const ORGANIZATION_MEMBERS = [
     wos: '',
   },
   {
-    image: '/images/members/om-hordiienko.jpg',
+    image: '/images/members/om-hordiienko.webp',
     name: 'Гордієнко Наталія Юріївна',
     position: 'Громадська діячка',
   },
   {
-    image: '/images/members/om-andrushchenko.jpg',
+    image: '/images/members/om-andrushchenko.webp',
     name: 'Андрущенко Олеся Петрівна',
     position: 'Докторка філософії за спеціальністю 08 ‒ Право',
     googlescholar:
@@ -230,7 +230,7 @@ export const ORGANIZATION_MEMBERS = [
     wos: 'https://www.webofscience.com/wos/author/record/MIU-4452-2025',
   },
   {
-    image: '/images/members/om-khodanych.jpg',
+    image: '/images/members/om-khodanych.webp',
     name: 'Ходанич Юрій Михайлович',
     position: 'Кандидат філософських наук, доцент',
     googlescholar:

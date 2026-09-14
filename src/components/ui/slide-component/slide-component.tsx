@@ -15,6 +15,8 @@ export const SlideComponent: FC<Props> = ({ card }) => {
         <img
           src={card.image}
           alt={card.alt}
+          loading="lazy"
+          decoding="async"
           className="m-auto object-cover"
           width={230}
         />

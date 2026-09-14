@@ -39,6 +39,8 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
         <img
           src={imgSrc}
           alt={imgAlt}
+          loading="lazy"
+          decoding="async"
           height={330}
           className="m-auto h-[330px]"
         />

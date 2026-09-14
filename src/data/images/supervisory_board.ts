@@ -1,6 +1,6 @@
 export const SUPERVISORY_BOARD = [
   {
-    image: '/images/members/sb-chernyshova.jpg',
+    image: '/images/members/sb-chernyshova.webp',
     name: 'Чернишова Таїсія Олексіївна',
     position: 'Кандидатка філологічних наук, доцентка, голова наглядової ради',
     googlescholar:
@@ -8,7 +8,7 @@ export const SUPERVISORY_BOARD = [
     naukovci: 'http://irbis-nbuv.gov.ua/ASUA/0106661',
   },
   {
-    image: '/images/members/sb-volianska.jpg',
+    image: '/images/members/sb-volianska.webp',
     name: 'Волянська Олена Володимирівна',
     position: 'Кандидатка соціологічних наук, доцентка',
     googlescholar:
@@ -17,7 +17,7 @@ export const SUPERVISORY_BOARD = [
     scopus: 'https://www.scopus.com/authid/detail.uri?authorId=57415337900',
   },
   {
-    image: '/images/members/sb-krotiuk.jpg',
+    image: '/images/members/sb-krotiuk.webp',
     name: 'Кротюк Василь Андрійович',
     position: 'Кандидат філософських наук, доцент',
     googlescholar:
