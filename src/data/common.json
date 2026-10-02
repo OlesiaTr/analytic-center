@@ -25,15 +25,15 @@
     "title": "Найближчі конференції",
     "list": [
       {
-        "id": "21",
-        "imgSrc": "/images/conferences/conf-30-09-26.webp",
-        "imgAlt": "Зображення обкладенки монографії: “Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
-        "title": "ХХХІ Всеукраїнська науково-практична конференція",
-        "description": "“Український соціум: соціально-гуманітарний аналіз сучасності та прогноз майбутнього”",
-        "date": "30.09.2026",
+        "id": "22",
+        "imgSrc": "/images/conferences/conf-30-10-26.jpg",
+        "imgAlt": "Зображення обкладенки монографії: “Нова геополітична картина світу: наукові візії та студії”",
+        "title": "XLII Харківські політологічні читання",
+        "description": "“Нова геополітична картина світу: наукові візії та студії”",
+        "date": "30.10.2026",
         "day": "30",
-        "month": "09",
-        "linkToDownload": "https://docs.google.com/uc?export=download&id=1PfrwYEVmE_rcNRF8P8a_tgrC5jUiDwV4"
+        "month": "10",
+        "linkToDownload": "https://docs.google.com/uc?export=download&id=1v4dqoTScW6JFJysVCKHn89p41s0Fzehs"
       }
     ],
     "button": "Дізнатися більше",
