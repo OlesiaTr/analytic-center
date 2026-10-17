@@ -5,10 +5,11 @@ interface Props extends SVGProps<SVGSVGElement> {
   height?: number;
 }
 
-export const Logo: FC<Props> = ({ width = 85, height = 60 }) => (
+export const Logo: FC<Props> = ({ width = 85, height = 60, className }) => (
   <svg
     width={width}
     height={height}
+    className={className}
     aria-label="Логотип організації"
     viewBox="0 0 85 60"
     fill="none"

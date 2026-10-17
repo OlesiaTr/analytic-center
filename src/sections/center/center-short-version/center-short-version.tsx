@@ -1,15 +1,10 @@
-'use client';
-
 import { ButtonLink, Title } from '@/components/ui';
-import { VIEWPORT_LG } from '@/constants';
-import { useViewportSize } from '@/utils';
 
 import data from '@/data/common.json';
 
 export const CenterShortVersion = () => {
   const { title, imgAlt, description, button, redirectionTo } =
     data.aboutCenter;
-  const { width } = useViewportSize();
 
   return (
     <section className="section">
@@ -30,20 +25,21 @@ export const CenterShortVersion = () => {
             {description}
           </p>
 
-          {width !== null && width < VIEWPORT_LG ? (
+          <div className="contents lg:hidden">
             <ButtonLink
               label={button}
               styles="sm:min-w-[302px] m-auto"
               isAccentBtn
               href={redirectionTo}
             />
-          ) : (
+          </div>
+          <div className="hidden lg:contents">
             <ButtonLink
               label={button}
               styles="min-w-[302px]"
               href={redirectionTo}
             />
-          )}
+          </div>
         </div>
       </div>
     </section>
