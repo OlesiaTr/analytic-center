@@ -9,6 +9,8 @@ lands.
   [Analytic Center](https://linear.app/personal-projects-olesia/project/analytic-center-f0a7cb47914b)
   (team `PER`), one issue per phase: PER-5 … PER-11
 - **Base branch:** `develop`, one branch + PR per phase
+- **Release gate:** `develop` is not merged to `main` (production) until
+  `/conferences` mobile CLS is < 0.1 (PER-8, first item)
 
 ## Goal
 
@@ -53,13 +55,24 @@ Found while capturing (added to Phase 3):
 
 ### 1. Dependency upgrade — PER-6
 
-- [ ] Next 14 → 15 → 16 via `@next/codemod`; React 19 + types
-- [ ] ESLint 9 flat config; replace `next lint` with `eslint .`
-- [ ] TypeScript 5.9, `@types/node` 22, Prettier + tailwind plugin 0.8
-- [ ] Remove dead `upload` script; add `sharp` devDep
-- [ ] Swiper 14 or replace with Embla / CSS scroll-snap
-- [ ] Tailwind 4 (`@tailwindcss/upgrade`) as a separate commit
-- [ ] Visual parity vs baseline
+- [x] Next 14 → 16.4 via `@next/codemod upgrade`; React 19.3 + types
+- [x] ESLint 9 flat config (core-web-vitals + TypeScript presets); `next lint` →
+      `eslint .`; `fix` script repaired
+- [x] TypeScript 5.9, `@types/node` 22, Prettier 3.9 + tailwind plugin 0.8
+- [x] Remove dead `upload` script and unused `next-image-export-optimizer`; add
+      `sharp` devDep
+- [x] Exact version pins (`.npmrc` `save-exact`) + Dependabot into `develop`
+- [x] Swiper 14 (kept; hid its injected SVG arrow, restored 10px offset)
+- [x] Tailwind 4 (`@tailwindcss/upgrade`) as a separate commit
+- [x] `AGENTS.md` (version-matched Next docs) imported from `CLAUDE.md`
+- [x] Visual parity vs baseline: 23/27 identical. Home, `/about-center` (768)
+      and `/useful-info` (1280) differ by 3–48px because Tailwind 4 keeps the
+      written `leading-*` over responsive text sizes — accepted
+
+Carried into Phase 2: 34 Tailwind lint warnings (custom classes like
+`.section`); `no-unnecessary-arbitrary-value` and `enforces-canonical-classname`
+are off until classes are cleaned up; the v3 line-height shim in `@theme` can go
+once components stop mixing scale and arbitrary font sizes.
 
 ### 2. Code cleanup (no visual change) — PER-7
 
@@ -73,14 +86,18 @@ Found while capturing (added to Phase 3):
 - [ ] Separate UI copy from content
 - [ ] Error boundary (`error.tsx`) and image/slider loading states
 - [ ] Vitest + Testing Library; Playwright smoke test per route
+- [ ] Re-enable the two auto-fixing Tailwind lint rules; fix remaining warnings;
+      drop the v3 line-height shim
 
 ### 3. UI/UX fixes — PER-8
 
+- [ ] **First, blocks release:** `/conferences` CLS < 0.1 — cover `<img>`s in
+      `cover-card`, `slide-cover-card` have `height` but no `width`, so no space
+      is reserved (covers vary 0.68–0.72 aspect). 0.297 → 0.667 after PER-6
 - [ ] `<h1>` on every page
 - [ ] `/useful-info` table: semantic `<thead>`/`<th>`, no `valign`, no
       horizontal scroll on mobile
 - [ ] No horizontal overflow at 375px on home and `/grants`
-- [ ] `/conferences` CLS < 0.1 (reserve cover image size)
 - [ ] `/conferences` authors table: values visible on mobile
 - [ ] `professor-list`: descriptive `aria-label`s instead of URLs
 - [ ] Hero text contrast; gap under hero at tablet width
@@ -175,11 +192,18 @@ permissions.
 
 ## Lighthouse log
 
-| Date       | Page                          | Perf | A11y | SEO | Notes                                                            |
-| ---------- | ----------------------------- | ---- | ---- | --- | ---------------------------------------------------------------- |
-| 2026-10-17 | `/` (live, mobile)            | 96   | 96   | 100 | Baseline. LCP 2.7 s, CLS 0, TBT 10 ms. Best Practices 100        |
-| 2026-10-17 | `/conferences` (live, mobile) | 74   | 100  | 100 | Baseline. LCP 3.2 s, **CLS 0.408**, TBT 0 ms. Best Practices 100 |
+| Date       | Page                            | Perf  | A11y | SEO | Notes                                                                          |
+| ---------- | ------------------------------- | ----- | ---- | --- | ------------------------------------------------------------------------------ |
+| 2026-10-17 | `/` (live, mobile)              | 96    | 96   | 100 | Baseline. LCP 2.7 s, CLS 0, TBT 10 ms. Best Practices 100                      |
+| 2026-10-17 | `/conferences` (live, mobile)   | 74    | 100  | 100 | Baseline. LCP 3.2 s, **CLS 0.408**, TBT 0 ms. Best Practices 100               |
+| 2026-10-17 | `/` (local, develop)            | 83–94 | 96   | 100 | Pre-PER-6 local build, 3 runs. LCP 3.1–4.7 s. JS 177 KB                        |
+| 2026-10-17 | `/conferences` (local, develop) | 76    | 100  | 100 | Pre-PER-6, 3 runs. LCP 3.5 s, CLS 0.297                                        |
+| 2026-10-17 | `/` (local, PER-6)              | 84–87 | 96   | 100 | Turbopack, 3 runs. LCP 4.0–4.6 s. JS 231 KB (webpack build: 219 KB, LCP 3.4 s) |
+| 2026-10-17 | `/conferences` (local, PER-6)   | 63    | 100  | 100 | 3 runs. **CLS 0.667** (cover images, see PER-8); same with webpack             |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
-run, headless Chrome for Testing).
+run, headless Chrome for Testing). Local rows: both builds served with
+`serve@14` from `out/`, 3 runs each; the Vercel preview is behind Vercel
+Authentication. +42 KB JS is the React 19 + Next 16 runtime; Turbopack adds ~12
+KB over webpack — kept as the default, re-measure after PER-7 (`next/image`).
