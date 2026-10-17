@@ -36,13 +36,20 @@ as a portfolio project.
 - [x] Linear: project + 7 phase issues; `Linear:` line in `CLAUDE.md`
 - [x] `develop` branch from `main`
 - [x] This plan in `docs/`
-- [ ] `.nvmrc` (22) + `engines` in `package.json`
-- [ ] Add `.claude/settings.local.json` to project `.gitignore` (only ignored
+- [x] `.nvmrc` (22) + `engines` in `package.json`
+- [x] Add `.claude/settings.local.json` to project `.gitignore` (only ignored
       globally today)
-- [ ] GitHub Actions CI: format check, lint, types, build
-- [ ] `.claude/settings.json` + `skills/visual-check`
-- [ ] Baseline: screenshots of 8 routes at 375/768/1280 + Lighthouse (home,
-      conferences)
+- [x] GitHub Actions CI: format check, lint, types, build
+- [x] `.claude/settings.json` (npm script permissions, `.env` read deny,
+      Prettier hook on Edit/Write) + `skills/visual-check`
+- [x] Baseline: 9 routes × 375/768/1280 via `npm run screenshots` (local,
+      gitignored — ~50 MB; regenerated from the base branch) + Lighthouse below
+
+Found while capturing (added to Phase 3):
+
+- At 375px, home (513px), `/grants` (585px) and `/useful-info` (459px) are wider
+  than the viewport.
+- `/conferences` CLS is 0.408 on mobile (cover images without reserved size).
 
 ### 1. Dependency upgrade — PER-6
 
@@ -72,6 +79,8 @@ as a portfolio project.
 - [ ] `<h1>` on every page
 - [ ] `/useful-info` table: semantic `<thead>`/`<th>`, no `valign`, no
       horizontal scroll on mobile
+- [ ] No horizontal overflow at 375px on home and `/grants`
+- [ ] `/conferences` CLS < 0.1 (reserve cover image size)
 - [ ] `/conferences` authors table: values visible on mobile
 - [ ] `professor-list`: descriptive `aria-label`s instead of URLs
 - [ ] Hero text contrast; gap under hero at tablet width
@@ -166,5 +175,11 @@ permissions.
 
 ## Lighthouse log
 
-| Date | Page | Perf | A11y | SEO | Notes |
-| ---- | ---- | ---- | ---- | --- | ----- |
+| Date       | Page                          | Perf | A11y | SEO | Notes                                                            |
+| ---------- | ----------------------------- | ---- | ---- | --- | ---------------------------------------------------------------- |
+| 2026-10-17 | `/` (live, mobile)            | 96   | 96   | 100 | Baseline. LCP 2.7 s, CLS 0, TBT 10 ms. Best Practices 100        |
+| 2026-10-17 | `/conferences` (live, mobile) | 74   | 100  | 100 | Baseline. LCP 3.2 s, **CLS 0.408**, TBT 0 ms. Best Practices 100 |
+
+Measured with
+`npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
+run, headless Chrome for Testing).
