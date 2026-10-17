@@ -14,6 +14,8 @@ import 'swiper/css/navigation';
 export interface Props {
   slidesData: {
     image: string;
+    width: number;
+    height: number;
     alt: string;
     linkTo: string;
   }[];

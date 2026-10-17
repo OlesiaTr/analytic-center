@@ -15,6 +15,8 @@ export interface Props {
   slidesList: {
     id: string;
     imgSrc: string;
+    width: number;
+    height: number;
     imgAlt: string;
     title: string;
     date: string;

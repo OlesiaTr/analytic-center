@@ -31,5 +31,8 @@ jobs:
       - name: Types
         run: npm run check-types
 
+      - name: Image dimensions
+        run: npm run check-images
+
       - name: Build
         run: npm run build

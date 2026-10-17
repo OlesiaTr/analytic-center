@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ButtonLink, Title } from '@/components/ui';
 
 import data from '@/data/common.json';
@@ -12,11 +13,11 @@ export const CenterShortVersion = () => {
 
       <div className="flex justify-between">
         <div className="hidden max-w-[420px] lg:block xl:max-h-[593px] xl:max-w-[519px]">
-          <img
+          <Image
             src="/images/about_center-tab.webp"
             alt={imgAlt}
-            loading="lazy"
-            decoding="async"
+            width={519}
+            height={593}
           />
         </div>
 

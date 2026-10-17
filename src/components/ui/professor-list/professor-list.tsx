@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 import {
@@ -43,11 +44,9 @@ export const ProfessorList: FC<Props> = ({ list }) => {
         }) => (
           <li key={name} className="max-w-[374px] rounded-lg shadow">
             <div className="max-h-[416px]">
-              <img
+              <Image
                 src={image}
                 alt={name}
-                loading="lazy"
-                decoding="async"
                 width={374}
                 height={416}
                 className="h-[416px] object-cover"

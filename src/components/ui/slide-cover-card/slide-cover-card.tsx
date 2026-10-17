@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 import { ButtonLink } from '@/components/ui';
@@ -6,6 +7,8 @@ export interface Props {
   card: {
     id: string;
     imgSrc: string;
+    width: number;
+    height: number;
     imgAlt: string;
     title: string;
     date: string;
@@ -15,18 +18,12 @@ export interface Props {
 }
 
 export const SlideCoverCard: FC<Props> = ({ card, buttonDownload }) => {
-  const { imgSrc, imgAlt, title, date, linkToDownload } = card;
+  const { imgSrc, width, height, imgAlt, title, date, linkToDownload } = card;
 
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img
-          src={imgSrc}
-          alt={imgAlt}
-          loading="lazy"
-          decoding="async"
-          height={378}
-        />
+        <Image src={imgSrc} alt={imgAlt} width={width} height={height} />
       </div>
 
       <div className="m-auto flex h-[205px] max-w-[440px] flex-col items-center justify-between p-4 md:py-6">

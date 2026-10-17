@@ -25,7 +25,6 @@ export default defineConfig([
       tailwindcss: { cssConfigPath: './src/styles/globals.css' },
     },
     rules: {
-      '@next/next/no-img-element': 'off',
       // prettier-plugin-tailwindcss owns class order
       'tailwindcss/classnames-order': 'off',
       // Auto-fixable class rewrites; enable when cleaning up classes in PER-7

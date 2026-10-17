@@ -1,9 +1,12 @@
+import Image from 'next/image';
 import { ButtonLink } from '@/components/ui';
 
 export interface Props {
   card: {
     id: string;
     imgSrc: string;
+    width: number;
+    height: number;
     imgAlt: string;
     title: string;
     date: string;
@@ -13,17 +16,17 @@ export interface Props {
 }
 
 export const LibraryCard = ({ card, buttonDownload }: Props) => {
-  const { imgSrc, imgAlt, title, date, linkToDownload } = card;
+  const { imgSrc, width, height, imgAlt, title, date, linkToDownload } = card;
 
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img
+        <Image
           src={imgSrc}
           alt={imgAlt}
-          loading="lazy"
-          decoding="async"
-          className="m-auto max-h-[200px]"
+          width={width}
+          height={height}
+          className="m-auto max-h-[200px] w-auto"
         />
       </div>
 

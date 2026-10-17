@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Title } from '@/components/ui';
 import data from '@/data/common.json';
 
@@ -15,11 +16,9 @@ export const News = () => {
             className="flex max-w-[628px] gap-3 p-[10px] shadow md:gap-8 md:px-5 md:py-6"
           >
             <div className="m-auto min-w-20 rounded-lg md:min-w-40">
-              <img
+              <Image
                 src={imgSrc}
                 alt={imgAlt}
-                loading="lazy"
-                decoding="async"
                 width={160}
                 height={160}
                 className="m-auto inline-block"

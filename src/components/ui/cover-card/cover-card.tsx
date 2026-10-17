@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ButtonLink } from '@/components/ui';
 import clsx from 'clsx';
 
@@ -5,6 +6,8 @@ export interface Props {
   card: {
     id: string;
     imgSrc: string;
+    width: number;
+    height: number;
     imgAlt: string;
     title: string;
     date: string;
@@ -17,18 +20,21 @@ export interface Props {
 }
 
 export const CoverCard = ({ card, buttonDownload }: Props) => {
-  const { imgSrc, imgAlt, title, description, date, linkToDownload } = card;
+  const {
+    imgSrc,
+    width,
+    height,
+    imgAlt,
+    title,
+    description,
+    date,
+    linkToDownload,
+  } = card;
 
   return (
     <>
       <div className="m-auto max-w-[250px] pt-2">
-        <img
-          src={imgSrc}
-          alt={imgAlt}
-          loading="lazy"
-          decoding="async"
-          height={378}
-        />
+        <Image src={imgSrc} alt={imgAlt} width={width} height={height} />
       </div>
 
       <div

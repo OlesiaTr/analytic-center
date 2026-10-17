@@ -15,10 +15,12 @@
     "check-lint": "eslint .",
     "format": "prettier --write .",
     "fix": "eslint . --fix && prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run check-images && npm run build",
     "prepare": "husky",
     "screenshots": "node scripts/screenshots.mts",
-    "screenshots:diff": "node scripts/visual-diff.mts"
+    "screenshots:diff": "node scripts/visual-diff.mts",
+    "images:dimensions": "node scripts/image-dimensions.mts",
+    "check-images": "node scripts/image-dimensions.mts --check"
   },
   "dependencies": {
     "@heroicons/react": "2.2.0",
