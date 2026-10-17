@@ -9,8 +9,8 @@ lands.
   [Analytic Center](https://linear.app/personal-projects-olesia/project/analytic-center-f0a7cb47914b)
   (team `PER`), one issue per phase: PER-5 … PER-11
 - **Base branch:** `develop`, one branch + PR per phase
-- **Release gate:** `develop` is not merged to `main` (production) until
-  `/conferences` mobile CLS is < 0.1 (PER-8, first item)
+- **Release gate:** ~~`develop` is not merged to `main` until `/conferences`
+  mobile CLS is < 0.1~~ — cleared in PER-7 (CLS 0)
 
 ## Goal
 
@@ -76,24 +76,32 @@ once components stop mixing scale and arbitrary font sizes.
 
 ### 2. Code cleanup (no visual change) — PER-7
 
-- [ ] `next/link` for internal links; `next/image` for images
-- [ ] Header into root layout (server) + client menu island
-- [ ] Delete `useViewportSize`, use CSS breakpoints
-- [ ] Fix `ORGANIZATION_MEMBERS.sort()` mutation, `key={idx}`, `any` in
-      `slide-component`, `as` casts on JSON
-- [ ] Merge card components into one with variants; share button styles
-- [ ] Design tokens instead of magic values; remove `!important`s
-- [ ] Separate UI copy from content
-- [ ] Error boundary (`error.tsx`) and image/slider loading states
-- [ ] Vitest + Testing Library; Playwright smoke test per route
-- [ ] Re-enable the two auto-fixing Tailwind lint rules; fix remaining warnings;
-      drop the v3 line-height shim
+- [x] `next/link` for internal links (`ButtonLink` picks `Link` for `/…`);
+      mobile menu closes on route change
+- [x] `next/image` with real dimensions written to the data by
+      `scripts/image-dimensions.mts` (`check-images` in CI) — **fixed the
+      release-gate CLS**
+- [x] Header stays per route group; state moved to `useDisclosure`
+- [x] Delete `useViewportSize`, use CSS breakpoints (`hidden lg:contents`)
+- [x] Fix `ORGANIZATION_MEMBERS.sort()` mutation, index keys, `as` casts on JSON
+      (`src/data/types.ts`); `naukivci` data typo
+- [x] One `PublicationCard` (cover | library | slide) + `PublicationGrid`;
+      unused `Button` removed
+- [x] Hooks for logic: `useDisclosure`, `useAccordion`
+- [x] `@utility` blocks, tokens instead of repeated hex, no `!important`,
+      arbitrary values → scale classes (Tailwind warnings 34 → 2)
+- [x] Vitest + Testing Library (10 tests); Playwright smoke per route on desktop
+      and mobile (20 tests); both in `test-all` and CI
+- [x] `.claude/rules/components.md`, `.claude/rules/styling.md`
+- Moved: UI copy separation → PER-10, loading states → PER-8, v3 line-height
+  shim removal → PER-8. `no-unnecessary-arbitrary-value` stays off (its fix
+  breaks unitless `leading-[…]`).
 
 ### 3. UI/UX fixes — PER-8
 
-- [ ] **First, blocks release:** `/conferences` CLS < 0.1 — cover `<img>`s in
-      `cover-card`, `slide-cover-card` have `height` but no `width`, so no space
-      is reserved (covers vary 0.68–0.72 aspect). 0.297 → 0.667 after PER-6
+- [x] `/conferences` CLS < 0.1 — done in PER-7 (0.667 → 0)
+- [ ] Loading states for images and sliders (moved from PER-7)
+- [ ] Remove the v3 line-height shim in `@theme` (moved from PER-7)
 - [ ] `<h1>` on every page
 - [ ] `/useful-info` table: semantic `<thead>`/`<th>`, no `valign`, no
       horizontal scroll on mobile
@@ -122,7 +130,8 @@ once components stop mixing scale and arbitrary font sizes.
 ### 5. i18n — PER-10
 
 - [ ] `next-intl` routing, `[locale]` segment, language switcher
-- [ ] `messages/{uk,en}.json` for UI copy
+- [ ] `messages/{uk,en}.json` for UI copy — includes separating UI copy from
+      content in `common.json` (moved from PER-7)
 - [ ] AI-translated EN content in Sanity, reviewed before publishing
 - [ ] Localized metadata, `hreflang`, `app/sitemap.ts`, `app/robots.ts`
 
@@ -200,6 +209,8 @@ permissions.
 | 2026-10-17 | `/conferences` (local, develop) | 76    | 100  | 100 | Pre-PER-6, 3 runs. LCP 3.5 s, CLS 0.297                                        |
 | 2026-10-17 | `/` (local, PER-6)              | 84–87 | 96   | 100 | Turbopack, 3 runs. LCP 4.0–4.6 s. JS 231 KB (webpack build: 219 KB, LCP 3.4 s) |
 | 2026-10-17 | `/conferences` (local, PER-6)   | 63    | 100  | 100 | 3 runs. **CLS 0.667** (cover images, see PER-8); same with webpack             |
+| 2026-10-18 | `/` (local, PER-7)              | 86    | 96   | 100 | 3 runs. LCP 4.1 s, CLS 0. JS 239 KB                                            |
+| 2026-10-18 | `/conferences` (local, PER-7)   | 88    | 100  | 100 | 3 runs. LCP 3.9 s, **CLS 0** (CSS breakpoints + reserved image space)          |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
