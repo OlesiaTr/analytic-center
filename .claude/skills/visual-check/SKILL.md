@@ -31,7 +31,9 @@ output goes to `screenshots/` (gitignored — full-page PNGs are ~50 MB).
 ## 1. Baseline (skip if `screenshots/baseline/` is already from the current base tip)
 
 ```bash
-git worktree add ../analytic-center-baseline develop
+git fetch origin
+git worktree add --detach ../analytic-center-baseline origin/develop
+# already exists: git -C ../analytic-center-baseline switch --detach origin/develop
 cd ../analytic-center-baseline && npm ci && npm run build
 ```
 
@@ -42,8 +44,8 @@ repo:
 npm run screenshots -- --base http://localhost:3001 --out screenshots/baseline
 ```
 
-Stop the server. Keep the worktree for later runs; remove it with
-`git worktree remove ../analytic-center-baseline` when the phase is merged.
+Stop the server. Keep the worktree for later runs. It is detached so `develop`
+stays free to check out in the main repo.
 
 ## 2. Current
 
