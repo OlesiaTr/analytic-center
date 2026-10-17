@@ -117,6 +117,16 @@
   content: ' ' !important;
 }
 
+/* Swiper 12+ injects its own SVG arrow; the custom background-image arrows above replace it. */
+.swiper-navigation-icon {
+  display: none;
+}
+
+/* Swiper 12+ lowered the default arrow offset from 10px to 4px. */
+.swiper {
+  --swiper-navigation-sides-offset: 10px;
+}
+
 @media (min-width: 480px) {
   .swiper-button-prev,
   .swiper-button-next {
