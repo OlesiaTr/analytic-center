@@ -1,24 +1,18 @@
-export { Button } from './button';
-
 export { ButtonLink } from './button-link';
-
-export { CoverCard } from './cover-card';
 
 export { GrantDetails } from './grant-details';
 
 export { GrantList } from './grant-list';
-
-export { LibraryCard } from './library-card';
 
 export { MenuBtn } from './menu-btn';
 
 export { Navigation } from './navigation';
 
 export { ProfessorList } from './professor-list';
+export { PublicationCard } from './publication-card';
+export { PublicationGrid } from './publication-grid';
 
 export { SlideComponent } from './slide-component';
-
-export { SlideCoverCard } from './slide-cover-card';
 
 export { Slider } from './slider';
 

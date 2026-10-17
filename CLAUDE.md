@@ -12,33 +12,42 @@ Next.js docs for the installed version (generated, don't edit by hand):
 ## Build & Development Commands
 
 ```bash
-npm run dev              # Start development server
-npm run build            # Production build (static export)
-npm run lint             # Run ESLint
-npm run check-types      # TypeScript type checking
-npm run format           # Auto-format with Prettier
-npm run fix              # Format + lint fix
-npm run test-all         # Full validation: format + lint + types + build
+npm run dev               # Development server (Turbopack)
+npm run build             # Production build (static export to out/)
+npm run lint              # ESLint
+npm run check-types       # TypeScript
+npm run fix               # ESLint --fix, then Prettier
+npm test                  # Unit tests (Vitest + Testing Library)
+npm run test:e2e          # Playwright smoke tests against out/ (build first)
+npm run images:dimensions # Write width/height for images in src/data
+npm run test-all          # format + lint + types + images + unit + build + e2e
 ```
 
-Pre-commit hooks automatically run `npm run fix` and `npm run test-all` before
-each commit.
+The pre-commit hook runs `npm run fix` and `npm run test-all`. CI runs the same
+checks on every PR. Use the `visual-check` skill for any change that could
+affect layout.
 
 ## Architecture
 
-**Next.js 14 Static Site** - Ukrainian language content site for an analytic
-research center. Uses App Router with static export (`next build` generates
-static HTML).
+**Next.js 16 static site** (App Router, `output: 'export'`, React 19,
+Tailwind 4) for a Ukrainian analytic research center. Moving to Sanity + Vercel
+and adding English is planned in `docs/modernization.md`.
 
 ### Directory Structure
 
-- `src/app/` - Next.js App Router pages
-- `src/sections/` - Large page section components (Hero, News, Grants, etc.)
-- `src/components/ui/` - Reusable UI components
+- `src/app/` - App Router pages (`(pages)/` group shares the sticky header)
+- `src/sections/` - Page sections (Hero, News, Grants, ...)
+- `src/components/ui/` - Reusable UI (`PublicationCard`, `PublicationGrid`,
+  `ButtonLink`, ...); `src/components/base/` - mobile menu
 - `src/layouts/` - Header and Footer
-- `src/data/` - JSON content files (acts as lightweight CMS)
-- `src/constants/` - App constants (colors, links, viewport sizes)
-- `src/utils/` - Utility functions and hooks
+- `src/hooks/` - State logic (`useDisclosure`, `useAccordion`)
+- `src/data/` - Content JSON (lightweight CMS) + `types.ts`
+- `src/constants/` - Navigation links
+- `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
+- `e2e/` - Playwright smoke tests
+
+Component and styling conventions load from `.claude/rules/` when you touch
+those files.
 
 ### Path Aliases
 
@@ -72,6 +81,5 @@ Custom breakpoints: `sm` (480px), `md` (768px), `lg` (1024px), `xl` (1280px),
 - TypeScript strict mode enabled
 - Single quotes, trailing commas, 80 char print width
 - Prettier with Tailwind plugin (auto-sorts classes)
-- Use `'use client'` directive for interactive components
 - Dependencies are pinned to exact versions (`.npmrc` `save-exact`). Updates
   come as Dependabot PRs into `develop`; run `visual-check` before merging them

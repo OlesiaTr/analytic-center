@@ -22,7 +22,7 @@ const Page = () => {
     organizationMembers,
   } = data;
 
-  const sortedMembersByName = ORGANIZATION_MEMBERS.sort((a, b) =>
+  const sortedMembersByName = ORGANIZATION_MEMBERS.toSorted((a, b) =>
     a.name.localeCompare(b.name),
   );
 
@@ -32,9 +32,9 @@ const Page = () => {
         <Title title={title} />
 
         <ul className="flex flex-col gap-3 md:gap-5 lg:gap-6">
-          {list.map((paragraph, id) => (
+          {list.map(paragraph => (
             <li
-              key={id}
+              key={paragraph.text}
               className="text-sm leading-[1.43] tracking-[0.5px] text-main md:text-xl lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8]"
             >
               {' '}

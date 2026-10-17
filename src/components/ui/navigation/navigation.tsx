@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/16/solid';
@@ -28,19 +29,19 @@ export const Navigation: FC<Props> = ({
       >
         {location === 'header' && (
           <li>
-            <a
+            <Link
               href={links[0].linkTo}
               className={clsx(
                 'flex py-8 text-white transition hover:text-accent active:text-accentLight',
               )}
             >
               <HomeIcon className="size-8" />
-            </a>
+            </Link>
           </li>
         )}
-        {links.slice(1).map(({ name, linkTo }, id) => (
-          <li key={id}>
-            <a
+        {links.slice(1).map(({ name, linkTo }) => (
+          <li key={linkTo}>
+            <Link
               href={linkTo}
               className={clsx(
                 'flex py-[46px] text-white transition hover:text-accent active:text-accentLight',
@@ -48,7 +49,7 @@ export const Navigation: FC<Props> = ({
               )}
             >
               {name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

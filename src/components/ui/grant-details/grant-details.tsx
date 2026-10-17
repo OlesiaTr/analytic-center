@@ -24,9 +24,9 @@ export const GrantDetails = ({
 
     {descriptionList && (
       <ul className="pl-12">
-        {descriptionList.map((item, id) => (
+        {descriptionList.map(item => (
           <li
-            key={id}
+            key={item}
             className="list-disc text-2xl leading-[1.8] font-medium tracking-[0.5px]"
           >
             {item}

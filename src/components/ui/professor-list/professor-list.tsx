@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 import {
@@ -9,6 +10,26 @@ import {
   Scopus,
   WebOfScience,
 } from '@/components/svg-icons';
+
+type SocialKey =
+  | 'linkedin'
+  | 'googlescholar'
+  | 'naukovci'
+  | 'orcid'
+  | 'researchgate'
+  | 'scopus'
+  | 'wos';
+
+// Display order of the profile links.
+const SOCIAL_LINKS: { key: SocialKey; Icon: FC }[] = [
+  { key: 'linkedin', Icon: Linkedin },
+  { key: 'googlescholar', Icon: Googlescholar },
+  { key: 'naukovci', Icon: Naukovci },
+  { key: 'orcid', Icon: Orcid },
+  { key: 'researchgate', Icon: Researchgate },
+  { key: 'scopus', Icon: Scopus },
+  { key: 'wos', Icon: WebOfScience },
+];
 
 export interface Props {
   list: {
@@ -28,29 +49,18 @@ export interface Props {
 export const ProfessorList: FC<Props> = ({ list }) => {
   return (
     <ul className="grid grid-cols-1 justify-items-center gap-8 md:gap-10 lg:grid-cols-2 lg:gap-20 xl:grid-cols-3">
-      {list.map(
-        ({
-          image,
-          name,
-          position,
-          googlescholar,
-          linkedin,
-          naukovci,
-          orcid,
-          researchgate,
-          scopus,
-          wos,
-        }) => (
+      {list.map(person => {
+        const { image, name, position } = person;
+
+        return (
           <li key={name} className="max-w-[374px] rounded-lg shadow">
-            <div className="max-h-[416px]">
-              <img
+            <div className="max-h-104">
+              <Image
                 src={image}
                 alt={name}
-                loading="lazy"
-                decoding="async"
                 width={374}
                 height={416}
-                className="h-[416px] object-cover"
+                className="h-104 object-cover"
               />
             </div>
             <div className="flex h-[170px] flex-col justify-between px-4 py-6">
@@ -63,108 +73,29 @@ export const ProfessorList: FC<Props> = ({ list }) => {
                 </p>
               </div>
               <ul className="flex gap-5">
-                {linkedin && (
-                  <li>
-                    <a
-                      href={linkedin}
-                      aria-label={linkedin}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Linkedin />
-                    </a>
-                  </li>
-                )}
+                {SOCIAL_LINKS.map(({ key, Icon }) => {
+                  const href = person[key];
+                  if (!href) return null;
 
-                {googlescholar && (
-                  <li>
-                    <a
-                      href={googlescholar}
-                      aria-label={googlescholar}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Googlescholar />
-                    </a>
-                  </li>
-                )}
-
-                {naukovci && (
-                  <li>
-                    <a
-                      href={naukovci}
-                      aria-label={naukovci}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Naukovci />
-                    </a>
-                  </li>
-                )}
-
-                {orcid && (
-                  <li>
-                    <a
-                      href={orcid}
-                      aria-label={orcid}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Orcid />
-                    </a>
-                  </li>
-                )}
-
-                {researchgate && (
-                  <li>
-                    <a
-                      href={researchgate}
-                      aria-label={researchgate}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Researchgate />
-                    </a>
-                  </li>
-                )}
-
-                {scopus && (
-                  <li>
-                    <a
-                      href={scopus}
-                      aria-label={scopus}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Scopus />
-                    </a>
-                  </li>
-                )}
-
-                {wos && (
-                  <li>
-                    <a
-                      href={wos}
-                      aria-label={wos}
-                      className="icon-option-one transition hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <WebOfScience />
-                    </a>
-                  </li>
-                )}
+                  return (
+                    <li key={key}>
+                      <a
+                        href={href}
+                        aria-label={href}
+                        className="icon-option-one transition hover:text-accent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon />
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </li>
-        ),
-      )}
+        );
+      })}
     </ul>
   );
 };

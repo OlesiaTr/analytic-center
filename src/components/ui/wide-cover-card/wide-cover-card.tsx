@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 import { ArrowDownTrayIcon } from '@heroicons/react/16/solid';
 
@@ -5,6 +6,8 @@ export interface Props {
   card: {
     id: string;
     imgSrc: string;
+    width: number;
+    height: number;
     imgAlt: string;
     title: string;
     description?: string;
@@ -19,6 +22,8 @@ export interface Props {
 export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
   const {
     imgSrc,
+    width,
+    height,
     imgAlt,
     title,
     description,
@@ -35,14 +40,13 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
         <div className="text-[50px] font-bold text-main">{month}</div>
       </div>
 
-      <div className="m-auto hidden w-full max-w-[300px] rounded-lg py-4 shadow lg:block">
-        <img
+      <div className="m-auto hidden w-full max-w-75 rounded-lg py-4 shadow lg:block">
+        <Image
           src={imgSrc}
           alt={imgAlt}
-          loading="lazy"
-          decoding="async"
-          height={330}
-          className="m-auto h-[330px]"
+          width={width}
+          height={height}
+          className="m-auto h-[330px] w-auto"
         />
       </div>
 

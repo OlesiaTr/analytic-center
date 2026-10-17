@@ -1,36 +1,19 @@
-'use client';
-
-import { CoverCard, WideCoverCard } from '@/components/ui';
-import { VIEWPORT_LG } from '@/constants';
+import { PublicationGrid, WideCoverCard } from '@/components/ui';
 import commonData from '@/data/common.json';
-import { useViewportSize } from '@/utils';
-import { Conference } from '../types';
+import type { UpcomingConferences } from '@/data/types';
 
 export const UpcomingConferencesExpanded = () => {
-  const { list, linkDownload, buttonDownload } =
-    commonData.upcomingConferences as {
-      list: Conference[];
-      linkDownload: string;
-      buttonDownload: string;
-    };
-  const { width } = useViewportSize();
+  const upcoming: UpcomingConferences = commonData.upcomingConferences;
+  const { list, linkDownload, buttonDownload } = upcoming;
 
   if (!list.length) return null;
 
   return (
     <>
-      {width !== null && width < VIEWPORT_LG ? (
-        <ul className="mb-6 grid grid-cols-1 justify-items-center gap-8 md:mb-16 md:grid-cols-2 md:gap-20 xl:grid-cols-3">
-          {list.map(card => (
-            <li
-              key={card.id}
-              className="flex w-[328px] flex-col justify-between rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
-            >
-              <CoverCard card={card} buttonDownload={buttonDownload} />
-            </li>
-          ))}
-        </ul>
-      ) : (
+      <div className="contents lg:hidden">
+        <PublicationGrid list={list} buttonDownload={buttonDownload} />
+      </div>
+      <div className="hidden lg:contents">
         <ul className="flex flex-col gap-20">
           {list.map(card => (
             <li key={card.id} className="flex items-start gap-6">
@@ -38,7 +21,7 @@ export const UpcomingConferencesExpanded = () => {
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </>
   );
 };

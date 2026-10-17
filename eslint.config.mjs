@@ -13,6 +13,8 @@ export default defineConfig([
     'coverage/',
     'public/',
     'screenshots/',
+    'test-results/',
+    'playwright-report/',
     'next-env.d.ts',
   ]),
   js.configs.recommended,
@@ -25,12 +27,11 @@ export default defineConfig([
       tailwindcss: { cssConfigPath: './src/styles/globals.css' },
     },
     rules: {
-      '@next/next/no-img-element': 'off',
       // prettier-plugin-tailwindcss owns class order
       'tailwindcss/classnames-order': 'off',
-      // Auto-fixable class rewrites; enable when cleaning up classes in PER-7
+      // Its --fix turns unitless values like `leading-[1.43]` into invalid
+      // `leading-1.43`; arbitrary values were cleaned up once in PER-7.
       'tailwindcss/no-unnecessary-arbitrary-value': 'off',
-      'tailwindcss/enforces-canonical-classname': 'off',
     },
   },
 ]);

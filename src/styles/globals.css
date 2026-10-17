@@ -26,6 +26,8 @@
   --color-footerBg: #0e2b42;
   --color-chocolate: #442103;
   --color-dateBg: rgba(205, 220, 231, 0.82);
+  --color-surface: #f9fafb;
+  --color-divider: #afbaca;
 
   /*
     Tailwind v3 line-heights. v4 made them unitless (e.g. text-xl = 1.4), which
@@ -60,85 +62,62 @@
   }
 }
 
-.section {
+@utility section {
   @apply mx-auto flex max-w-(--breakpoint-xxl) flex-col px-4 py-9 md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
 }
 
-.active {
-  @apply inline-flex;
-}
-
-.grant {
-  border-radius: 8px;
-  border-bottom: 1px solid #afbaca;
-  background: #f9fafb;
-}
-
-/* ICONS */
-.icon-option-one:hover {
-  svg:hover path {
-    fill: rgba(68, 127, 172, 0.82);
+/* Profile icons: tint the SVG on hover. */
+@utility icon-option-one {
+  &:hover svg:hover path {
+    fill: var(--color-headerBg);
   }
 
-  svg:hover rect {
-    stroke: rgba(68, 127, 172, 0.82);
+  &:hover svg:hover rect {
+    stroke: var(--color-headerBg);
   }
 }
 
-/* HERO START */
-.hero {
+/* Hero background image, sized per breakpoint. */
+@utility hero {
   background-image: url('/images/hero-tab.webp');
   background-repeat: no-repeat;
   background-position: right 25% top 0;
   background-size:
     720px 100%,
     cover;
-}
 
-@media (min-width: 375px) {
-  .hero {
+  @media (min-width: 375px) {
     background-size:
       780px 110%,
       cover;
   }
-}
 
-@media (min-width: 425px) {
-  .hero {
+  @media (min-width: 425px) {
     background-size:
       800px 110%,
       cover;
   }
-}
 
-@media (min-width: 480px) {
-  .hero {
+  @media (min-width: 480px) {
     background-size:
       900px 110%,
       cover;
   }
-}
 
-@media (min-width: 768px) {
-  .hero {
+  @media (min-width: 768px) {
     background-size:
       1010px 630px,
       cover;
     background-position: top 0 right 30%;
-    background-image: url('/images/hero-tab.webp');
   }
-}
 
-@media (min-width: 1046px) {
-  .hero {
+  @media (min-width: 1046px) {
     background-size:
       1250px 760px,
       cover;
   }
-}
 
-@media (min-width: 1280px) {
-  .hero {
+  @media (min-width: 1280px) {
     background-size:
       1360px 100%,
       cover;
@@ -146,51 +125,36 @@
   }
 }
 
-/* HERO END */
-
-/* --------------------------------------------------------------- */
-
-/* SWIPER START */
-
-.swiper-button-prev {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 41' fill='none'%3E%3Cpath d='M22 34.7857L8.25 20.5L22 6.21429L19.25 0.5L0 20.5L19.25 40.5L22 34.7857Z' fill='%23565656'/%3E%3C/svg%3E");
-}
-
-.swiper-button-next {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40' fill='none'%3E%3Cpath d='M0 5.71429L13.75 20L0 34.2857L2.75 40L22 20L2.75 0L0 5.71429Z' fill='%23565656'/%3E%3C/svg%3E");
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  height: 18px !important;
-  width: 9px !important;
-}
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  color: #565656;
-  content: ' ' !important;
-}
-
-/* Swiper 12+ injects its own SVG arrow; the custom background-image arrows above replace it. */
-.swiper-navigation-icon {
-  display: none;
-}
-
-/* Swiper 12+ lowered the default arrow offset from 10px to 4px. */
+/* Swiper navigation: custom grey arrows. `.swiper` raises specificity over
+   Swiper's own stylesheet, so no !important is needed. */
 .swiper {
+  /* Swiper 12+ lowered the default arrow offset from 10px to 4px. */
   --swiper-navigation-sides-offset: 10px;
-}
 
-@media (min-width: 480px) {
   .swiper-button-prev,
   .swiper-button-next {
-    height: 40px !important;
-    width: 22px !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 18px;
+    width: 9px;
+
+    @media (min-width: 480px) {
+      height: 40px;
+      width: 22px;
+    }
+  }
+
+  .swiper-button-prev {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 41' fill='none'%3E%3Cpath d='M22 34.7857L8.25 20.5L22 6.21429L19.25 0.5L0 20.5L19.25 40.5L22 34.7857Z' fill='%23565656'/%3E%3C/svg%3E");
+  }
+
+  .swiper-button-next {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40' fill='none'%3E%3Cpath d='M0 5.71429L13.75 20L0 34.2857L2.75 40L22 20L2.75 0L0 5.71429Z' fill='%23565656'/%3E%3C/svg%3E");
+  }
+
+  /* Swiper 12+ injects its own SVG arrow; the background images above replace it. */
+  .swiper-navigation-icon {
+    display: none;
   }
 }
-
-/* SWIPER END */

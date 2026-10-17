@@ -7,7 +7,7 @@ export const Partners = () => {
   const { title } = data.partners;
 
   return (
-    <section className="mx-auto flex max-w-(--breakpoint-xxl) flex-col px-4 pt-9 pb-0 md:px-14 md:pb-5 xl:py-[76px] xxl:px-20">
+    <section className="mx-auto flex max-w-(--breakpoint-xxl) flex-col px-4 pt-9 pb-0 md:px-14 md:pb-5 xl:py-19 xxl:px-20">
       <Title title={title} />
 
       <Slider slidesData={PARTNERS_IMAGES} />

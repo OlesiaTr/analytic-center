@@ -42,3 +42,7 @@ next-env.d.ts
 
 # visual-check output (baseline regenerated locally, ~50 MB)
 /screenshots/
+
+# playwright
+/test-results/
+/playwright-report/
