@@ -7,18 +7,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { chromium } from '@playwright/test';
 
-export const ROUTES = [
-  '/',
-  '/about-center',
-  '/conferences',
-  '/monographs',
-  '/library',
-  '/grants',
-  '/useful-info',
-  '/journals',
-  '/contacts',
-];
-export const WIDTHS = [375, 768, 1280];
+import { ROUTES, WIDTHS } from './routes.mts';
 
 const { values } = parseArgs({
   options: {

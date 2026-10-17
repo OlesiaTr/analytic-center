@@ -85,8 +85,8 @@ Wait until `curl -sf http://localhost:<port>/` succeeds before capturing.
 
 ## Notes
 
-- Routes and widths: `ROUTES` / `WIDTHS` in `scripts/screenshots.mts`. Add new
-  routes there.
+- Routes and widths: `ROUTES` / `WIDTHS` in `scripts/routes.mts`. Add new routes
+  there.
 - `--base <url>` captures any host (e.g. a Vercel preview).
 - Default threshold is 0.5% changed pixels:
   `npm run screenshots:diff -- --threshold 1`.

@@ -13,6 +13,8 @@ export default defineConfig([
     'coverage/',
     'public/',
     'screenshots/',
+    'test-results/',
+    'playwright-report/',
     'next-env.d.ts',
   ]),
   js.configs.recommended,
