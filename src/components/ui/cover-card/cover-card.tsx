@@ -33,22 +33,22 @@ export const CoverCard = ({ card, buttonDownload }: Props) => {
 
       <div
         className={clsx(
-          'flex flex-col items-center justify-between px-4 pt-4 md:pb-2 md:pt-6',
+          'flex flex-col items-center justify-between px-4 pt-4 md:pt-6 md:pb-2',
           description ? 'h-[250px]' : 'h-[200px]',
         )}
       >
         <div>
-          <h3 className="font-bold uppercase leading-tight tracking-[-0.003px]">
+          <h3 className="leading-tight font-bold tracking-[-0.003px] uppercase">
             {title}
           </h3>
 
           {description && (
-            <p className="text-xs font-medium leading-snug">{description}</p>
+            <p className="text-xs leading-snug font-medium">{description}</p>
           )}
         </div>
 
         <div className="w-full">
-          <span className="mb-2 inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate">
+          <span className="mb-2 inline-flex rounded-lg bg-dateBg px-2 text-xs leading-snug font-semibold text-chocolate">
             {date}
           </span>
 

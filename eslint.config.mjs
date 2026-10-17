@@ -16,13 +16,21 @@ export default defineConfig([
     'next-env.d.ts',
   ]),
   js.configs.recommended,
-  ...tailwind.configs['flat/recommended'],
+  tailwind.configs['flat/recommended'] ?? tailwind.configs.recommended,
   ...nextCoreWebVitals,
   ...nextTypescript,
   prettier,
   {
+    settings: {
+      tailwindcss: { cssConfigPath: './src/styles/globals.css' },
+    },
     rules: {
       '@next/next/no-img-element': 'off',
+      // prettier-plugin-tailwindcss owns class order
+      'tailwindcss/classnames-order': 'off',
+      // Auto-fixable class rewrites; enable when cleaning up classes in PER-7
+      'tailwindcss/no-unnecessary-arbitrary-value': 'off',
+      'tailwindcss/enforces-canonical-classname': 'off',
     },
   },
 ]);

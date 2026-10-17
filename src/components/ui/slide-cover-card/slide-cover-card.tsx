@@ -30,12 +30,12 @@ export const SlideCoverCard: FC<Props> = ({ card, buttonDownload }) => {
       </div>
 
       <div className="m-auto flex h-[205px] max-w-[440px] flex-col items-center justify-between p-4 md:py-6">
-        <h3 className="font-bold uppercase leading-tight tracking-[-0.003px]">
+        <h3 className="leading-tight font-bold tracking-[-0.003px] uppercase">
           {title}
         </h3>
 
         <div className="w-full">
-          <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate">
+          <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs leading-snug font-semibold text-chocolate">
             {date}
           </span>
 

@@ -4,9 +4,9 @@ export const SourceDescription = () => {
   const { title, footnote } = data.table;
 
   return (
-    <section className="section !pt-0">
-      <div className=" flex cursor-pointer justify-between rounded-lg bg-accent px-4 py-5 transition md:py-7 ">
-        <h3 className="max-w-64 text-center text-sm font-bold uppercase text-chocolate sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
+    <section className="section pt-0!">
+      <div className="flex cursor-pointer justify-between rounded-lg bg-accent px-4 py-5 transition md:py-7">
+        <h3 className="max-w-64 text-center text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
           {title}
         </h3>
       </div>

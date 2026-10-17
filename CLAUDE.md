@@ -53,7 +53,11 @@ Content is stored in JSON files under `src/data/` and imported directly:
 import data from '@/data/common.json';
 ```
 
-### Tailwind Custom Colors
+### Tailwind (v4)
+
+No `tailwind.config.ts`: tokens live in the `@theme` block of
+`src/styles/globals.css` (colors, breakpoints, shadows, v3-compatible
+line-heights). Important modifier is a suffix (`pt-0!`).
 
 ```
 main: #565656        accent: #FBCD21      mainBg: #0065B2

@@ -28,14 +28,14 @@ const Page = () => {
 
   return (
     <main>
-      <section className="section ">
+      <section className="section">
         <Title title={title} />
 
         <ul className="flex flex-col gap-3 md:gap-5 lg:gap-6">
           {list.map((paragraph, id) => (
             <li
               key={id}
-              className="  text-sm leading-[1.43] tracking-[0.5px] text-main md:text-xl lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8] "
+              className="text-sm leading-[1.43] tracking-[0.5px] text-main md:text-xl lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8]"
             >
               {' '}
               <b>{paragraph.bold}</b> {paragraph.text}
@@ -46,19 +46,19 @@ const Page = () => {
 
       <OrganizationStatute />
 
-      <section className="section ">
+      <section className="section">
         <Title title={academicCouncil.title} />
 
         <ProfessorList list={ACADEMIC_COUNCIL} />
       </section>
 
-      <section className="section ">
+      <section className="section">
         <Title title={supervisoryBoard.title} />
 
         <ProfessorList list={SUPERVISORY_BOARD} />
       </section>
 
-      <section className="section ">
+      <section className="section">
         <Title title={organizationMembers.title} />
 
         <ProfessorList list={sortedMembersByName} />

@@ -29,13 +29,13 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
         <Fragment key={id}>
           <li
             className={clsx(
-              'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7 ',
+              'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7',
               active === id && 'active',
               withAnswers && 'cursor-pointer',
             )}
             onClick={() => toggleActive(id)}
           >
-            <h3 className="max-w-64 text-sm font-bold uppercase text-chocolate sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
+            <h3 className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
               {grant.title}
             </h3>
 

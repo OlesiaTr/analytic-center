@@ -35,7 +35,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
         <div className="text-[50px] font-bold text-main">{month}</div>
       </div>
 
-      <div className="m-auto hidden w-full  max-w-[300px] rounded-lg py-4  shadow lg:block">
+      <div className="m-auto hidden w-full max-w-[300px] rounded-lg py-4 shadow lg:block">
         <img
           src={imgSrc}
           alt={imgAlt}
@@ -48,7 +48,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
       <div className="w-full pb-9">
         <div>
-          <h3 className="mb-8 font-bold uppercase text-chocolate md:text-base lg:text-xl xl:text-[28px]">
+          <h3 className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px]">
             {title}
           </h3>
 
@@ -59,14 +59,14 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
           )}
         </div>
 
-        <span className="mb-6 inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate sm:hidden">
+        <span className="mb-6 inline-flex rounded-lg bg-dateBg px-2 text-xs leading-snug font-semibold text-chocolate sm:hidden">
           {date}
         </span>
 
         <a
           href={linkToDownload}
           aria-label={imgAlt}
-          className="flex font-semibold leading-normal tracking-[0.5px] text-chocolate transition hover:text-accent"
+          className="flex leading-normal font-semibold tracking-[0.5px] text-chocolate transition hover:text-accent"
         >
           <ArrowDownTrayIcon className="mr-[10px] size-6" /> {linkDownload}
         </a>

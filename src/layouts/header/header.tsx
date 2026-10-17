@@ -22,12 +22,12 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
   return (
     <header
       className={clsx(
-        '  m-auto w-full max-w-screen-xxl text-white lg:inset-x-0 lg:top-0 ',
-        isOpen && '!bg-headerBg',
-        isHomePage ? 'absolute bg-transparent ' : 'sticky bg-headerBg  ',
+        'm-auto w-full max-w-(--breakpoint-xxl) text-white lg:inset-x-0 lg:top-0',
+        isOpen && 'bg-headerBg!',
+        isHomePage ? 'absolute bg-transparent' : 'sticky bg-headerBg',
       )}
     >
-      <div className="flex items-center justify-between p-4 md:px-14  lg:py-0 xl:px-20">
+      <div className="flex items-center justify-between p-4 md:px-14 lg:py-0 xl:px-20">
         <a href={LINKS[0].linkTo} className="transition hover:scale-110">
           {width !== null && width < VIEWPORT_MD ? (
             <Logo width={50} height={36} />

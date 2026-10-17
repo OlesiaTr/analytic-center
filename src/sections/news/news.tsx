@@ -14,7 +14,7 @@ export const News = () => {
             key={id}
             className="flex max-w-[628px] gap-3 p-[10px] shadow md:gap-8 md:px-5 md:py-6"
           >
-            <div className=" m-auto min-w-20 rounded-lg md:min-w-40">
+            <div className="m-auto min-w-20 rounded-lg md:min-w-40">
               <img
                 src={imgSrc}
                 alt={imgAlt}
@@ -26,7 +26,7 @@ export const News = () => {
               />
             </div>
             <div className="flex flex-col justify-between">
-              <p className=" mb-[10px] text-[10px] leading-snug md:mb-5 md:text-base lg:text-sm xl:text-base ">
+              <p className="mb-[10px] text-[10px] leading-snug md:mb-5 md:text-base lg:text-sm xl:text-base">
                 {text}
               </p>
 
@@ -38,12 +38,12 @@ export const News = () => {
                   rel="noopener noreferrer"
                   className=""
                 >
-                  <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate hover:text-mainBg">
+                  <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs leading-snug font-semibold text-chocolate hover:text-mainBg">
                     {date}
                   </span>
                 </a>
               ) : (
-                <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs font-semibold leading-snug text-chocolate">
+                <span className="inline-flex rounded-lg bg-dateBg px-2 text-xs leading-snug font-semibold text-chocolate">
                   {date}
                 </span>
               )}
