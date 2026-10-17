@@ -27,7 +27,7 @@ export interface Props {
 
 export const ProfessorList: FC<Props> = ({ list }) => {
   return (
-    <ul className="grid grid-cols-1 justify-items-center gap-8 md:gap-10 lg:grid-cols-2 lg:gap-20  xl:grid-cols-3">
+    <ul className="grid grid-cols-1 justify-items-center gap-8 md:gap-10 lg:grid-cols-2 lg:gap-20 xl:grid-cols-3">
       {list.map(
         ({
           image,
@@ -55,10 +55,10 @@ export const ProfessorList: FC<Props> = ({ list }) => {
             </div>
             <div className="flex h-[170px] flex-col justify-between px-4 py-6">
               <div className="">
-                <h3 className="mb-2 font-bold uppercase leading-tight tracking-[-0.003px] text-black">
+                <h3 className="mb-2 leading-tight font-bold tracking-[-0.003px] text-black uppercase">
                   {name}
                 </h3>
-                <p className=" text-sm leading-snug text-chocolate">
+                <p className="text-sm leading-snug text-chocolate">
                   {position}
                 </p>
               </div>

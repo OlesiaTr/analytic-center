@@ -6,6 +6,9 @@ code in this repository.
 Linear: team `PER`, project "Analytic Center", base branch `develop`. Plan and
 progress: `docs/modernization.md`.
 
+Next.js docs for the installed version (generated, don't edit by hand):
+@AGENTS.md
+
 ## Build & Development Commands
 
 ```bash
@@ -50,7 +53,11 @@ Content is stored in JSON files under `src/data/` and imported directly:
 import data from '@/data/common.json';
 ```
 
-### Tailwind Custom Colors
+### Tailwind (v4)
+
+No `tailwind.config.ts`: tokens live in the `@theme` block of
+`src/styles/globals.css` (colors, breakpoints, shadows, v3-compatible
+line-heights). Important modifier is a suffix (`pt-0!`).
 
 ```
 main: #565656        accent: #FBCD21      mainBg: #0065B2
@@ -66,3 +73,5 @@ Custom breakpoints: `sm` (480px), `md` (768px), `lg` (1024px), `xl` (1280px),
 - Single quotes, trailing commas, 80 char print width
 - Prettier with Tailwind plugin (auto-sorts classes)
 - Use `'use client'` directive for interactive components
+- Dependencies are pinned to exact versions (`.npmrc` `save-exact`). Updates
+  come as Dependabot PRs into `develop`; run `visual-check` before merging them

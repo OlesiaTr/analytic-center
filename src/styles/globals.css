@@ -1,9 +1,67 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1440px;
+
+  --default-transition-duration: 300ms;
+
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  --shadow-inner: -1px -1px 5px 0px rgba(0, 0, 0, 0.15) inset;
+
+  --color-main: #565656;
+  --color-accent: #fbcd21;
+  --color-accentLight: #f9da66;
+  --color-accentDark: #dfb107;
+  --color-mainBg: #0065b2;
+  --color-mainBgLight: #4a98d4;
+  --color-mainBgDark: #043b65;
+  --color-headerBg: rgba(68, 127, 172, 0.82);
+  --color-footerBg: #0e2b42;
+  --color-chocolate: #442103;
+  --color-dateBg: rgba(205, 220, 231, 0.82);
+
+  /*
+    Tailwind v3 line-heights. v4 made them unitless (e.g. text-xl = 1.4), which
+    changes height wherever an arbitrary size like `xl:text-[28px]` inherits
+    them. Remove once components stop mixing scale and arbitrary sizes.
+  */
+  --text-xs--line-height: 1rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 .section {
-  @apply mx-auto flex max-w-screen-xxl flex-col px-4 py-9  md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
+  @apply mx-auto flex max-w-(--breakpoint-xxl) flex-col px-4 py-9 md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
 }
 
 .active {
@@ -115,6 +173,16 @@
 .swiper-button-prev::after {
   color: #565656;
   content: ' ' !important;
+}
+
+/* Swiper 12+ injects its own SVG arrow; the custom background-image arrows above replace it. */
+.swiper-navigation-icon {
+  display: none;
+}
+
+/* Swiper 12+ lowered the default arrow offset from 10px to 4px. */
+.swiper {
+  --swiper-navigation-sides-offset: 10px;
 }
 
 @media (min-width: 480px) {

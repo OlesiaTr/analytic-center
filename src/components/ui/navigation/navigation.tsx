@@ -22,7 +22,7 @@ export const Navigation: FC<Props> = ({
     <nav className={location === 'header' ? 'hidden lg:block' : ''}>
       <ul
         className={clsx(
-          'flex items-center  font-semibold tracking-[0.5px] lg:gap-2 xl:gap-7 xxl:gap-12',
+          'flex items-center font-semibold tracking-[0.5px] lg:gap-2 xl:gap-7 xxl:gap-12',
           listStyles,
         )}
       >
@@ -31,7 +31,7 @@ export const Navigation: FC<Props> = ({
             <a
               href={links[0].linkTo}
               className={clsx(
-                'flex py-8 text-white transition hover:text-accent active:text-accentLight ',
+                'flex py-8 text-white transition hover:text-accent active:text-accentLight',
               )}
             >
               <HomeIcon className="size-8" />
@@ -43,7 +43,7 @@ export const Navigation: FC<Props> = ({
             <a
               href={linkTo}
               className={clsx(
-                'flex py-[46px] text-white transition hover:text-accent active:text-accentLight ',
+                'flex py-[46px] text-white transition hover:text-accent active:text-accentLight',
                 linkStyles,
               )}
             >

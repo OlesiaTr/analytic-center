@@ -7,11 +7,9 @@ import { GrantsExpendedVersion } from '@/sections';
 import data from '@/data/grants.json';
 import meta from '@/data/meta/meta.json';
 
-export interface Props {}
-
 export const metadata: Metadata = meta.grants;
 
-const Page: FC<Props> = () => {
+const Page: FC = () => {
   const { title } = data;
 
   return (

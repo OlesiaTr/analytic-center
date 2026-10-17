@@ -10,13 +10,13 @@ export const Footer = () => {
   const { name, contacts, copyrights } = data.footer;
 
   return (
-    <footer className="m-auto flex max-w-screen-xxl justify-between bg-footerBg p-4 text-white md:px-14 lg:py-20 xl:p-20">
+    <footer className="m-auto flex max-w-(--breakpoint-xxl) justify-between bg-footerBg p-4 text-white md:px-14 lg:py-20 xl:p-20">
       <div className="hidden max-w-[277px] lg:block">
         <a href={LINKS[0].linkTo}>
           <Logo width={190} height={134} />
         </a>
 
-        <p className="mt-12  text-lg font-bold leading-snug tracking-[0.5px] ">
+        <p className="mt-12 text-lg leading-snug font-bold tracking-[0.5px]">
           {name}
         </p>
       </div>
@@ -25,14 +25,14 @@ export const Footer = () => {
         <div className="hidden sm:block">
           <Navigation
             links={LINKS}
-            linkStyles="!py-1 lg:!pt-0 lg:!pb-[46px]"
+            linkStyles="py-1! lg:pt-0! lg:pb-[46px]!"
             listStyles="flex-col lg:flex-row"
           />
         </div>
 
-        <div className="flex min-h-[120px] flex-col justify-between sm:min-h-[190px]  lg:block lg:min-h-full">
+        <div className="flex min-h-[120px] flex-col justify-between sm:min-h-[190px] lg:block lg:min-h-full">
           <div className="lg:flex lg:justify-center">
-            <address className="not-italic tracking-[0.5px] lg:mb-[52px]">
+            <address className="tracking-[0.5px] not-italic lg:mb-[52px]">
               <p className="mb-3 text-sm font-semibold sm:text-base sm:font-bold">
                 {contacts.title}
               </p>
@@ -56,7 +56,7 @@ export const Footer = () => {
               <Logo width={38} height={27} />
             </div>
 
-            <p className="max-w-[90px] text-center text-[3px] font-medium leading-loose md:max-w-[250px] md:text-xs md:leading-snug lg:max-w-full">
+            <p className="max-w-[90px] text-center text-[3px] leading-loose font-medium md:max-w-[250px] md:text-xs md:leading-snug lg:max-w-full">
               {copyrights}
             </p>
           </div>

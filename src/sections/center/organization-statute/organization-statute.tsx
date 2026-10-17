@@ -13,7 +13,7 @@ export const OrganizationStatute = () => {
               className="flex w-full cursor-pointer rounded-lg px-4 py-5 md:py-7"
               download={title}
             >
-              <h3 className="text-sm font-bold uppercase text-chocolate group-hover:text-mainBgDark sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] ">
+              <h3 className="text-sm font-bold text-chocolate uppercase group-hover:text-mainBgDark sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
                 {title}
               </h3>
             </a>
