@@ -26,7 +26,7 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
   return (
     <ul className="mb-6 flex flex-col gap-8 md:mb-10 lg:mb-16">
       {list.map((grant, id) => (
-        <Fragment key={id}>
+        <Fragment key={grant.title}>
           <li
             className={clsx(
               'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7',
@@ -50,9 +50,9 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
           </li>
 
           {active === id &&
-            grantsList[active].programs.map((details, id) => (
+            grantsList[active].programs.map(details => (
               <GrantDetails
-                key={id}
+                key={details.title}
                 title={details.title}
                 description={details.description}
                 date={details.date}

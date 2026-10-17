@@ -1,31 +1,11 @@
 import { ButtonLink, CoverCard, Title } from '@/components/ui';
 
 import data from '@/data/common.json';
-import { Conference } from '../types';
-
-interface UpcomingConferencesDataProps {
-  title: string;
-  list: Conference[];
-  button: string;
-  buttonDownload: string;
-  redirectionTo: string;
-}
-
-// {
-//   "id": "7",
-//   "imgSrc": "/images/conferences/conf-27-12-24.webp",
-//   "imgAlt": "Зображення обкладенки конференції від 27 грудня 2024 року: “Україна в умовах російської агресії: уроки сьогодення та прогнози майбутнього",
-//   "title": "XXХVIІІ Харківські політологічні читання",
-//   "description": "“Україна в умовах російської агресії: уроки сьогодення та прогнози майбутнього”",
-//   "date": "27.12.2024",
-//   "day": "27",
-//   "month": "12",
-//   "linkToDownload": "https://docs.google.com/uc?export=download&id=1TJBXrdK_GpaajoSDHfmhXl9gSWohFftP"
-// }
+import type { UpcomingConferences as UpcomingConferencesData } from '@/data/types';
 
 export const UpcomingConferences = () => {
-  const { title, list, button, buttonDownload, redirectionTo } =
-    data.upcomingConferences as UpcomingConferencesDataProps;
+  const upcoming: UpcomingConferencesData = data.upcomingConferences;
+  const { title, list, button, buttonDownload, redirectionTo } = upcoming;
 
   if (!list.length) return null;
 

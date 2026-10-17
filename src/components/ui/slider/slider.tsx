@@ -55,11 +55,11 @@ export const Slider: FC<Props> = ({ slidesData }) => {
       }}
       className="size-full max-w-[300px] px-7! sm:max-w-[330px] sm:pr-6! sm:pl-11! md:max-w-[640px] md:pr-11! md:pl-7! lg:max-w-[900px] xl:max-w-[1200px]"
     >
-      {slidesData.map((card, idx) => (
+      {slidesData.map(card => (
         <SwiperSlide
           tag="li"
           className="mb-6 flex items-center justify-center md:px-4"
-          key={idx}
+          key={card.linkTo}
         >
           <SlideComponent card={card} />
         </SwiperSlide>

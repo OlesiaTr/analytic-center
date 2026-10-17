@@ -10,9 +10,9 @@ export const News = () => {
       <Title title={title} />
 
       <ul className="grid grid-cols-1 justify-items-center gap-x-6 gap-y-11 lg:grid-cols-2">
-        {list.map(({ imgSrc, imgAlt, text, date, linkTo }, id) => (
+        {list.map(({ imgSrc, imgAlt, text, date, linkTo }) => (
           <li
-            key={id}
+            key={text}
             className="flex max-w-[628px] gap-3 p-[10px] shadow md:gap-8 md:px-5 md:py-6"
           >
             <div className="m-auto min-w-20 rounded-lg md:min-w-40">

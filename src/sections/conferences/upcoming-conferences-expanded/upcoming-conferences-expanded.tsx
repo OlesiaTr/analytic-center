@@ -1,14 +1,10 @@
 import { CoverCard, WideCoverCard } from '@/components/ui';
 import commonData from '@/data/common.json';
-import { Conference } from '../types';
+import type { UpcomingConferences } from '@/data/types';
 
 export const UpcomingConferencesExpanded = () => {
-  const { list, linkDownload, buttonDownload } =
-    commonData.upcomingConferences as {
-      list: Conference[];
-      linkDownload: string;
-      buttonDownload: string;
-    };
+  const upcoming: UpcomingConferences = commonData.upcomingConferences;
+  const { list, linkDownload, buttonDownload } = upcoming;
 
   if (!list.length) return null;
 

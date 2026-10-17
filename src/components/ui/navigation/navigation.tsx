@@ -39,8 +39,8 @@ export const Navigation: FC<Props> = ({
             </Link>
           </li>
         )}
-        {links.slice(1).map(({ name, linkTo }, id) => (
-          <li key={id}>
+        {links.slice(1).map(({ name, linkTo }) => (
+          <li key={linkTo}>
             <Link
               href={linkTo}
               className={clsx(

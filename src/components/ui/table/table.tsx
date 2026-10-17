@@ -11,10 +11,10 @@ export const Table: FC<Props> = ({ table }) => {
   return (
     <div className="mt-9 grid grid-cols-1 shadow md:grid-cols-2">
       <ul className="grid grid-cols-1">
-        {table.map(({ question }, id) => (
+        {table.map(({ question }) => (
           <li
             className="flex h-[110px] items-center border sm:h-[90px] md:h-[115px] lg:h-[80px] xl:h-16"
-            key={id}
+            key={question}
           >
             <p className="sm:font-medium md:font-bold">{question}</p>
           </li>
@@ -22,10 +22,10 @@ export const Table: FC<Props> = ({ table }) => {
       </ul>
 
       <ul className="hidden grid-cols-1 md:grid">
-        {table.map(({ answer }, id) => (
+        {table.map(({ question, answer }) => (
           <li
             className="flex items-center justify-center border md:h-[115px] lg:h-[80px] xl:h-16"
-            key={id}
+            key={question}
           >
             {answer}
           </li>
