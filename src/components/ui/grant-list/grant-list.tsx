@@ -26,8 +26,8 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
         <Fragment key={grant.title}>
           <li
             className={clsx(
-              'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7',
-              isActive(id) && 'active',
+              'justify-between rounded-lg border-b border-divider bg-surface px-4 py-5 transition md:py-7',
+              isActive(id) ? 'inline-flex' : 'flex',
               withAnswers && 'cursor-pointer',
             )}
             onClick={() => setActive(id)}

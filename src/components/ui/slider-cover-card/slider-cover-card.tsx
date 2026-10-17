@@ -58,7 +58,7 @@ export const SliderCoverCard: FC<Props> = ({ slidesList, buttonDownload }) => {
           centeredSlidesBounds: false,
         },
       }}
-      className="mb-6 size-full max-w-[300px] sm:max-w-(--breakpoint-sm) md:mb-16 md:max-w-(--breakpoint-md) md:px-0! lg:max-w-[900px] xl:max-w-(--breakpoint-xl) xl:overflow-visible! xxl:max-w-(--breakpoint-xxl)"
+      className="mb-6 size-full max-w-75 sm:max-w-(--breakpoint-sm) md:mb-16 md:max-w-(--breakpoint-md) md:px-0! lg:max-w-225 xl:max-w-(--breakpoint-xl) xl:overflow-visible! xxl:max-w-(--breakpoint-xxl)"
     >
       {slidesList.map(card => (
         <SwiperSlide

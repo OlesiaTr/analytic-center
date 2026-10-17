@@ -13,7 +13,7 @@ export const News = () => {
         {list.map(({ imgSrc, imgAlt, text, date, linkTo }) => (
           <li
             key={text}
-            className="flex max-w-[628px] gap-3 p-[10px] shadow md:gap-8 md:px-5 md:py-6"
+            className="flex max-w-157 gap-3 p-[10px] shadow md:gap-8 md:px-5 md:py-6"
           >
             <div className="m-auto min-w-20 rounded-lg md:min-w-40">
               <Image

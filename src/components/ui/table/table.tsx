@@ -13,7 +13,7 @@ export const Table: FC<Props> = ({ table }) => {
       <ul className="grid grid-cols-1">
         {table.map(({ question }) => (
           <li
-            className="flex h-[110px] items-center border sm:h-[90px] md:h-[115px] lg:h-[80px] xl:h-16"
+            className="flex h-[110px] items-center border sm:h-[90px] md:h-[115px] lg:h-20 xl:h-16"
             key={question}
           >
             <p className="sm:font-medium md:font-bold">{question}</p>
@@ -24,7 +24,7 @@ export const Table: FC<Props> = ({ table }) => {
       <ul className="hidden grid-cols-1 md:grid">
         {table.map(({ question, answer }) => (
           <li
-            className="flex items-center justify-center border md:h-[115px] lg:h-[80px] xl:h-16"
+            className="flex items-center justify-center border md:h-[115px] lg:h-20 xl:h-16"
             key={question}
           >
             {answer}

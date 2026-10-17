@@ -31,9 +31,9 @@ export const Footer = () => {
           />
         </div>
 
-        <div className="flex min-h-[120px] flex-col justify-between sm:min-h-[190px] lg:block lg:min-h-full">
+        <div className="flex min-h-30 flex-col justify-between sm:min-h-[190px] lg:block lg:min-h-full">
           <div className="lg:flex lg:justify-center">
-            <address className="tracking-[0.5px] not-italic lg:mb-[52px]">
+            <address className="tracking-[0.5px] not-italic lg:mb-13">
               <p className="mb-3 text-sm font-semibold sm:text-base sm:font-bold">
                 {contacts.title}
               </p>

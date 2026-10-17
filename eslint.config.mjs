@@ -27,9 +27,9 @@ export default defineConfig([
     rules: {
       // prettier-plugin-tailwindcss owns class order
       'tailwindcss/classnames-order': 'off',
-      // Auto-fixable class rewrites; enable when cleaning up classes in PER-7
+      // Its --fix turns unitless values like `leading-[1.43]` into invalid
+      // `leading-1.43`; arbitrary values were cleaned up once in PER-7.
       'tailwindcss/no-unnecessary-arbitrary-value': 'off',
-      'tailwindcss/enforces-canonical-classname': 'off',
     },
   },
 ]);

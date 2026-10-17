@@ -67,7 +67,7 @@ export const PublicationCard = ({
       <div
         className={clsx(
           styles.body,
-          variant === 'cover' && (description ? 'h-[250px]' : 'h-[200px]'),
+          variant === 'cover' && (description ? 'h-[250px]' : 'h-50'),
         )}
       >
         {variant === 'cover' ? (

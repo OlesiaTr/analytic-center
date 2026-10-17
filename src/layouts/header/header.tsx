@@ -30,7 +30,7 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
     >
       <div className="flex items-center justify-between p-4 md:px-14 lg:py-0 xl:px-20">
         <Link href={LINKS[0].linkTo} className="transition hover:scale-110">
-          <Logo className="h-9 w-[50px] md:h-[60px] md:w-[85px]" />
+          <Logo className="h-9 w-[50px] md:h-15 md:w-[85px]" />
         </Link>
 
         <Navigation location="header" links={LINKS} />

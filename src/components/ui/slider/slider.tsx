@@ -53,7 +53,7 @@ export const Slider: FC<Props> = ({ slidesData }) => {
           slidesPerView: 4,
         },
       }}
-      className="size-full max-w-[300px] px-7! sm:max-w-[330px] sm:pr-6! sm:pl-11! md:max-w-[640px] md:pr-11! md:pl-7! lg:max-w-[900px] xl:max-w-[1200px]"
+      className="size-full max-w-75 px-7! sm:max-w-[330px] sm:pr-6! sm:pl-11! md:max-w-160 md:pr-11! md:pl-7! lg:max-w-225 xl:max-w-300"
     >
       {slidesData.map(card => (
         <SwiperSlide

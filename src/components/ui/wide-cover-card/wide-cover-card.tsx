@@ -40,7 +40,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
         <div className="text-[50px] font-bold text-main">{month}</div>
       </div>
 
-      <div className="m-auto hidden w-full max-w-[300px] rounded-lg py-4 shadow lg:block">
+      <div className="m-auto hidden w-full max-w-75 rounded-lg py-4 shadow lg:block">
         <Image
           src={imgSrc}
           alt={imgAlt}

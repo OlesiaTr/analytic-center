@@ -54,13 +54,13 @@ export const ProfessorList: FC<Props> = ({ list }) => {
 
         return (
           <li key={name} className="max-w-[374px] rounded-lg shadow">
-            <div className="max-h-[416px]">
+            <div className="max-h-104">
               <Image
                 src={image}
                 alt={name}
                 width={374}
                 height={416}
-                className="h-[416px] object-cover"
+                className="h-104 object-cover"
               />
             </div>
             <div className="flex h-[170px] flex-col justify-between px-4 py-6">

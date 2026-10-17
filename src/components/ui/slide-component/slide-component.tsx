@@ -13,7 +13,7 @@ export interface Props {
 
 export const SlideComponent: FC<Props> = ({ card }) => {
   return (
-    <div className="flex h-[280px] w-[240px] items-center overflow-hidden rounded-xl shadow md:rounded-3xl">
+    <div className="flex h-70 w-60 items-center overflow-hidden rounded-xl shadow md:rounded-3xl">
       <a href={card.linkTo} target="_blank" rel="noopener noreferrer">
         <Image
           src={card.image}

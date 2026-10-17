@@ -21,7 +21,7 @@ export const PublicationGrid = ({
       <li
         key={card.id}
         className={clsx(
-          'w-[328px] rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]',
+          'w-82 rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]',
           variant === 'cover' && 'flex flex-col justify-between',
         )}
       >
