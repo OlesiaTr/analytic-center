@@ -6,11 +6,9 @@ import { Title } from '@/components/ui';
 import data from '@/data/contacts.json';
 import meta from '@/data/meta/meta.json';
 
-export interface Props {}
-
 export const metadata: Metadata = meta.contacts;
 
-const Page: FC<Props> = () => {
+const Page: FC = () => {
   const { title } = data;
 
   return (

@@ -7,11 +7,9 @@ import { SourceDescription } from '@/sections';
 import data from '@/data/useful-info.json';
 import meta from '@/data/meta/meta.json';
 
-export interface Props {}
-
 export const metadata: Metadata = meta['useful-info'];
 
-const Page: FC<Props> = () => {
+const Page: FC = () => {
   const { title } = data;
 
   return (

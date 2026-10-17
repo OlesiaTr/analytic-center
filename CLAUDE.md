@@ -6,6 +6,9 @@ code in this repository.
 Linear: team `PER`, project "Analytic Center", base branch `develop`. Plan and
 progress: `docs/modernization.md`.
 
+Next.js docs for the installed version (generated, don't edit by hand):
+@AGENTS.md
+
 ## Build & Development Commands
 
 ```bash

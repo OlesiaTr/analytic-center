@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 export interface Props {
   card: {
-    image: any;
+    image: string;
     alt: string;
     linkTo: string;
   };
