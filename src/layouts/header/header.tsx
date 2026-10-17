@@ -1,6 +1,8 @@
 'use client';
 
 import React, { FC, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 import { LINKS } from '@/constants';
@@ -13,9 +15,13 @@ export interface Props {
 }
 
 export const Header: FC<Props> = ({ isHomePage = false }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  // Remember which page the menu was opened on, so it closes after navigating.
+  const [openedOn, setOpenedOn] = useState<string | null>(null);
+  const isOpen = openedOn === pathname;
 
-  const toggleModal = () => setIsOpen(!isOpen);
+  const toggleModal = () => setOpenedOn(isOpen ? null : pathname);
+  const closeModal = () => setOpenedOn(null);
 
   return (
     <header
@@ -26,16 +32,16 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
       )}
     >
       <div className="flex items-center justify-between p-4 md:px-14 lg:py-0 xl:px-20">
-        <a href={LINKS[0].linkTo} className="transition hover:scale-110">
+        <Link href={LINKS[0].linkTo} className="transition hover:scale-110">
           <Logo className="h-9 w-[50px] md:h-[60px] md:w-[85px]" />
-        </a>
+        </Link>
 
         <Navigation location="header" links={LINKS} />
 
         <MenuBtn onClick={toggleModal} isOpen={isOpen} />
       </div>
 
-      {isOpen && <MobileMenu closeModal={setIsOpen} />}
+      {isOpen && <MobileMenu closeModal={closeModal} />}
     </header>
   );
 };

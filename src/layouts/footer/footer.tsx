@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 import { Logo } from '@/components/svg-icons';
@@ -12,9 +13,9 @@ export const Footer = () => {
   return (
     <footer className="m-auto flex max-w-(--breakpoint-xxl) justify-between bg-footerBg p-4 text-white md:px-14 lg:py-20 xl:p-20">
       <div className="hidden max-w-[277px] lg:block">
-        <a href={LINKS[0].linkTo}>
+        <Link href={LINKS[0].linkTo}>
           <Logo width={190} height={134} />
-        </a>
+        </Link>
 
         <p className="mt-12 text-lg leading-snug font-bold tracking-[0.5px]">
           {name}
