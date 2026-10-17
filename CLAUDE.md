@@ -69,3 +69,5 @@ Custom breakpoints: `sm` (480px), `md` (768px), `lg` (1024px), `xl` (1280px),
 - Single quotes, trailing commas, 80 char print width
 - Prettier with Tailwind plugin (auto-sorts classes)
 - Use `'use client'` directive for interactive components
+- Dependencies are pinned to exact versions (`.npmrc` `save-exact`). Updates
+  come as Dependabot PRs into `develop`; run `visual-check` before merging them

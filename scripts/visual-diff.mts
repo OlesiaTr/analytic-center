@@ -18,11 +18,6 @@ const { values } = parseArgs({
 });
 const maxPercent = Number(values.threshold ?? '0.5');
 
-// View a Buffer as a plain Uint8Array: @types/node 20's Buffer doesn't match the
-// typed-array types in TypeScript 5.7+. Drop once @types/node is upgraded (PER-6).
-const bytes = (buf: Buffer) =>
-  new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
-
 const readPng = async (file: string) => PNG.sync.read(await readFile(file));
 
 const main = async () => {
@@ -55,9 +50,9 @@ const main = async () => {
     const { width, height } = baseline;
     const diff = new PNG({ width, height });
     const changed = pixelmatch(
-      bytes(baseline.data),
-      bytes(current.data),
-      bytes(diff.data),
+      baseline.data,
+      current.data,
+      diff.data,
       width,
       height,
       {
@@ -67,7 +62,7 @@ const main = async () => {
     const percent = (changed / (width * height)) * 100;
 
     if (percent > maxPercent) {
-      await writeFile(path.join(DIFF, file), bytes(PNG.sync.write(diff)));
+      await writeFile(path.join(DIFF, file), PNG.sync.write(diff));
       console.log(`CHANGED  ${file}  ${percent.toFixed(2)}%`);
       failed++;
     } else {
