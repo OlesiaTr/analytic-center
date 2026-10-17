@@ -1,4 +1,4 @@
-import { ButtonLink, CoverCard, Title } from '@/components/ui';
+import { ButtonLink, PublicationGrid, Title } from '@/components/ui';
 
 import data from '@/data/common.json';
 import type { UpcomingConferences as UpcomingConferencesData } from '@/data/types';
@@ -13,16 +13,7 @@ export const UpcomingConferences = () => {
     <section className="section bg-mainBg">
       <Title title={title} isWhite />
 
-      <ul className="mb-6 grid grid-cols-1 justify-items-center gap-8 md:mb-16 md:grid-cols-2 md:gap-20 xl:grid-cols-3">
-        {list.map(card => (
-          <li
-            key={card.id}
-            className="flex w-[328px] flex-col justify-between rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
-          >
-            <CoverCard card={card} buttonDownload={buttonDownload} />
-          </li>
-        ))}
-      </ul>
+      <PublicationGrid list={list} buttonDownload={buttonDownload} />
 
       <ButtonLink
         label={button}

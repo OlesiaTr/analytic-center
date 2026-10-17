@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
@@ -9,6 +9,7 @@ import { LINKS } from '@/constants';
 import { MobileMenu } from '@/components/base';
 import { Logo } from '@/components/svg-icons';
 import { MenuBtn, Navigation } from '@/components/ui';
+import { useDisclosure } from '@/hooks';
 
 export interface Props {
   isHomePage?: boolean;
@@ -16,12 +17,8 @@ export interface Props {
 
 export const Header: FC<Props> = ({ isHomePage = false }) => {
   const pathname = usePathname();
-  // Remember which page the menu was opened on, so it closes after navigating.
-  const [openedOn, setOpenedOn] = useState<string | null>(null);
-  const isOpen = openedOn === pathname;
-
-  const toggleModal = () => setOpenedOn(isOpen ? null : pathname);
-  const closeModal = () => setOpenedOn(null);
+  // Keyed by pathname, so the menu closes after navigating.
+  const { isOpen, toggle, close } = useDisclosure(false, pathname);
 
   return (
     <header
@@ -38,10 +35,10 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
 
         <Navigation location="header" links={LINKS} />
 
-        <MenuBtn onClick={toggleModal} isOpen={isOpen} />
+        <MenuBtn onClick={toggle} isOpen={isOpen} />
       </div>
 
-      {isOpen && <MobileMenu closeModal={closeModal} />}
+      {isOpen && <MobileMenu closeModal={close} />}
     </header>
   );
 };

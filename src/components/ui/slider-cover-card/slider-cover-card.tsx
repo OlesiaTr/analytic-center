@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Autoplay, A11y } from 'swiper/modules';
 
-import { SlideCoverCard } from '@/components/ui';
+import { PublicationCard } from '@/components/ui/publication-card';
 
 import data from '@/data/common.json';
 
@@ -66,7 +66,11 @@ export const SliderCoverCard: FC<Props> = ({ slidesList, buttonDownload }) => {
           className="rounded-lg shadow-inner lg:shadow"
           key={card.id}
         >
-          <SlideCoverCard card={card} buttonDownload={buttonDownload} />
+          <PublicationCard
+            card={card}
+            buttonDownload={buttonDownload}
+            variant="slide"
+          />
         </SwiperSlide>
       ))}
     </Swiper>

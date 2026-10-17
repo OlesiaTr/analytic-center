@@ -1,10 +1,11 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
 import grantsData from '@/data/grants.json';
+import { useAccordion } from '@/hooks';
 import { GrantDetails } from '../grant-details';
 
 export interface Props {
@@ -16,12 +17,8 @@ export interface Props {
 }
 
 export const GrantList = ({ list, withAnswers = false }: Props) => {
-  const [active, setActive] = useState<number>(0);
+  const { active, isActive, setActive } = useAccordion();
   const { list: grantsList } = grantsData;
-
-  const toggleActive = (id: number) => {
-    setActive(id);
-  };
 
   return (
     <ul className="mb-6 flex flex-col gap-8 md:mb-10 lg:mb-16">
@@ -30,10 +27,10 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
           <li
             className={clsx(
               'grant flex justify-between rounded-lg bg-white px-4 py-5 transition md:py-7',
-              active === id && 'active',
+              isActive(id) && 'active',
               withAnswers && 'cursor-pointer',
             )}
-            onClick={() => toggleActive(id)}
+            onClick={() => setActive(id)}
           >
             <h3 className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
               {grant.title}
@@ -43,13 +40,13 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
               <ChevronDownIcon
                 className={clsx(
                   'size-6 min-w-6 transition',
-                  active === id && 'rotate-180',
+                  isActive(id) && 'rotate-180',
                 )}
               />
             )}
           </li>
 
-          {active === id &&
+          {isActive(id) &&
             grantsList[active].programs.map(details => (
               <GrantDetails
                 key={details.title}
