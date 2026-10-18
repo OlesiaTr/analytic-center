@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Header isHomePage />
 
-      <main>
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <Hero />
 
         <CenterShortVersion />

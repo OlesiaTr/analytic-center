@@ -18,7 +18,8 @@ paths:
 - Never put two utilities for the same property on one element (e.g.
   `inline-block` + `flex`); pick one conditionally with `clsx`. Tailwind v4's
   ordering differs from v3, so such pairs break silently.
-- The v3 line-height shim in `@theme` keeps old layouts; remove it only in a
-  visual phase with `visual-check`.
+- Font sizes carry unitless line-heights in v4. When a breakpoint switches to an
+  arbitrary size (`xl:text-[28px]`), set its leading too (`xl:leading-7`) —
+  otherwise it inherits the previous step's ratio.
 - Prettier owns class order — don't reorder by hand.
 - Any styling change: run the `visual-check` skill before committing.

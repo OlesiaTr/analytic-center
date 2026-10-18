@@ -1,5 +1,3 @@
-'use client';
-
 import { ButtonLink } from '@/components/ui';
 
 import data from '@/data/common.json';

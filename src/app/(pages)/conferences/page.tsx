@@ -16,9 +16,9 @@ const Page = () => {
   const { title } = data;
 
   return (
-    <main>
+    <main id="main" tabIndex={-1} className="focus:outline-none">
       <section className="section">
-        <Title title={title} />
+        <Title title={title} as="h1" />
 
         <UpcomingConferencesExpanded />
       </section>

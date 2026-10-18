@@ -1,6 +1,5 @@
 'use client';
 
-import { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
@@ -18,49 +17,70 @@ export interface Props {
 
 export const GrantList = ({ list, withAnswers = false }: Props) => {
   const { active, isActive, setActive } = useAccordion();
+  // On /grants the list sits right under the page h1; on home under a section h2.
+  const Heading = withAnswers ? 'h2' : 'h3';
   const { list: grantsList } = grantsData;
+
+  const titleClassName =
+    'max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7';
+  const barClassName =
+    'flex w-full justify-between rounded-lg border-b border-divider bg-surface px-4 py-5 text-left transition md:py-7';
 
   return (
     <ul className="mb-6 flex flex-col gap-8 md:mb-10 lg:mb-16">
-      {list.map((grant, id) => (
-        <Fragment key={grant.title}>
-          <li
-            className={clsx(
-              'justify-between rounded-lg border-b border-divider bg-surface px-4 py-5 transition md:py-7',
-              isActive(id) ? 'inline-flex' : 'flex',
-              withAnswers && 'cursor-pointer',
-            )}
-            onClick={() => setActive(id)}
-          >
-            <h3 className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
-              {grant.title}
-            </h3>
+      {list.map((grant, id) => {
+        const panelId = `grant-panel-${id}`;
 
-            {withAnswers && (
-              <ChevronDownIcon
-                className={clsx(
-                  'size-6 min-w-6 transition',
-                  isActive(id) && 'rotate-180',
-                )}
-              />
+        return (
+          <li key={grant.title} className="flex flex-col gap-8">
+            {/* On /grants each title toggles its programs; on home it's a static list. */}
+            {withAnswers ? (
+              <Heading>
+                <button
+                  type="button"
+                  className={clsx(barClassName, 'cursor-pointer')}
+                  aria-expanded={isActive(id)}
+                  aria-controls={isActive(id) ? panelId : undefined}
+                  onClick={() => setActive(id)}
+                >
+                  <span className={titleClassName}>{grant.title}</span>
+                  <ChevronDownIcon
+                    aria-hidden
+                    className={clsx(
+                      'size-6 min-w-6 transition',
+                      isActive(id) && 'rotate-180',
+                    )}
+                  />
+                </button>
+              </Heading>
+            ) : (
+              <Heading className={barClassName}>
+                <span className={titleClassName}>{grant.title}</span>
+              </Heading>
+            )}
+
+            {isActive(id) && (
+              <div id={panelId} className="flex flex-col gap-8">
+                {grantsList[active].programs.map(details => (
+                  <GrantDetails
+                    key={details.title}
+                    headingLevel={withAnswers ? 'h3' : 'h4'}
+                    title={details.title}
+                    description={details.description}
+                    date={details.date}
+                    linkTo={details.linkTo}
+                    descriptionList={
+                      'descriptionList' in details
+                        ? details.descriptionList
+                        : null
+                    }
+                  />
+                ))}
+              </div>
             )}
           </li>
-
-          {isActive(id) &&
-            grantsList[active].programs.map(details => (
-              <GrantDetails
-                key={details.title}
-                title={details.title}
-                description={details.description}
-                date={details.date}
-                linkTo={details.linkTo}
-                descriptionList={
-                  'descriptionList' in details ? details.descriptionList : null
-                }
-              />
-            ))}
-        </Fragment>
-      ))}
+        );
+      })}
     </ul>
   );
 };

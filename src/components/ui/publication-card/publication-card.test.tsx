@@ -23,10 +23,10 @@ describe('PublicationCard', () => {
     expect(image).toHaveAttribute('height', '800');
     expect(screen.getByRole('heading', { name: card.title })).toBeVisible();
     expect(screen.getByText('30.10.2026')).toBeVisible();
-    expect(screen.getByRole('link', { name: 'Завантажити' })).toHaveAttribute(
-      'href',
-      card.linkToDownload,
-    );
+    // The link name includes the title so screen-reader link lists stay unique.
+    expect(
+      screen.getByRole('link', { name: `Завантажити: ${card.title}` }),
+    ).toHaveAttribute('href', card.linkToDownload);
   });
 
   it('shows the description on cover cards', () => {

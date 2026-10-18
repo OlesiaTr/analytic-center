@@ -14,7 +14,7 @@ export const Footer = () => {
     <footer className="m-auto flex max-w-(--breakpoint-xxl) justify-between bg-footerBg p-4 text-white md:px-14 lg:py-20 xl:p-20">
       <div className="hidden max-w-[277px] lg:block">
         <Link href={LINKS[0].linkTo}>
-          <Logo width={190} height={134} />
+          <Logo alt={data.header.homeLabel} width={190} height={134} />
         </Link>
 
         <p className="mt-12 text-lg leading-snug font-bold tracking-[0.5px]">
@@ -25,6 +25,7 @@ export const Footer = () => {
       <div className="m-auto flex items-center gap-9 sm:gap-[74px] lg:m-0 lg:flex-col lg:gap-0">
         <div className="hidden sm:block">
           <Navigation
+            label={data.footer.navLabel}
             links={LINKS}
             linkStyles="py-1! lg:pt-0! lg:pb-[46px]!"
             listStyles="flex-col lg:flex-row"
@@ -57,7 +58,7 @@ export const Footer = () => {
               <Logo width={38} height={27} />
             </div>
 
-            <p className="max-w-[90px] text-center text-[3px] leading-loose font-medium md:max-w-[250px] md:text-xs md:leading-snug lg:max-w-full">
+            <p className="max-w-[200px] text-left text-[10px] leading-snug font-medium md:max-w-[250px] md:text-center md:text-xs md:leading-snug lg:max-w-full">
               {copyrights}
             </p>
           </div>

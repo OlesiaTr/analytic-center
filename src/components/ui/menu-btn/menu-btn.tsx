@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Ref } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import data from '@/data/common.json';
@@ -6,15 +6,20 @@ import data from '@/data/common.json';
 export interface Props {
   onClick: () => void;
   isOpen: boolean;
+  controls: string;
+  ref?: Ref<HTMLButtonElement>;
 }
 
-export const MenuBtn: FC<Props> = ({ onClick, isOpen }) => {
+export const MenuBtn: FC<Props> = ({ onClick, isOpen, controls, ref }) => {
   const { mobileMenu } = data.header;
 
   return (
     <button
+      ref={ref}
       type="button"
       onClick={onClick}
+      aria-expanded={isOpen}
+      aria-controls={controls}
       aria-label={
         isOpen ? mobileMenu.closeBtnAriaLabel : mobileMenu.openBtnAriaLabel
       }

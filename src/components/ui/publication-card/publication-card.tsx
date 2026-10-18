@@ -10,6 +10,8 @@ export interface Props {
   card: Publication & { description?: string };
   buttonDownload: string;
   variant?: PublicationCardVariant;
+  /** h2 when the card sits directly under the page h1. */
+  headingLevel?: 'h2' | 'h3';
 }
 
 // Class sets carried over unchanged from the former CoverCard, LibraryCard and
@@ -42,14 +44,15 @@ export const PublicationCard = ({
   card,
   buttonDownload,
   variant = 'cover',
+  headingLevel: Heading = 'h3',
 }: Props) => {
   const { imgSrc, width, height, imgAlt, title, description, date } = card;
   const styles = VARIANTS[variant];
 
   const heading = (
-    <h3 className="leading-tight font-bold tracking-[-0.003px] uppercase">
+    <Heading className="leading-tight font-bold tracking-[-0.003px] uppercase">
       {title}
-    </h3>
+    </Heading>
   );
 
   return (
@@ -98,6 +101,7 @@ export const PublicationCard = ({
             withIcon
             styles={styles.button}
             href={card.linkToDownload}
+            srLabel={title}
             linkToDownload
           />
         </div>

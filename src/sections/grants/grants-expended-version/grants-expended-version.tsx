@@ -6,7 +6,7 @@ export const GrantsExpendedVersion = () => {
   const { list } = commonData.grants;
 
   return (
-    <section className="section pt-0!">
+    <section className="section w-full pt-0!">
       <GrantList list={list} withAnswers />
     </section>
   );

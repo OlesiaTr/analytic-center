@@ -17,9 +17,14 @@ export interface Props {
     linkToDownload: string;
   };
   linkDownload: string;
+  headingLevel?: 'h2' | 'h3';
 }
 
-export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
+export const WideCoverCard: FC<Props> = ({
+  card,
+  linkDownload,
+  headingLevel: Heading = 'h3',
+}) => {
   const {
     imgSrc,
     width,
@@ -36,7 +41,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
     <>
       <div className="hidden sm:block">
         <div className="text-[50px] font-bold text-main">{day}</div>
-        <div className="my-1 h-px w-[50px] bg-gray-400"></div>{' '}
+        <div className="my-1 h-px w-[50px] bg-gray-400"></div>
         <div className="text-[50px] font-bold text-main">{month}</div>
       </div>
 
@@ -52,9 +57,9 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
       <div className="w-full pb-9">
         <div>
-          <h3 className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px]">
+          <Heading className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
             {title}
-          </h3>
+          </Heading>
 
           {description && (
             <p className="mb-7 text-xl leading-snug text-chocolate xl:text-2xl">
@@ -69,10 +74,11 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
         <a
           href={linkToDownload}
-          aria-label={imgAlt}
           className="flex leading-normal font-semibold tracking-[0.5px] text-chocolate transition hover:text-accent"
         >
-          <ArrowDownTrayIcon className="mr-[10px] size-6" /> {linkDownload}
+          <ArrowDownTrayIcon aria-hidden className="mr-[10px] size-6" />
+          {linkDownload}
+          <span className="sr-only">: {title}</span>
         </a>
       </div>
     </>
