@@ -77,6 +77,17 @@ test('Escape closes the mobile menu and returns focus', async ({
   await expect(button).toHaveAttribute('aria-expanded', 'false');
 });
 
+test('authors form toggles from the keyboard', async ({ page }) => {
+  await page.goto('/conferences');
+  const toggle = page.getByRole('button', { name: /ВІДОМОСТІ ПРО АВТОРІВ/ });
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+  await toggle.focus();
+  await page.keyboard.press('Enter');
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#authors-form')).toHaveCount(0);
+});
+
 test('unknown routes show the 404 page', async ({ page }) => {
   const response = await page.goto('/no-such-page');
   expect(response?.status()).toBe(404);
