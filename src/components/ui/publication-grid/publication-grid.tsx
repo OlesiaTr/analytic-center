@@ -8,6 +8,7 @@ export interface Props {
   list: (Publication & { description?: string })[];
   buttonDownload: string;
   variant?: Extract<PublicationCardVariant, 'cover' | 'library'>;
+  headingLevel?: 'h2' | 'h3';
 }
 
 /** Responsive grid of publication cards (conferences, monographs, library). */
@@ -15,6 +16,7 @@ export const PublicationGrid = ({
   list,
   buttonDownload,
   variant = 'cover',
+  headingLevel,
 }: Props) => (
   <ul className="mb-6 grid grid-cols-1 justify-items-center gap-8 md:mb-16 md:grid-cols-2 md:gap-20 xl:grid-cols-3">
     {list.map(card => (
@@ -29,6 +31,7 @@ export const PublicationGrid = ({
           card={card}
           buttonDownload={buttonDownload}
           variant={variant}
+          headingLevel={headingLevel}
         />
       </li>
     ))}

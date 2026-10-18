@@ -17,9 +17,14 @@ export interface Props {
     linkToDownload: string;
   };
   linkDownload: string;
+  headingLevel?: 'h2' | 'h3';
 }
 
-export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
+export const WideCoverCard: FC<Props> = ({
+  card,
+  linkDownload,
+  headingLevel: Heading = 'h3',
+}) => {
   const {
     imgSrc,
     width,
@@ -52,9 +57,9 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
       <div className="w-full pb-9">
         <div>
-          <h3 className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
+          <Heading className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
             {title}
-          </h3>
+          </Heading>
 
           {description && (
             <p className="mb-7 text-xl leading-snug text-chocolate xl:text-2xl">

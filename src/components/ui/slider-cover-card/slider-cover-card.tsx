@@ -24,9 +24,14 @@ export interface Props {
   }[];
 
   buttonDownload: string;
+  headingLevel?: 'h2' | 'h3';
 }
 
-export const SliderCoverCard: FC<Props> = ({ slidesList, buttonDownload }) => {
+export const SliderCoverCard: FC<Props> = ({
+  slidesList,
+  buttonDownload,
+  headingLevel,
+}) => {
   const { sliderControls } = data;
   return (
     <Swiper
@@ -62,7 +67,6 @@ export const SliderCoverCard: FC<Props> = ({ slidesList, buttonDownload }) => {
     >
       {slidesList.map(card => (
         <SwiperSlide
-          tag="li"
           className="rounded-lg shadow-inner lg:shadow"
           key={card.id}
         >
@@ -70,6 +74,7 @@ export const SliderCoverCard: FC<Props> = ({ slidesList, buttonDownload }) => {
             card={card}
             buttonDownload={buttonDownload}
             variant="slide"
+            headingLevel={headingLevel}
           />
         </SwiperSlide>
       ))}
