@@ -27,9 +27,9 @@ const Page = () => {
   );
 
   return (
-    <main>
+    <main id="main" tabIndex={-1}>
       <section className="section">
-        <Title title={title} />
+        <Title title={title} as="h1" />
 
         <ul className="flex flex-col gap-3 md:gap-5 lg:gap-6">
           {list.map(paragraph => (

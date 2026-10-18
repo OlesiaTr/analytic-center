@@ -21,14 +21,14 @@ type SocialKey =
   | 'wos';
 
 // Display order of the profile links.
-const SOCIAL_LINKS: { key: SocialKey; Icon: FC }[] = [
-  { key: 'linkedin', Icon: Linkedin },
-  { key: 'googlescholar', Icon: Googlescholar },
-  { key: 'naukovci', Icon: Naukovci },
-  { key: 'orcid', Icon: Orcid },
-  { key: 'researchgate', Icon: Researchgate },
-  { key: 'scopus', Icon: Scopus },
-  { key: 'wos', Icon: WebOfScience },
+const SOCIAL_LINKS: { key: SocialKey; label: string; Icon: FC }[] = [
+  { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin },
+  { key: 'googlescholar', label: 'Google Scholar', Icon: Googlescholar },
+  { key: 'naukovci', label: 'Науковці України', Icon: Naukovci },
+  { key: 'orcid', label: 'ORCID', Icon: Orcid },
+  { key: 'researchgate', label: 'ResearchGate', Icon: Researchgate },
+  { key: 'scopus', label: 'Scopus', Icon: Scopus },
+  { key: 'wos', label: 'Web of Science', Icon: WebOfScience },
 ];
 
 export interface Props {
@@ -73,7 +73,7 @@ export const ProfessorList: FC<Props> = ({ list }) => {
                 </p>
               </div>
               <ul className="flex gap-5">
-                {SOCIAL_LINKS.map(({ key, Icon }) => {
+                {SOCIAL_LINKS.map(({ key, label, Icon }) => {
                   const href = person[key];
                   if (!href) return null;
 
@@ -81,7 +81,7 @@ export const ProfessorList: FC<Props> = ({ list }) => {
                     <li key={key}>
                       <a
                         href={href}
-                        aria-label={href}
+                        aria-label={`${label}: ${name}`}
                         className="icon-option-one transition hover:text-accent"
                         target="_blank"
                         rel="noopener noreferrer"

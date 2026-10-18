@@ -13,9 +13,9 @@ const Page: FC = () => {
   const { title } = data;
 
   return (
-    <main>
+    <main id="main" tabIndex={-1}>
       <section className="section">
-        <Title title={title} />
+        <Title title={title} as="h1" />
 
         <BookCollection />
       </section>
