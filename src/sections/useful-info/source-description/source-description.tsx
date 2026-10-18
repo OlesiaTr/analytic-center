@@ -6,7 +6,7 @@ export const SourceDescription = () => {
 
   return (
     <section className="section w-full pt-0!">
-      <h2 className="rounded-lg bg-accent px-4 py-5 text-center text-sm font-bold text-chocolate uppercase md:py-7 md:text-base lg:text-xl xl:text-[28px]">
+      <h2 className="rounded-lg bg-accent px-4 py-5 text-center text-sm font-bold text-chocolate uppercase md:py-7 md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
         {title}
       </h2>
 

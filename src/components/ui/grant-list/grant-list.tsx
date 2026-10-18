@@ -20,7 +20,7 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
   const { list: grantsList } = grantsData;
 
   const titleClassName =
-    'max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]';
+    'max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7';
   const barClassName =
     'flex w-full justify-between rounded-lg border-b border-divider bg-surface px-4 py-5 text-left transition md:py-7';
 

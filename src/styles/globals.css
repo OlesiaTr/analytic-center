@@ -28,20 +28,6 @@
   --color-dateBg: rgba(205, 220, 231, 0.82);
   --color-surface: #f9fafb;
   --color-divider: #afbaca;
-
-  /*
-    Tailwind v3 line-heights. v4 made them unitless (e.g. text-xl = 1.4), which
-    changes height wherever an arbitrary size like `xl:text-[28px]` inherits
-    them. Remove once components stop mixing scale and arbitrary sizes.
-  */
-  --text-xs--line-height: 1rem;
-  --text-sm--line-height: 1.25rem;
-  --text-base--line-height: 1.5rem;
-  --text-lg--line-height: 1.75rem;
-  --text-xl--line-height: 1.75rem;
-  --text-2xl--line-height: 2rem;
-  --text-3xl--line-height: 2.25rem;
-  --text-4xl--line-height: 2.5rem;
 }
 
 /*

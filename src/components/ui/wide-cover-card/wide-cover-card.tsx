@@ -52,7 +52,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
       <div className="w-full pb-9">
         <div>
-          <h3 className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px]">
+          <h3 className="mb-8 font-bold text-chocolate uppercase md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
             {title}
           </h3>
 

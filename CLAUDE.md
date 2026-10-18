@@ -65,8 +65,8 @@ import data from '@/data/common.json';
 ### Tailwind (v4)
 
 No `tailwind.config.ts`: tokens live in the `@theme` block of
-`src/styles/globals.css` (colors, breakpoints, shadows, v3-compatible
-line-heights). Important modifier is a suffix (`pt-0!`).
+`src/styles/globals.css` (colors, breakpoints, shadows). Important modifier is a
+suffix (`pt-0!`).
 
 ```
 main: #565656        accent: #FBCD21      mainBg: #0065B2

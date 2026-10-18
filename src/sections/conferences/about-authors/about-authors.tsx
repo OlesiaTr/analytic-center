@@ -22,7 +22,7 @@ export const AboutAuthors = () => {
           aria-controls="authors-form"
           onClick={toggle}
         >
-          <span className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
+          <span className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
             {title}
           </span>
 
