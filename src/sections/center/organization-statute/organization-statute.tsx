@@ -11,11 +11,11 @@ export const OrganizationStatute = () => {
             <a
               href={linkToDownload}
               className="flex w-full cursor-pointer rounded-lg px-4 py-5 md:py-7"
-              download={title}
+              download
             >
-              <h3 className="text-sm font-bold text-chocolate uppercase group-hover:text-mainBgDark sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
+              <span className="text-sm font-bold text-chocolate uppercase group-hover:text-mainBgDark sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
                 {title}
-              </h3>
+              </span>
             </a>
           </li>
         ))}

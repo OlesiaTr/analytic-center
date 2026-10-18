@@ -12,23 +12,39 @@ export const SourceDescription = () => {
 
       {/* A real table from md up; below md each row stacks (type above example)
           so the page never scrolls sideways. */}
-      <table className="mt-9 w-full border-collapse shadow max-md:block">
-        <thead className="max-md:sr-only">
-          <tr>
-            <th scope="col" className="border p-4 text-left">
+      <table
+        role="table"
+        className="mt-9 w-full border-collapse shadow max-md:block"
+      >
+        <thead role="rowgroup" className="max-md:sr-only">
+          <tr role="row">
+            <th
+              scope="col"
+              role="columnheader"
+              className="border p-4 text-left"
+            >
               {typeHeader}
             </th>
-            <th scope="col" className="border p-4 text-left">
+            <th
+              scope="col"
+              role="columnheader"
+              className="border p-4 text-left"
+            >
               {exampleHeader}
             </th>
           </tr>
         </thead>
 
-        <tbody className="max-md:block">
+        <tbody role="rowgroup" className="max-md:block">
           {rows.map(({ group, type, example }) => (
-            <tr key={`${group ?? ''}${type}`} className="max-md:block">
+            <tr
+              key={`${group ?? ''}${type}`}
+              role="row"
+              className="max-md:block"
+            >
               <th
                 scope="row"
+                role="rowheader"
                 className="border p-4 text-left align-top font-normal max-md:block max-md:border-b-0 max-md:pb-1 max-md:font-bold"
               >
                 {group && (
@@ -39,7 +55,10 @@ export const SourceDescription = () => {
                 )}
                 {type}
               </th>
-              <td className="border p-4 align-top wrap-break-word max-md:block max-md:border-t-0 max-md:pt-1">
+              <td
+                role="cell"
+                className="border p-4 align-top wrap-break-word max-md:block max-md:border-t-0 max-md:pt-1"
+              >
                 {example}
               </td>
             </tr>

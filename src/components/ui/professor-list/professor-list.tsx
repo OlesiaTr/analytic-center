@@ -64,7 +64,7 @@ export const ProfessorList: FC<Props> = ({ list }) => {
               />
             </div>
             <div className="flex h-[170px] flex-col justify-between px-4 py-6">
-              <div className="">
+              <div>
                 <h3 className="mb-2 leading-tight font-bold tracking-[-0.003px] text-black uppercase">
                   {name}
                 </h3>

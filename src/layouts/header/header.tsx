@@ -35,16 +35,23 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
     <header
       className={clsx(
         'm-auto w-full max-w-(--breakpoint-xxl) text-white lg:inset-x-0 lg:top-0',
-        isOpen && 'bg-headerBg!',
-        isHomePage ? 'absolute bg-transparent' : 'sticky bg-headerBg',
+        isHomePage ? 'absolute' : 'sticky',
+        isOpen || !isHomePage ? 'bg-headerBg' : 'bg-transparent',
       )}
     >
       <div className="flex items-center justify-between p-4 md:px-14 lg:py-0 xl:px-20">
         <Link href={LINKS[0].linkTo} className="transition hover:scale-110">
-          <Logo className="h-9 w-[50px] md:h-15 md:w-[85px]" />
+          <Logo
+            alt={data.header.homeLabel}
+            className="h-9 w-[50px] md:h-15 md:w-[85px]"
+          />
         </Link>
 
-        <Navigation location="header" links={LINKS} />
+        <Navigation
+          location="header"
+          label={data.header.navLabel}
+          links={LINKS}
+        />
 
         <MenuBtn
           ref={menuButton}

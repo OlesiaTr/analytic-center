@@ -36,7 +36,7 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
     <>
       <div className="hidden sm:block">
         <div className="text-[50px] font-bold text-main">{day}</div>
-        <div className="my-1 h-px w-[50px] bg-gray-400"></div>{' '}
+        <div className="my-1 h-px w-[50px] bg-gray-400"></div>
         <div className="text-[50px] font-bold text-main">{month}</div>
       </div>
 
@@ -69,10 +69,11 @@ export const WideCoverCard: FC<Props> = ({ card, linkDownload }) => {
 
         <a
           href={linkToDownload}
-          aria-label={imgAlt}
           className="flex leading-normal font-semibold tracking-[0.5px] text-chocolate transition hover:text-accent"
         >
-          <ArrowDownTrayIcon className="mr-[10px] size-6" /> {linkDownload}
+          <ArrowDownTrayIcon aria-hidden className="mr-[10px] size-6" />
+          {linkDownload}
+          <span className="sr-only">: {title}</span>
         </a>
       </div>
     </>

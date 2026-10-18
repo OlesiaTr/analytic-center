@@ -19,7 +19,11 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="uk" className="scroll-smooth" data-scroll-behavior="smooth">
+    <html
+      lang="uk"
+      className="motion-safe:scroll-smooth lg:scroll-pt-29"
+      data-scroll-behavior="smooth"
+    >
       <body className={`${montserrat.className} antialiased`}>
         <a
           href="#main"

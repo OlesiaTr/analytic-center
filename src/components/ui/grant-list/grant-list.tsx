@@ -17,6 +17,8 @@ export interface Props {
 
 export const GrantList = ({ list, withAnswers = false }: Props) => {
   const { active, isActive, setActive } = useAccordion();
+  // On /grants the list sits right under the page h1; on home under a section h2.
+  const Heading = withAnswers ? 'h2' : 'h3';
   const { list: grantsList } = grantsData;
 
   const titleClassName =
@@ -33,12 +35,12 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
           <li key={grant.title} className="flex flex-col gap-8">
             {/* On /grants each title toggles its programs; on home it's a static list. */}
             {withAnswers ? (
-              <h3>
+              <Heading>
                 <button
                   type="button"
                   className={clsx(barClassName, 'cursor-pointer')}
                   aria-expanded={isActive(id)}
-                  aria-controls={panelId}
+                  aria-controls={isActive(id) ? panelId : undefined}
                   onClick={() => setActive(id)}
                 >
                   <span className={titleClassName}>{grant.title}</span>
@@ -50,11 +52,11 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
                     )}
                   />
                 </button>
-              </h3>
+              </Heading>
             ) : (
-              <h3 className={barClassName}>
+              <Heading className={barClassName}>
                 <span className={titleClassName}>{grant.title}</span>
-              </h3>
+              </Heading>
             )}
 
             {isActive(id) && (
@@ -62,6 +64,7 @@ export const GrantList = ({ list, withAnswers = false }: Props) => {
                 {grantsList[active].programs.map(details => (
                   <GrantDetails
                     key={details.title}
+                    headingLevel={withAnswers ? 'h3' : 'h4'}
                     title={details.title}
                     description={details.description}
                     date={details.date}

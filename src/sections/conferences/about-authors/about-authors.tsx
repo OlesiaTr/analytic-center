@@ -19,7 +19,7 @@ export const AboutAuthors = () => {
           type="button"
           className="flex w-full cursor-pointer justify-between rounded-lg bg-accent px-4 py-5 text-left transition md:py-7"
           aria-expanded={isOpen}
-          aria-controls="authors-form"
+          aria-controls={isOpen ? 'authors-form' : undefined}
           onClick={toggle}
         >
           <span className="max-w-64 text-sm font-bold text-chocolate uppercase sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] xl:leading-7">

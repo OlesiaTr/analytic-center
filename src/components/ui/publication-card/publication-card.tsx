@@ -98,6 +98,7 @@ export const PublicationCard = ({
             withIcon
             styles={styles.button}
             href={card.linkToDownload}
+            srLabel={title}
             linkToDownload
           />
         </div>

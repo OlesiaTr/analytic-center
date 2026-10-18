@@ -1,4 +1,7 @@
+import grantsData from '@/data/grants.json';
+
 interface GrantDetailsProps {
+  headingLevel?: 'h3' | 'h4';
   title: string;
   description: string;
   date: string;
@@ -12,10 +15,11 @@ export const GrantDetails = ({
   date,
   linkTo,
   descriptionList,
+  headingLevel: Heading = 'h4',
 }: GrantDetailsProps) => (
   // Text styles are set once here and inherited; sizes from lg up are unchanged.
   <div className="rounded-lg bg-accent px-4 py-6 text-base leading-[1.8] font-medium tracking-[0.5px] md:px-10 md:text-xl lg:text-2xl">
-    <h4 className="font-bold uppercase">{title}</h4>
+    <Heading className="font-bold uppercase">{title}</Heading>
 
     <p>{description}</p>
 
@@ -30,12 +34,15 @@ export const GrantDetails = ({
     )}
 
     <p>
-      <span className="font-bold">Термін подання документів</span> – {date}
+      <span className="font-bold">{grantsData.dueDate}</span> – {date}
     </p>
 
-    <p>Більш докладно:</p>
+    <p>{grantsData.moreDetailed}</p>
 
-    <a href={linkTo} className="wrap-break-word underline hover:text-mainBg">
+    <a
+      href={linkTo}
+      className="wrap-break-word underline hover:text-mainBgDark"
+    >
       {linkTo}
     </a>
   </div>

@@ -27,7 +27,7 @@ const Page = () => {
   );
 
   return (
-    <main id="main" tabIndex={-1}>
+    <main id="main" tabIndex={-1} className="focus:outline-none">
       <section className="section">
         <Title title={title} as="h1" />
 
