@@ -18,6 +18,18 @@ for (const route of ROUTES) {
     await expect(page.locator('h1')).toHaveCount(1);
     expect(errors).toEqual([]);
   });
+
+  test(`${route} has no horizontal scroll`, async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile', 'checked at phone width');
+
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto(route);
+    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
+  });
 }
 
 test('internal navigation does not reload the page', async ({ page }, info) => {

@@ -21,6 +21,8 @@ export const SlideComponent: FC<Props> = ({ card }) => {
           width={230}
           height={Math.round((230 * card.height) / card.width)}
           className="m-auto object-cover"
+          // Small logos: load eagerly so slides never appear empty mid-transition.
+          loading="eager"
         />
       </a>
     </div>

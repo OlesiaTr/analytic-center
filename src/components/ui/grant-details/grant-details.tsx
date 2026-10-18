@@ -13,40 +13,29 @@ export const GrantDetails = ({
   linkTo,
   descriptionList,
 }: GrantDetailsProps) => (
-  <div className="rounded-lg bg-accent px-10 py-6">
-    <h4 className="text-2xl leading-[1.8] font-bold tracking-[0.5px] uppercase">
-      {title}
-    </h4>
+  // Text styles are set once here and inherited; sizes from lg up are unchanged.
+  <div className="rounded-lg bg-accent px-4 py-6 text-base leading-[1.8] font-medium tracking-[0.5px] md:px-10 md:text-xl lg:text-2xl">
+    <h4 className="font-bold uppercase">{title}</h4>
 
-    <p className="text-2xl leading-[1.8] font-medium tracking-[0.5px]">
-      {description}
-    </p>
+    <p>{description}</p>
 
     {descriptionList && (
-      <ul className="pl-12">
+      <ul className="pl-6 md:pl-12">
         {descriptionList.map(item => (
-          <li
-            key={item}
-            className="list-disc text-2xl leading-[1.8] font-medium tracking-[0.5px]"
-          >
+          <li key={item} className="list-disc">
             {item}
           </li>
         ))}
       </ul>
     )}
 
-    <p className="text-2xl leading-[1.8] font-medium tracking-[0.5px]">
-      <span className="font-bold">Tермін подання документів</span> – {date}
+    <p>
+      <span className="font-bold">Термін подання документів</span> – {date}
     </p>
 
-    <p className="text-2xl leading-[1.8] font-medium tracking-[0.5px]">
-      Більш докладно:
-    </p>
+    <p>Більш докладно:</p>
 
-    <a
-      href={linkTo}
-      className="text-2xl leading-[1.8] font-medium tracking-[0.5px] underline hover:text-mainBg"
-    >
+    <a href={linkTo} className="wrap-break-word underline hover:text-mainBg">
       {linkTo}
     </a>
   </div>
