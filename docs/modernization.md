@@ -99,26 +99,31 @@ once components stop mixing scale and arbitrary font sizes.
 
 ### 3. UI/UX fixes — PER-8
 
+Scope: redesign-proof fixes only (accessibility, mobile breakage, semantics).
+Look-and-feel work moved to the Redesign phase (PER-12).
+
 - [x] `/conferences` CLS < 0.1 — done in PER-7 (0.667 → 0)
-- [ ] Loading states for images and sliders (moved from PER-7)
-- [ ] Remove the v3 line-height shim in `@theme` (moved from PER-7)
-- [ ] `<h1>` on every page
-- [ ] `/useful-info` table: semantic `<thead>`/`<th>`, no `valign`, no
-      horizontal scroll on mobile
-- [ ] No horizontal overflow at 375px on home and `/grants`
-- [ ] `/conferences` authors table: values visible on mobile
-- [ ] `professor-list`: descriptive `aria-label`s instead of URLs
-- [ ] Hero text contrast; gap under hero at tablet width
-- [ ] Nav breakpoint around 768–1024px
-- [ ] One CTA hierarchy (primary / secondary)
-- [ ] Partners slider empty tile
-- [ ] Flexible cover card heights; real empty states instead of `return null`
-- [ ] `not-found.tsx`, skip-link, mobile menu a11y (Escape, focus trap,
-      `aria-expanded`)
-- [ ] Lighthouse before/after logged below
+- [x] One `h1` per page; skip link; 404 page
+- [x] Mobile menu: `aria-expanded`/`aria-controls`, labelled nav, focus on open,
+      Escape closes and returns focus; `aria-current` on nav links
+- [x] No horizontal scroll at 375px on any route (grant details, nested
+      sections, `/useful-info`) — e2e-checked
+- [x] `/useful-info` rows in JSON; semantic table that stacks on mobile
+- [x] Accordions (grants, authors) are `<button aria-expanded>`; authors form
+      complete on mobile
+- [x] `professor-list` and download links have descriptive accessible names
+- [x] Partner logos load eagerly (no empty tile)
+- [x] v3 line-height shim removed (no pixel change)
+- [x] `ui-reviewer` agent; its in-scope findings fixed — incl. the logo: inline
+      SVG wrapping a base64 PNG → `logo.webp` (home HTML 404 → 77 KB)
+- [x] Lighthouse a11y 100 on all measured routes (log below)
+- Moved to PER-12: header contrast (WCAG blocker), hero contrast, CTA hierarchy,
+  card heights, empty/loading states, nav breakpoint
 
 ### 4. Sanity CMS — PER-9
 
+- [ ] **Before schemas:** confirm the content model against the Redesign
+      outline/Figma (PER-12)
 - [ ] Schemas: conference, monograph, libraryItem, grant, person, partner, news,
       siteSettings, page singletons (localized fields)
 - [ ] Migration script `src/data/*` → Sanity; document counts match
@@ -135,6 +140,17 @@ once components stop mixing scale and arbitrary font sizes.
 - [ ] AI-translated EN content in Sanity, reviewed before publishing
 - [ ] Localized metadata, `hreflang`, `app/sitemap.ts`, `app/robots.ts`
 
+### Redesign — PER-12
+
+After CMS + i18n, against real bilingual content; design prepared before PER-9.
+
+- [ ] **WCAG blockers:** header contrast (~3.2:1, needs 4.5:1); hero text over
+      the photo (agreed: navy gradient overlay)
+- [ ] Contrast risks: `ButtonLink` hover, `hover:text-accent` on light surfaces
+- [ ] Section-based CTA hierarchy (agreed)
+- [ ] Flexible card heights; empty and loading states
+- [ ] Nav breakpoint 1024–1279; gap under hero at tablet; Swiper arrow hit area
+
 ### 6. AI-readable + public release — PER-11
 
 - [ ] JSON-LD: Organization, Event, Book, Person
@@ -144,6 +160,7 @@ once components stop mixing scale and arbitrary font sizes.
 - [ ] README (stack, architecture, before/after Lighthouse, screenshots),
       LICENSE
 - [ ] Repo → public
+- [ ] Remove leftover `src/configs/gcp_cors_config.json` (old GCS hosting)
 
 ## Claude setup
 
@@ -211,6 +228,10 @@ permissions.
 | 2026-10-17 | `/conferences` (local, PER-6)   | 63    | 100  | 100 | 3 runs. **CLS 0.667** (cover images, see PER-8); same with webpack             |
 | 2026-10-18 | `/` (local, PER-7)              | 86    | 96   | 100 | 3 runs. LCP 4.1 s, CLS 0. JS 239 KB                                            |
 | 2026-10-18 | `/conferences` (local, PER-7)   | 88    | 100  | 100 | 3 runs. LCP 3.9 s, **CLS 0** (CSS breakpoints + reserved image space)          |
+| 2026-10-18 | `/` (local, PER-8)              | 91–93 | 100  | 100 | 3 runs. LCP 3.2–3.6 s, CLS 0. JS 198 KB (logo out of the client bundle)        |
+| 2026-10-18 | `/conferences` (local, PER-8)   | 95    | 100  | 100 | 3 runs. LCP 3.0 s, CLS 0                                                       |
+| 2026-10-18 | `/grants` (local, PER-8)        | 99    | 100  | 100 | 3 runs. LCP 2.2 s                                                              |
+| 2026-10-18 | `/useful-info` (local, PER-8)   | 97–99 | 100  | 100 | 3 runs. LCP 2.2–2.6 s                                                          |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
