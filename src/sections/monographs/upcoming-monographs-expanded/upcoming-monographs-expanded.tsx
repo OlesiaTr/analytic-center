@@ -1,15 +1,27 @@
-import { PublicationGrid } from '@/components/ui';
+import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
 
 export const UpcomingMonographsExpanded = () => {
-  const { list, linkDownload } = commonData.upcomingMonographs;
+  const { title, list, linkDownload, empty } = commonData.upcomingMonographs;
 
   return (
-    <PublicationGrid
-      list={list}
-      buttonLabel={linkDownload}
-      layout="wide"
-      headingLevel="h2"
-    />
+    <section aria-labelledby="upcoming-title" className="sec">
+      <div className="wrap">
+        <SectionHead id="upcoming-title" title={title} />
+        {list.length ? (
+          <PublicationGrid
+            list={list}
+            buttonLabel={linkDownload}
+            layout="wide"
+          />
+        ) : (
+          <EmptyState
+            title={empty.title}
+            text={empty.text}
+            link={{ href: empty.href, label: empty.link }}
+          />
+        )}
+      </div>
+    </section>
   );
 };

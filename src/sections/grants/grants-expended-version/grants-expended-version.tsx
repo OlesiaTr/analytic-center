@@ -1,13 +1,11 @@
-import { GrantList } from '@/components/ui';
+import grantsData from '@/data/grants.json';
 
-import commonData from '@/data/common.json';
+import { GrantGroups } from '../grant-groups';
 
-export const GrantsExpendedVersion = () => {
-  const { list } = commonData.grants;
-
-  return (
-    <section className="section w-full pt-0!">
-      <GrantList list={list} withAnswers />
-    </section>
-  );
-};
+export const GrantsExpendedVersion = () => (
+  <section aria-label={grantsData.listLabel} className="sec">
+    <div className="wrap max-w-[1040px]">
+      <GrantGroups headingLevel="h2" />
+    </div>
+  </section>
+);

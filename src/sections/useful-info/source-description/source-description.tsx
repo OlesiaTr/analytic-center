@@ -1,3 +1,4 @@
+import { DataTable } from '@/components/ui';
 import data from '@/data/useful-info.json';
 
 export const SourceDescription = () => {
@@ -5,70 +6,21 @@ export const SourceDescription = () => {
   const [typeHeader, exampleHeader] = headers;
 
   return (
-    <section className="section w-full pt-0!">
-      <h2 className="rounded-lg bg-accent px-4 py-5 text-center text-sm font-bold text-chocolate uppercase md:py-7 md:text-base lg:text-xl xl:text-[28px] xl:leading-7">
-        {title}
-      </h2>
-
-      {/* A real table from md up; below md each row stacks (type above example)
-          so the page never scrolls sideways. */}
-      <table
-        role="table"
-        className="mt-9 w-full border-collapse shadow max-md:block"
-      >
-        <thead role="rowgroup" className="max-md:sr-only">
-          <tr role="row">
-            <th
-              scope="col"
-              role="columnheader"
-              className="border p-4 text-left"
-            >
-              {typeHeader}
-            </th>
-            <th
-              scope="col"
-              role="columnheader"
-              className="border p-4 text-left"
-            >
-              {exampleHeader}
-            </th>
-          </tr>
-        </thead>
-
-        <tbody role="rowgroup" className="max-md:block">
-          {rows.map(({ group, type, example }) => (
-            <tr
-              key={`${group ?? ''}${type}`}
-              role="row"
-              className="max-md:block"
-            >
-              <th
-                scope="row"
-                role="rowheader"
-                className="border p-4 text-left align-top font-normal max-md:block max-md:border-b-0 max-md:pb-1 max-md:font-bold"
-              >
-                {group && (
-                  <>
-                    {group}:
-                    <br />
-                  </>
-                )}
-                {type}
-              </th>
-              <td
-                role="cell"
-                className="border p-4 align-top wrap-break-word max-md:block max-md:border-t-0 max-md:pt-1"
-              >
-                {example}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <p className="mt-7 text-center text-xl leading-snug text-chocolate xl:text-2xl">
-        {footnote}
-      </p>
+    <section aria-label={title} className="sec">
+      <div className="wrap">
+        <DataTable
+          caption={title}
+          columns={[typeHeader, exampleHeader]}
+          valueClassName="font-serif text-base leading-[26px] wrap-anywhere"
+          rows={rows.map(({ group, type, example }) => ({
+            key: `${group ?? ''}${type}`,
+            group,
+            label: type,
+            value: example,
+          }))}
+        />
+        <p className="mt-4 max-w-[760px] t-sm text-muted">{footnote}</p>
+      </div>
     </section>
   );
 };

@@ -13,7 +13,7 @@ export interface Props {
   dueDateLabel: string;
   /** «Детальніше на {host}» */
   moreLabel: string;
-  headingLevel?: 'h3' | 'h4';
+  headingLevel?: 'h2' | 'h3' | 'h4';
 }
 
 /** One grant program: prose, optional list, deadline and the official link. */

@@ -79,15 +79,18 @@ test('Escape closes the mobile menu and returns focus', async ({
   await expect(button).toHaveAttribute('aria-expanded', 'false');
 });
 
-test('authors form toggles from the keyboard', async ({ page }) => {
+test('authors form opens from the keyboard', async ({ page }) => {
   await page.goto('/conferences');
-  const toggle = page.getByRole('button', { name: /ВІДОМОСТІ ПРО АВТОРІВ/ });
-  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  const panel = page.locator('details#authors-form');
+  const summary = panel.locator('summary');
+  const firstField = panel.getByRole('rowheader').first();
+  await expect(panel).not.toHaveAttribute('open');
+  await expect(firstField).toBeHidden();
 
-  await toggle.focus();
+  await summary.focus();
   await page.keyboard.press('Enter');
-  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.locator('#authors-form')).toHaveCount(0);
+  await expect(panel).toHaveAttribute('open');
+  await expect(firstField).toBeVisible();
 });
 
 test('unknown routes show the 404 page', async ({ page }) => {

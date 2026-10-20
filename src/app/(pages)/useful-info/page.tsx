@@ -1,26 +1,17 @@
-import React, { FC } from 'react';
 import type { Metadata } from 'next';
 
-import { Title } from '@/components/ui';
-import { SourceDescription } from '@/sections';
-
-import data from '@/data/useful-info.json';
+import { PageHead } from '@/components/ui';
 import meta from '@/data/meta/meta.json';
+import data from '@/data/useful-info.json';
+import { SourceDescription } from '@/sections';
 
 export const metadata: Metadata = meta['useful-info'];
 
-const Page: FC = () => {
-  const { title } = data;
-
-  return (
-    <main id="main" tabIndex={-1} className="focus:outline-none">
-      <section className="section">
-        <Title title={title} as="h1" />
-
-        <SourceDescription />
-      </section>
-    </main>
-  );
-};
+const Page = () => (
+  <main id="main" tabIndex={-1} className="focus:outline-none">
+    <PageHead title={data.title} />
+    <SourceDescription />
+  </main>
+);
 
 export default Page;
