@@ -13,11 +13,15 @@ export const UpcomingConferences = () => {
     <section className="section bg-mainBg">
       <Title title={title} isWhite />
 
-      <PublicationGrid list={list} buttonDownload={buttonDownload} />
+      <PublicationGrid
+        list={list}
+        buttonLabel={buttonDownload}
+        layout="grid-3"
+      />
 
       <ButtonLink
         label={button}
-        styles="sm:min-w-[302px] m-auto"
+        styles="sm:min-w-[302px] mx-auto mt-10"
         isAccentBtn
         href={redirectionTo}
       />

@@ -1,35 +1,19 @@
-import { PublicationGrid, WideCoverCard } from '@/components/ui';
+import { PublicationGrid } from '@/components/ui';
 import commonData from '@/data/common.json';
 import type { UpcomingConferences } from '@/data/types';
 
 export const UpcomingConferencesExpanded = () => {
   const upcoming: UpcomingConferences = commonData.upcomingConferences;
-  const { list, linkDownload, buttonDownload } = upcoming;
+  const { list, linkDownload } = upcoming;
 
   if (!list.length) return null;
 
   return (
-    <>
-      <div className="contents lg:hidden">
-        <PublicationGrid
-          list={list}
-          buttonDownload={buttonDownload}
-          headingLevel="h2"
-        />
-      </div>
-      <div className="hidden lg:contents">
-        <ul className="flex flex-col gap-20">
-          {list.map(card => (
-            <li key={card.id} className="flex items-start gap-6">
-              <WideCoverCard
-                card={card}
-                linkDownload={linkDownload}
-                headingLevel="h2"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <PublicationGrid
+      list={list}
+      buttonLabel={linkDownload}
+      layout="wide"
+      headingLevel="h2"
+    />
   );
 };

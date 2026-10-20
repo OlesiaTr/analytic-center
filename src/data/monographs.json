@@ -134,6 +134,7 @@
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1Rf7cFuszrQy_bpHv9-gULr5yVRB9luuH"
       }
     ],
-    "buttonDownload": "Завантажити"
+    "buttonDownload": "Завантажити",
+    "doneText": "Це всі монографії архіву."
   }
 }

@@ -7,8 +7,9 @@ const BookCollection = () => {
   return (
     <PublicationGrid
       list={list}
-      buttonDownload={buttonDownload}
+      buttonLabel={buttonDownload}
       variant="library"
+      headingLevel="h2"
     />
   );
 };

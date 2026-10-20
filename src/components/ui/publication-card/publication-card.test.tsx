@@ -15,38 +15,52 @@ const card = {
 };
 
 describe('PublicationCard', () => {
-  it('shows the cover, title, date and download link', () => {
-    render(<PublicationCard card={card} buttonDownload="Завантажити" />);
+  it('shows the cover, date, title and download button', () => {
+    const { container } = render(
+      <PublicationCard card={card} buttonLabel="Завантажити" />,
+    );
 
-    const image = screen.getByRole('img', { name: 'Обкладинка' });
+    // The cover is decorative: the title sits right next to it.
+    const image = container.querySelector('img');
+    expect(image).toHaveAttribute('alt', '');
     expect(image).toHaveAttribute('width', '572');
-    expect(image).toHaveAttribute('height', '800');
     expect(screen.getByRole('heading', { name: card.title })).toBeVisible();
-    expect(screen.getByText('30.10.2026')).toBeVisible();
-    // The link name includes the title so screen-reader link lists stay unique.
+    expect(screen.getByText('30.10.2026')).toHaveAttribute(
+      'datetime',
+      '2026-10-30',
+    );
+    // The hidden title keeps screen-reader link lists unique.
     expect(
-      screen.getByRole('link', { name: `Завантажити: ${card.title}` }),
+      screen.getByRole('link', { name: `Завантажити ${card.title}` }),
     ).toHaveAttribute('href', card.linkToDownload);
   });
 
-  it('shows the description on cover cards', () => {
+  it('shows the description as a subtitle', () => {
     render(
       <PublicationCard
         card={{ ...card, description: '“Нова геополітична картина світу”' }}
-        buttonDownload="Завантажити"
+        buttonLabel="Завантажити"
       />,
     );
     expect(screen.getByText('“Нова геополітична картина світу”')).toBeVisible();
   });
 
-  it('uses the plain button on library cards', () => {
+  it('adds the big date in the wide layout', () => {
+    render(<PublicationCard card={card} buttonLabel="Завантажити" wide />);
+    expect(screen.getByText('жовтня')).toBeInTheDocument();
+    expect(screen.getByText('30', { exact: true })).toBeInTheDocument();
+  });
+
+  it('keeps bare years as the chip date', () => {
     render(
       <PublicationCard
-        card={card}
-        buttonDownload="Завантажити"
+        card={{ ...card, date: '2021' }}
+        buttonLabel="Завантажити"
         variant="library"
+        headingLevel="h2"
       />,
     );
-    expect(screen.getByRole('link').className).toContain('bg-mainBg');
+    expect(screen.getByText('2021')).toHaveAttribute('datetime', '2021');
+    expect(screen.getByRole('heading', { level: 2 })).toBeVisible();
   });
 });

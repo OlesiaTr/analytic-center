@@ -110,3 +110,21 @@ test('mobile menu opens and closes after navigating', async ({
   await expect(page).toHaveURL('/library');
   await expect(menu).toBeHidden();
 });
+
+test('conference archive loads 8 at a time', async ({ page }) => {
+  await page.goto('/conferences');
+  const archive = page.locator('section', {
+    has: page.getByRole('heading', { name: 'Архів конференцій' }),
+  });
+  const items = archive.getByRole('listitem');
+  await expect(items).toHaveCount(8);
+
+  await archive.getByRole('button', { name: 'Показати ще 8' }).click();
+  await expect(items).toHaveCount(16);
+  await expect(items.nth(8)).toBeFocused();
+  await expect(archive.getByText('Показано 16 з 22')).toBeVisible();
+
+  await archive.getByRole('button', { name: 'Показати ще 6' }).click();
+  await expect(items).toHaveCount(22);
+  await expect(archive.getByText('Це всі збірники архіву.')).toBeVisible();
+});

@@ -3,6 +3,7 @@ export { Chip } from './chip';
 export { EmptyState } from './empty-state';
 export { IconButton } from './icon-button';
 export { LanguageSwitch } from './language-switch';
+export { LoadMore } from './load-more';
 export { PageHead } from './page-head';
 export { SectionHead } from './section-head';
 export { Skeleton } from './skeleton';
@@ -25,10 +26,6 @@ export { SlideComponent } from './slide-component';
 
 export { Slider } from './slider';
 
-export { SliderCoverCard } from './slider-cover-card';
-
 export { Table } from './table';
 
 export { Title } from './title';
-
-export { WideCoverCard } from './wide-cover-card';

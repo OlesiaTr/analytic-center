@@ -1,4 +1,4 @@
-import { ButtonLink, SliderCoverCard, Title } from '@/components/ui';
+import { ButtonLink, PublicationGrid, Title } from '@/components/ui';
 
 import data from '@/data/common.json';
 
@@ -10,11 +10,15 @@ export const UpcomingMonographs = () => {
     <section className="section">
       <Title title={title} />
 
-      <SliderCoverCard slidesList={list} buttonDownload={buttonDownload} />
+      <PublicationGrid
+        list={list}
+        buttonLabel={buttonDownload}
+        layout="grid-3"
+      />
 
       <ButtonLink
         label={button}
-        styles="sm:min-w-[302px] m-auto"
+        styles="sm:min-w-[302px] mx-auto mt-10"
         href={redirectionTo}
       />
     </section>
