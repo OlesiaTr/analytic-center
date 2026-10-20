@@ -220,5 +220,14 @@
   },
   "a11y": {
     "newTab": "(відкривається в новій вкладці)"
+  },
+  "profiles": {
+    "linkedin": "LinkedIn",
+    "googlescholar": "Google Scholar",
+    "naukovci": "Науковці України",
+    "orcid": "ORCID",
+    "researchgate": "ResearchGate",
+    "scopus": "Scopus",
+    "wos": "Web of Science"
   }
 }

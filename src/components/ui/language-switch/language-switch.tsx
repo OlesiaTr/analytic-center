@@ -42,10 +42,9 @@ export const LanguageSwitch: FC<Props> = ({
             key={code}
             href={hrefs[code]}
             lang={code}
-            aria-label={names[code]}
             aria-current={isCurrent ? 'true' : undefined}
             className={clsx(
-              'inline-flex min-h-[34px] min-w-11 items-center justify-center rounded-full px-2.5 text-[13px] font-bold tracking-[0.04em] no-underline',
+              'inline-flex min-h-[34px] min-w-11 items-center justify-center rounded-full px-2.5 text-[13px] leading-[18px] font-bold tracking-[0.04em] no-underline',
               tone === 'dark'
                 ? isCurrent
                   ? 'bg-white text-blue-800'
@@ -55,7 +54,7 @@ export const LanguageSwitch: FC<Props> = ({
                   : 'text-blue-800 hover:bg-blue-50',
             )}
           >
-            {short}
+            {short} <span className="sr-only">{names[code]}</span>
           </Link>
         );
       })}

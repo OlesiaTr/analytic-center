@@ -126,7 +126,7 @@ const NavLink: FC<{
     href={href}
     aria-current={current ? 'page' : undefined}
     className={clsx(
-      'relative inline-flex min-h-11 items-center rounded px-2.5 text-[15px] font-semibold whitespace-nowrap text-white no-underline hover:text-yellow-400 xl:px-3',
+      'relative inline-flex min-h-11 items-center rounded px-2.5 text-[15px] leading-[22px] font-semibold whitespace-nowrap text-white no-underline hover:text-yellow-400 xl:px-3',
       // Active item: 3 px yellow bar under the label
       current &&
         'after:absolute after:inset-x-2.5 after:bottom-1 after:h-[3px] after:rounded-sm after:bg-yellow-400 xl:after:inset-x-3',

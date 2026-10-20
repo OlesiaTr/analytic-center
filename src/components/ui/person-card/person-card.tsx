@@ -12,15 +12,15 @@ type ProfileKey =
   | 'scopus'
   | 'wos';
 
-// Display order, badge text and full name of each profile.
-const PROFILES: { key: ProfileKey; short: string; name: string }[] = [
-  { key: 'linkedin', short: 'in', name: 'LinkedIn' },
-  { key: 'googlescholar', short: 'GS', name: 'Google Scholar' },
-  { key: 'naukovci', short: 'НУ', name: 'Науковці України' },
-  { key: 'orcid', short: 'iD', name: 'ORCID' },
-  { key: 'researchgate', short: 'RG', name: 'ResearchGate' },
-  { key: 'scopus', short: 'Sc', name: 'Scopus' },
-  { key: 'wos', short: 'WoS', name: 'Web of Science' },
+// Display order and badge text; full names come from common.json.
+const PROFILES: { key: ProfileKey; short: string }[] = [
+  { key: 'linkedin', short: 'in' },
+  { key: 'googlescholar', short: 'GS' },
+  { key: 'naukovci', short: 'НУ' },
+  { key: 'orcid', short: 'iD' },
+  { key: 'researchgate', short: 'RG' },
+  { key: 'scopus', short: 'Sc' },
+  { key: 'wos', short: 'WoS' },
 ];
 
 export type Person = {
@@ -54,18 +54,18 @@ export const PersonCard: FC<{ person: Person }> = ({ person }) => {
       <p className="t-sm leading-5 text-muted">{position}</p>
       {links.length > 0 && (
         <ul className="mt-1 flex flex-wrap gap-1.5">
-          {links.map(({ key, short, name: profile }) => (
+          {links.map(({ key, short }) => (
             <li key={key}>
               <a
                 href={person[key]}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={profile}
+                title={data.profiles[key]}
                 className="relative inline-flex h-8 min-w-9 items-center justify-center rounded-md border border-line-strong bg-white px-1.5 text-xs leading-4 font-bold text-blue-800 no-underline hover:border-blue-600 hover:bg-blue-50"
               >
                 {short}{' '}
                 <span className="sr-only">
-                  {profile}, {name} {data.a11y.newTab}
+                  {data.profiles[key]}, {name} {data.a11y.newTab}
                 </span>
               </a>
             </li>

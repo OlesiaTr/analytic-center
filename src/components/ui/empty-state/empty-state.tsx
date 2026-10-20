@@ -22,7 +22,7 @@ export const EmptyState: FC<Props> = ({
       <Icon name={icon} className="size-6" />
     </span>
     <p className="t-h4">{title}</p>
-    <p className="max-w-[480px] in-[.on-dark]:text-on-dark-muted">{text}</p>
+    <p className="max-w-120 in-[.on-dark]:text-on-dark-muted">{text}</p>
     {link && <TextLink href={link.href}>{link.label}</TextLink>}
   </div>
 );

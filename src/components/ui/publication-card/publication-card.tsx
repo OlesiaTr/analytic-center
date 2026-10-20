@@ -114,7 +114,8 @@ export const PublicationCard: FC<Props> = ({
           wide && 'lg:gap-3 lg:p-0',
         )}
       >
-        <span className={clsx('flex', wide && 'lg:hidden')}>
+        {/* The big date is visual only; the chip keeps the date for screen readers. */}
+        <span className={clsx('flex', wide && 'lg:sr-only')}>
           <Chip icon="calendar" dateTime={toDateTime(date)}>
             {date}
           </Chip>

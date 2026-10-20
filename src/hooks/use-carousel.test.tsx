@@ -9,10 +9,10 @@ const Carousel = () => {
   return (
     <>
       <ul ref={trackRef} aria-label="track" />
-      <button type="button" disabled={atStart} onClick={prev}>
+      <button type="button" aria-disabled={atStart} onClick={prev}>
         prev
       </button>
-      <button type="button" disabled={atEnd} onClick={next}>
+      <button type="button" aria-disabled={atEnd} onClick={next}>
         next
       </button>
     </>
@@ -47,8 +47,8 @@ describe('useCarousel', () => {
     const track = screen.getByRole('list');
     const prev = screen.getByRole('button', { name: 'prev' });
     const next = screen.getByRole('button', { name: 'next' });
-    expect(prev).toBeDisabled();
-    expect(next).toBeEnabled();
+    expect(prev).toHaveAttribute('aria-disabled', 'true');
+    expect(next).toHaveAttribute('aria-disabled', 'false');
 
     fireEvent.click(next);
     expect(track.scrollBy).toHaveBeenCalledWith({ left: 300 });
@@ -57,8 +57,11 @@ describe('useCarousel', () => {
       track.scrollLeft = 600;
       fireEvent.scroll(track);
     });
-    expect(prev).toBeEnabled();
-    expect(next).toBeDisabled();
+    expect(prev).toHaveAttribute('aria-disabled', 'false');
+    expect(next).toHaveAttribute('aria-disabled', 'true');
+
+    fireEvent.click(next);
+    expect(track.scrollBy).toHaveBeenCalledTimes(1);
 
     fireEvent.click(prev);
     expect(track.scrollBy).toHaveBeenLastCalledWith({ left: -300 });

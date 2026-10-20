@@ -37,7 +37,8 @@ export const useCarousel = <T extends HTMLElement = HTMLElement>() => {
   return {
     trackRef,
     ...edges,
-    prev: () => scroll(-1),
-    next: () => scroll(1),
+    // The buttons stay focusable at the ends (aria-disabled), so these no-op there.
+    prev: () => !edges.atStart && scroll(-1),
+    next: () => !edges.atEnd && scroll(1),
   };
 };

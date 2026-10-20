@@ -19,7 +19,7 @@ export const SourceDescription = () => {
             value: example,
           }))}
         />
-        <p className="mt-4 max-w-[760px] t-sm text-muted">{footnote}</p>
+        <p className="mt-4 max-w-190 t-sm text-muted">{footnote}</p>
       </div>
     </section>
   );

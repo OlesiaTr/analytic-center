@@ -30,7 +30,7 @@ export const DataTable: FC<Props> = ({
   <div className="overflow-hidden rounded-xl border border-line bg-white">
     <table className="w-full border-collapse text-[15px] leading-6">
       {caption && (
-        <caption className="p-5 text-left text-[15px] font-bold tracking-[0.04em] text-ink uppercase">
+        <caption className="p-5 text-left text-[15px] leading-[22px] font-bold tracking-[0.04em] text-ink uppercase">
           {caption}
         </caption>
       )}
@@ -55,7 +55,7 @@ export const DataTable: FC<Props> = ({
                 <th
                   colSpan={2}
                   scope="colgroup"
-                  className="bg-blue-50 px-4 py-2.5 text-left text-[13px] font-bold tracking-[0.06em] text-blue-800 uppercase md:px-5"
+                  className="bg-blue-50 px-4 py-2.5 text-left text-[13px] leading-[18px] font-bold tracking-[0.06em] text-blue-800 uppercase md:px-5"
                 >
                   {group}
                 </th>

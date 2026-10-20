@@ -31,7 +31,7 @@ export const Carousel: FC<Props> = ({
       <ul
         ref={trackRef}
         aria-label={label}
-        className="-m-1 flex snap-x snap-mandatory scroll-px-1 scrollbar-none gap-4 overflow-x-auto p-1 motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden"
+        className="-m-2 flex snap-x snap-mandatory scroll-px-2 scrollbar-none gap-4 overflow-x-auto p-2 motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden"
       >
         {items.map(({ key, node }) => (
           <li
@@ -46,13 +46,13 @@ export const Carousel: FC<Props> = ({
         <IconButton
           icon="chevronLeft"
           label={prevLabel}
-          disabled={atStart}
+          aria-disabled={atStart}
           onClick={prev}
         />
         <IconButton
           icon="chevronRight"
           label={nextLabel}
-          disabled={atEnd}
+          aria-disabled={atEnd}
           onClick={next}
         />
       </div>

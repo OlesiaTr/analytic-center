@@ -38,7 +38,7 @@ const Page = () => {
       id: 'members',
       title: organizationMembers.title,
       people: ORGANIZATION_MEMBERS.toSorted((a, b) =>
-        a.name.localeCompare(b.name),
+        a.name.localeCompare(b.name, 'uk'),
       ),
     },
   ];
@@ -49,7 +49,7 @@ const Page = () => {
 
       <section aria-label={introLabel} className="sec">
         <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-          <div className="prose max-w-[720px]">
+          <div className="prose max-w-180">
             {list.map(({ bold, text }) => (
               <p key={text}>
                 {bold && <strong>{bold.trim()}</strong>} {text.trim()}
