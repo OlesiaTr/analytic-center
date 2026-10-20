@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="uk"
-      className={`${montserrat.variable} ${literata.variable} motion-safe:scroll-smooth lg:scroll-pt-29`}
+      className={`${montserrat.variable} ${literata.variable} motion-safe:scroll-smooth`}
       data-scroll-behavior="smooth"
     >
       <body className="font-sans antialiased">

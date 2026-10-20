@@ -2,6 +2,7 @@ export { Button, buttonClassName, type ButtonVariant } from './button';
 export { Chip } from './chip';
 export { EmptyState } from './empty-state';
 export { IconButton } from './icon-button';
+export { LanguageSwitch } from './language-switch';
 export { PageHead } from './page-head';
 export { SectionHead } from './section-head';
 export { Skeleton } from './skeleton';

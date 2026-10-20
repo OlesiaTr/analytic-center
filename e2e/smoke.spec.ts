@@ -102,7 +102,7 @@ test('mobile menu opens and closes after navigating', async ({
   test.skip(info.project.name !== 'mobile', 'menu button is mobile-only');
 
   await page.goto('/');
-  await page.getByRole('button', { name: 'Кнопка відкриття меню' }).click();
+  await page.getByRole('button', { name: 'Відкрити меню' }).click();
   const menu = page.locator('#mobile-menu');
   await expect(menu).toBeVisible();
 
