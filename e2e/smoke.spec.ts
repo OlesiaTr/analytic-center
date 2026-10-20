@@ -22,13 +22,15 @@ for (const route of ROUTES) {
   test(`${route} has no horizontal scroll`, async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile', 'checked at phone width');
 
-    await page.setViewportSize({ width: 375, height: 800 });
-    await page.goto(route);
-    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }));
-    expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
+    for (const width of [320, 375]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto(route);
+      const { scrollWidth, clientWidth } = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+      expect(scrollWidth, `at ${width}px`).toBeLessThanOrEqual(clientWidth);
+    }
   });
 }
 
@@ -77,15 +79,18 @@ test('Escape closes the mobile menu and returns focus', async ({
   await expect(button).toHaveAttribute('aria-expanded', 'false');
 });
 
-test('authors form toggles from the keyboard', async ({ page }) => {
+test('authors form opens from the keyboard', async ({ page }) => {
   await page.goto('/conferences');
-  const toggle = page.getByRole('button', { name: /ВІДОМОСТІ ПРО АВТОРІВ/ });
-  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  const panel = page.locator('details#authors-form');
+  const summary = panel.locator('summary');
+  const firstField = panel.getByRole('rowheader').first();
+  await expect(panel).not.toHaveAttribute('open');
+  await expect(firstField).toBeHidden();
 
-  await toggle.focus();
+  await summary.focus();
   await page.keyboard.press('Enter');
-  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.locator('#authors-form')).toHaveCount(0);
+  await expect(panel).toHaveAttribute('open');
+  await expect(firstField).toBeVisible();
 });
 
 test('unknown routes show the 404 page', async ({ page }) => {
@@ -102,11 +107,48 @@ test('mobile menu opens and closes after navigating', async ({
   test.skip(info.project.name !== 'mobile', 'menu button is mobile-only');
 
   await page.goto('/');
-  await page.getByRole('button', { name: 'Кнопка відкриття меню' }).click();
+  await page.getByRole('button', { name: 'Відкрити меню' }).click();
   const menu = page.locator('#mobile-menu');
   await expect(menu).toBeVisible();
 
   await menu.getByRole('link', { name: 'Бібліотека' }).click();
   await expect(page).toHaveURL('/library');
   await expect(menu).toBeHidden();
+});
+
+test('conference archive loads 8 at a time', async ({ page }) => {
+  await page.goto('/conferences');
+  const archive = page.locator('section', {
+    has: page.getByRole('heading', { name: 'Архів конференцій' }),
+  });
+  const items = archive.getByRole('listitem');
+  await expect(items).toHaveCount(8);
+
+  await archive.getByRole('button', { name: 'Показати ще 8' }).click();
+  await expect(items).toHaveCount(16);
+  await expect(items.nth(8)).toBeFocused();
+  await expect(archive.getByText('Показано 16 з 22')).toBeVisible();
+
+  await archive.getByRole('button', { name: 'Показати ще 6' }).click();
+  await expect(items).toHaveCount(22);
+  await expect(archive.getByText('Це всі збірники архіву.')).toBeVisible();
+});
+
+test('partner carousel steps with its buttons', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'all partners fit from 1024');
+
+  await page.goto('/');
+  const prev = page.getByRole('button', { name: 'Попередні партнери' });
+  const next = page.getByRole('button', { name: 'Наступні партнери' });
+  await expect(prev).toBeDisabled();
+
+  await next.click();
+  await expect(prev).toBeEnabled();
+  await expect
+    .poll(() =>
+      page
+        .getByRole('list', { name: 'Партнери центру' })
+        .evaluate(el => el.scrollLeft),
+    )
+    .toBeGreaterThan(0);
 });

@@ -1,20 +1,22 @@
 'use client';
 
-import React, { FC, useCallback, useRef } from 'react';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
+import { FC, useCallback, useRef } from 'react';
 
-import { LINKS } from '@/constants';
 import { MobileMenu } from '@/components/base';
+import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
-import { MenuBtn, Navigation } from '@/components/ui';
-import { useDisclosure, useEscapeKey } from '@/hooks';
+import { LanguageSwitch } from '@/components/ui';
+import { LINKS, SHOW_LANGUAGE_SWITCH } from '@/constants';
 import data from '@/data/common.json';
+import { useDisclosure, useEscapeKey } from '@/hooks';
 
 const MENU_ID = 'mobile-menu';
 
 export interface Props {
+  /** Over the home hero: 90 % blue-800, absolutely positioned (white ≥ 8.67:1). */
   isHomePage?: boolean;
 }
 
@@ -23,6 +25,7 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
   // Keyed by pathname, so the menu closes after navigating.
   const { isOpen, toggle, close } = useDisclosure(false, pathname);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const { mobileMenu } = data.header;
 
   // Escape closes the menu and returns focus to the button that opened it.
   const closeAndFocusButton = useCallback(() => {
@@ -31,43 +34,104 @@ export const Header: FC<Props> = ({ isHomePage = false }) => {
   }, [close]);
   useEscapeKey(isOpen, closeAndFocusButton);
 
+  const [home, ...items] = LINKS;
+
   return (
     <header
       className={clsx(
-        'm-auto w-full max-w-(--breakpoint-xxl) text-white lg:inset-x-0 lg:top-0',
-        isHomePage ? 'absolute' : 'sticky',
-        isOpen || !isHomePage ? 'bg-headerBg' : 'bg-transparent',
+        'z-10 on-dark',
+        isHomePage
+          ? 'absolute inset-x-0 top-0 bg-blue-800/90 backdrop-blur-[6px]'
+          : 'relative bg-blue-800',
       )}
     >
-      <div className="flex items-center justify-between p-4 md:px-14 lg:py-0 xl:px-20">
-        <Link href={LINKS[0].linkTo} className="transition hover:scale-110">
-          <Logo
-            alt={data.header.homeLabel}
-            className="h-9 w-[50px] md:h-15 md:w-[85px]"
-          />
+      <div className="wrap flex min-h-16 items-center gap-4 lg:min-h-20 lg:gap-6">
+        <Link
+          href={home.linkTo}
+          className="-ml-1 inline-flex flex-none p-1"
+          aria-label={data.header.logoLabel}
+        >
+          <Logo className="h-10 w-auto lg:h-13" />
         </Link>
 
-        <Navigation
-          location="header"
-          label={data.header.navLabel}
-          links={LINKS}
-        />
+        <nav
+          aria-label={data.header.navLabel}
+          className="ml-auto hidden lg:block"
+        >
+          <ul className="flex items-center gap-1 xl:gap-2">
+            <li>
+              <NavLink href={home.linkTo} current={pathname === home.linkTo}>
+                <Icon name="home" />
+                <span className="sr-only">{data.header.homeLabel}</span>
+              </NavLink>
+            </li>
+            {items.map(({ name, linkTo }) => (
+              <li key={linkTo}>
+                <NavLink href={linkTo} current={pathname === linkTo}>
+                  {name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <MenuBtn
-          ref={menuButton}
-          onClick={toggle}
-          isOpen={isOpen}
-          controls={MENU_ID}
-        />
+        <div
+          className={clsx(
+            'ml-auto flex items-center gap-2 lg:ml-2',
+            // Only the burger lives here until the language switch ships.
+            !SHOW_LANGUAGE_SWITCH && 'lg:hidden',
+          )}
+        >
+          {SHOW_LANGUAGE_SWITCH && (
+            <LanguageSwitch
+              current="uk"
+              hrefs={{ uk: pathname, en: `/en${pathname}` }}
+            />
+          )}
+          <button
+            ref={menuButton}
+            type="button"
+            onClick={toggle}
+            aria-expanded={isOpen}
+            aria-controls={MENU_ID}
+            aria-label={
+              isOpen
+                ? mobileMenu.closeBtnAriaLabel
+                : mobileMenu.openBtnAriaLabel
+            }
+            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-switch-border text-white hover:bg-white/12 lg:hidden"
+          >
+            <Icon name={isOpen ? 'close' : 'menu'} />
+          </button>
+        </div>
       </div>
 
       {isOpen && (
         <MobileMenu
           id={MENU_ID}
-          label={data.header.mobileMenu.navLabel}
+          label={mobileMenu.navLabel}
           closeModal={close}
         />
       )}
     </header>
   );
 };
+
+const NavLink: FC<{
+  href: string;
+  current: boolean;
+  children: React.ReactNode;
+}> = ({ href, current, children }) => (
+  <Link
+    href={href}
+    aria-current={current ? 'page' : undefined}
+    className={clsx(
+      'relative inline-flex min-h-11 items-center rounded px-2.5 text-[15px] leading-[22px] font-semibold whitespace-nowrap text-white no-underline hover:text-yellow-400 xl:px-3',
+      // Active item: 3 px yellow bar under the label
+      current &&
+        'after:absolute after:inset-x-2.5 after:bottom-1 after:h-[3px] after:rounded-sm after:bg-yellow-400 xl:after:inset-x-3',
+    )}
+  >
+    {children}
+  </Link>
+);

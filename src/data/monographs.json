@@ -1,5 +1,6 @@
 {
   "title": "Монографії",
+  "lead": "Колективні монографії Центру: запрошення до написання розділів та архів виданих книг.",
   "archivedMonographs": {
     "title": "Архів монографій",
     "list": [
@@ -134,6 +135,14 @@
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1Rf7cFuszrQy_bpHv9-gULr5yVRB9luuH"
       }
     ],
-    "buttonDownload": "Завантажити"
+    "buttonDownload": "Завантажити",
+    "doneText": "Це всі видання архіву.",
+    "srDownload": "монографію",
+    "count": {
+      "one": "{count} видання",
+      "few": "{count} видання",
+      "many": "{count} видань",
+      "other": "{count} видання"
+    }
   }
 }

@@ -1,68 +1,97 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
-import { Title, ProfessorList } from '@/components/ui';
-
+import {
+  PageHead,
+  PersonCard,
+  SectionHead,
+  type Person,
+} from '@/components/ui';
 import data from '@/data/about-center.json';
-import meta from '@/data/meta/meta.json';
+import commonData from '@/data/common.json';
 import {
   ACADEMIC_COUNCIL,
   ORGANIZATION_MEMBERS,
   SUPERVISORY_BOARD,
 } from '@/data/images';
+import meta from '@/data/meta/meta.json';
 import { OrganizationStatute } from '@/sections';
+import { plural } from '@/utils';
 
 export const metadata: Metadata = meta['about-center'];
 
 const Page = () => {
   const {
     title,
+    introLabel,
     list,
     academicCouncil,
     supervisoryBoard,
     organizationMembers,
+    peopleCount,
   } = data;
 
-  const sortedMembersByName = ORGANIZATION_MEMBERS.toSorted((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  const boards: { id: string; title: string; people: Person[] }[] = [
+    { id: 'council', title: academicCouncil.title, people: ACADEMIC_COUNCIL },
+    { id: 'board', title: supervisoryBoard.title, people: SUPERVISORY_BOARD },
+    {
+      id: 'members',
+      title: organizationMembers.title,
+      people: ORGANIZATION_MEMBERS.toSorted((a, b) =>
+        a.name.localeCompare(b.name, 'uk'),
+      ),
+    },
+  ];
 
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
-      <section className="section">
-        <Title title={title} as="h1" />
+      <PageHead title={title} />
 
-        <ul className="flex flex-col gap-3 md:gap-5 lg:gap-6">
-          {list.map(paragraph => (
-            <li
-              key={paragraph.text}
-              className="text-sm leading-[1.43] tracking-[0.5px] text-main md:text-xl lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8]"
-            >
-              {' '}
-              <b>{paragraph.bold}</b> {paragraph.text}
-            </li>
-          ))}
-        </ul>
+      <section aria-label={introLabel} className="sec">
+        <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+          <div className="prose max-w-180">
+            {list.map(({ bold, text }) => (
+              <p key={text}>
+                {bold && <strong>{bold.trim()}</strong>} {text.trim()}
+              </p>
+            ))}
+          </div>
+          <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">
+            <Image
+              src="/images/about_center-tab.webp"
+              alt={commonData.aboutCenter.imgAlt}
+              width={519}
+              height={593}
+              className="size-full object-cover"
+            />
+          </div>
+        </div>
       </section>
 
       <OrganizationStatute />
 
-      <section className="section">
-        <Title title={academicCouncil.title} />
-
-        <ProfessorList list={ACADEMIC_COUNCIL} />
-      </section>
-
-      <section className="section">
-        <Title title={supervisoryBoard.title} />
-
-        <ProfessorList list={SUPERVISORY_BOARD} />
-      </section>
-
-      <section className="section">
-        <Title title={organizationMembers.title} />
-
-        <ProfessorList list={sortedMembersByName} />
-      </section>
+      {boards.map(board => (
+        <section
+          key={board.id}
+          aria-labelledby={`${board.id}-title`}
+          className="sec"
+        >
+          <div className="wrap">
+            <SectionHead
+              id={`${board.id}-title`}
+              title={board.title}
+              sub={plural(board.people.length, peopleCount)}
+            />
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-x-6 md:gap-y-8 lg:grid-cols-4 xl:grid-cols-5">
+              {board.people.map(person => (
+                <li key={person.name}>
+                  <PersonCard person={person} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ))}
     </main>
   );
 };

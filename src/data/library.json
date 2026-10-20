@@ -1,5 +1,7 @@
 {
   "title": "Бібліотека",
+  "lead": "Підручники, навчальні посібники та монографії членів Центру у вільному доступі.",
+  "listLabel": "Книги",
   "list": [
     {
       "id": "0",
@@ -72,5 +74,6 @@
       "linkToDownload": "https://docs.google.com/uc?export=download&id=1vCIA-41cUOUiBimoDlSCLCpHic0JRXP2"
     }
   ],
-  "buttonDownload": "Завантажити"
+  "buttonDownload": "Завантажити",
+  "srDownload": "книгу"
 }

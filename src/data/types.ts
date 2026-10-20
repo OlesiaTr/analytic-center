@@ -18,11 +18,21 @@ export interface Conference extends Publication {
   month: string;
 }
 
+/** Shown instead of an empty upcoming list. */
+export interface EmptyCopy {
+  title: string;
+  text: string;
+  link: string;
+  href: string;
+}
+
 export interface UpcomingConferences {
   title: string;
   list: Conference[];
   button: string;
   buttonDownload: string;
-  linkDownload: string;
+  /** Hidden end of the download button, e.g. «інформаційний лист». */
+  srDownload: string;
   redirectionTo: string;
+  empty: EmptyCopy;
 }

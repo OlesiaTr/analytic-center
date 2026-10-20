@@ -35,12 +35,14 @@ and adding English is planned in `docs/modernization.md`.
 
 ### Directory Structure
 
-- `src/app/` - App Router pages (`(pages)/` group shares the sticky header)
+- `src/app/` - App Router pages (`(pages)/` group shares the header)
 - `src/sections/` - Page sections (Hero, News, Grants, ...)
-- `src/components/ui/` - Reusable UI (`PublicationCard`, `PublicationGrid`,
-  `ButtonLink`, ...); `src/components/base/` - mobile menu
+- `src/components/ui/` - Design-system components (`Button`, `PublicationGrid`,
+  `Accordion`, `DataTable`, ...); `src/components/icons/` - the `Icon` set;
+  `src/components/base/` - mobile menu
 - `src/layouts/` - Header and Footer
-- `src/hooks/` - State logic (`useDisclosure`, `useAccordion`)
+- `src/hooks/` - State logic (`useDisclosure`, `useLoadMore`, `useCarousel`)
+- `src/utils/` - Pure helpers (`formatDate`, `plural`, `toHost`)
 - `src/data/` - Content JSON (lightweight CMS) + `types.ts`
 - `src/constants/` - Navigation links
 - `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
@@ -65,12 +67,15 @@ import data from '@/data/common.json';
 ### Tailwind (v4)
 
 No `tailwind.config.ts`: tokens live in the `@theme` block of
-`src/styles/globals.css` (colors, breakpoints, shadows). Important modifier is a
-suffix (`pt-0!`).
+`src/styles/globals.css`, named as in the ACMHS design system
+(https://claude.ai/artifact/Fyoz7cCtsUjiqUH6rqcD5K). Type styles (`t-h1`…,
+`prose`) and layout (`wrap`, `sec`, `sec-title`) are `@utility` blocks there.
+Important modifier is a suffix (`pt-0!`).
 
 ```
-main: #565656        accent: #FBCD21      mainBg: #0065B2
-footerBg: #0E2B42    accentLight: #F9DA66  mainBgDark: #043B65
+blue-600: #0065B2   blue-800: #043B65   navy-900: #0E2B42   yellow-400: #FBCD21
+ink: #0E2B42        text: #565656       muted: #5E6A77      line: #D3DCE6
+surface: #F4F7FA    blue-50: #E6F0F8    brown-900: #442103 (text on yellow)
 ```
 
 Custom breakpoints: `sm` (480px), `md` (768px), `lg` (1024px), `xl` (1280px),

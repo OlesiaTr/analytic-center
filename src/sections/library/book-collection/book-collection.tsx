@@ -2,13 +2,15 @@ import { PublicationGrid } from '@/components/ui';
 import data from '@/data/library.json';
 
 const BookCollection = () => {
-  const { list, buttonDownload } = data;
+  const { list, buttonDownload, srDownload } = data;
 
   return (
     <PublicationGrid
       list={list}
-      buttonDownload={buttonDownload}
+      buttonLabel={buttonDownload}
+      srLabel={srDownload}
       variant="library"
+      headingLevel="h2"
     />
   );
 };

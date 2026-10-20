@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { ButtonLink, Title } from '@/components/ui';
 
+import { Button } from '@/components/ui';
 import data from '@/data/common.json';
 
 export const CenterShortVersion = () => {
@@ -8,39 +8,23 @@ export const CenterShortVersion = () => {
     data.aboutCenter;
 
   return (
-    <section className="section">
-      <Title title={title} />
-
-      <div className="flex justify-between">
-        <div className="hidden max-w-105 lg:block xl:max-h-[593px] xl:max-w-[519px]">
+    <section aria-labelledby="about-title" className="sec">
+      <div className="wrap grid items-center gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+        <div className="flex flex-col items-start gap-6">
+          <h2 id="about-title" className="sec-title t-h2">
+            {title}
+          </h2>
+          <p className="prose">{description}</p>
+          <Button href={redirectionTo}>{button}</Button>
+        </div>
+        <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">
           <Image
             src="/images/about_center-tab.webp"
             alt={imgAlt}
             width={519}
             height={593}
+            className="size-full object-cover"
           />
-        </div>
-
-        <div className="flex flex-col justify-around lg:max-w-105 xl:max-w-130 xl:justify-between xxl:max-w-157">
-          <p className="mb-6 text-sm leading-[1.43] tracking-[0.5px] text-main md:mb-10 md:text-xl lg:mb-16 lg:text-lg xl:text-xl xl:leading-[1.8] xxl:text-2xl xxl:leading-[1.8]">
-            {description}
-          </p>
-
-          <div className="contents lg:hidden">
-            <ButtonLink
-              label={button}
-              styles="sm:min-w-[302px] m-auto"
-              isAccentBtn
-              href={redirectionTo}
-            />
-          </div>
-          <div className="hidden lg:contents">
-            <ButtonLink
-              label={button}
-              styles="min-w-[302px]"
-              href={redirectionTo}
-            />
-          </div>
         </div>
       </div>
     </section>

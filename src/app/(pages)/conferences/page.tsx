@@ -1,33 +1,18 @@
 import type { Metadata } from 'next';
 
-import { Title } from '@/components/ui';
-import {
-  AboutAuthors,
-  ReleasedConferences,
-  UpcomingConferencesExpanded,
-} from '@/sections';
-
+import { PageHead } from '@/components/ui';
 import data from '@/data/conferences.json';
 import meta from '@/data/meta/meta.json';
+import { ReleasedConferences, UpcomingConferencesExpanded } from '@/sections';
 
 export const metadata: Metadata = meta.conferences;
 
-const Page = () => {
-  const { title } = data;
-
-  return (
-    <main id="main" tabIndex={-1} className="focus:outline-none">
-      <section className="section">
-        <Title title={title} as="h1" />
-
-        <UpcomingConferencesExpanded />
-      </section>
-
-      <AboutAuthors />
-
-      <ReleasedConferences />
-    </main>
-  );
-};
+const Page = () => (
+  <main id="main" tabIndex={-1} className="focus:outline-none">
+    <PageHead title={data.title} lead={data.lead} />
+    <UpcomingConferencesExpanded />
+    <ReleasedConferences />
+  </main>
+);
 
 export default Page;

@@ -1,31 +1,29 @@
-import { SliderCoverCard, WideCoverCard } from '@/components/ui';
+import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
 
 export const UpcomingMonographsExpanded = () => {
-  const { list, linkDownload, buttonDownload } = commonData.upcomingMonographs;
+  const { title, list, buttonDownload, srDownload, empty } =
+    commonData.upcomingMonographs;
 
   return (
-    <>
-      <div className="contents lg:hidden">
-        <SliderCoverCard
-          slidesList={list}
-          buttonDownload={buttonDownload}
-          headingLevel="h2"
-        />
+    <section aria-labelledby="upcoming-title" className="sec">
+      <div className="wrap">
+        <SectionHead id="upcoming-title" title={title} />
+        {list.length ? (
+          <PublicationGrid
+            list={list}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
+            layout="wide"
+          />
+        ) : (
+          <EmptyState
+            title={empty.title}
+            text={empty.text}
+            link={{ href: empty.href, label: empty.link }}
+          />
+        )}
       </div>
-      <div className="hidden lg:contents">
-        <ul className="flex flex-col gap-20">
-          {list.map(card => (
-            <li key={card.id} className="flex items-start gap-6">
-              <WideCoverCard
-                card={card}
-                linkDownload={linkDownload}
-                headingLevel="h2"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    </section>
   );
 };

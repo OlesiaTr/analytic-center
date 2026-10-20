@@ -3,18 +3,27 @@
   "notFound": {
     "title": "Сторінку не знайдено",
     "text": "Можливо, її перемістили або видалили. Скористайтеся меню або поверніться на головну.",
-    "button": "На головну"
+    "button": "На головну",
+    "code": "404",
+    "links": ["/conferences", "/monographs", "/library"]
   },
   "header": {
+    "navLabel": "Основна навігація",
+    "homeLabel": "Головна",
+    "logoLabel": "Аналітичний центр сучасної гуманітаристики — на головну",
     "mobileMenu": {
-      "openBtnAriaLabel": "Кнопка відкриття меню",
-      "closeBtnAriaLabel": "Кнопка закриття меню",
+      "openBtnAriaLabel": "Відкрити меню",
+      "closeBtnAriaLabel": "Закрити меню",
       "navLabel": "Мобільне меню"
     },
-    "navLabel": "Основна навігація",
-    "homeLabel": "На головну"
+    "languageSwitch": {
+      "label": "Мова сайту",
+      "uk": "Українська",
+      "en": "English"
+    }
   },
   "hero": {
+    "overline": "Громадська організація",
     "title": {
       "topLine": "Аналітичний центр",
       "bottomLine": "сучасної гуманітаристики "
@@ -53,26 +62,29 @@
         "height": 2401,
         "imgAlt": "Зображення обкладенки монографії: “ГЛОБАЛЬНИЙ СВІТ І УКРАЇНА: СУЧАСНІ ВИКЛИКИ ТА ПОШУК ВІДПОВІДЕЙ”",
         "title": "VІІ Всеукраїнська науково-практична конференція",
-        "description": "“ГЛОБАЛЬНИЙ СВІТ І УКРАЇНА: СУЧАСНІ ВИКЛИКИ ТА ПОШУК ВІДПОВІДЕЙ”",
+        "description": "“Глобальний світ і Україна: сучасні виклики та пошук відповідей”",
         "date": "27.11.2026",
         "day": "27",
         "month": "11",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1LHVVEW6R87HQUHIRuZDh9Lcg26E-UAc_"
       }
     ],
-    "button": "Дізнатися більше",
+    "button": "Усі конференції",
     "buttonDownload": "Завантажити",
-    "linkDownload": "Завантажити інформаційний буклет конференції",
-    "redirectionTo": "/conferences"
+    "redirectionTo": "/conferences",
+    "empty": {
+      "title": "Наразі немає запланованих конференцій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте збірники минулих конференцій.",
+      "link": "Архів конференцій",
+      "href": "/conferences#archive"
+    },
+    "srDownload": "інформаційний лист"
   },
   "partners": {
-    "title": "Партнери"
-  },
-  "sliderControls": {
-    "prevBtnAriaLabel": "Back button to flip through the slides",
-    "nextBtnAriaLabel": "Forward button to flip through the slides",
-    "prevBtnText": "Prev",
-    "nextBtnText": "Next"
+    "title": "Партнери",
+    "listLabel": "Партнери центру",
+    "prev": "Попередні партнери",
+    "next": "Наступні партнери"
   },
   "upcomingMonographs": {
     "title": "Запрошуються до написання монографії",
@@ -114,26 +126,39 @@
         "linkToDownload": "https://docs.google.com/uc?export=download&id=181SyqhIZmiQz4KOIxUUi6DGXf3U72Jb3"
       }
     ],
-    "button": "Дізнатися більше",
+    "button": "Усі монографії",
     "buttonDownload": "Завантажити",
-    "linkDownload": "Завантажити інформаційний буклет монографії",
-    "redirectionTo": "/monographs"
+    "redirectionTo": "/monographs",
+    "empty": {
+      "title": "Наразі немає запланованих монографій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте архів монографій.",
+      "link": "Архів монографій",
+      "href": "/monographs#archive"
+    },
+    "srDownload": "інформаційний лист"
   },
   "grants": {
     "title": "Можливості та гранти",
     "list": [
       {
-        "title": "ДЛЯ СТУДЕНТІВ СТАРШИХ КУРСІВ ТА ВИПУСКНІВ зво"
+        "title": "Для студентів старших курсів та випускників ЗВО"
       },
       {
-        "title": "ДЛЯ МОЛОДИХ ВИКЛАДАЧІВ ТА ДОСЛІДНИКІВ"
+        "title": "Для молодих викладачів та дослідників"
       },
       {
-        "title": "ДЛЯ КАНДИДАТІВ ТА ДОКТОРІВ НАУК, ДОСЛІДНИКІВ ТА ФАХІВЦІВ"
+        "title": "Для кандидатів та докторів наук, дослідників та фахівців"
       }
     ],
-    "button": "Дізнатися більше",
-    "redirectionTo": "/grants"
+    "button": "Усі гранти",
+    "redirectionTo": "/grants",
+    "programCount": {
+      "one": "{count} програма",
+      "few": "{count} програми",
+      "many": "{count} програм",
+      "other": "{count} програми"
+    },
+    "moreOn": "Детальніше на {host}"
   },
   "news": {
     "title": "Новини",
@@ -166,7 +191,7 @@
         "imgAlt": "Зображення стокової фотографії на тему конференції"
       },
       {
-        "text": "Шановні колеги! Запрошуємо вас взяти участь у роботі V Конгресу Соціологічної асоціації України «СУСПІЛЬСТВО ТА СОЦІОЛОГІЯ В ЕКСПОНЕНЦІЙНОМУ СВІТІ: ДОСЛІДНИЦЬКІ ВИКЛИКИ, МОЖЛИВОСТІ, ПЕРСПЕКТИВИ», який відбудеться у змішаному (онлайн /офлайн) форматі 20-21 листопада 2025 року.",
+        "text": "Шановні колеги! Запрошуємо вас взяти участь у роботі V Конгресу Соціологічної асоціації України «Суспільство та соціологія в експоненційному світі: дослідницькі виклики, можливості, перспективи», який відбудеться у змішаному (онлайн /офлайн) форматі 20-21 листопада 2025 року.",
         "date": "Більш докладно за посиланням",
         "linkTo": "https://docs.google.com/uc?export=download&id=1W00_TSyhUSGxLvoOG26-JjwENkikSOei",
         "imgSrc": "/images/news/news_2.webp",
@@ -174,16 +199,35 @@
         "height": 160,
         "imgAlt": "Зображення стокової фотографії на тему конференції"
       }
-    ]
+    ],
+    "more": "Детальніше"
+  },
+  "loadMore": {
+    "count": "Показано {shown} з {total}",
+    "more": "Показати ще {next}"
   },
   "footer": {
     "name": "Аналітичний центр сучасної гуманітаристики",
+    "navTitle": "Навігація",
+    "navLabel": "Навігація у футері",
     "contacts": {
-      "title": "Зв’язатися з нами:",
+      "title": "Зв’язатися з нами",
       "email": "office.acmhs@gmail.com",
-      "phone": "38 (067) 717 92 17"
+      "phone": "+380677179217",
+      "phoneLabel": "+38 (067) 717 92 17"
     },
-    "copyrights": " © 2024 Аналітичний центр сучасної гуманітаристики. Всі права захищені ",
-    "navLabel": "Навігація у футері"
+    "rights": "Всі права захищені."
+  },
+  "a11y": {
+    "newTab": "(відкривається в новій вкладці)"
+  },
+  "profiles": {
+    "linkedin": "LinkedIn",
+    "googlescholar": "Google Scholar",
+    "naukovci": "Науковці України",
+    "orcid": "ORCID",
+    "researchgate": "ResearchGate",
+    "scopus": "Scopus",
+    "wos": "Web of Science"
   }
 }

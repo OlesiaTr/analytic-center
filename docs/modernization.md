@@ -123,7 +123,10 @@ Look-and-feel work moved to the Redesign phase (PER-12).
 ### 4. Sanity CMS — PER-9
 
 - [ ] **Before schemas:** confirm the content model against the Redesign
-      outline/Figma (PER-12)
+      (PER-12). Additions it needs: page `lead`, library `kind` (Підручник,
+      Навчальний посібник…), required news `date`, partner `name` + `href`,
+      grant groups referencing their programs, hero covers from the publications
+      (a 200 px thumbnail transform)
 - [ ] Schemas: conference, monograph, libraryItem, grant, person, partner, news,
       siteSettings, page singletons (localized fields)
 - [ ] Migration script `src/data/*` → Sanity; document counts match
@@ -142,14 +145,35 @@ Look-and-feel work moved to the Redesign phase (PER-12).
 
 ### Redesign — PER-12
 
-After CMS + i18n, against real bilingual content; design prepared before PER-9.
+Done before CMS and i18n, on the JSON data, so Sanity (PER-9) only swaps the
+data layer behind the same components. Source of truth: the ACMHS design system
+(https://claude.ai/artifact/Fyoz7cCtsUjiqUH6rqcD5K) and the redesign canvas
+(https://claude.ai/artifact/QQgYhgf17r3NbvjSee5Z9w).
 
-- [ ] **WCAG blockers:** header contrast (~3.2:1, needs 4.5:1); hero text over
-      the photo (agreed: navy gradient overlay)
-- [ ] Contrast risks: `ButtonLink` hover, `hover:text-accent` on light surfaces
-- [ ] Section-based CTA hierarchy (agreed)
-- [ ] Flexible card heights; empty and loading states
-- [ ] Nav breakpoint 1024–1279; gap under hero at tablet; Swiper arrow hit area
+- [x] **WCAG blockers fixed:** header on solid `blue-800` (11.55:1); hero text
+      on a navy scrim over the center's own covers (Hero B, no stock photo)
+- [x] Tokens under the system's names in `@theme`; `t-*` type utilities,
+      Montserrat + Literata for prose; 3 px focus ring, yellow on dark grounds
+- [x] Section-based CTA hierarchy; downloads always yellow with an icon and a
+      unique hidden name
+- [x] Components: header, mobile menu, footer, `Button`, `Chip`, `PageHead`,
+      `SectionHead`, `PublicationCard` (row / column / wide list / library),
+      `PublicationGrid`, `LoadMore`, `Carousel` (scroll-snap), `Accordion` and
+      `Panel` (native `<details>`), `DataTable`, `PersonCard`, `DocumentList`,
+      `NewsItem`, `EmptyState`, `Skeleton`, 404; `LanguageSwitch` built but
+      hidden until PER-10
+- [x] Flexible card heights; empty states for empty upcoming lists
+- [x] Copy: page leads, sentence case, precise labels, Ukrainian plural counts
+- [x] Removed Swiper, `@heroicons/react` and the old tokens/components (JS 198 →
+      158 KB)
+- [x] No horizontal scroll at 320 and 375 px on any route (e2e)
+- [x] `ui-reviewer` findings fixed: date reachable for screen readers in the
+      wide list, carousel focus ring and `aria-disabled` buttons, label in name
+      on the language switch, one `max-width` per element, leading on arbitrary
+      sizes, locale-aware sort, profile names in JSON
+- [x] Lighthouse: a11y 100 and CLS 0 on all 5 routes (log below)
+- Left: grant groups pair with programs by index (PER-9 makes them references);
+  the language switch builds `/en/` for home (fix with routing in PER-10)
 
 ### 6. AI-readable + public release — PER-11
 
@@ -232,6 +256,11 @@ permissions.
 | 2026-10-18 | `/conferences` (local, PER-8)   | 95    | 100  | 100 | 3 runs. LCP 3.0 s, CLS 0                                                       |
 | 2026-10-18 | `/grants` (local, PER-8)        | 99    | 100  | 100 | 3 runs. LCP 2.2 s                                                              |
 | 2026-10-18 | `/useful-info` (local, PER-8)   | 97–99 | 100  | 100 | 3 runs. LCP 2.2–2.6 s                                                          |
+| 2026-10-20 | `/` (local, PER-12)             | 91–96 | 100  | 100 | 3 runs. LCP 2.7–3.5 s, CLS 0. JS 158 KB (Swiper + heroicons removed)           |
+| 2026-10-20 | `/conferences` (local, PER-12)  | 93–98 | 100  | 100 | 3 runs (+1 cold-start outlier: 75, LCP 8.8 s). LCP 2.5–3.3 s, CLS 0            |
+| 2026-10-20 | `/monographs` (local, PER-12)   | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.3 s, CLS 0                                                   |
+| 2026-10-20 | `/grants` (local, PER-12)       | 95–98 | 100  | 100 | 3 runs. LCP 2.3–3.0 s, CLS 0                                                   |
+| 2026-10-20 | `/useful-info` (local, PER-12)  | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
