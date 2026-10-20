@@ -5,7 +5,7 @@ export const ReleasedMonographs = () => {
   const { title, list, buttonDownload, doneText } = data.archivedMonographs;
 
   return (
-    <section className="section bg-mainBg">
+    <section id="archive" className="section bg-mainBg">
       <Title title={title} isWhite />
 
       <PublicationGrid

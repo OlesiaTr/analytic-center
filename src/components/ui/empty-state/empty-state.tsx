@@ -17,12 +17,12 @@ export const EmptyState: FC<Props> = ({
   icon = 'calendar',
   link,
 }) => (
-  <div className="flex flex-col items-center gap-3 rounded-xl border-[1.5px] border-dashed border-line-strong bg-white px-6 py-10 text-center">
+  <div className="flex flex-col items-center gap-3 rounded-xl border-[1.5px] border-dashed border-line-strong bg-white px-6 py-10 text-center in-[.on-dark]:border-white/50 in-[.on-dark]:bg-transparent">
     <span className="inline-flex size-14 items-center justify-center rounded-full bg-blue-50 text-blue-800">
       <Icon name={icon} className="size-6" />
     </span>
     <p className="t-h4">{title}</p>
-    <p className="max-w-[480px]">{text}</p>
+    <p className="max-w-[480px] in-[.on-dark]:text-on-dark-muted">{text}</p>
     {link && <TextLink href={link.href}>{link.label}</TextLink>}
   </div>
 );

@@ -53,17 +53,17 @@ export const ProfessorList: FC<Props> = ({ list }) => {
         const { image, name, position } = person;
 
         return (
-          <li key={name} className="max-w-[374px] rounded-lg shadow">
+          <li key={name} className="w-full max-w-[374px] rounded-lg shadow">
             <div className="max-h-104">
               <Image
                 src={image}
                 alt={name}
                 width={374}
                 height={416}
-                className="h-104 object-cover"
+                className="h-104 w-full object-cover"
               />
             </div>
-            <div className="flex h-[170px] flex-col justify-between px-4 py-6">
+            <div className="flex min-h-[170px] flex-col justify-between px-4 py-6">
               <div>
                 <h3 className="mb-2 leading-tight font-bold tracking-[-0.003px] text-black uppercase">
                   {name}
@@ -72,7 +72,7 @@ export const ProfessorList: FC<Props> = ({ list }) => {
                   {position}
                 </p>
               </div>
-              <ul className="flex gap-5">
+              <ul className="flex flex-wrap gap-5">
                 {SOCIAL_LINKS.map(({ key, label, Icon }) => {
                   const href = person[key];
                   if (!href) return null;

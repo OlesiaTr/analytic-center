@@ -38,8 +38,9 @@ export const PublicationCard: FC<Props> = ({
   const actions = (
     <div
       className={clsx(
-        'flex items-end md:mt-auto md:px-1',
-        wide && 'lg:mt-3 lg:px-0',
+        // Below 360 the text column is too narrow for the button: span the card.
+        'flex items-end max-[359px]:col-span-2 md:mt-auto md:px-1',
+        wide && 'lg:col-start-3 lg:mt-3 lg:items-start lg:px-0',
       )}
     >
       <Button
@@ -62,13 +63,13 @@ export const PublicationCard: FC<Props> = ({
         'grid grid-cols-[96px_minmax(0,1fr)] content-start gap-x-4 gap-y-3 rounded-xl border border-line bg-white p-3 text-text transition-shadow duration-200 hover:shadow-sh-2',
         'md:flex md:h-full md:flex-col md:gap-4 md:pb-4',
         wide &&
-          'lg:grid lg:h-auto lg:grid-cols-[136px_168px_minmax(0,1fr)] lg:items-start lg:gap-8 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-8 lg:hover:shadow-none',
+          'lg:grid lg:h-auto lg:grid-cols-[136px_168px_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-start lg:gap-x-8 lg:gap-y-0 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-8 lg:hover:shadow-none',
       )}
     >
       {parts && (
         <div
           aria-hidden
-          className="hidden flex-col text-blue-800 in-[.on-dark]:text-white lg:flex"
+          className="hidden flex-col text-blue-800 in-[.on-dark]:text-white lg:row-span-2 lg:flex"
         >
           <span className="text-[72px] leading-[72px] font-bold tracking-[-0.02em] text-blue-600 in-[.on-dark]:text-yellow-400">
             {parts.day}
@@ -88,7 +89,7 @@ export const PublicationCard: FC<Props> = ({
           variant === 'library'
             ? 'aspect-4/3 bg-surface p-2'
             : 'aspect-7/10 bg-blue-50',
-          wide && 'lg:row-span-1 lg:shadow-sh-1',
+          wide && 'lg:shadow-sh-1',
         )}
       >
         <Image
@@ -137,11 +138,9 @@ export const PublicationCard: FC<Props> = ({
             {description}
           </p>
         )}
-
-        {wide && actions}
       </div>
 
-      {!wide && actions}
+      {actions}
     </article>
   );
 };

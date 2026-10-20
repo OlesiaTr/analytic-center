@@ -21,6 +21,7 @@
     }
   },
   "hero": {
+    "overline": "Громадська організація",
     "title": {
       "topLine": "Аналітичний центр",
       "bottomLine": "сучасної гуманітаристики "
@@ -69,16 +70,19 @@
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
     "linkDownload": "Завантажити інформаційний буклет конференції",
-    "redirectionTo": "/conferences"
+    "redirectionTo": "/conferences",
+    "empty": {
+      "title": "Наразі немає запланованих конференцій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте збірники минулих конференцій.",
+      "link": "Архів конференцій",
+      "href": "/conferences#archive"
+    }
   },
   "partners": {
-    "title": "Партнери"
-  },
-  "sliderControls": {
-    "prevBtnAriaLabel": "Back button to flip through the slides",
-    "nextBtnAriaLabel": "Forward button to flip through the slides",
-    "prevBtnText": "Prev",
-    "nextBtnText": "Next"
+    "title": "Партнери",
+    "listLabel": "Партнери центру",
+    "prev": "Попередні партнери",
+    "next": "Наступні партнери"
   },
   "upcomingMonographs": {
     "title": "Запрошуються до написання монографії",
@@ -123,7 +127,13 @@
     "button": "Дізнатися більше",
     "buttonDownload": "Завантажити",
     "linkDownload": "Завантажити інформаційний буклет монографії",
-    "redirectionTo": "/monographs"
+    "redirectionTo": "/monographs",
+    "empty": {
+      "title": "Наразі немає запланованих монографій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте архів монографій.",
+      "link": "Архів монографій",
+      "href": "/monographs#archive"
+    }
   },
   "grants": {
     "title": "Можливості та гранти",
@@ -139,7 +149,14 @@
       }
     ],
     "button": "Дізнатися більше",
-    "redirectionTo": "/grants"
+    "redirectionTo": "/grants",
+    "programCount": {
+      "one": "{count} програма",
+      "few": "{count} програми",
+      "many": "{count} програм",
+      "other": "{count} програми"
+    },
+    "moreOn": "Детальніше на {host}"
   },
   "news": {
     "title": "Новини",
@@ -180,7 +197,8 @@
         "height": 160,
         "imgAlt": "Зображення стокової фотографії на тему конференції"
       }
-    ]
+    ],
+    "more": "Детальніше"
   },
   "loadMore": {
     "count": "Показано {shown} з {total}",

@@ -22,13 +22,15 @@ for (const route of ROUTES) {
   test(`${route} has no horizontal scroll`, async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile', 'checked at phone width');
 
-    await page.setViewportSize({ width: 375, height: 800 });
-    await page.goto(route);
-    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }));
-    expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
+    for (const width of [320, 375]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto(route);
+      const { scrollWidth, clientWidth } = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+      expect(scrollWidth, `at ${width}px`).toBeLessThanOrEqual(clientWidth);
+    }
   });
 }
 
@@ -127,4 +129,23 @@ test('conference archive loads 8 at a time', async ({ page }) => {
   await archive.getByRole('button', { name: 'Показати ще 6' }).click();
   await expect(items).toHaveCount(22);
   await expect(archive.getByText('Це всі збірники архіву.')).toBeVisible();
+});
+
+test('partner carousel steps with its buttons', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'all partners fit from 1024');
+
+  await page.goto('/');
+  const prev = page.getByRole('button', { name: 'Попередні партнери' });
+  const next = page.getByRole('button', { name: 'Наступні партнери' });
+  await expect(prev).toBeDisabled();
+
+  await next.click();
+  await expect(prev).toBeEnabled();
+  await expect
+    .poll(() =>
+      page
+        .getByRole('list', { name: 'Партнери центру' })
+        .evaluate(el => el.scrollLeft),
+    )
+    .toBeGreaterThan(0);
 });

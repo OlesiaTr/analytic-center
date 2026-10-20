@@ -5,7 +5,7 @@ export const ReleasedConferences = () => {
   const { title, list, buttonDownload, doneText } = data.upcomingConferences;
 
   return (
-    <section className="section">
+    <section id="archive" className="section">
       <Title title={title} />
 
       <PublicationGrid
