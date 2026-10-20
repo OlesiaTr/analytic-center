@@ -12,22 +12,6 @@
 
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
-  --shadow-inner: -1px -1px 5px 0px rgba(0, 0, 0, 0.15) inset;
-
-  --color-main: #565656;
-  --color-accent: #fbcd21;
-  --color-accentLight: #f9da66;
-  --color-accentDark: #dfb107;
-  --color-mainBg: #0065b2;
-  --color-mainBgLight: #4a98d4;
-  --color-mainBgDark: #043b65;
-  --color-headerBg: rgba(68, 127, 172, 0.82);
-  --color-footerBg: #0e2b42;
-  --color-chocolate: #442103;
-  --color-dateBg: rgba(205, 220, 231, 0.82);
-  --color-divider: #afbaca;
-
   /* ACMHS design system (https://claude.ai/artifact/Fyoz7cCtsUjiqUH6rqcD5K).
      Contrast pairs are documented there; keep text pairs at ≥ 4.5:1. */
   --color-blue-50: #e6f0f8;
@@ -93,108 +77,18 @@
   }
 }
 
-@utility section {
-  @apply mx-auto flex max-w-(--breakpoint-xxl) flex-col px-4 py-9 md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
-}
-
-/* Profile icons: tint the SVG on hover. */
-@utility icon-option-one {
-  &:hover svg:hover path {
-    fill: var(--color-headerBg);
-  }
-
-  &:hover svg:hover rect {
-    stroke: var(--color-headerBg);
-  }
-}
-
-/* Hero background image, sized per breakpoint. */
-@utility hero {
-  background-image: url('/images/hero-tab.webp');
-  background-repeat: no-repeat;
-  background-position: right 25% top 0;
-  background-size:
-    720px 100%,
-    cover;
-
-  @media (min-width: 375px) {
-    background-size:
-      780px 110%,
-      cover;
-  }
-
-  @media (min-width: 425px) {
-    background-size:
-      800px 110%,
-      cover;
-  }
-
-  @media (min-width: 480px) {
-    background-size:
-      900px 110%,
-      cover;
-  }
-
-  @media (min-width: 768px) {
-    background-size:
-      1010px 630px,
-      cover;
-    background-position: top 0 right 30%;
-  }
-
-  @media (min-width: 1046px) {
-    background-size:
-      1250px 760px,
-      cover;
-  }
-
-  @media (min-width: 1280px) {
-    background-size:
-      1360px 100%,
-      cover;
-    background-position: center top 0;
-  }
-}
-
-/* Swiper navigation: custom grey arrows. `.swiper` raises specificity over
-   Swiper's own stylesheet, so no !important is needed. */
-.swiper {
-  /* Swiper 12+ lowered the default arrow offset from 10px to 4px. */
-  --swiper-navigation-sides-offset: 10px;
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    height: 18px;
-    width: 9px;
-
-    @media (min-width: 480px) {
-      height: 40px;
-      width: 22px;
-    }
-  }
-
-  .swiper-button-prev {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 41' fill='none'%3E%3Cpath d='M22 34.7857L8.25 20.5L22 6.21429L19.25 0.5L0 20.5L19.25 40.5L22 34.7857Z' fill='%23565656'/%3E%3C/svg%3E");
-  }
-
-  .swiper-button-next {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40' fill='none'%3E%3Cpath d='M0 5.71429L13.75 20L0 34.2857L2.75 40L22 20L2.75 0L0 5.71429Z' fill='%23565656'/%3E%3C/svg%3E");
-  }
-
-  /* Swiper 12+ injects its own SVG arrow; the background images above replace it. */
-  .swiper-navigation-icon {
-    display: none;
-  }
-}
-
 /* ------------------------------------------------------------------ */
 /* ACMHS design system: base, type scale, layout                       */
 /* ------------------------------------------------------------------ */
 
 @layer base {
+  body {
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 26px;
+  }
+
   /* 3 px ring, 3 px offset: blue on light grounds, yellow inside .on-dark */
   :focus-visible {
     outline: 3px solid var(--focus, var(--color-blue-600));

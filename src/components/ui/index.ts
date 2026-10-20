@@ -13,23 +13,8 @@ export { NewsItem } from './news-item';
 export { PageHead } from './page-head';
 export { Panel } from './panel';
 export { PersonCard, type Person } from './person-card';
+export { PublicationCard } from './publication-card';
+export { PublicationGrid } from './publication-grid';
 export { SectionHead } from './section-head';
 export { Skeleton } from './skeleton';
 export { TextLink } from './text-link';
-export { ButtonLink } from './button-link';
-
-export { GrantDetails } from './grant-details';
-
-export { GrantList } from './grant-list';
-
-export { MenuBtn } from './menu-btn';
-
-export { Navigation } from './navigation';
-
-export { ProfessorList } from './professor-list';
-export { PublicationCard } from './publication-card';
-export { PublicationGrid } from './publication-grid';
-
-export { Table } from './table';
-
-export { Title } from './title';

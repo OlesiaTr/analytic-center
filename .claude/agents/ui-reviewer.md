@@ -32,7 +32,8 @@ files; you report findings for the main session to fix.
 - Focus is visible and not removed; keyboard order follows the visual order;
   Escape closes overlays and returns focus.
 - Text/background pairs come from tokens with sufficient contrast; flag white
-  text on photos or light tokens (`accentLight`, `dateBg`, `headerBg`).
+  text on photos or light tokens (`yellow-300`, `yellow-400`, `blue-50`,
+  `blue-400`), and yellow-400 text on white.
 - Tables use `<th scope>` (and a caption when the purpose isn't obvious).
 - Nothing forces horizontal scroll at 375px (fixed widths, unbreakable strings,
   `mx-auto` children in flex columns).
