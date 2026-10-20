@@ -14,6 +14,7 @@ export type PublicationLayout = 'grid' | 'grid-3' | 'wide';
 export interface Props {
   list: (Publication & { description?: string })[];
   buttonLabel: string;
+  srLabel?: string;
   variant?: PublicationCardVariant;
   layout?: PublicationLayout;
   headingLevel?: 'h2' | 'h3';
@@ -32,6 +33,7 @@ const LAYOUTS: Record<PublicationLayout, string> = {
 export const PublicationGrid: FC<Props> = ({
   list,
   buttonLabel,
+  srLabel,
   variant,
   layout = 'grid',
   headingLevel,
@@ -44,6 +46,7 @@ export const PublicationGrid: FC<Props> = ({
       <PublicationCard
         card={card}
         buttonLabel={buttonLabel}
+        srLabel={srLabel}
         variant={variant}
         wide={layout === 'wide'}
         headingLevel={headingLevel}

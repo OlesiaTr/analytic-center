@@ -1,8 +1,10 @@
 import { PublicationGrid, SectionHead } from '@/components/ui';
 import data from '@/data/conferences.json';
+import { plural } from '@/utils';
 
 export const ReleasedConferences = () => {
-  const { title, list, buttonDownload, doneText } = data.upcomingConferences;
+  const { title, list, buttonDownload, srDownload, doneText, count } =
+    data.upcomingConferences;
 
   return (
     <section
@@ -11,10 +13,15 @@ export const ReleasedConferences = () => {
       className="bg-surface sec"
     >
       <div className="wrap">
-        <SectionHead id="archive-title" title={title} />
+        <SectionHead
+          id="archive-title"
+          title={title}
+          sub={plural(list.length, count)}
+        />
         <PublicationGrid
           list={list}
           buttonLabel={buttonDownload}
+          srLabel={srDownload}
           loadMore={{ doneText }}
         />
       </div>

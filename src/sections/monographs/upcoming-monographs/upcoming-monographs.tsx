@@ -7,8 +7,15 @@ import {
 import data from '@/data/common.json';
 
 export const UpcomingMonographs = () => {
-  const { title, list, button, buttonDownload, redirectionTo, empty } =
-    data.upcomingMonographs;
+  const {
+    title,
+    list,
+    button,
+    buttonDownload,
+    srDownload,
+    redirectionTo,
+    empty,
+  } = data.upcomingMonographs;
 
   return (
     <section
@@ -29,6 +36,7 @@ export const UpcomingMonographs = () => {
           <PublicationGrid
             list={list}
             buttonLabel={buttonDownload}
+            srLabel={srDownload}
             layout="grid-3"
           />
         ) : (

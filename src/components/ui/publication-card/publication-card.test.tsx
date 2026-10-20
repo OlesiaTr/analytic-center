@@ -63,4 +63,19 @@ describe('PublicationCard', () => {
     expect(screen.getByText('2021')).toHaveAttribute('datetime', '2021');
     expect(screen.getByRole('heading', { level: 2 })).toBeVisible();
   });
+
+  it('finishes the button name with the hidden label and title', () => {
+    render(
+      <PublicationCard
+        card={card}
+        buttonLabel="Завантажити"
+        srLabel="інформаційний лист"
+      />,
+    );
+    expect(
+      screen.getByRole('link', {
+        name: `Завантажити інформаційний лист: ${card.title}`,
+      }),
+    ).toBeVisible();
+  });
 });

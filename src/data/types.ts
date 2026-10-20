@@ -31,7 +31,8 @@ export interface UpcomingConferences {
   list: Conference[];
   button: string;
   buttonDownload: string;
-  linkDownload: string;
+  /** Hidden end of the download button, e.g. «інформаційний лист». */
+  srDownload: string;
   redirectionTo: string;
   empty: EmptyCopy;
 }

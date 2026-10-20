@@ -9,7 +9,7 @@ export const metadata: Metadata = meta.library;
 
 const Page = () => (
   <main id="main" tabIndex={-1} className="focus:outline-none">
-    <PageHead title={data.title} />
+    <PageHead title={data.title} lead={data.lead} />
     <section aria-label={data.listLabel} className="sec">
       <div className="wrap">
         <BookCollection />

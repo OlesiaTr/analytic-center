@@ -26,11 +26,11 @@
     "srLabel": "Завантажити",
     "list": [
       {
-        "title": "СТАТУТ ГРОМАДСЬКОЇ ОРГАНІЗАЦІЇ",
+        "title": "Статут громадської організації",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1DYzQiV3sA_l7g7a-AJU1XDZzUEO47PK7"
       },
       {
-        "title": "ПОЛОЖЕННЯ про членство в громадській організації",
+        "title": "Положення про членство в громадській організації",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1kHrF8OScEjQ8ohrpCnaXodATO1TRTQKG"
       },
       {
@@ -38,7 +38,7 @@
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1_kL0Kc14tjo_3sN2sPCtW5wotc_Mf4mj"
       },
       {
-        "title": "ЗАЯВА на вступ до Громадської організації «Аналітичний центр сучасної гуманітаристики»",
+        "title": "Заява на вступ до громадської організації «Аналітичний центр сучасної гуманітаристики»",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1dz-42Xh7j7B3UE_w0c3V34ypVyRKW47T"
       },
       {
@@ -46,9 +46,15 @@
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1YkrcXt_kBXIqVV0FvsNMIdoqYsbX4dJ6"
       },
       {
-        "title": "ЗГОДА НА ОБРОБКУ ПЕРСОНАЛЬНИХ ДАНИХ",
+        "title": "Згода на обробку персональних даних",
         "linkToDownload": "https://docs.google.com/uc?export=download&id=1N67qLIV7abg5l9dceY4gABhih1armJ6t"
       }
     ]
+  },
+  "peopleCount": {
+    "one": "{count} особа",
+    "few": "{count} особи",
+    "many": "{count} осіб",
+    "other": "{count} особи"
   }
 }

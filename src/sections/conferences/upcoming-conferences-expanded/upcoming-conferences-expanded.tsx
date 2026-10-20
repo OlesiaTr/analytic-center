@@ -6,7 +6,7 @@ import { AboutAuthors } from '../about-authors';
 
 export const UpcomingConferencesExpanded = () => {
   const upcoming: UpcomingConferences = commonData.upcomingConferences;
-  const { title, list, linkDownload, empty } = upcoming;
+  const { title, list, buttonDownload, srDownload, empty } = upcoming;
 
   return (
     <section aria-labelledby="upcoming-title" className="sec">
@@ -15,7 +15,8 @@ export const UpcomingConferencesExpanded = () => {
         {list.length ? (
           <PublicationGrid
             list={list}
-            buttonLabel={linkDownload}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
             layout="wide"
           />
         ) : (

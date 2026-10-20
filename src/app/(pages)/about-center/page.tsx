@@ -16,6 +16,7 @@ import {
 } from '@/data/images';
 import meta from '@/data/meta/meta.json';
 import { OrganizationStatute } from '@/sections';
+import { plural } from '@/utils';
 
 export const metadata: Metadata = meta['about-center'];
 
@@ -27,6 +28,7 @@ const Page = () => {
     academicCouncil,
     supervisoryBoard,
     organizationMembers,
+    peopleCount,
   } = data;
 
   const boards: { id: string; title: string; people: Person[] }[] = [
@@ -75,7 +77,11 @@ const Page = () => {
           className="sec"
         >
           <div className="wrap">
-            <SectionHead id={`${board.id}-title`} title={board.title} />
+            <SectionHead
+              id={`${board.id}-title`}
+              title={board.title}
+              sub={plural(board.people.length, peopleCount)}
+            />
             <ul className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-x-6 md:gap-y-8 lg:grid-cols-4 xl:grid-cols-5">
               {board.people.map(person => (
                 <li key={person.name}>

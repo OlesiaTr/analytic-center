@@ -2,7 +2,8 @@ import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
 
 export const UpcomingMonographsExpanded = () => {
-  const { title, list, linkDownload, empty } = commonData.upcomingMonographs;
+  const { title, list, buttonDownload, srDownload, empty } =
+    commonData.upcomingMonographs;
 
   return (
     <section aria-labelledby="upcoming-title" className="sec">
@@ -11,7 +12,8 @@ export const UpcomingMonographsExpanded = () => {
         {list.length ? (
           <PublicationGrid
             list={list}
-            buttonLabel={linkDownload}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
             layout="wide"
           />
         ) : (

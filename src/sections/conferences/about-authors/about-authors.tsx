@@ -1,12 +1,17 @@
 import { DataTable, Panel } from '@/components/ui';
 import data from '@/data/conferences.json';
+import { plural } from '@/utils';
 
 export const AboutAuthors = () => {
-  const { title, sub, columns, list } = data.table;
+  const { title, sub, fieldCount, columns, list } = data.table;
   const [labelHead, valueHead] = columns;
 
   return (
-    <Panel id="authors-form" title={title} sub={sub}>
+    <Panel
+      id="authors-form"
+      title={title}
+      sub={sub.replace('{count}', plural(list.length, fieldCount))}
+    >
       <DataTable
         columns={[labelHead, valueHead]}
         rows={list.map(({ question, answer }) => ({

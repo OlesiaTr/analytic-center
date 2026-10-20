@@ -9,7 +9,15 @@ import type { UpcomingConferences as UpcomingConferencesData } from '@/data/type
 
 export const UpcomingConferences = () => {
   const upcoming: UpcomingConferencesData = data.upcomingConferences;
-  const { title, list, button, linkDownload, redirectionTo, empty } = upcoming;
+  const {
+    title,
+    list,
+    button,
+    buttonDownload,
+    srDownload,
+    redirectionTo,
+    empty,
+  } = upcoming;
 
   return (
     <section aria-labelledby="conferences-title" className="bg-surface sec">
@@ -22,7 +30,8 @@ export const UpcomingConferences = () => {
         {list.length ? (
           <PublicationGrid
             list={list}
-            buttonLabel={linkDownload}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
             layout="wide"
           />
         ) : (

@@ -12,6 +12,8 @@ export type PublicationCardVariant = 'cover' | 'library';
 export interface Props {
   card: Publication & { description?: string };
   buttonLabel: string;
+  /** Hidden words after the label, e.g. «інформаційний лист»; the title follows. */
+  srLabel?: string;
   /** Library scans are often landscape: 4:3 cover, contained on surface. */
   variant?: PublicationCardVariant;
   /** From 1024: a bordered row with a big date (upcoming items). */
@@ -27,6 +29,7 @@ export interface Props {
 export const PublicationCard: FC<Props> = ({
   card,
   buttonLabel,
+  srLabel,
   variant = 'cover',
   wide = false,
   headingLevel: Heading = 'h3',
@@ -49,7 +52,7 @@ export const PublicationCard: FC<Props> = ({
         variant="yellow"
         size="sm"
         icon="download"
-        srText={title}
+        srText={srLabel ? `${srLabel}: ${title}` : title}
         className={clsx('md:w-full', wide && 'lg:w-auto')}
       >
         {buttonLabel}
