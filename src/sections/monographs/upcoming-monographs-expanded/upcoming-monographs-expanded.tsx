@@ -1,27 +1,29 @@
-'use client';
-
-import { SliderCoverCard, WideCoverCard } from '@/components/ui';
-import { VIEWPORT_LG } from '@/constants';
+import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
-import { useViewportSize } from '@/utils';
 
 export const UpcomingMonographsExpanded = () => {
-  const { list, linkDownload, buttonDownload } = commonData.upcomingMonographs;
-  const { width } = useViewportSize();
+  const { title, list, buttonDownload, srDownload, empty } =
+    commonData.upcomingMonographs;
 
   return (
-    <>
-      {width !== null && width < VIEWPORT_LG ? (
-        <SliderCoverCard slidesList={list} buttonDownload={buttonDownload} />
-      ) : (
-        <ul className="flex flex-col gap-20">
-          {list.map(card => (
-            <li key={card.id} className="flex items-start gap-6">
-              <WideCoverCard card={card} linkDownload={linkDownload} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
+    <section aria-labelledby="upcoming-title" className="sec">
+      <div className="wrap">
+        <SectionHead id="upcoming-title" title={title} />
+        {list.length ? (
+          <PublicationGrid
+            list={list}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
+            layout="wide"
+          />
+        ) : (
+          <EmptyState
+            title={empty.title}
+            text={empty.text}
+            link={{ href: empty.href, label: empty.link }}
+          />
+        )}
+      </div>
+    </section>
   );
 };

@@ -1,22 +1,52 @@
-import { ButtonLink, SliderCoverCard, Title } from '@/components/ui';
-
+import {
+  Button,
+  EmptyState,
+  PublicationGrid,
+  SectionHead,
+} from '@/components/ui';
 import data from '@/data/common.json';
 
 export const UpcomingMonographs = () => {
-  const { title, list, button, buttonDownload, redirectionTo } =
-    data.upcomingMonographs;
+  const {
+    title,
+    list,
+    button,
+    buttonDownload,
+    srDownload,
+    redirectionTo,
+    empty,
+  } = data.upcomingMonographs;
 
   return (
-    <section className="section">
-      <Title title={title} />
-
-      <SliderCoverCard slidesList={list} buttonDownload={buttonDownload} />
-
-      <ButtonLink
-        label={button}
-        styles="sm:min-w-[302px] m-auto"
-        href={redirectionTo}
-      />
+    <section
+      aria-labelledby="monographs-title"
+      className="bg-blue-600 sec on-dark"
+    >
+      <div className="wrap">
+        <SectionHead
+          id="monographs-title"
+          title={title}
+          action={
+            <Button href={redirectionTo} variant="yellow">
+              {button}
+            </Button>
+          }
+        />
+        {list.length ? (
+          <PublicationGrid
+            list={list}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
+            layout="grid-3"
+          />
+        ) : (
+          <EmptyState
+            title={empty.title}
+            text={empty.text}
+            link={{ href: empty.href, label: empty.link }}
+          />
+        )}
+      </div>
     </section>
   );
 };

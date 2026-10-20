@@ -1,0 +1,44 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
+import js from '@eslint/js';
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
+import tailwind from 'eslint-plugin-tailwindcss';
+import prettier from 'eslint-config-prettier/flat';
+
+export default defineConfig([
+  globalIgnores([
+    '.next/',
+    'out/',
+    'build/',
+    'coverage/',
+    'public/',
+    'screenshots/',
+    'test-results/',
+    'playwright-report/',
+    'next-env.d.ts',
+  ]),
+  js.configs.recommended,
+  tailwind.configs['flat/recommended'] ?? tailwind.configs.recommended,
+  ...nextCoreWebVitals,
+  ...nextTypescript,
+  prettier,
+  {
+    plugins: { tailwindcss: tailwind },
+    settings: {
+      tailwindcss: { cssConfigPath: './src/styles/globals.css' },
+    },
+    rules: {
+      // prettier-plugin-tailwindcss owns class order
+      'tailwindcss/classnames-order': 'off',
+      // Its --fix turns unitless values like `leading-[1.43]` into invalid
+      // `leading-1.43`; arbitrary values were cleaned up once in PER-7.
+      'tailwindcss/no-unnecessary-arbitrary-value': 'off',
+      // The plugin reads variables passed to clsx() as class names; Tailwind
+      // classes are never camelCase, so those identifiers can be skipped.
+      'tailwindcss/no-custom-classname': [
+        'warn',
+        { whitelist: ['^[a-z]+(?:[A-Z][a-z0-9]*)+$'] },
+      ],
+    },
+  },
+]);

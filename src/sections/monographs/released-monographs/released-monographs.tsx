@@ -1,23 +1,30 @@
-import { CoverCard, Title } from '@/components/ui';
+import { PublicationGrid, SectionHead } from '@/components/ui';
 import data from '@/data/monographs.json';
+import { plural } from '@/utils';
 
 export const ReleasedMonographs = () => {
-  const { title, list, buttonDownload } = data.archivedMonographs;
+  const { title, list, buttonDownload, srDownload, doneText, count } =
+    data.archivedMonographs;
 
   return (
-    <section className="section bg-mainBg">
-      <Title title={title} isWhite />
-
-      <ul className="mb-6 grid grid-cols-1 justify-items-center gap-8 md:mb-16 md:grid-cols-2 md:gap-20 xl:grid-cols-3">
-        {list.map(card => (
-          <li
-            key={card.id}
-            className="flex w-[328px] flex-col justify-between rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
-          >
-            <CoverCard card={card} buttonDownload={buttonDownload} />
-          </li>
-        ))}
-      </ul>
+    <section
+      id="archive"
+      aria-labelledby="archive-title"
+      className="bg-surface sec"
+    >
+      <div className="wrap">
+        <SectionHead
+          id="archive-title"
+          title={title}
+          sub={plural(list.length, count)}
+        />
+        <PublicationGrid
+          list={list}
+          buttonLabel={buttonDownload}
+          srLabel={srDownload}
+          loadMore={{ doneText }}
+        />
+      </div>
     </section>
   );
 };

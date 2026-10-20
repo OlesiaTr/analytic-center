@@ -1,44 +1,35 @@
-'use client';
-
-import { CoverCard, WideCoverCard } from '@/components/ui';
-import { VIEWPORT_LG } from '@/constants';
+import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
-import { useViewportSize } from '@/utils';
-import { Conference } from '../types';
+import type { UpcomingConferences } from '@/data/types';
+
+import { AboutAuthors } from '../about-authors';
 
 export const UpcomingConferencesExpanded = () => {
-  const { list, linkDownload, buttonDownload } =
-    commonData.upcomingConferences as {
-      list: Conference[];
-      linkDownload: string;
-      buttonDownload: string;
-    };
-  const { width } = useViewportSize();
-
-  if (!list.length) return null;
+  const upcoming: UpcomingConferences = commonData.upcomingConferences;
+  const { title, list, buttonDownload, srDownload, empty } = upcoming;
 
   return (
-    <>
-      {width !== null && width < VIEWPORT_LG ? (
-        <ul className="mb-6 grid grid-cols-1 justify-items-center gap-8 md:mb-16 md:grid-cols-2 md:gap-20 xl:grid-cols-3">
-          {list.map(card => (
-            <li
-              key={card.id}
-              className="flex w-[328px] flex-col justify-between rounded-lg bg-white shadow md:w-[346px] lg:w-[374px]"
-            >
-              <CoverCard card={card} buttonDownload={buttonDownload} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <ul className="flex flex-col gap-20">
-          {list.map(card => (
-            <li key={card.id} className="flex items-start gap-6">
-              <WideCoverCard card={card} linkDownload={linkDownload} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
+    <section aria-labelledby="upcoming-title" className="sec">
+      <div className="wrap">
+        <SectionHead id="upcoming-title" title={title} />
+        {list.length ? (
+          <PublicationGrid
+            list={list}
+            buttonLabel={buttonDownload}
+            srLabel={srDownload}
+            layout="wide"
+          />
+        ) : (
+          <EmptyState
+            title={empty.title}
+            text={empty.text}
+            link={{ href: empty.href, label: empty.link }}
+          />
+        )}
+        <div className="mt-10">
+          <AboutAuthors />
+        </div>
+      </div>
+    </section>
   );
 };

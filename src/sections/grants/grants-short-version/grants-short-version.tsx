@@ -1,21 +1,21 @@
-import { ButtonLink, GrantList, Title } from '@/components/ui';
-
+import { Button, SectionHead } from '@/components/ui';
 import data from '@/data/common.json';
 
+import { GrantGroups } from '../grant-groups';
+
 export const GrantsShortVersion = () => {
-  const { title, list, button, redirectionTo } = data.grants;
+  const { title, button, redirectionTo } = data.grants;
 
   return (
-    <section className="section bg-accent">
-      <Title title={title} />
-
-      <GrantList list={list} />
-
-      <ButtonLink
-        label={button}
-        styles="sm:min-w-[302px] m-auto"
-        href={redirectionTo}
-      />
+    <section aria-labelledby="grants-title" className="sec">
+      <div className="wrap">
+        <SectionHead
+          id="grants-title"
+          title={title}
+          action={<Button href={redirectionTo}>{button}</Button>}
+        />
+        <GrantGroups />
+      </div>
     </section>
   );
 };

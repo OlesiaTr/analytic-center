@@ -1,28 +1,17 @@
-import React, { FC } from 'react';
 import type { Metadata } from 'next';
 
-import { Title } from '@/components/ui';
-import { SourceDescription } from '@/sections';
-
-import data from '@/data/useful-info.json';
+import { PageHead } from '@/components/ui';
 import meta from '@/data/meta/meta.json';
-
-export interface Props {}
+import data from '@/data/useful-info.json';
+import { SourceDescription } from '@/sections';
 
 export const metadata: Metadata = meta['useful-info'];
 
-const Page: FC<Props> = () => {
-  const { title } = data;
-
-  return (
-    <main>
-      <section className="section">
-        <Title title={title} />
-
-        <SourceDescription />
-      </section>
-    </main>
-  );
-};
+const Page = () => (
+  <main id="main" tabIndex={-1} className="focus:outline-none">
+    <PageHead title={data.title} lead={data.lead} />
+    <SourceDescription />
+  </main>
+);
 
 export default Page;

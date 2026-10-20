@@ -1,25 +1,15 @@
+import { DocumentList, SectionHead } from '@/components/ui';
 import data from '@/data/about-center.json';
 
 export const OrganizationStatute = () => {
-  const { list } = data.organizationStatute;
+  const { title, button, srLabel, list } = data.organizationStatute;
 
   return (
-    <section className="section bg-accent">
-      <ul className="mb-6 flex flex-col gap-8 md:mb-10 lg:mb-16">
-        {list.map(({ title, linkToDownload }, id) => (
-          <li key={id} className="group flex rounded-lg bg-white transition">
-            <a
-              href={linkToDownload}
-              className="flex w-full cursor-pointer rounded-lg px-4 py-5 md:py-7"
-              download={title}
-            >
-              <h3 className="text-sm font-bold uppercase text-chocolate group-hover:text-mainBgDark sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px] ">
-                {title}
-              </h3>
-            </a>
-          </li>
-        ))}
-      </ul>
+    <section aria-labelledby="statute-title" className="bg-surface sec">
+      <div className="wrap">
+        <SectionHead id="statute-title" title={title} />
+        <DocumentList list={list} buttonLabel={button} srLabel={srLabel} />
+      </div>
     </section>
   );
 };

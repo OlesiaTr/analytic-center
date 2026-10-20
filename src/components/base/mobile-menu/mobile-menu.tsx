@@ -1,34 +1,69 @@
 'use client';
 
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { FC, useEffect, useRef } from 'react';
 
 import { LINKS } from '@/constants';
+import data from '@/data/common.json';
 
 export interface Props {
-  closeModal: Dispatch<SetStateAction<boolean>>;
+  id: string;
+  label: string;
+  closeModal: () => void;
 }
 
-export const MobileMenu: FC<Props> = ({ closeModal }) => {
+/** Full-height blue-800 panel below the header, 56 px rows, contacts at the bottom. */
+export const MobileMenu: FC<Props> = ({ id, label, closeModal }) => {
+  const firstLink = useRef<HTMLAnchorElement>(null);
+  const pathname = usePathname();
+  const { contacts } = data.footer;
+
+  // Move focus into the menu when it opens.
+  useEffect(() => firstLink.current?.focus(), []);
+
   return (
-    <div className="fixed w-full transition lg:hidden">
-      <div className="rounded-b-[40px] bg-headerBg px-4 py-6 md:px-20">
-        <ul className="flex flex-col gap-4">
-          {LINKS.map(({ name, linkTo }, id) => (
-            <li
-              key={id}
-              className="cursor-pointer"
-              onClick={() => closeModal(false)}
-            >
-              <a
-                href={linkTo}
-                className="text-xl font-medium leading-normal text-white transition hover:text-accent active:text-accentLight"
-              >
-                {name}
-              </a>
-            </li>
-          ))}
+    <nav
+      id={id}
+      aria-label={label}
+      className="min-h-[calc(100dvh-64px)] overflow-y-auto border-t border-white/16 bg-blue-800 pt-2 pb-8 lg:hidden"
+    >
+      <div className="wrap">
+        <ul>
+          {LINKS.map(({ name, linkTo }, index) => {
+            const current = pathname === linkTo;
+            return (
+              <li key={linkTo}>
+                <Link
+                  ref={index === 0 ? firstLink : undefined}
+                  href={linkTo}
+                  aria-current={current ? 'page' : undefined}
+                  onClick={closeModal}
+                  className={clsx(
+                    'flex min-h-14 items-center gap-3 border-b border-white/16 px-1 text-xl font-semibold no-underline hover:text-yellow-400',
+                    current
+                      ? 'text-yellow-400 before:h-6 before:w-1 before:rounded-sm before:bg-yellow-400'
+                      : 'text-white',
+                  )}
+                >
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
+
+        <div className="mt-8 flex flex-col gap-3 t-sm text-on-dark-muted">
+          <span className="t-over text-yellow-400">{contacts.title}</span>
+          <a href={`tel:${contacts.phone}`} className="text-white">
+            {contacts.phoneLabel}
+          </a>
+          <a href={`mailto:${contacts.email}`} className="text-white">
+            {contacts.email}
+          </a>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };

@@ -1,32 +1,29 @@
-'use client';
-
-import clsx from 'clsx';
-import { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
-
-import { Table } from '@/components/ui';
-
+import { DataTable, Panel } from '@/components/ui';
 import data from '@/data/conferences.json';
+import { plural } from '@/utils';
 
 export const AboutAuthors = () => {
-  const [active, setActive] = useState<boolean>(true);
-  const { title, list } = data.table;
+  const { title, sub, fieldCount, columns, list } = data.table;
+  const [labelHead, valueHead] = columns;
 
   return (
-    <section className="section">
-      <div
-        className=" flex cursor-pointer justify-between rounded-lg bg-accent px-4 py-5 transition md:py-7 "
-        onClick={() => setActive(!active)}
-      >
-        <h3 className="max-w-64 text-sm font-bold uppercase text-chocolate sm:max-w-[362px] md:max-w-full md:text-base lg:text-xl xl:text-[28px]">
-          {title}
-        </h3>
-
-        <ChevronDownIcon
-          className={clsx('size-6 min-w-6 transition', active && 'rotate-180')}
-        />
-      </div>
-      {active && <Table table={list} />}
-    </section>
+    <Panel
+      id="authors-form"
+      title={title}
+      sub={sub.replace('{count}', plural(list.length, fieldCount))}
+    >
+      <DataTable
+        columns={[labelHead, valueHead]}
+        rows={list.map(({ question, answer }) => ({
+          key: question,
+          label: question,
+          value: (
+            <span className="block min-h-10 rounded-md border-[1.5px] border-dashed border-line-strong px-3 py-2 t-sm text-muted italic">
+              {answer}
+            </span>
+          ),
+        }))}
+      />
+    </Panel>
   );
 };

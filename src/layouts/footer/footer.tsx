@@ -1,66 +1,65 @@
-import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
+import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
-import { Navigation } from '@/components/ui';
 import { LINKS } from '@/constants';
-
 import data from '@/data/common.json';
 
+const footerLink =
+  'inline-flex min-h-9 items-center gap-2.5 font-medium text-white no-underline hover:text-yellow-400 hover:underline hover:underline-offset-3';
+
 export const Footer = () => {
-  const { name, contacts, copyrights } = data.footer;
+  const { name, navTitle, navLabel, contacts, rights } = data.footer;
 
   return (
-    <footer className="m-auto flex max-w-screen-xxl justify-between bg-footerBg p-4 text-white md:px-14 lg:py-20 xl:p-20">
-      <div className="hidden max-w-[277px] lg:block">
-        <a href={LINKS[0].linkTo}>
-          <Logo width={190} height={134} />
-        </a>
+    <footer className="bg-navy-900 on-dark text-on-dark-muted">
+      <div className="wrap grid gap-10 py-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)] md:py-16">
+        <Link
+          href={LINKS[0].linkTo}
+          aria-label={data.header.logoLabel}
+          className="flex max-w-[360px] items-center gap-4 self-start font-bold text-white no-underline"
+        >
+          <Logo className="h-14 w-auto flex-none" />
+          <span aria-hidden>{name}</span>
+        </Link>
 
-        <p className="mt-12  text-lg font-bold leading-snug tracking-[0.5px] ">
-          {name}
-        </p>
+        <nav aria-label={navLabel}>
+          <h2 className="mb-4 t-over text-yellow-400">{navTitle}</h2>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-1">
+            {LINKS.map(({ name: label, linkTo }) => (
+              <li key={linkTo}>
+                <Link href={linkTo} className={footerLink}>
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className="mb-4 t-over text-yellow-400">{contacts.title}</h2>
+          <ul className="grid gap-1">
+            <li>
+              <a href={`tel:${contacts.phone}`} className={footerLink}>
+                <Icon name="phone" />
+                {contacts.phoneLabel}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${contacts.email}`} className={footerLink}>
+                <Icon name="mail" />
+                {contacts.email}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div className="m-auto flex items-center gap-9 sm:gap-[74px] lg:m-0 lg:flex-col lg:gap-0">
-        <div className="hidden sm:block">
-          <Navigation
-            links={LINKS}
-            linkStyles="!py-1 lg:!pt-0 lg:!pb-[46px]"
-            listStyles="flex-col lg:flex-row"
-          />
-        </div>
-
-        <div className="flex min-h-[120px] flex-col justify-between sm:min-h-[190px]  lg:block lg:min-h-full">
-          <div className="lg:flex lg:justify-center">
-            <address className="not-italic tracking-[0.5px] lg:mb-[52px]">
-              <p className="mb-3 text-sm font-semibold sm:text-base sm:font-bold">
-                {contacts.title}
-              </p>
-
-              <ul className="font-medium">
-                <li className="flex items-center gap-2 text-xs font-semibold transition hover:text-accent active:text-accentLight sm:text-base sm:font-bold">
-                  <PhoneIcon className="size-5" />
-                  <a href={`tel:+${contacts.phone}`}>{'+' + contacts.phone}</a>
-                </li>
-
-                <li className="flex items-center gap-2 text-xs font-semibold transition hover:text-accent active:text-accentLight sm:text-base sm:font-bold">
-                  <EnvelopeIcon className="size-5" />
-                  <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
-                </li>
-              </ul>
-            </address>
-          </div>
-
-          <div className="flex items-center gap-2 lg:block">
-            <div className="lg:hidden">
-              <Logo width={38} height={27} />
-            </div>
-
-            <p className="max-w-[90px] text-center text-[3px] font-medium leading-loose md:max-w-[250px] md:text-xs md:leading-snug lg:max-w-full">
-              {copyrights}
-            </p>
-          </div>
-        </div>
+      <div className="border-t border-white/14 py-5 text-[13px] leading-5">
+        {/* Year comes from the build, not hard-coded */}
+        <p className="wrap">
+          © {new Date().getFullYear()} {name}. {rights}
+        </p>
       </div>
     </footer>
   );

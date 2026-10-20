@@ -1,128 +1,303 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-.section {
-  @apply mx-auto flex max-w-screen-xxl flex-col px-4 py-9  md:px-14 md:pb-14 xl:py-[76px] xxl:px-20;
-}
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1440px;
 
-.active {
-  @apply inline-flex;
-}
+  --default-transition-duration: 300ms;
 
-.grant {
-  border-radius: 8px;
-  border-bottom: 1px solid #afbaca;
-  background: #f9fafb;
-}
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-/* ICONS */
-.icon-option-one:hover {
-  svg:hover path {
-    fill: rgba(68, 127, 172, 0.82);
-  }
+  /* ACMHS design system (https://claude.ai/artifact/Fyoz7cCtsUjiqUH6rqcD5K).
+     Contrast pairs are documented there; keep text pairs at ≥ 4.5:1. */
+  --color-blue-50: #e6f0f8;
+  --color-blue-400: #4a98d4; /* decoration only, never text or hover fill */
+  --color-blue-600: #0065b2;
+  --color-blue-800: #043b65;
+  --color-navy-900: #0e2b42;
+  --color-yellow-300: #f9da66;
+  --color-yellow-400: #fbcd21; /* never text on white */
+  --color-yellow-600: #dfb107;
+  --color-brown-900: #442103;
+  --color-ink: #0e2b42;
+  --color-text: #565656;
+  --color-muted: #5e6a77;
+  --color-line: #d3dce6;
+  --color-line-strong: #7a8896;
+  --color-surface: #f4f7fa;
+  --color-white: #ffffff;
+  --color-on-dark-muted: #c9d6e2;
+  --color-switch-border: #8fb3d3;
 
-  svg:hover rect {
-    stroke: rgba(68, 127, 172, 0.82);
-  }
-}
+  /* Radii: the system's r-sm/md/lg (6/8/12) are Tailwind's rounded-md/lg/xl */
 
-/* HERO START */
-.hero {
-  background-image: url('/images/hero-tab.webp');
-  background-repeat: no-repeat;
-  background-position: right 25% top 0;
-  background-size:
-    720px 100%,
-    cover;
-}
+  --shadow-sh-1:
+    0 1px 2px rgba(14, 43, 66, 0.06), 0 2px 8px rgba(14, 43, 66, 0.06);
+  --shadow-sh-2:
+    0 2px 4px rgba(14, 43, 66, 0.06), 0 10px 24px rgba(14, 43, 66, 0.12);
 
-@media (min-width: 375px) {
-  .hero {
-    background-size:
-      780px 110%,
-      cover;
-  }
-}
+  --container-page: 1312px;
 
-@media (min-width: 425px) {
-  .hero {
-    background-size:
-      800px 110%,
-      cover;
-  }
-}
-
-@media (min-width: 480px) {
-  .hero {
-    background-size:
-      900px 110%,
-      cover;
+  --animate-skel: skel 1.4s ease-in-out infinite;
+  @keyframes skel {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -100% 0;
+    }
   }
 }
 
-@media (min-width: 768px) {
-  .hero {
-    background-size:
-      1010px 630px,
-      cover;
-    background-position: top 0 right 30%;
-    background-image: url('/images/hero-tab.webp');
+@theme inline {
+  /* next/font sets these variables on <html> */
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-serif: var(--font-literata), Georgia, serif;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-@media (min-width: 1046px) {
-  .hero {
-    background-size:
-      1250px 760px,
-      cover;
+/* ------------------------------------------------------------------ */
+/* ACMHS design system: base, type scale, layout                       */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  body {
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  /* 3 px ring, 3 px offset: blue on light grounds, yellow inside .on-dark */
+  :focus-visible {
+    outline: 3px solid var(--focus, var(--color-blue-600));
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-@media (min-width: 1280px) {
-  .hero {
-    background-size:
-      1360px 100%,
-      cover;
-    background-position: center top 0;
+@utility on-dark {
+  --focus: var(--color-yellow-400);
+  color: var(--color-white);
+}
+
+/* Type scale: mobile → md (768) → lg (1024), values from tokens.json */
+@utility t-display {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  @variant md {
+    font-size: 44px;
+    line-height: 52px;
+  }
+  @variant lg {
+    font-size: 56px;
+    line-height: 64px;
   }
 }
 
-/* HERO END */
-
-/* --------------------------------------------------------------- */
-
-/* SWIPER START */
-
-.swiper-button-prev {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 41' fill='none'%3E%3Cpath d='M22 34.7857L8.25 20.5L22 6.21429L19.25 0.5L0 20.5L19.25 40.5L22 34.7857Z' fill='%23565656'/%3E%3C/svg%3E");
-}
-
-.swiper-button-next {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40' fill='none'%3E%3Cpath d='M0 5.71429L13.75 20L0 34.2857L2.75 40L22 20L2.75 0L0 5.71429Z' fill='%23565656'/%3E%3C/svg%3E");
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  height: 18px !important;
-  width: 9px !important;
-}
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  color: #565656;
-  content: ' ' !important;
-}
-
-@media (min-width: 480px) {
-  .swiper-button-prev,
-  .swiper-button-next {
-    height: 40px !important;
-    width: 22px !important;
+@utility t-h1 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  .on-dark & {
+    color: var(--color-white);
+  }
+  @variant md {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  @variant lg {
+    font-size: 44px;
+    line-height: 52px;
   }
 }
 
-/* SWIPER END */
+@utility t-h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--color-ink);
+  .on-dark & {
+    color: var(--color-white);
+  }
+  @variant md {
+    font-size: 30px;
+    line-height: 38px;
+  }
+  @variant lg {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+
+@utility t-h3 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--color-ink);
+  .on-dark & {
+    color: var(--color-white);
+  }
+  @variant lg {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+@utility t-h4 {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-ink);
+  .on-dark & {
+    color: var(--color-white);
+  }
+  @variant lg {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+
+@utility t-lead {
+  font-size: 17px;
+  line-height: 28px;
+  @variant lg {
+    font-size: 19px;
+    line-height: 30px;
+  }
+}
+
+@utility t-sm {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@utility t-xs {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* The only uppercase style */
+@utility t-over {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Literata, only for paragraphs longer than ~3 lines */
+@utility prose {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 29px;
+  color: var(--color-text);
+  & p + p {
+    margin-top: 16px;
+  }
+  & :is(b, strong) {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  @variant lg {
+    font-size: 18px;
+    line-height: 30px;
+  }
+}
+
+/* Layout */
+@utility wrap {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: 16px;
+  @variant md {
+    padding-inline: 32px;
+  }
+  @variant lg {
+    padding-inline: 48px;
+  }
+  @variant xl {
+    padding-inline: 56px;
+  }
+}
+
+@utility sec {
+  padding-block: 56px;
+  @variant md {
+    padding-block: 72px;
+  }
+  @variant lg {
+    padding-block: 96px;
+  }
+}
+
+/* Section and page titles: 48×4 yellow bar above */
+@utility sec-title {
+  &::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    background: var(--color-yellow-400);
+  }
+}
+
+/* Home hero: navy scrim over the cover mosaic; text sits on the solid side */
+@utility hero-scrim {
+  background: linear-gradient(
+    180deg,
+    rgb(14 43 66 / 0.35) 0%,
+    rgb(14 43 66 / 0.85) 38%,
+    var(--color-navy-900) 62%
+  );
+  @variant md {
+    background: linear-gradient(
+      90deg,
+      var(--color-navy-900) 0%,
+      rgb(14 43 66 / 0.97) 45%,
+      rgb(4 59 101 / 0.7) 66%,
+      rgb(4 59 101 / 0.25) 88%,
+      rgb(4 59 101 / 0.1) 100%
+    );
+  }
+  @variant lg {
+    background: linear-gradient(
+      90deg,
+      var(--color-navy-900) 0%,
+      rgb(14 43 66 / 0.97) 40%,
+      rgb(4 59 101 / 0.7) 62%,
+      rgb(4 59 101 / 0.25) 85%,
+      rgb(4 59 101 / 0.1) 100%
+    );
+  }
+}

@@ -36,3 +36,13 @@ yarn-error.log*
 next-env.d.ts
 .history/
 .env*
+
+# claude code
+.claude/settings.local.json
+
+# visual-check output (baseline regenerated locally, ~50 MB)
+/screenshots/
+
+# playwright
+/test-results/
+/playwright-report/
