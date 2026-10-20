@@ -23,6 +23,7 @@ export default defineConfig([
   ...nextTypescript,
   prettier,
   {
+    plugins: { tailwindcss: tailwind },
     settings: {
       tailwindcss: { cssConfigPath: './src/styles/globals.css' },
     },
@@ -32,6 +33,12 @@ export default defineConfig([
       // Its --fix turns unitless values like `leading-[1.43]` into invalid
       // `leading-1.43`; arbitrary values were cleaned up once in PER-7.
       'tailwindcss/no-unnecessary-arbitrary-value': 'off',
+      // The plugin reads variables passed to clsx() as class names; Tailwind
+      // classes are never camelCase, so those identifiers can be skipped.
+      'tailwindcss/no-custom-classname': [
+        'warn',
+        { whitelist: ['^[a-z]+(?:[A-Z][a-z0-9]*)+$'] },
+      ],
     },
   },
 ]);

@@ -57,6 +57,16 @@
     0 2px 4px rgba(14, 43, 66, 0.06), 0 10px 24px rgba(14, 43, 66, 0.12);
 
   --container-page: 1312px;
+
+  --animate-skel: skel 1.4s ease-in-out infinite;
+  @keyframes skel {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -100% 0;
+    }
+  }
 }
 
 @theme inline {
