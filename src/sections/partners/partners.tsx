@@ -22,8 +22,9 @@ export const Partners = async () => {
           alt={name}
           width={width}
           height={height}
-          sizes="200px"
-          className="max-h-24 w-auto max-w-full object-contain"
+          // Fill the tile's inner box: the files differ in size and padding.
+          sizes="(min-width: 1024px) 220px, (min-width: 768px) 30vw, 45vw"
+          className="size-full object-contain"
         />{' '}
         <span className="sr-only">{data.a11y.newTab}</span>
       </a>
