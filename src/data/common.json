@@ -229,5 +229,10 @@
     "researchgate": "ResearchGate",
     "scopus": "Scopus",
     "wos": "Web of Science"
+  },
+  "libraryKinds": {
+    "textbook": "Підручник",
+    "studyGuide": "Навчальний посібник",
+    "monograph": "Монографія"
   }
 }

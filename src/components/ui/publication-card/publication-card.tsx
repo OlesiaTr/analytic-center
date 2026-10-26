@@ -101,6 +101,8 @@ export const PublicationCard: FC<Props> = ({
           alt=""
           width={width}
           height={height}
+          // 96px row below 768, a grid column from 768, 168px in the wide list.
+          sizes="(min-width: 1024px) 300px, (min-width: 768px) 33vw, 96px"
           className={clsx(
             'size-full',
             variant === 'library' ? 'object-contain' : 'object-cover',

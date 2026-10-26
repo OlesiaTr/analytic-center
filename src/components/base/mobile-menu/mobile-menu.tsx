@@ -7,18 +7,20 @@ import { FC, useEffect, useRef } from 'react';
 
 import { LINKS } from '@/constants';
 import data from '@/data/common.json';
+import type { Contacts } from '@/lib/sanity/contacts';
 
 export interface Props {
   id: string;
   label: string;
   closeModal: () => void;
+  contacts: Contacts;
 }
 
 /** Full-height blue-800 panel below the header, 56 px rows, contacts at the bottom. */
-export const MobileMenu: FC<Props> = ({ id, label, closeModal }) => {
+export const MobileMenu: FC<Props> = ({ id, label, closeModal, contacts }) => {
   const firstLink = useRef<HTMLAnchorElement>(null);
   const pathname = usePathname();
-  const { contacts } = data.footer;
+  const { title } = data.footer.contacts;
 
   // Move focus into the menu when it opens.
   useEffect(() => firstLink.current?.focus(), []);
@@ -55,7 +57,7 @@ export const MobileMenu: FC<Props> = ({ id, label, closeModal }) => {
         </ul>
 
         <div className="mt-8 flex flex-col gap-3 t-sm text-on-dark-muted">
-          <span className="t-over text-yellow-400">{contacts.title}</span>
+          <span className="t-over text-yellow-400">{title}</span>
           <a href={`tel:${contacts.phone}`} className="text-white">
             {contacts.phoneLabel}
           </a>

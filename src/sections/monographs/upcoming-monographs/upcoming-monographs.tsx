@@ -5,17 +5,12 @@ import {
   SectionHead,
 } from '@/components/ui';
 import data from '@/data/common.json';
+import { getUpcomingMonographs } from '@/lib/sanity/content';
 
-export const UpcomingMonographs = () => {
-  const {
-    title,
-    list,
-    button,
-    buttonDownload,
-    srDownload,
-    redirectionTo,
-    empty,
-  } = data.upcomingMonographs;
+export const UpcomingMonographs = async () => {
+  const list = await getUpcomingMonographs();
+  const { title, button, buttonDownload, srDownload, redirectionTo, empty } =
+    data.upcomingMonographs;
 
   return (
     <section

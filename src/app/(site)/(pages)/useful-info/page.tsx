@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
 
 import { PageHead } from '@/components/ui';
-import meta from '@/data/meta/meta.json';
-import data from '@/data/useful-info.json';
+import { getPage } from '@/lib/sanity/content';
+import { pageMetadata } from '@/lib/sanity/metadata';
 import { SourceDescription } from '@/sections';
 
-export const metadata: Metadata = meta['useful-info'];
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMetadata('usefulInfoPage', '/useful-info');
 
-const Page = () => (
-  <main id="main" tabIndex={-1} className="focus:outline-none">
-    <PageHead title={data.title} lead={data.lead} />
-    <SourceDescription />
-  </main>
-);
+const Page = async () => {
+  const page = await getPage('usefulInfoPage');
+  return (
+    <main id="main" tabIndex={-1} className="focus:outline-none">
+      <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
+      <SourceDescription />
+    </main>
+  );
+};
 
 export default Page;

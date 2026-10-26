@@ -246,8 +246,31 @@ export type SiteSettings = {
     title?: LocaleString;
     description?: LocaleText;
     keywords?: Array<string>;
-    ogImage?: Cover;
+    ogImage?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: LocaleString;
+      _type: 'image';
+    };
   };
+};
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop';
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot';
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type News = {
@@ -266,22 +289,6 @@ export type News = {
     _type: 'image';
   };
   href?: string;
-};
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop';
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type Partner = {
@@ -515,9 +522,9 @@ export type AllSanitySchemaTypes =
   | LocaleBlock
   | HomePage
   | SiteSettings
-  | News
   | SanityImageCrop
   | SanityImageHotspot
+  | News
   | Partner
   | Person
   | GrantGroup
@@ -533,3 +540,358 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint
   | Slug;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: upcomingConferencesQuery
+// Query: *[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type UpcomingConferencesQueryResult = Array<{
+  id: string;
+  title: string | null;
+  description: string | null;
+  date: string;
+  linkToDownload: string | null;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: archivedConferencesQuery
+// Query: *[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type ArchivedConferencesQueryResult = Array<{
+  id: string;
+  title: string | null;
+  description: string | null;
+  date: string;
+  linkToDownload: string;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: upcomingMonographsQuery
+// Query: *[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": title.uk, date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type UpcomingMonographsQueryResult = Array<{
+  id: string;
+  title: string | null;
+  date: string;
+  linkToDownload: string | null;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: archivedMonographsQuery
+// Query: *[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": title.uk, date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type ArchivedMonographsQueryResult = Array<{
+  id: string;
+  title: string | null;
+  date: string;
+  linkToDownload: string;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: libraryQuery
+// Query: *[_type == "libraryItem"] | order(order asc){ "id": _id, "title": title.uk, "authors": authors.uk, kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type LibraryQueryResult = Array<{
+  id: string;
+  title: string | null;
+  authors: string | null;
+  kind: 'monograph' | 'studyGuide' | 'textbook';
+  year: number;
+  linkToDownload: string;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: heroCoversQuery
+// Query: *[_type in ["conference", "monograph"] && defined(cover.asset)] | order(date desc)[0...20]{ "image": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+export type HeroCoversQueryResult = Array<{
+  image: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: partnersQuery
+// Query: *[_type == "partner"] | order(order asc){ "name": name.uk, href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }
+export type PartnersQueryResult = Array<{
+  name: string | null;
+  href: string;
+  image: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: newsQuery
+// Query: *[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": text.uk, date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }
+export type NewsQueryResult = Array<{
+  id: string;
+  text: string | null;
+  date: string;
+  href: string | null;
+  imgSrc: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: grantGroupsQuery
+// Query: *[_type == "grantGroup"] | order(order asc){ "id": _id, "title": title.uk, "programs": programs[]{ "title": title.uk, "description": description.uk, "points": points[].uk, "deadline": deadline.uk, link } }
+export type GrantGroupsQueryResult = Array<{
+  id: string;
+  title: string | null;
+  programs: Array<{
+    title: string | null;
+    description: string | null;
+    points: Array<string | null> | null;
+    deadline: string | null;
+    link: string;
+  }> | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: peopleQuery
+// Query: *[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": name.uk, "position": position.uk, profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }
+export type PeopleQueryResult = Array<{
+  id: string;
+  name: string | null;
+  position: string | null;
+  profiles: {
+    linkedin?: string;
+    googlescholar?: string;
+    naukovci?: string;
+    orcid?: string;
+    researchgate?: string;
+    scopus?: string;
+    wos?: string;
+  } | null;
+  image: string | null;
+  width: number | null;
+  height: number | null;
+}>;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: siteSettingsQuery
+// Query: *[_id == "siteSettings"][0]{ "name": name.uk, contacts, "seo": seo{ "title": title.uk, "description": description.uk, keywords, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt.uk } }
+export type SiteSettingsQueryResult =
+  | {
+      name: null;
+      contacts: null;
+      seo: null;
+    }
+  | {
+      name: null;
+      contacts: null;
+      seo: {
+        title: string | null;
+        description: string | null;
+        keywords: null;
+        ogImage: null;
+        ogImageAlt: null;
+      } | null;
+    }
+  | {
+      name: string | null;
+      contacts: null;
+      seo: null;
+    }
+  | {
+      name: string | null;
+      contacts: {
+        email?: string;
+        phone?: string;
+        phoneLabel?: string;
+      } | null;
+      seo: {
+        title: string | null;
+        description: string | null;
+        keywords: Array<string> | null;
+        ogImage: string | null;
+        ogImageAlt: string | null;
+      } | null;
+    }
+  | null;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: homePageQuery
+// Query: *[_id == "homePage"][0]{ "hero": hero{ "overline": overline.uk, "heading": heading.uk, "text": text.uk }, "about": about{ "text": text.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk } }
+export type HomePageQueryResult =
+  | {
+      hero: null;
+      about: null;
+    }
+  | {
+      hero: {
+        overline: string | null;
+        heading: string | null;
+        text: string | null;
+      } | null;
+      about: {
+        text: string | null;
+        imgSrc: string | null;
+        width: number | null;
+        height: number | null;
+        imgAlt: string | null;
+      } | null;
+    }
+  | null;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: pageQuery
+// Query: *[_id == $id][0]{ "title": title.uk, "lead": lead.uk, "seo": seo{ "title": title.uk, "description": description.uk } }
+export type PageQueryResult =
+  | {
+      title: null;
+      lead: null;
+      seo: null;
+    }
+  | {
+      title: string | null;
+      lead: null;
+      seo: null;
+    }
+  | {
+      title: null;
+      lead: null;
+      seo: {
+        title: string | null;
+        description: string | null;
+      } | null;
+    }
+  | {
+      title: string | null;
+      lead: string | null;
+      seo: {
+        title: string | null;
+        description: string | null;
+      } | null;
+    }
+  | null;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: conferencesPageQuery
+// Query: *[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": title.uk, "sub": sub.uk, "fields": fields[].uk } }
+export type ConferencesPageQueryResult =
+  | {
+      authorsForm: null;
+    }
+  | {
+      authorsForm: {
+        title: string | null;
+        sub: string | null;
+        fields: Array<string | null> | null;
+      } | null;
+    }
+  | null;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: aboutPageQuery
+// Query: *[_id == "aboutPage"][0]{ "intro": intro.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk, "statute": statute[]{ "title": title.uk, "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": council.uk, "supervisory": supervisory.uk, "member": member.uk } }
+export type AboutPageQueryResult =
+  | {
+      intro: null;
+      imgSrc: null;
+      width: null;
+      height: null;
+      imgAlt: null;
+      statute: null;
+      boardTitles: null;
+    }
+  | {
+      intro: null;
+      imgSrc: string | null;
+      width: number | null;
+      height: number | null;
+      imgAlt: null;
+      statute: null;
+      boardTitles: null;
+    }
+  | {
+      intro: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: 'span';
+          _key: string;
+        }>;
+        style?: 'normal';
+        listItem?: never;
+        markDefs?: Array<{
+          href?: string;
+          _type: 'link';
+          _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+      }> | null;
+      imgSrc: string | null;
+      width: number | null;
+      height: number | null;
+      imgAlt: string | null;
+      statute: Array<{
+        title: string | null;
+        linkToDownload: string;
+      }> | null;
+      boardTitles: {
+        council: string | null;
+        supervisory: string | null;
+        member: string | null;
+      } | null;
+    }
+  | null;
+
+// Source: src/lib/sanity/queries.ts
+// Variable: usefulInfoPageQuery
+// Query: *[_id == "usefulInfoPage"][0]{ "table": table{ "caption": caption.uk, "rows": rows[]{ "group": group.uk, "type": type.uk, "example": example.uk }, "footnote": footnote.uk } }
+export type UsefulInfoPageQueryResult =
+  | {
+      table: null;
+    }
+  | {
+      table: {
+        caption: string | null;
+        rows: Array<{
+          group: string | null;
+          type: string | null;
+          example: string | null;
+        }> | null;
+        footnote: string | null;
+      } | null;
+    }
+  | null;
+
+// Query TypeMap
+declare global {
+  interface SanityQueries {
+    '*[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingConferencesQueryResult;
+    '*[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedConferencesQueryResult;
+    '*[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": title.uk, date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingMonographsQueryResult;
+    '*[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": title.uk, date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedMonographsQueryResult;
+    '*[_type == "libraryItem"] | order(order asc){ "id": _id, "title": title.uk, "authors": authors.uk, kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': LibraryQueryResult;
+    '*[_type in ["conference", "monograph"] && defined(cover.asset)] | order(date desc)[0...20]{ "image": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': HeroCoversQueryResult;
+    '*[_type == "partner"] | order(order asc){ "name": name.uk, href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }': PartnersQueryResult;
+    '*[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": text.uk, date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }': NewsQueryResult;
+    '*[_type == "grantGroup"] | order(order asc){ "id": _id, "title": title.uk, "programs": programs[]{ "title": title.uk, "description": description.uk, "points": points[].uk, "deadline": deadline.uk, link } }': GrantGroupsQueryResult;
+    '*[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": name.uk, "position": position.uk, profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }': PeopleQueryResult;
+    '*[_id == "siteSettings"][0]{ "name": name.uk, contacts, "seo": seo{ "title": title.uk, "description": description.uk, keywords, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt.uk } }': SiteSettingsQueryResult;
+    '*[_id == "homePage"][0]{ "hero": hero{ "overline": overline.uk, "heading": heading.uk, "text": text.uk }, "about": about{ "text": text.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk } }': HomePageQueryResult;
+    '*[_id == $id][0]{ "title": title.uk, "lead": lead.uk, "seo": seo{ "title": title.uk, "description": description.uk } }': PageQueryResult;
+    '*[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": title.uk, "sub": sub.uk, "fields": fields[].uk } }': ConferencesPageQueryResult;
+    '*[_id == "aboutPage"][0]{ "intro": intro.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk, "statute": statute[]{ "title": title.uk, "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": council.uk, "supervisory": supervisory.uk, "member": member.uk } }': AboutPageQueryResult;
+    '*[_id == "usefulInfoPage"][0]{ "table": table{ "caption": caption.uk, "rows": rows[]{ "group": group.uk, "type": type.uk, "example": example.uk }, "footnote": footnote.uk } }': UsefulInfoPageQueryResult;
+  }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module '@sanity/client' {
+  interface SanityQueries extends globalThis.SanityQueries {}
+}

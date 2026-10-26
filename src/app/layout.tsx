@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Literata, Montserrat } from 'next/font/google';
 import type { Metadata } from 'next';
 
-import meta from '@/data/meta/meta';
+import { rootMetadata } from '@/data/meta/meta';
 
 import '@/styles/globals.css';
 
@@ -17,7 +17,7 @@ const literata = Literata({
   variable: '--font-literata',
 });
 
-export const metadata: Metadata = meta;
+export const generateMetadata = (): Promise<Metadata> => rootMetadata();
 
 export default function RootLayout({
   children,

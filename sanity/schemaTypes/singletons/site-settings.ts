@@ -58,7 +58,18 @@ export const siteSettings = defineType({
         defineField({
           name: 'ogImage',
           title: 'Зображення для соцмереж',
-          type: 'cover',
+          description:
+            'Необовʼязково: без нього сайт генерує зображення сам (заголовок і обкладинки). 1200×630.',
+          type: 'image',
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Опис зображення (alt)',
+              description:
+                'Опишіть, що на зображенні: поруч із ним немає тексту.',
+              type: 'localeString',
+            }),
+          ],
         }),
       ],
     }),

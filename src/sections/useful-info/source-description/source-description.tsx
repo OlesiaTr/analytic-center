@@ -1,9 +1,13 @@
 import { DataTable } from '@/components/ui';
 import data from '@/data/useful-info.json';
+import { getUsefulInfoPage } from '@/lib/sanity/content';
 
-export const SourceDescription = () => {
-  const { title, footnote, headers, rows } = data.table;
-  const [typeHeader, exampleHeader] = headers;
+export const SourceDescription = async () => {
+  const [typeHeader, exampleHeader] = data.table.headers;
+  const table = (await getUsefulInfoPage())?.table;
+  const title = table?.caption ?? '';
+  const footnote = table?.footnote;
+  const rows = table?.rows ?? [];
 
   return (
     <section aria-label={title} className="sec">
@@ -14,8 +18,8 @@ export const SourceDescription = () => {
           valueClassName="font-serif text-base leading-[26px] wrap-anywhere"
           rows={rows.map(({ group, type, example }) => ({
             key: `${group ?? ''}${type}`,
-            group,
-            label: type,
+            group: group ?? undefined,
+            label: type ?? '',
             value: example,
           }))}
         />

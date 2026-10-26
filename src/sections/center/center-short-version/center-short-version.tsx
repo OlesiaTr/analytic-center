@@ -2,10 +2,11 @@ import Image from 'next/image';
 
 import { Button } from '@/components/ui';
 import data from '@/data/common.json';
+import { getHomePage } from '@/lib/sanity/content';
 
-export const CenterShortVersion = () => {
-  const { title, imgAlt, description, button, redirectionTo } =
-    data.aboutCenter;
+export const CenterShortVersion = async () => {
+  const { title, button, redirectionTo } = data.aboutCenter;
+  const about = (await getHomePage())?.about;
 
   return (
     <section aria-labelledby="about-title" className="sec">
@@ -14,17 +15,20 @@ export const CenterShortVersion = () => {
           <h2 id="about-title" className="sec-title t-h2">
             {title}
           </h2>
-          <p className="prose">{description}</p>
+          <p className="prose">{about?.text}</p>
           <Button href={redirectionTo}>{button}</Button>
         </div>
         <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">
-          <Image
-            src="/images/about_center-tab.webp"
-            alt={imgAlt}
-            width={519}
-            height={593}
-            className="size-full object-cover"
-          />
+          {about?.imgSrc && (
+            <Image
+              src={about.imgSrc}
+              alt={about.imgAlt ?? ''}
+              width={about.width ?? 0}
+              height={about.height ?? 0}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="size-full object-cover"
+            />
+          )}
         </div>
       </div>
     </section>

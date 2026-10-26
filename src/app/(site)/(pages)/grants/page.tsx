@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
 
 import { PageHead } from '@/components/ui';
-import data from '@/data/grants.json';
-import meta from '@/data/meta/meta.json';
+import { getPage } from '@/lib/sanity/content';
+import { pageMetadata } from '@/lib/sanity/metadata';
 import { GrantsExpendedVersion } from '@/sections';
 
-export const metadata: Metadata = meta.grants;
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMetadata('grantsPage', '/grants');
 
-const Page = () => (
-  <main id="main" tabIndex={-1} className="focus:outline-none">
-    <PageHead title={data.title} lead={data.lead} />
-    <GrantsExpendedVersion />
-  </main>
-);
+const Page = async () => {
+  const page = await getPage('grantsPage');
+  return (
+    <main id="main" tabIndex={-1} className="focus:outline-none">
+      <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
+      <GrantsExpendedVersion />
+    </main>
+  );
+};
 
 export default Page;

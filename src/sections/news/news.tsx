@@ -1,8 +1,10 @@
 import { NewsItem } from '@/components/ui';
 import data from '@/data/common.json';
+import { getNews } from '@/lib/sanity/content';
 
-export const News = () => {
-  const { title, list, more } = data.news;
+export const News = async () => {
+  const { title, more } = data.news;
+  const list = await getNews();
 
   return (
     <section aria-labelledby="news-title" className="bg-surface sec">
@@ -12,7 +14,7 @@ export const News = () => {
         </h2>
         <ul className="grid gap-4 lg:grid-cols-2 lg:gap-6">
           {list.map(item => (
-            <li key={item.text}>
+            <li key={item.id}>
               <NewsItem {...item} moreLabel={more} />
             </li>
           ))}

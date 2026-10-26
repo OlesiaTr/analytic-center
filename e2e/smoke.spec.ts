@@ -22,7 +22,7 @@ for (const route of ROUTES) {
   test(`${route} has no horizontal scroll`, async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile', 'checked at phone width');
 
-    for (const width of [320, 375]) {
+    for (const width of [320, 375, 768]) {
       await page.setViewportSize({ width, height: 800 });
       await page.goto(route);
       const { scrollWidth, clientWidth } = await page.evaluate(() => ({
@@ -124,13 +124,19 @@ test('conference archive loads 8 at a time', async ({ page }) => {
   const items = archive.getByRole('listitem');
   await expect(items).toHaveCount(8);
 
-  await archive.getByRole('button', { name: 'Показати ще 8' }).click();
-  await expect(items).toHaveCount(16);
-  await expect(items.nth(8)).toBeFocused();
-  await expect(archive.getByText('Показано 16 з 22')).toBeVisible();
+  // The archive grows in Sanity, so read the total from «Показано 8 з N».
+  const count = await archive.getByText(/^Показано 8 з \d+$/).textContent();
+  const total = Number(count?.match(/\d+$/)?.[0]);
+  expect(total).toBeGreaterThan(8);
 
-  await archive.getByRole('button', { name: 'Показати ще 6' }).click();
-  await expect(items).toHaveCount(22);
+  while ((await items.count()) < total) {
+    const shown = await items.count();
+    const next = Math.min(8, total - shown);
+    await archive.getByRole('button', { name: `Показати ще ${next}` }).click();
+    await expect(items).toHaveCount(shown + next);
+    await expect(items.nth(shown)).toBeFocused();
+  }
+  await expect(archive.getByText(`Показано ${total} з ${total}`)).toBeVisible();
   await expect(archive.getByText('Це всі збірники архіву.')).toBeVisible();
 });
 

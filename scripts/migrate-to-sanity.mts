@@ -319,11 +319,6 @@ docs.push({
     keywords: (meta.main.keywords as string)
       .split(',')
       .map(word => word.trim()),
-    ogImage: await image(
-      meta.main.images[0].url,
-      meta.main.images[0].alt,
-      'cover',
-    ),
   },
 });
 

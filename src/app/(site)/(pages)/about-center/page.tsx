@@ -1,70 +1,57 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { PortableText } from 'next-sanity';
 
-import {
-  PageHead,
-  PersonCard,
-  SectionHead,
-  type Person,
-} from '@/components/ui';
+import { PageHead, PersonCard, SectionHead } from '@/components/ui';
 import data from '@/data/about-center.json';
-import commonData from '@/data/common.json';
-import {
-  ACADEMIC_COUNCIL,
-  ORGANIZATION_MEMBERS,
-  SUPERVISORY_BOARD,
-} from '@/data/images';
-import meta from '@/data/meta/meta.json';
+import { getAboutPage, getPage, getPeople } from '@/lib/sanity/content';
+import { pageMetadata } from '@/lib/sanity/metadata';
 import { OrganizationStatute } from '@/sections';
 import { plural } from '@/utils';
 
-export const metadata: Metadata = meta['about-center'];
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMetadata('aboutPage', '/about-center');
 
-const Page = () => {
-  const {
-    title,
-    introLabel,
-    list,
-    academicCouncil,
-    supervisoryBoard,
-    organizationMembers,
-    peopleCount,
-  } = data;
+const BOARDS = ['council', 'supervisory', 'member'] as const;
 
-  const boards: { id: string; title: string; people: Person[] }[] = [
-    { id: 'council', title: academicCouncil.title, people: ACADEMIC_COUNCIL },
-    { id: 'board', title: supervisoryBoard.title, people: SUPERVISORY_BOARD },
-    {
-      id: 'members',
-      title: organizationMembers.title,
-      people: ORGANIZATION_MEMBERS.toSorted((a, b) =>
-        a.name.localeCompare(b.name, 'uk'),
-      ),
-    },
-  ];
+const Page = async () => {
+  const [page, about, ...people] = await Promise.all([
+    getPage('aboutPage'),
+    getAboutPage(),
+    ...BOARDS.map(getPeople),
+  ]);
+
+  const boards = BOARDS.map((id, index) => ({
+    id,
+    title: about?.boardTitles?.[id] ?? '',
+    // The council and supervisory board keep their order; members go by name.
+    people:
+      id === 'member'
+        ? people[index].toSorted((a, b) => a.name.localeCompare(b.name, 'uk'))
+        : people[index],
+  }));
 
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
-      <PageHead title={title} />
+      <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
 
-      <section aria-label={introLabel} className="sec">
+      <section aria-label={data.introLabel} className="sec">
         <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
           <div className="prose max-w-180">
-            {list.map(({ bold, text }) => (
-              <p key={text}>
-                {bold && <strong>{bold.trim()}</strong>} {text.trim()}
-              </p>
-            ))}
+            {about?.intro && <PortableText value={about.intro} />}
           </div>
-          <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">
-            <Image
-              src="/images/about_center-tab.webp"
-              alt={commonData.aboutCenter.imgAlt}
-              width={519}
-              height={593}
-              className="size-full object-cover"
-            />
-          </div>
+          {about?.imgSrc && (
+            <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">
+              <Image
+                src={about.imgSrc}
+                alt={about.imgAlt ?? ''}
+                width={about.width ?? 0}
+                height={about.height ?? 0}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="size-full object-cover"
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -80,7 +67,7 @@ const Page = () => {
             <SectionHead
               id={`${board.id}-title`}
               title={board.title}
-              sub={plural(board.people.length, peopleCount)}
+              sub={plural(board.people.length, data.peopleCount)}
             />
             <ul className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-x-6 md:gap-y-8 lg:grid-cols-4 xl:grid-cols-5">
               {board.people.map(person => (
