@@ -261,6 +261,11 @@ permissions.
 | 2026-10-20 | `/monographs` (local, PER-12)   | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.3 s, CLS 0                                                   |
 | 2026-10-20 | `/grants` (local, PER-12)       | 95–98 | 100  | 100 | 3 runs. LCP 2.3–3.0 s, CLS 0                                                   |
 | 2026-10-20 | `/useful-info` (local, PER-12)  | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
+| 2026-10-20 | `/` (live, PER-12)              | 97    | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0, TBT 10–20 ms. Best Practices 100. JS 161 KB          |
+| 2026-10-20 | `/conferences` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.5 s, **CLS 0** (baseline 0.408). Best Practices 100          |
+| 2026-10-20 | `/monographs` (live, PER-12)    | 96–97 | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0                                                       |
+| 2026-10-20 | `/grants` (live, PER-12)        | 97–98 | 100  | 100 | 3 runs. LCP 2.4–2.6 s, CLS 0                                                   |
+| 2026-10-20 | `/useful-info` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.4 s, CLS 0                                                   |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
