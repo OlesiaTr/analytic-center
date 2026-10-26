@@ -4,13 +4,13 @@ import { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
-import type { Publication } from '@/data/types';
+import type { Publication } from '@/lib/sanity/content';
 import { formatDate, toDateTime } from '@/utils';
 
 export type PublicationCardVariant = 'cover' | 'library';
 
 export interface Props {
-  card: Publication & { description?: string };
+  card: Publication;
   buttonLabel: string;
   /** Hidden words after the label, e.g. «інформаційний лист»; the title follows. */
   srLabel?: string;
@@ -101,6 +101,8 @@ export const PublicationCard: FC<Props> = ({
           alt=""
           width={width}
           height={height}
+          // 96px row below 768, a grid column from 768, 168px in the wide list.
+          sizes="(min-width: 1024px) 300px, (min-width: 768px) 33vw, 96px"
           className={clsx(
             'size-full',
             variant === 'library' ? 'object-contain' : 'object-cover',

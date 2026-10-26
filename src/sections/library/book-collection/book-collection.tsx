@@ -1,8 +1,10 @@
 import { PublicationGrid } from '@/components/ui';
-import data from '@/data/library.json';
+import data from '@/data/common.json';
+import { getLibrary } from '@/lib/sanity/content';
 
-const BookCollection = () => {
-  const { list, buttonDownload, srDownload } = data;
+const BookCollection = async () => {
+  const { buttonDownload, srDownload, kinds } = data.library;
+  const list = await getLibrary(kinds);
 
   return (
     <PublicationGrid

@@ -45,6 +45,7 @@ export const PersonCard: FC<{ person: Person }> = ({ person }) => {
           alt=""
           width={width}
           height={height}
+          sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="size-full object-cover object-[50%_20%]"
         />
       </div>

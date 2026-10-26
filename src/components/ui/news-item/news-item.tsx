@@ -35,6 +35,7 @@ export const NewsItem: FC<Props> = ({
         alt=""
         width={width}
         height={height}
+        sizes="112px"
         className="size-18 rounded-lg bg-blue-50 object-cover md:size-28"
       />
       <div className="flex min-w-0 flex-col gap-2">

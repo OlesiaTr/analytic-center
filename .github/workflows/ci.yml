@@ -12,10 +12,14 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
+    # Public Sanity project ID and dataset (repo variables, not secrets).
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -30,9 +34,6 @@ jobs:
 
       - name: Types
         run: npm run check-types
-
-      - name: Image dimensions
-        run: npm run check-images
 
       - name: Unit tests
         run: npm test

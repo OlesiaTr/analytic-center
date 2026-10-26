@@ -122,18 +122,38 @@ Look-and-feel work moved to the Redesign phase (PER-12).
 
 ### 4. Sanity CMS — PER-9
 
-- [ ] **Before schemas:** confirm the content model against the Redesign
-      (PER-12). Additions it needs: page `lead`, library `kind` (Підручник,
-      Навчальний посібник…), required news `date`, partner `name` + `href`,
-      grant groups referencing their programs, hero covers from the publications
-      (a 200 px thumbnail transform)
-- [ ] Schemas: conference, monograph, libraryItem, grant, person, partner, news,
-      siteSettings, page singletons (localized fields)
-- [ ] Migration script `src/data/*` → Sanity; document counts match
-- [ ] GROQ queries + TypeGen in `src/lib/sanity`
-- [ ] Studio at `/studio`; webhook → `revalidateTag`
-- [ ] Remove migrated content from `src/data`
-- [ ] Connect Sanity MCP server for agent content edits
+Sanity project `xczp8pdn` (dataset `production`), provisioned through the Vercel
+Marketplace; Studio embedded at `/studio`. The static export is gone: the site
+is a Next app on Vercel, every page prerendered and revalidated by tag.
+
+- [x] **Content model** confirmed against the Redesign: page `lead`, library
+      `kind` + `authors`, news `date` (a warning until the dates are filled in),
+      partner `name` + `href`, grant groups with their programs nested inside,
+      hero covers from the newest publications at `w=200` on the CDN
+- [x] Schemas (`sanity/schemaTypes/`): conference, monograph, libraryItem,
+      grantGroup, person (boards, profiles), partner, news, siteSettings and
+      nine page singletons; every text field `{ uk, en }`, Ukrainian required
+- [x] Migration (one-off, in git at 4865c6d): 115 documents and 103 images,
+      counts matched the JSON; `sanity documents validate` 0 errors. Found and
+      fixed a broken LinkedIn URL (`ttps://`) that is also broken on the old
+      site
+- [x] GROQ queries (`defineQuery`) + TypeGen in `src/lib/sanity`; `content.ts`
+      maps results onto the existing component props, so the components stayed
+      the same. Upcoming vs archive comes from `date` and the links
+- [x] Images on Sanity's CDN through a custom `next/image` loader with `sizes`
+      (no Vercel image transforms); generated `opengraph-image` in the site's
+      look, the Studio image is an optional override
+- [x] Webhook → `/api/revalidate` (signature checked, `revalidateTag(_type)`);
+      verified locally: a published edit shows ~1.5 s later. The client skips
+      Sanity's API CDN, since Next caches every query
+- [x] Removed `src/data` content, 117 local images, the image scripts and
+      `sharp`; `common.json` keeps UI labels only; `app/sitemap.ts` and
+      `app/robots.ts` replace the static files
+- [x] Agent setup: Sanity MCP (`.mcp.json`, OAuth), `rules/content.md`,
+      `skills/add-publication`, `.worktreeinclude`
+- Left: news dates and English text (with PER-10); the webhook targets
+  acmhs.in.ua, so publishing without a deploy works on production only after the
+  release (preview URLs are behind Vercel Authentication)
 
 ### 5. i18n — PER-10
 
@@ -141,7 +161,13 @@ Look-and-feel work moved to the Redesign phase (PER-12).
 - [ ] `messages/{uk,en}.json` for UI copy — includes separating UI copy from
       content in `common.json` (moved from PER-7)
 - [ ] AI-translated EN content in Sanity, reviewed before publishing
-- [ ] Localized metadata, `hreflang`, `app/sitemap.ts`, `app/robots.ts`
+- [ ] Localized metadata and `hreflang`; `app/sitemap.ts` and `app/robots.ts`
+      exist since PER-9 and need the `/en` alternates
+- [ ] Queries read `.uk` today: add a `$locale` param to the GROQ in
+      `src/lib/sanity/queries.ts` (`coalesce(title[$locale], title.uk)`) and
+      pass it from the `[locale]` segment through `content.ts`; tag caches per
+      locale only if needed
+- [ ] Move the UI labels in `src/data/common.json` to `messages/{uk,en}.json`
 
 ### Redesign — PER-12
 
@@ -195,7 +221,7 @@ Each piece is added in the phase where the thing it describes exists.
 ```
 analytic-center/
 ├── CLAUDE.md               # every session; <200 lines: commands, architecture, conventions
-├── .mcp.json               # Sanity MCP server, token via ${SANITY_API_TOKEN}
+├── .mcp.json               # Sanity MCP server (mcp.sanity.io, OAuth)
 ├── .worktreeinclude        # copy .env.local into new worktrees
 ├── docs/                   # plans + progress logs (this file)
 └── .claude/
@@ -261,10 +287,21 @@ permissions.
 | 2026-10-20 | `/monographs` (local, PER-12)   | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.3 s, CLS 0                                                   |
 | 2026-10-20 | `/grants` (local, PER-12)       | 95–98 | 100  | 100 | 3 runs. LCP 2.3–3.0 s, CLS 0                                                   |
 | 2026-10-20 | `/useful-info` (local, PER-12)  | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
+| 2026-10-20 | `/` (live, PER-12)              | 97    | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0, TBT 10–20 ms. Best Practices 100. JS 161 KB          |
+| 2026-10-20 | `/conferences` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.5 s, **CLS 0** (baseline 0.408). Best Practices 100          |
+| 2026-10-20 | `/monographs` (live, PER-12)    | 96–97 | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0                                                       |
+| 2026-10-20 | `/grants` (live, PER-12)        | 97–98 | 100  | 100 | 3 runs. LCP 2.4–2.6 s, CLS 0                                                   |
+| 2026-10-20 | `/useful-info` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.4 s, CLS 0                                                   |
+| 2026-10-26 | `/` (local, PER-9)              | 94–97 | 100  | 100 | 3 runs, `next start`. LCP 2.6–3.1 s, CLS 0. JS 159 KB; images 424–464 KB (CDN) |
+| 2026-10-26 | `/conferences` (local, PER-9)   | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 173 KB (CDN, sized by `sizes`)            |
+| 2026-10-26 | `/monographs` (local, PER-9)    | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 220 KB                                    |
+| 2026-10-26 | `/grants` (local, PER-9)        | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
+| 2026-10-26 | `/useful-info` (local, PER-9)   | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Best Practices 100 on all PER-9 runs             |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single
-run, headless Chrome for Testing). Local rows: both builds served with
-`serve@14` from `out/`, 3 runs each; the Vercel preview is behind Vercel
-Authentication. +42 KB JS is the React 19 + Next 16 runtime; Turbopack adds ~12
-KB over webpack — kept as the default, re-measure after PER-7 (`next/image`).
+run, headless Chrome for Testing). Local rows: served with `serve@14` from
+`out/` until PER-9, with `next start` since; 3 runs each; the Vercel preview is
+behind Vercel Authentication. +42 KB JS is the React 19 + Next 16 runtime;
+Turbopack adds ~12 KB over webpack — kept as the default, re-measure after PER-7
+(`next/image`).

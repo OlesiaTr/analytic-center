@@ -5,19 +5,12 @@ import {
   SectionHead,
 } from '@/components/ui';
 import data from '@/data/common.json';
-import type { UpcomingConferences as UpcomingConferencesData } from '@/data/types';
+import { getUpcomingConferences } from '@/lib/sanity/content';
 
-export const UpcomingConferences = () => {
-  const upcoming: UpcomingConferencesData = data.upcomingConferences;
-  const {
-    title,
-    list,
-    button,
-    buttonDownload,
-    srDownload,
-    redirectionTo,
-    empty,
-  } = upcoming;
+export const UpcomingConferences = async () => {
+  const list = await getUpcomingConferences();
+  const { title, button, buttonDownload, srDownload, redirectionTo, empty } =
+    data.upcomingConferences;
 
   return (
     <section aria-labelledby="conferences-title" className="bg-surface sec">

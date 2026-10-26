@@ -13,14 +13,14 @@ Next.js docs for the installed version (generated, don't edit by hand):
 
 ```bash
 npm run dev               # Development server (Turbopack)
-npm run build             # Production build (static export to out/)
+npm run build             # Production build (Next server; reads .env.local)
 npm run lint              # ESLint
 npm run check-types       # TypeScript
 npm run fix               # ESLint --fix, then Prettier
 npm test                  # Unit tests (Vitest + Testing Library)
-npm run test:e2e          # Playwright smoke tests against out/ (build first)
-npm run images:dimensions # Write width/height for images in src/data
-npm run test-all          # format + lint + types + images + unit + build + e2e
+npm run test:e2e          # Playwright smoke tests against `next start` (build first)
+npm run typegen           # Sanity schema + GROQ queries → src/lib/sanity/types.ts
+npm run test-all          # format + lint + types + unit + build + e2e
 ```
 
 The pre-commit hook runs `npm run fix` and `npm run test-all`. CI runs the same
@@ -29,13 +29,17 @@ affect layout.
 
 ## Architecture
 
-**Next.js 16 static site** (App Router, `output: 'export'`, React 19,
-Tailwind 4) for a Ukrainian analytic research center. Moving to Sanity + Vercel
-and adding English is planned in `docs/modernization.md`.
+**Next.js 16 site on Vercel** (App Router, React 19, Tailwind 4) for a Ukrainian
+analytic research center. Content comes from Sanity (Studio at `/studio`,
+webhook → `/api/revalidate`); adding English is planned in
+`docs/modernization.md`.
 
 ### Directory Structure
 
-- `src/app/` - App Router pages (`(pages)/` group shares the header)
+- `src/app/` - App Router: `(site)/` pages with the site shell, `studio/` for
+  Sanity Studio
+- `sanity/` - Studio schemas; `sanity.config.ts`, `sanity.cli.ts` at the root
+- `src/lib/sanity/` - Sanity client and env
 - `src/sections/` - Page sections (Hero, News, Grants, ...)
 - `src/components/ui/` - Design-system components (`Button`, `PublicationGrid`,
   `Accordion`, `DataTable`, ...); `src/components/icons/` - the `Icon` set;
@@ -43,7 +47,7 @@ and adding English is planned in `docs/modernization.md`.
 - `src/layouts/` - Header and Footer
 - `src/hooks/` - State logic (`useDisclosure`, `useLoadMore`, `useCarousel`)
 - `src/utils/` - Pure helpers (`formatDate`, `plural`, `toHost`)
-- `src/data/` - Content JSON (lightweight CMS) + `types.ts`
+- `src/data/common.json` - UI labels only (content is in Sanity)
 - `src/constants/` - Navigation links
 - `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
 - `e2e/` - Playwright smoke tests
@@ -58,11 +62,18 @@ those files.
 
 ### Data Pattern
 
-Content is stored in JSON files under `src/data/` and imported directly:
+Content comes from Sanity through typed getters in `src/lib/sanity/content.ts`
+(GROQ in `queries.ts`, cached and tagged by document type). Server components
+await them; UI labels still import directly:
 
 ```typescript
-import data from '@/data/common.json';
+const list = await getUpcomingConferences();
+import data from '@/data/common.json'; // labels
 ```
+
+Rules for schemas, queries and content edits load from
+`.claude/rules/content.md`; adding a publication is the `add-publication` skill.
+Agents edit content through the Sanity MCP server (`.mcp.json`).
 
 ### Tailwind (v4)
 
