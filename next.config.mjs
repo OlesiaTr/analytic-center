@@ -1,8 +1,10 @@
 const nextConfig = {
-  output: 'export',
-  // Static export has no image optimizer; PER-9 (Vercel without export) enables it.
-  images: { unoptimized: true },
-  assetPrefix: undefined,
+  // Content images come from Sanity's CDN, which resizes them itself, so
+  // Vercel never transforms images (see src/lib/sanity/image-loader.ts).
+  images: {
+    loader: 'custom',
+    loaderFile: './src/lib/sanity/image-loader.ts',
+  },
 };
 
 export default nextConfig;

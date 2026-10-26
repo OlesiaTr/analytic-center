@@ -1,10 +1,12 @@
 import { PublicationGrid, SectionHead } from '@/components/ui';
-import data from '@/data/monographs.json';
+import data from '@/data/common.json';
+import { getArchivedMonographs } from '@/lib/sanity/content';
 import { plural } from '@/utils';
 
-export const ReleasedMonographs = () => {
-  const { title, list, buttonDownload, srDownload, doneText, count } =
-    data.archivedMonographs;
+export const ReleasedMonographs = async () => {
+  const { title, buttonDownload, srDownload, doneText, count } =
+    data.monographArchive;
+  const list = await getArchivedMonographs();
 
   return (
     <section

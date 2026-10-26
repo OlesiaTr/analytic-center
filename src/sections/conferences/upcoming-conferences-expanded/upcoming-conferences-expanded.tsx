@@ -1,12 +1,13 @@
 import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
-import type { UpcomingConferences } from '@/data/types';
+import { getUpcomingConferences } from '@/lib/sanity/content';
 
 import { AboutAuthors } from '../about-authors';
 
-export const UpcomingConferencesExpanded = () => {
-  const upcoming: UpcomingConferences = commonData.upcomingConferences;
-  const { title, list, buttonDownload, srDownload, empty } = upcoming;
+export const UpcomingConferencesExpanded = async () => {
+  const { title, buttonDownload, srDownload, empty } =
+    commonData.upcomingConferences;
+  const list = await getUpcomingConferences();
 
   return (
     <section aria-labelledby="upcoming-title" className="sec">

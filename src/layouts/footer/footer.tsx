@@ -4,12 +4,20 @@ import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
 import { LINKS } from '@/constants';
 import data from '@/data/common.json';
+import { toContacts } from '@/lib/sanity/contacts';
+import { getSiteSettings } from '@/lib/sanity/content';
 
 const footerLink =
   'inline-flex min-h-9 items-center gap-2.5 font-medium text-white no-underline hover:text-yellow-400 hover:underline hover:underline-offset-3';
 
-export const Footer = () => {
-  const { name, navTitle, navLabel, contacts, rights } = data.footer;
+export const Footer = async () => {
+  const { navTitle, navLabel, rights } = data.footer;
+  const settings = await getSiteSettings();
+  const name = settings?.name ?? '';
+  const contacts = {
+    title: data.footer.contacts.title,
+    ...toContacts(settings?.contacts),
+  };
 
   return (
     <footer className="bg-navy-900 on-dark text-on-dark-muted">
@@ -36,7 +44,8 @@ export const Footer = () => {
           </ul>
         </nav>
 
-        <div>
+        {/* min-w-0: the email can't wrap, so let the column shrink instead */}
+        <div className="min-w-0">
           <h2 className="mb-4 t-over text-yellow-400">{contacts.title}</h2>
           <ul className="grid gap-1">
             <li>
@@ -47,8 +56,8 @@ export const Footer = () => {
             </li>
             <li>
               <a href={`mailto:${contacts.email}`} className={footerLink}>
-                <Icon name="mail" />
-                {contacts.email}
+                <Icon name="mail" className="size-5 flex-none" />
+                <span className="min-w-0 wrap-anywhere">{contacts.email}</span>
               </a>
             </li>
           </ul>

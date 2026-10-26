@@ -1,9 +1,11 @@
 import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
 import commonData from '@/data/common.json';
+import { getUpcomingMonographs } from '@/lib/sanity/content';
 
-export const UpcomingMonographsExpanded = () => {
-  const { title, list, buttonDownload, srDownload, empty } =
+export const UpcomingMonographsExpanded = async () => {
+  const { title, buttonDownload, srDownload, empty } =
     commonData.upcomingMonographs;
+  const list = await getUpcomingMonographs();
 
   return (
     <section aria-labelledby="upcoming-title" className="sec">

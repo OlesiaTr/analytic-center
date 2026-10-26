@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Smoke tests against the static export in out/ (run `npm run build` first).
+// Smoke tests against the production server (run `npm run build` first).
 const PORT = 4173;
 
 export default defineConfig({
@@ -14,7 +14,7 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: `npx --yes serve@14 out -l ${PORT}`,
+    command: `npm start -- -p ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
   },

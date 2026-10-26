@@ -1,6 +1,6 @@
 import { Accordion, GrantProgram } from '@/components/ui';
 import data from '@/data/common.json';
-import grantsData from '@/data/grants.json';
+import { getGrantGroups } from '@/lib/sanity/content';
 import { plural } from '@/utils';
 
 interface Props {
@@ -9,17 +9,17 @@ interface Props {
 }
 
 /** Grant groups as <details>, the first one open, each with its programs. */
-export const GrantGroups = ({ headingLevel = 'h3' }: Props) => {
-  const { list, programCount, moreOn } = data.grants;
+export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
+  const { programCount, moreOn, dueDate } = data.grants;
+  const groups = await getGrantGroups();
 
   return (
     <div>
-      {list.map((group, index) => {
-        const { programs } = grantsData.list[index];
+      {groups.map(({ id, title, programs }, index) => {
         return (
           <Accordion
-            key={group.title}
-            title={group.title}
+            key={id}
+            title={title}
             sub={plural(programs.length, programCount)}
             defaultOpen={index === 0}
           >
@@ -28,14 +28,10 @@ export const GrantGroups = ({ headingLevel = 'h3' }: Props) => {
                 key={program.title}
                 title={program.title}
                 description={program.description}
-                descriptionList={
-                  'descriptionList' in program
-                    ? program.descriptionList
-                    : undefined
-                }
+                descriptionList={program.descriptionList}
                 date={program.date}
                 linkTo={program.linkTo}
-                dueDateLabel={grantsData.dueDate}
+                dueDateLabel={dueDate}
                 moreLabel={moreOn}
                 headingLevel={headingLevel}
               />

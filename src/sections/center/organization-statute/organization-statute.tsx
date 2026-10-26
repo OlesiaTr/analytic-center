@@ -1,8 +1,13 @@
 import { DocumentList, SectionHead } from '@/components/ui';
-import data from '@/data/about-center.json';
+import data from '@/data/common.json';
+import { getAboutPage } from '@/lib/sanity/content';
 
-export const OrganizationStatute = () => {
-  const { title, button, srLabel, list } = data.organizationStatute;
+export const OrganizationStatute = async () => {
+  const { title, button, srLabel } = data.about.statute;
+  const list = ((await getAboutPage())?.statute ?? []).map(doc => ({
+    title: doc.title ?? '',
+    linkToDownload: doc.linkToDownload ?? '',
+  }));
 
   return (
     <section aria-labelledby="statute-title" className="bg-surface sec">
