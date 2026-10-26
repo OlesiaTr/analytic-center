@@ -11,6 +11,13 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    # ESLint 10 waits for eslint-plugin-react, -import and -jsx-a11y (via
+    # eslint-config-next) to support it; minor and patch updates still come.
+    ignore:
+      - dependency-name: eslint
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@eslint/js'
+        update-types: ['version-update:semver-major']
     groups:
       next-react:
         patterns:
