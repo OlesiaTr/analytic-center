@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Literata, Montserrat } from 'next/font/google';
 import type { Metadata } from 'next';
 
-import { rootMetadata } from '@/data/meta/meta';
+import { rootMetadata } from '@/lib/sanity/metadata';
 
 import '@/styles/globals.css';
 

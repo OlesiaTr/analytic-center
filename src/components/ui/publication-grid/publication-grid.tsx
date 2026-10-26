@@ -6,13 +6,13 @@ import {
   PublicationCard,
   type PublicationCardVariant,
 } from '@/components/ui/publication-card/publication-card';
-import type { Publication } from '@/data/types';
+import type { Publication } from '@/lib/sanity/content';
 
 /** grid: 1 / 3 / 4 columns; grid-3: short lists; wide: upcoming items. */
 export type PublicationLayout = 'grid' | 'grid-3' | 'wide';
 
 export interface Props {
-  list: (Publication & { description?: string })[];
+  list: Publication[];
   buttonLabel: string;
   srLabel?: string;
   variant?: PublicationCardVariant;

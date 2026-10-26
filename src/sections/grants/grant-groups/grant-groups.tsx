@@ -1,6 +1,5 @@
 import { Accordion, GrantProgram } from '@/components/ui';
 import data from '@/data/common.json';
-import grantsData from '@/data/grants.json';
 import { getGrantGroups } from '@/lib/sanity/content';
 import { plural } from '@/utils';
 
@@ -11,7 +10,7 @@ interface Props {
 
 /** Grant groups as <details>, the first one open, each with its programs. */
 export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
-  const { programCount, moreOn } = data.grants;
+  const { programCount, moreOn, dueDate } = data.grants;
   const groups = await getGrantGroups();
 
   return (
@@ -32,7 +31,7 @@ export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
                 descriptionList={program.descriptionList}
                 date={program.date}
                 linkTo={program.linkTo}
-                dueDateLabel={grantsData.dueDate}
+                dueDateLabel={dueDate}
                 moreLabel={moreOn}
                 headingLevel={headingLevel}
               />

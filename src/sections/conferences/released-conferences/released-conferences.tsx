@@ -1,11 +1,11 @@
 import { PublicationGrid, SectionHead } from '@/components/ui';
-import data from '@/data/conferences.json';
+import data from '@/data/common.json';
 import { getArchivedConferences } from '@/lib/sanity/content';
 import { plural } from '@/utils';
 
 export const ReleasedConferences = async () => {
   const { title, buttonDownload, srDownload, doneText, count } =
-    data.upcomingConferences;
+    data.conferenceArchive;
   const list = await getArchivedConferences();
 
   return (

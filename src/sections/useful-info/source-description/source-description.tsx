@@ -1,9 +1,9 @@
 import { DataTable } from '@/components/ui';
-import data from '@/data/useful-info.json';
+import data from '@/data/common.json';
 import { getUsefulInfoPage } from '@/lib/sanity/content';
 
 export const SourceDescription = async () => {
-  const [typeHeader, exampleHeader] = data.table.headers;
+  const [typeHeader, exampleHeader] = data.usefulInfo.headers;
   const table = (await getUsefulInfoPage())?.table;
   const title = table?.caption ?? '';
   const footnote = table?.footnote;

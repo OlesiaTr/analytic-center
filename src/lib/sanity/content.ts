@@ -1,5 +1,3 @@
-import type { Publication } from '@/data/types';
-
 import { sanityFetch } from './fetch';
 import {
   aboutPageQuery,
@@ -19,6 +17,19 @@ import {
   upcomingMonographsQuery,
   usefulInfoPageQuery,
 } from './queries';
+
+/** A conference, monograph or library book as the cards render it. */
+export interface Publication {
+  id: string;
+  imgSrc: string;
+  width: number;
+  height: number;
+  imgAlt: string;
+  title: string;
+  description?: string;
+  date: string;
+  linkToDownload: string;
+}
 
 // Content for the UI, in the shapes the components already take. Schema
 // validation keeps required fields filled; `?? ''` only satisfies the types.
@@ -43,11 +54,7 @@ type PublicationRow = {
   height: number | null;
 };
 
-const toPublication = (
-  row: PublicationRow,
-): Publication & {
-  description?: string;
-} => ({
+const toPublication = (row: PublicationRow): Publication => ({
   id: row.id,
   title: row.title ?? '',
   description: row.description ?? undefined,

@@ -4,13 +4,13 @@ import { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
-import type { Publication } from '@/data/types';
+import type { Publication } from '@/lib/sanity/content';
 import { formatDate, toDateTime } from '@/utils';
 
 export type PublicationCardVariant = 'cover' | 'library';
 
 export interface Props {
-  card: Publication & { description?: string };
+  card: Publication;
   buttonLabel: string;
   /** Hidden words after the label, e.g. «інформаційний лист»; the title follows. */
   srLabel?: string;

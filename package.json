@@ -16,12 +16,10 @@
     "check-lint": "eslint .",
     "format": "prettier --write .",
     "fix": "eslint . --fix && prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run check-images && npm test && npm run build && npm run test:e2e",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm test && npm run build && npm run test:e2e",
     "prepare": "husky",
     "screenshots": "node scripts/screenshots.mts",
     "screenshots:diff": "node scripts/visual-diff.mts",
-    "images:dimensions": "node scripts/image-dimensions.mts",
-    "check-images": "node scripts/image-dimensions.mts --check",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test"
@@ -64,7 +62,6 @@
     "postcss": "8.5.31",
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
-    "sharp": "0.35.5",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
     "vitest": "5.0.5"

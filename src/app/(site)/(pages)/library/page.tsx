@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PageHead } from '@/components/ui';
 import { getPage } from '@/lib/sanity/content';
 import { pageMetadata } from '@/lib/sanity/metadata';
-import data from '@/data/library.json';
+import data from '@/data/common.json';
 import { BookCollection } from '@/sections';
 
 export const generateMetadata = (): Promise<Metadata> =>
@@ -14,7 +14,7 @@ const Page = async () => {
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
       <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
-      <section aria-label={data.listLabel} className="sec">
+      <section aria-label={data.library.listLabel} className="sec">
         <div className="wrap">
           <BookCollection />
         </div>

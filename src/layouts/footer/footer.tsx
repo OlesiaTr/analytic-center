@@ -13,7 +13,7 @@ const footerLink =
 export const Footer = async () => {
   const { navTitle, navLabel, rights } = data.footer;
   const settings = await getSiteSettings();
-  const name = settings?.name ?? data.footer.name;
+  const name = settings?.name ?? '';
   const contacts = {
     title: data.footer.contacts.title,
     ...toContacts(settings?.contacts),

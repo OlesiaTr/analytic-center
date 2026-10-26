@@ -45,7 +45,8 @@ files; you report findings for the main session to fix.
 - `next/link` for internal routes, `next/image` with real `width`/`height`.
 - No two utilities for the same CSS property on one element; no `!important`;
   tokens instead of raw hex; arbitrary sizes set their own leading.
-- Content strings come from `src/data/*.json`, not hard-coded JSX.
+- Content comes from Sanity (`src/lib/sanity/content.ts`) and UI strings from
+  `src/data/common.json`, not hard-coded JSX.
 
 ## Report
 

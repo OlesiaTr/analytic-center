@@ -1,10 +1,10 @@
 import { DataTable, Panel } from '@/components/ui';
-import data from '@/data/conferences.json';
+import data from '@/data/common.json';
 import { getConferencesPage } from '@/lib/sanity/content';
 import { plural } from '@/utils';
 
 export const AboutAuthors = async () => {
-  const { fieldCount, columns } = data.table;
+  const { fieldCount, columns } = data.authorsForm;
   const [labelHead, valueHead] = columns;
   const form = (await getConferencesPage())?.authorsForm;
   const fields = (form?.fields ?? []).filter((f): f is string => !!f);

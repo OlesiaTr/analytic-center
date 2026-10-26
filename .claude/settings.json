@@ -13,9 +13,7 @@
       "Bash(npm run test-all)",
       "Bash(npm run screenshots:*)",
       "Bash(npm test)",
-      "Bash(npm run test:*)",
-      "Bash(npm run check-images)",
-      "Bash(npm run images:dimensions)"
+      "Bash(npm run test:*)"
     ],
     "deny": ["Read(./.env*)", "Read(./.vercel/**)"]
   },

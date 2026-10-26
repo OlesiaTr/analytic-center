@@ -20,16 +20,16 @@ paths:
   grid parent). Don't measure the viewport.
 - Internal links: `next/link` (`Button` and `TextLink` pick `Link` for `/…`
   hrefs). Files and external sites stay `<a>`.
-- Images: `next/image` with the `width`/`height` stored next to `imgSrc` /
-  `image` in the data. After adding or replacing an image run
-  `npm run images:dimensions`; CI fails on missing dimensions.
+- Images: `next/image` with the `width`/`height` that the GROQ query returns
+  from `asset->metadata.dimensions`, plus `sizes`. The custom loader resizes on
+  Sanity's CDN.
 - Publication lists (conferences, monographs, library) use `PublicationGrid` /
   `PublicationCard` (`variant`, `layout`); don't copy card markup.
 - Icons come from `Icon` (`src/components/icons`); icon-only controls use
   `IconButton` with a `label`. Download buttons get hidden text (`srText`,
   `srLabel`) so every name is unique.
-- Type content through `src/data/types.ts` by assignment
-  (`const x: Type = data.y`), never `as`.
+- Content types come from TypeGen (`src/lib/sanity/types.ts`) through the
+  getters in `content.ts`; never `as`.
 - Keys come from a stable field (`id`, `title`, `linkTo`), not the index.
 - Inline SVGs with internal `id`s (e.g. `Logo`) must not be rendered twice on
   one page — size one instance with classes instead.

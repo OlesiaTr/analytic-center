@@ -1,9 +1,9 @@
-import grantsData from '@/data/grants.json';
+import data from '@/data/common.json';
 
 import { GrantGroups } from '../grant-groups';
 
 export const GrantsExpendedVersion = () => (
-  <section aria-label={grantsData.listLabel} className="sec">
+  <section aria-label={data.grants.listLabel} className="sec">
     <div className="wrap">
       <div className="max-w-260">
         <GrantGroups headingLevel="h2" />

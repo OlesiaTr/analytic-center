@@ -35,9 +35,6 @@ jobs:
       - name: Types
         run: npm run check-types
 
-      - name: Image dimensions
-        run: npm run check-images
-
       - name: Unit tests
         run: npm test
 
