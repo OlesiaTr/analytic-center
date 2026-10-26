@@ -164,3 +164,14 @@ test('the Studio loads without the site chrome', async ({ page }) => {
   await expect(page.locator('#sanity')).toBeAttached();
   await expect(page.locator('footer')).toHaveCount(0);
 });
+
+test('the revalidate webhook rejects unsigned requests', async ({
+  request,
+}) => {
+  const response = await request.post('/api/revalidate', {
+    data: { _type: 'news' },
+  });
+  // 401 with a secret configured, 500 where it isn't (local runs and CI).
+  expect([401, 500]).toContain(response.status());
+  expect(response.ok()).toBe(false);
+});
