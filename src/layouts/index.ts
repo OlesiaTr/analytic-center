@@ -1,3 +1,5 @@
 export { Footer } from './footer';
 
 export { Header } from './header';
+
+export { SiteShell } from './site-shell';

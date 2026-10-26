@@ -152,3 +152,9 @@ test('partner carousel steps with its buttons', async ({ page }, info) => {
     )
     .toBeGreaterThan(0);
 });
+
+test('the Studio loads without the site chrome', async ({ page }) => {
+  await page.goto('/studio');
+  await expect(page.locator('#sanity')).toBeAttached();
+  await expect(page.locator('footer')).toHaveCount(0);
+});

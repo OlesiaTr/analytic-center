@@ -13,12 +13,12 @@ Next.js docs for the installed version (generated, don't edit by hand):
 
 ```bash
 npm run dev               # Development server (Turbopack)
-npm run build             # Production build (static export to out/)
+npm run build             # Production build (Next server; reads .env.local)
 npm run lint              # ESLint
 npm run check-types       # TypeScript
 npm run fix               # ESLint --fix, then Prettier
 npm test                  # Unit tests (Vitest + Testing Library)
-npm run test:e2e          # Playwright smoke tests against out/ (build first)
+npm run test:e2e          # Playwright smoke tests against `next start` (build first)
 npm run images:dimensions # Write width/height for images in src/data
 npm run test-all          # format + lint + types + images + unit + build + e2e
 ```
@@ -29,13 +29,16 @@ affect layout.
 
 ## Architecture
 
-**Next.js 16 static site** (App Router, `output: 'export'`, React 19,
-Tailwind 4) for a Ukrainian analytic research center. Moving to Sanity + Vercel
-and adding English is planned in `docs/modernization.md`.
+**Next.js 16 site on Vercel** (App Router, React 19, Tailwind 4) for a Ukrainian
+analytic research center. Content is moving from `src/data` to Sanity (Studio at
+`/studio`); adding English is planned in `docs/modernization.md`.
 
 ### Directory Structure
 
-- `src/app/` - App Router pages (`(pages)/` group shares the header)
+- `src/app/` - App Router: `(site)/` pages with the site shell, `studio/` for
+  Sanity Studio
+- `sanity/` - Studio schemas; `sanity.config.ts`, `sanity.cli.ts` at the root
+- `src/lib/sanity/` - Sanity client and env
 - `src/sections/` - Page sections (Hero, News, Grants, ...)
 - `src/components/ui/` - Design-system components (`Button`, `PublicationGrid`,
   `Accordion`, `DataTable`, ...); `src/components/icons/` - the `Icon` set;

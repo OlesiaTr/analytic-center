@@ -1,8 +1,7 @@
 const nextConfig = {
-  output: 'export',
-  // Static export has no image optimizer; PER-9 (Vercel without export) enables it.
+  // Local images stay as-is until content images come from Sanity's CDN
+  // through a custom loader (PER-9 commit 4), so Vercel never transforms them.
   images: { unoptimized: true },
-  assetPrefix: undefined,
 };
 
 export default nextConfig;

@@ -2,10 +2,7 @@ import { ReactNode } from 'react';
 import { Literata, Montserrat } from 'next/font/google';
 import type { Metadata } from 'next';
 
-import { Footer } from '@/layouts';
-
 import meta from '@/data/meta/meta';
-import data from '@/data/common.json';
 
 import '@/styles/globals.css';
 
@@ -33,18 +30,8 @@ export default function RootLayout({
       className={`${montserrat.variable} ${literata.variable} motion-safe:scroll-smooth`}
       data-scroll-behavior="smooth"
     >
-      <body className="font-sans antialiased">
-        <a
-          href="#main"
-          className="fixed top-4 left-4 z-50 translate-y-[-200%] rounded-lg bg-yellow-400 px-4 py-2 font-semibold text-brown-900 transition focus:translate-y-0"
-        >
-          {data.skipLink}
-        </a>
-
-        {children}
-
-        <Footer />
-      </body>
+      {/* The skip link and footer live in (site)/layout so the Studio gets none. */}
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

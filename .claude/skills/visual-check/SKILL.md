@@ -77,9 +77,10 @@ with whether the change is visually safe to merge.
 
 ## Serving
 
-- Static export (until PER-6 removes `output: 'export'`):
+- A build with `output: 'export'` (a baseline from before PER-9):
   `npx --yes serve@14 out -l <port>`
-- Otherwise: `npm start -- -p <port>`
+- Otherwise: `npm start -- -p <port>`. The build reads Sanity's public project
+  ID and dataset from `.env.local`; a baseline worktree needs a copy of it.
 
 Wait until `curl -sf http://localhost:<port>/` succeeds before capturing.
 

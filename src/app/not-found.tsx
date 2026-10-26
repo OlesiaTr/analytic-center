@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Button, TextLink } from '@/components/ui';
 import { LINKS } from '@/constants';
 import data from '@/data/common.json';
-import { Header } from '@/layouts';
+import { Header, SiteShell } from '@/layouts';
 
 export const metadata: Metadata = { title: data.notFound.title };
 
@@ -12,8 +12,9 @@ export default function NotFound() {
   const links: string[] = data.notFound.links;
   const suggested = LINKS.filter(({ linkTo }) => links.includes(linkTo));
 
+  // Rendered in the root layout, so it brings the site shell itself.
   return (
-    <>
+    <SiteShell>
       <Header />
 
       <main id="main" tabIndex={-1} className="wrap focus:outline-none">
@@ -36,6 +37,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-    </>
+    </SiteShell>
   );
 }
