@@ -3,10 +3,15 @@ import path from 'node:path';
 
 import { ImageResponse } from 'next/og';
 
+import { routing } from '@/i18n/routing';
 import { getHeroCovers, getHomePage } from '@/lib/sanity/content';
 
 // Social preview in the site's own look: navy ground, the hero heading and a
 // strip of real covers. An image in siteSettings → SEO overrides it.
+
+// One image per locale, rendered at build and on revalidation, not per request.
+export const generateStaticParams = () =>
+  routing.locales.map(locale => ({ locale }));
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';

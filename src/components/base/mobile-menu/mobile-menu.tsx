@@ -1,9 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { FC, useEffect, useRef } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
 
 import { LINKS } from '@/constants';
 import data from '@/data/common.json';

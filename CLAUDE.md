@@ -36,8 +36,10 @@ webhook → `/api/revalidate`); adding English is planned in
 
 ### Directory Structure
 
-- `src/app/` - App Router: `(site)/` pages with the site shell, `studio/` for
-  Sanity Studio
+- `src/app/` - App Router: `[locale]/(site)/` pages (root layout per locale, uk
+  at `/`, en at `/en`), `studio/` for Sanity Studio (its own root layout)
+- `src/i18n/` - next-intl routing, navigation and request config; `src/proxy.ts`
+  (Next 16's middleware) adds the locale
 - `sanity/` - Studio schemas; `sanity.config.ts`, `sanity.cli.ts` at the root
 - `src/lib/sanity/` - Sanity client and env
 - `src/sections/` - Page sections (Hero, News, Grants, ...)

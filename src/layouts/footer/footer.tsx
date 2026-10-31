@@ -1,11 +1,10 @@
-import Link from 'next/link';
-
 import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
 import { LINKS } from '@/constants';
 import data from '@/data/common.json';
 import { toContacts } from '@/lib/sanity/contacts';
 import { getSiteSettings } from '@/lib/sanity/content';
+import { Link } from '@/i18n/navigation';
 
 const footerLink =
   'inline-flex min-h-9 items-center gap-2.5 font-medium text-white no-underline hover:text-yellow-400 hover:underline hover:underline-offset-3';

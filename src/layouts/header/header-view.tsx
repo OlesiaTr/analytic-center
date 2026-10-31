@@ -1,9 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { FC, useCallback, useRef } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
 
 import { MobileMenu } from '@/components/base';
 import { Icon } from '@/components/icons';

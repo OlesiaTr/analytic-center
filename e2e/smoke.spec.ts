@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-import { ROUTES } from '../scripts/routes.mts';
+import { EN_ROUTES, ROUTES } from '../scripts/routes.mts';
 
-for (const route of ROUTES) {
+for (const route of [...ROUTES, ...EN_ROUTES]) {
   test(`${route} renders without errors`, async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -174,4 +174,24 @@ test('the revalidate webhook rejects unsigned requests', async ({
   // 401 with a secret configured, 500 where it isn't (local runs and CI).
   expect([401, 500]).toContain(response.status());
   expect(response.ok()).toBe(false);
+});
+
+test('each locale sets html lang and keeps its links', async ({ page }) => {
+  await page.goto('/grants');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+  await expect(page.locator('a[href^="/en"]')).toHaveCount(0);
+
+  await page.goto('/en/grants');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  const internal = page.locator('header a[href^="/"]');
+  for (const href of await internal.evaluateAll(links =>
+    links.map(link => link.getAttribute('href')),
+  )) {
+    expect(href).toMatch(/^\/en(\/|$)/);
+  }
+});
+
+test('the default locale has no /uk prefix', async ({ page }) => {
+  await page.goto('/uk/grants');
+  await expect(page).toHaveURL('/grants');
 });
