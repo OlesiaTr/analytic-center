@@ -35,11 +35,15 @@ const Page = async () => {
 
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
-      <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
+      <PageHead
+        title={page?.title ?? ''}
+        lead={page?.lead ?? undefined}
+        lang={page?.lang}
+      />
 
       <section aria-label={t('introLabel')} className="sec">
         <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-          <div className="prose max-w-180">
+          <div lang={about?.introLang} className="prose max-w-180">
             {about?.intro && <PortableText value={about.intro} />}
           </div>
           {about?.imgSrc && (

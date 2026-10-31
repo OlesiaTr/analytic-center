@@ -543,11 +543,12 @@ export type AllSanitySchemaTypes =
 
 // Source: src/lib/sanity/queries.ts
 // Variable: upcomingConferencesQuery
-// Query: *[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+// Query: *[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(subtitle.en, subtitle.uk), subtitle.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
 export type UpcomingConferencesQueryResult = Array<{
   id: string;
   title: string | null;
   description: string | null;
+  lang: 'en' | 'uk';
   date: string;
   linkToDownload: string | null;
   imgSrc: string | null;
@@ -557,11 +558,12 @@ export type UpcomingConferencesQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: archivedConferencesQuery
-// Query: *[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+// Query: *[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(subtitle.en, subtitle.uk), subtitle.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
 export type ArchivedConferencesQueryResult = Array<{
   id: string;
   title: string | null;
   description: string | null;
+  lang: 'en' | 'uk';
   date: string;
   linkToDownload: string;
   imgSrc: string | null;
@@ -571,10 +573,11 @@ export type ArchivedConferencesQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: upcomingMonographsQuery
-// Query: *[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": title.uk, date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+// Query: *[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
 export type UpcomingMonographsQueryResult = Array<{
   id: string;
   title: string | null;
+  lang: 'en' | 'uk';
   date: string;
   linkToDownload: string | null;
   imgSrc: string | null;
@@ -584,10 +587,11 @@ export type UpcomingMonographsQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: archivedMonographsQuery
-// Query: *[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": title.uk, date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+// Query: *[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
 export type ArchivedMonographsQueryResult = Array<{
   id: string;
   title: string | null;
+  lang: 'en' | 'uk';
   date: string;
   linkToDownload: string;
   imgSrc: string | null;
@@ -597,11 +601,12 @@ export type ArchivedMonographsQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: libraryQuery
-// Query: *[_type == "libraryItem"] | order(order asc){ "id": _id, "title": title.uk, "authors": authors.uk, kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
+// Query: *[_type == "libraryItem"] | order(order asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "authors": select($locale == "en" => coalesce(authors.en, authors.uk), authors.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }
 export type LibraryQueryResult = Array<{
   id: string;
   title: string | null;
   authors: string | null;
+  lang: 'en' | 'uk';
   kind: 'monograph' | 'studyGuide' | 'textbook';
   year: number;
   linkToDownload: string;
@@ -621,9 +626,10 @@ export type HeroCoversQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: partnersQuery
-// Query: *[_type == "partner"] | order(order asc){ "name": name.uk, href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }
+// Query: *[_type == "partner"] | order(order asc){ "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), "lang": select($locale == "en" && defined(name.en) => "en", "uk"), href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }
 export type PartnersQueryResult = Array<{
   name: string | null;
+  lang: 'en' | 'uk';
   href: string;
   image: string | null;
   width: number | null;
@@ -632,10 +638,11 @@ export type PartnersQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: newsQuery
-// Query: *[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": text.uk, date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }
+// Query: *[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(text.en) => "en", "uk"), date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }
 export type NewsQueryResult = Array<{
   id: string;
   text: string | null;
+  lang: 'en' | 'uk';
   date: string;
   href: string | null;
   imgSrc: string | null;
@@ -645,14 +652,18 @@ export type NewsQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: grantGroupsQuery
-// Query: *[_type == "grantGroup"] | order(order asc){ "id": _id, "title": title.uk, "programs": programs[]{ "title": title.uk, "description": description.uk, "points": points[].uk, "deadline": deadline.uk, link } }
+// Query: *[_type == "grantGroup"] | order(order asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "programs": programs[]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk), "lang": select($locale == "en" && defined(description.en) => "en", "uk"), "points": points[]{ "text": select($locale == "en" => coalesce(@.en, @.uk), @.uk) }, "deadline": select($locale == "en" => coalesce(deadline.en, deadline.uk), deadline.uk), link } }
 export type GrantGroupsQueryResult = Array<{
   id: string;
   title: string | null;
+  lang: 'en' | 'uk';
   programs: Array<{
     title: string | null;
     description: string | null;
-    points: Array<string | null> | null;
+    lang: 'en' | 'uk';
+    points: Array<{
+      text: string | null;
+    }> | null;
     deadline: string | null;
     link: string;
   }> | null;
@@ -660,11 +671,12 @@ export type GrantGroupsQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: peopleQuery
-// Query: *[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": name.uk, "position": position.uk, profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }
+// Query: *[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), "position": select($locale == "en" => coalesce(position.en, position.uk), position.uk), "lang": select($locale == "en" && defined(position.en) => "en", "uk"), profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }
 export type PeopleQueryResult = Array<{
   id: string;
   name: string | null;
   position: string | null;
+  lang: 'en' | 'uk';
   profiles: {
     linkedin?: string;
     googlescholar?: string;
@@ -681,7 +693,7 @@ export type PeopleQueryResult = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: siteSettingsQuery
-// Query: *[_id == "siteSettings"][0]{ "name": name.uk, contacts, "seo": seo{ "title": title.uk, "description": description.uk, keywords, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt.uk } }
+// Query: *[_id == "siteSettings"][0]{ "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), contacts, "seo": seo{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk), keywords, "ogImage": ogImage.asset->url, "ogImageAlt": select($locale == "en" => coalesce(ogImage.alt.en, ogImage.alt.uk), ogImage.alt.uk) } }
 export type SiteSettingsQueryResult =
   | {
       name: null;
@@ -723,7 +735,7 @@ export type SiteSettingsQueryResult =
 
 // Source: src/lib/sanity/queries.ts
 // Variable: homePageQuery
-// Query: *[_id == "homePage"][0]{ "hero": hero{ "overline": overline.uk, "heading": heading.uk, "text": text.uk }, "about": about{ "text": text.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk } }
+// Query: *[_id == "homePage"][0]{ "hero": hero{ "overline": select($locale == "en" => coalesce(overline.en, overline.uk), overline.uk), "heading": select($locale == "en" => coalesce(heading.en, heading.uk), heading.uk), "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(heading.en) => "en", "uk") }, "about": about{ "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(text.en) => "en", "uk"), "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": select($locale == "en" => coalesce(image.alt.en, image.alt.uk), image.alt.uk) } }
 export type HomePageQueryResult =
   | {
       hero: null;
@@ -734,9 +746,11 @@ export type HomePageQueryResult =
         overline: string | null;
         heading: string | null;
         text: string | null;
+        lang: 'en' | 'uk';
       } | null;
       about: {
         text: string | null;
+        lang: 'en' | 'uk';
         imgSrc: string | null;
         width: number | null;
         height: number | null;
@@ -747,29 +761,33 @@ export type HomePageQueryResult =
 
 // Source: src/lib/sanity/queries.ts
 // Variable: pageQuery
-// Query: *[_id == $id][0]{ "title": title.uk, "lead": lead.uk, "seo": seo{ "title": title.uk, "description": description.uk } }
+// Query: *[_id == $id][0]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lead": select($locale == "en" => coalesce(lead.en, lead.uk), lead.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "seo": seo{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk) } }
 export type PageQueryResult =
   | {
-      title: null;
+      title: string | null;
       lead: null;
+      lang: 'en' | 'uk';
       seo: null;
     }
   | {
       title: string | null;
-      lead: null;
-      seo: null;
-    }
-  | {
-      title: null;
-      lead: null;
+      lead: string | null;
+      lang: 'en' | 'uk';
       seo: {
         title: string | null;
         description: string | null;
       } | null;
     }
   | {
-      title: string | null;
-      lead: string | null;
+      title: null;
+      lead: null;
+      lang: 'uk';
+      seo: null;
+    }
+  | {
+      title: null;
+      lead: null;
+      lang: 'uk';
       seo: {
         title: string | null;
         description: string | null;
@@ -779,7 +797,7 @@ export type PageQueryResult =
 
 // Source: src/lib/sanity/queries.ts
 // Variable: conferencesPageQuery
-// Query: *[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": title.uk, "sub": sub.uk, "fields": fields[].uk } }
+// Query: *[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "sub": select($locale == "en" => coalesce(sub.en, sub.uk), sub.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "fields": fields[]{ "text": select($locale == "en" => coalesce(@.en, @.uk), @.uk) } } }
 export type ConferencesPageQueryResult =
   | {
       authorsForm: null;
@@ -788,17 +806,21 @@ export type ConferencesPageQueryResult =
       authorsForm: {
         title: string | null;
         sub: string | null;
-        fields: Array<string | null> | null;
+        lang: 'en' | 'uk';
+        fields: Array<{
+          text: string | null;
+        }> | null;
       } | null;
     }
   | null;
 
 // Source: src/lib/sanity/queries.ts
 // Variable: aboutPageQuery
-// Query: *[_id == "aboutPage"][0]{ "intro": intro.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk, "statute": statute[]{ "title": title.uk, "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": council.uk, "supervisory": supervisory.uk, "member": member.uk } }
+// Query: *[_id == "aboutPage"][0]{ "intro": select($locale == "en" && count(intro.en) > 0 => intro.en, intro.uk), "introLang": select($locale == "en" && count(intro.en) > 0 => "en", "uk"), "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": select($locale == "en" => coalesce(image.alt.en, image.alt.uk), image.alt.uk), "statute": statute[]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": select($locale == "en" => coalesce(council.en, council.uk), council.uk), "supervisory": select($locale == "en" => coalesce(supervisory.en, supervisory.uk), supervisory.uk), "member": select($locale == "en" => coalesce(member.en, member.uk), member.uk) } }
 export type AboutPageQueryResult =
   | {
       intro: null;
+      introLang: 'uk';
       imgSrc: null;
       width: null;
       height: null;
@@ -808,6 +830,7 @@ export type AboutPageQueryResult =
     }
   | {
       intro: null;
+      introLang: 'uk';
       imgSrc: string | null;
       width: number | null;
       height: number | null;
@@ -834,6 +857,7 @@ export type AboutPageQueryResult =
         _type: 'block';
         _key: string;
       }> | null;
+      introLang: 'en' | 'uk';
       imgSrc: string | null;
       width: number | null;
       height: number | null;
@@ -852,7 +876,7 @@ export type AboutPageQueryResult =
 
 // Source: src/lib/sanity/queries.ts
 // Variable: usefulInfoPageQuery
-// Query: *[_id == "usefulInfoPage"][0]{ "table": table{ "caption": caption.uk, "rows": rows[]{ "group": group.uk, "type": type.uk, "example": example.uk }, "footnote": footnote.uk } }
+// Query: *[_id == "usefulInfoPage"][0]{ "table": table{ "caption": select($locale == "en" => coalesce(caption.en, caption.uk), caption.uk), "rows": rows[]{ "group": select($locale == "en" => coalesce(group.en, group.uk), group.uk), "type": select($locale == "en" => coalesce(type.en, type.uk), type.uk), "example": select($locale == "en" => coalesce(example.en, example.uk), example.uk), "exampleLang": select($locale == "en" && defined(example.en) => "en", "uk") }, "footnote": select($locale == "en" => coalesce(footnote.en, footnote.uk), footnote.uk) } }
 export type UsefulInfoPageQueryResult =
   | {
       table: null;
@@ -864,6 +888,7 @@ export type UsefulInfoPageQueryResult =
           group: string | null;
           type: string | null;
           example: string | null;
+          exampleLang: 'en' | 'uk';
         }> | null;
         footnote: string | null;
       } | null;
@@ -873,22 +898,22 @@ export type UsefulInfoPageQueryResult =
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '*[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingConferencesQueryResult;
-    '*[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": title.uk, "description": subtitle.uk, date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedConferencesQueryResult;
-    '*[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": title.uk, date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingMonographsQueryResult;
-    '*[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": title.uk, date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedMonographsQueryResult;
-    '*[_type == "libraryItem"] | order(order asc){ "id": _id, "title": title.uk, "authors": authors.uk, kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': LibraryQueryResult;
+    '*[_type == "conference" && date >= $today && defined(infoLetterUrl)] | order(date asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(subtitle.en, subtitle.uk), subtitle.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": infoLetterUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingConferencesQueryResult;
+    '*[_type == "conference" && defined(proceedingsUrl)] | order(date desc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(subtitle.en, subtitle.uk), subtitle.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": proceedingsUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedConferencesQueryResult;
+    '*[_type == "monograph" && date >= $today && defined(callUrl)] | order(date asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": callUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': UpcomingMonographsQueryResult;
+    '*[_type == "monograph" && defined(bookUrl)] | order(date desc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), date, "linkToDownload": bookUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': ArchivedMonographsQueryResult;
+    '*[_type == "libraryItem"] | order(order asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "authors": select($locale == "en" => coalesce(authors.en, authors.uk), authors.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), kind, year, "linkToDownload": fileUrl, "imgSrc": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': LibraryQueryResult;
     '*[_type in ["conference", "monograph"] && defined(cover.asset)] | order(date desc)[0...20]{ "image": cover.asset->url, "width": cover.asset->metadata.dimensions.width, "height": cover.asset->metadata.dimensions.height }': HeroCoversQueryResult;
-    '*[_type == "partner"] | order(order asc){ "name": name.uk, href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }': PartnersQueryResult;
-    '*[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": text.uk, date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }': NewsQueryResult;
-    '*[_type == "grantGroup"] | order(order asc){ "id": _id, "title": title.uk, "programs": programs[]{ "title": title.uk, "description": description.uk, "points": points[].uk, "deadline": deadline.uk, link } }': GrantGroupsQueryResult;
-    '*[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": name.uk, "position": position.uk, profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }': PeopleQueryResult;
-    '*[_id == "siteSettings"][0]{ "name": name.uk, contacts, "seo": seo{ "title": title.uk, "description": description.uk, keywords, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt.uk } }': SiteSettingsQueryResult;
-    '*[_id == "homePage"][0]{ "hero": hero{ "overline": overline.uk, "heading": heading.uk, "text": text.uk }, "about": about{ "text": text.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk } }': HomePageQueryResult;
-    '*[_id == $id][0]{ "title": title.uk, "lead": lead.uk, "seo": seo{ "title": title.uk, "description": description.uk } }': PageQueryResult;
-    '*[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": title.uk, "sub": sub.uk, "fields": fields[].uk } }': ConferencesPageQueryResult;
-    '*[_id == "aboutPage"][0]{ "intro": intro.uk, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": image.alt.uk, "statute": statute[]{ "title": title.uk, "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": council.uk, "supervisory": supervisory.uk, "member": member.uk } }': AboutPageQueryResult;
-    '*[_id == "usefulInfoPage"][0]{ "table": table{ "caption": caption.uk, "rows": rows[]{ "group": group.uk, "type": type.uk, "example": example.uk }, "footnote": footnote.uk } }': UsefulInfoPageQueryResult;
+    '*[_type == "partner"] | order(order asc){ "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), "lang": select($locale == "en" && defined(name.en) => "en", "uk"), href, "image": logo.asset->url, "width": logo.asset->metadata.dimensions.width, "height": logo.asset->metadata.dimensions.height }': PartnersQueryResult;
+    '*[_type == "news"] | order(date desc, _id asc){ "id": _id, "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(text.en) => "en", "uk"), date, href, "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height }': NewsQueryResult;
+    '*[_type == "grantGroup"] | order(order asc){ "id": _id, "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "programs": programs[]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk), "lang": select($locale == "en" && defined(description.en) => "en", "uk"), "points": points[]{ "text": select($locale == "en" => coalesce(@.en, @.uk), @.uk) }, "deadline": select($locale == "en" => coalesce(deadline.en, deadline.uk), deadline.uk), link } }': GrantGroupsQueryResult;
+    '*[_type == "person" && $board in boards] | order(order asc){ "id": _id, "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), "position": select($locale == "en" => coalesce(position.en, position.uk), position.uk), "lang": select($locale == "en" && defined(position.en) => "en", "uk"), profiles, "image": photo.asset->url, "width": photo.asset->metadata.dimensions.width, "height": photo.asset->metadata.dimensions.height }': PeopleQueryResult;
+    '*[_id == "siteSettings"][0]{ "name": select($locale == "en" => coalesce(name.en, name.uk), name.uk), contacts, "seo": seo{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk), keywords, "ogImage": ogImage.asset->url, "ogImageAlt": select($locale == "en" => coalesce(ogImage.alt.en, ogImage.alt.uk), ogImage.alt.uk) } }': SiteSettingsQueryResult;
+    '*[_id == "homePage"][0]{ "hero": hero{ "overline": select($locale == "en" => coalesce(overline.en, overline.uk), overline.uk), "heading": select($locale == "en" => coalesce(heading.en, heading.uk), heading.uk), "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(heading.en) => "en", "uk") }, "about": about{ "text": select($locale == "en" => coalesce(text.en, text.uk), text.uk), "lang": select($locale == "en" && defined(text.en) => "en", "uk"), "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": select($locale == "en" => coalesce(image.alt.en, image.alt.uk), image.alt.uk) } }': HomePageQueryResult;
+    '*[_id == $id][0]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "lead": select($locale == "en" => coalesce(lead.en, lead.uk), lead.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "seo": seo{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "description": select($locale == "en" => coalesce(description.en, description.uk), description.uk) } }': PageQueryResult;
+    '*[_id == "conferencesPage"][0]{ "authorsForm": authorsForm{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "sub": select($locale == "en" => coalesce(sub.en, sub.uk), sub.uk), "lang": select($locale == "en" && defined(title.en) => "en", "uk"), "fields": fields[]{ "text": select($locale == "en" => coalesce(@.en, @.uk), @.uk) } } }': ConferencesPageQueryResult;
+    '*[_id == "aboutPage"][0]{ "intro": select($locale == "en" && count(intro.en) > 0 => intro.en, intro.uk), "introLang": select($locale == "en" && count(intro.en) > 0 => "en", "uk"), "imgSrc": image.asset->url, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "imgAlt": select($locale == "en" => coalesce(image.alt.en, image.alt.uk), image.alt.uk), "statute": statute[]{ "title": select($locale == "en" => coalesce(title.en, title.uk), title.uk), "linkToDownload": fileUrl }, "boardTitles": boardTitles{ "council": select($locale == "en" => coalesce(council.en, council.uk), council.uk), "supervisory": select($locale == "en" => coalesce(supervisory.en, supervisory.uk), supervisory.uk), "member": select($locale == "en" => coalesce(member.en, member.uk), member.uk) } }': AboutPageQueryResult;
+    '*[_id == "usefulInfoPage"][0]{ "table": table{ "caption": select($locale == "en" => coalesce(caption.en, caption.uk), caption.uk), "rows": rows[]{ "group": select($locale == "en" => coalesce(group.en, group.uk), group.uk), "type": select($locale == "en" => coalesce(type.en, type.uk), type.uk), "example": select($locale == "en" => coalesce(example.en, example.uk), example.uk), "exampleLang": select($locale == "en" && defined(example.en) => "en", "uk") }, "footnote": select($locale == "en" => coalesce(footnote.en, footnote.uk), footnote.uk) } }': UsefulInfoPageQueryResult;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

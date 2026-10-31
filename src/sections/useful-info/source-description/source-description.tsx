@@ -18,11 +18,12 @@ export const SourceDescription = async () => {
           caption={title}
           columns={[typeHeader, exampleHeader]}
           valueClassName="font-serif text-base leading-[26px] wrap-anywhere"
-          rows={rows.map(({ group, type, example }) => ({
+          rows={rows.map(({ group, type, example, exampleLang }) => ({
             key: `${group ?? ''}${type}`,
             group: group ?? undefined,
             label: type ?? '',
-            value: example,
+            // Examples follow the Ukrainian standard, so they often stay Ukrainian.
+            value: <span lang={exampleLang}>{example}</span>,
           }))}
         />
         <p className="mt-4 max-w-190 t-sm text-muted">{footnote}</p>

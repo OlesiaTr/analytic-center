@@ -14,7 +14,11 @@ const Page = async () => {
   const t = await getTranslations('library');
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
-      <PageHead title={page?.title ?? ''} lead={page?.lead ?? undefined} />
+      <PageHead
+        title={page?.title ?? ''}
+        lead={page?.lead ?? undefined}
+        lang={page?.lang}
+      />
       <section aria-label={t('listLabel')} className="sec">
         <div className="wrap">
           <BookCollection />

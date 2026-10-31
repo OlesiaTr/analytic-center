@@ -28,6 +28,7 @@ export type Person = {
   height: number;
   name: string;
   position: string;
+  lang: 'uk' | 'en';
 } & Partial<Record<ProfileKey, string>>;
 
 /** Photo, name, position and text badges for research profiles. */
@@ -37,7 +38,7 @@ export const PersonCard: FC<{ person: Person }> = ({ person }) => {
   const links = PROFILES.filter(key => person[key]);
 
   return (
-    <article className="flex min-w-0 flex-col gap-2">
+    <article lang={person.lang} className="flex min-w-0 flex-col gap-2">
       <div className="mb-1 aspect-374/416 overflow-hidden rounded-lg bg-blue-50">
         <Image
           src={image}

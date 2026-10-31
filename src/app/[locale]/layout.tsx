@@ -13,7 +13,14 @@ import '@/styles/globals.css';
 export const generateStaticParams = () =>
   routing.locales.map(locale => ({ locale }));
 
-export const generateMetadata = (): Promise<Metadata> => rootMetadata();
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> => {
+  const { locale } = await params;
+  return rootMetadata(hasLocale(routing.locales, locale) ? locale : 'uk');
+};
 
 export default async function LocaleLayout({
   children,

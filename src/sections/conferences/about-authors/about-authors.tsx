@@ -7,7 +7,9 @@ export const AboutAuthors = async () => {
   const t = await getTranslations('authorsForm');
   const [labelHead, valueHead] = [t('columns.field'), t('columns.answer')];
   const form = (await getConferencesPage())?.authorsForm;
-  const fields = (form?.fields ?? []).filter((f): f is string => !!f);
+  const fields = (form?.fields ?? [])
+    .map(field => field.text)
+    .filter((field): field is string => !!field);
   // «Шаблон, який надсилається разом із тезами — 13 полів»
 
   return (

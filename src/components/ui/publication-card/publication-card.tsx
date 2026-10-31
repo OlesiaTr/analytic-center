@@ -64,6 +64,7 @@ export const PublicationCard: FC<Props> = ({
 
   return (
     <article
+      lang={card.lang}
       className={clsx(
         'grid grid-cols-[96px_minmax(0,1fr)] content-start gap-x-4 gap-y-3 rounded-xl border border-line bg-white p-3 text-text transition-shadow duration-200 hover:shadow-sh-2',
         'md:flex md:h-full md:flex-col md:gap-4 md:pb-4',

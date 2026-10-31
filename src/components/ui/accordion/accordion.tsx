@@ -6,6 +6,8 @@ export interface Props {
   title: string;
   /** Muted line under the title, e.g. «2 програми». */
   sub?: string;
+  /** "uk" where the group has no English yet */
+  lang?: 'uk' | 'en';
   defaultOpen?: boolean;
   children: ReactNode;
 }
@@ -13,11 +15,13 @@ export interface Props {
 /** Native <details>: keyboard, find-in-page and no JS; several may be open. */
 export const Accordion: FC<Props> = ({
   title,
+  lang,
   sub,
   defaultOpen = false,
   children,
 }) => (
   <details
+    lang={lang}
     open={defaultOpen}
     className="group border-t border-line last:border-b"
   >

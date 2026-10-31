@@ -19,7 +19,9 @@ export const CenterShortVersion = async () => {
           <h2 id="about-title" className="sec-title t-h2">
             {title}
           </h2>
-          <p className="prose">{about?.text}</p>
+          <p lang={about?.lang} className="prose">
+            {about?.text}
+          </p>
           <Button href={redirectionTo}>{button}</Button>
         </div>
         <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">

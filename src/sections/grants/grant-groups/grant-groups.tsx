@@ -16,11 +16,12 @@ export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
 
   return (
     <div>
-      {groups.map(({ id, title, programs }, index) => {
+      {groups.map(({ id, title, lang, programs }, index) => {
         return (
           <Accordion
             key={id}
             title={title}
+            lang={lang}
             sub={t('programCount', { count: programs.length })}
             defaultOpen={index === 0}
           >
@@ -35,6 +36,7 @@ export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
                 dueDateLabel={t('dueDate')}
                 moreLabel={t('moreOn', { host: toHost(program.linkTo) })}
                 headingLevel={headingLevel}
+                lang={program.lang}
               />
             ))}
           </Accordion>

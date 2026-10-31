@@ -15,6 +15,7 @@ const list = Array.from({ length: 22 }, (_, i) => ({
   title: `Збірник ${i + 1}`,
   date: '30.10.2026',
   linkToDownload: `https://example.org/${i}`,
+  lang: 'uk' as const,
 }));
 
 describe('PublicationGrid', () => {

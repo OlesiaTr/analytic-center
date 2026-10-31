@@ -213,3 +213,28 @@ test('English pages use the English UI labels', async ({ page }, info) => {
     page.getByRole('link', { name: 'Skip to content' }),
   ).toBeAttached();
 });
+
+test('English stays out of search until it is public', async ({ page }) => {
+  await page.goto('/en/grants');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    /noindex/,
+  );
+  await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/en\/grants$/,
+  );
+
+  await page.goto('/grants');
+  await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+    'content',
+    /noindex/,
+  );
+});
+
+test('Ukrainian fallbacks on /en are marked lang="uk"', async ({ page }) => {
+  await page.goto('/en/conferences');
+  const cards = page.locator('main article');
+  await expect(cards.first()).toHaveAttribute('lang', /^(uk|en)$/);
+});

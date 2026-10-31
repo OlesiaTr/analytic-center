@@ -9,7 +9,7 @@ import { MobileMenu } from '@/components/base';
 import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
 import { LanguageSwitch } from '@/components/ui';
-import { LINKS, SHOW_LANGUAGE_SWITCH } from '@/constants';
+import { LINKS, ENGLISH_PUBLIC } from '@/constants';
 import { useDisclosure, useEscapeKey } from '@/hooks';
 import type { Contacts } from '@/lib/sanity/contacts';
 
@@ -81,10 +81,10 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
           className={clsx(
             'ml-auto flex items-center gap-2 lg:ml-2',
             // Only the burger lives here until the language switch ships.
-            !SHOW_LANGUAGE_SWITCH && 'lg:hidden',
+            !ENGLISH_PUBLIC && 'lg:hidden',
           )}
         >
-          {SHOW_LANGUAGE_SWITCH && (
+          {ENGLISH_PUBLIC && (
             <LanguageSwitch
               current="uk"
               hrefs={{ uk: pathname, en: `/en${pathname}` }}

@@ -13,6 +13,7 @@ export interface Props {
   /** e.g. «Детальніше на fulbright.org.ua» */
   moreLabel: string;
   headingLevel?: 'h2' | 'h3' | 'h4';
+  lang?: 'uk' | 'en';
 }
 
 /** One grant program: prose, optional list, deadline and the official link. */
@@ -25,8 +26,12 @@ export const GrantProgram: FC<Props> = ({
   dueDateLabel,
   moreLabel,
   headingLevel: Heading = 'h3',
+  lang,
 }) => (
-  <div className="flex flex-col gap-3 rounded-xl bg-surface p-5 lg:px-8 lg:py-7">
+  <div
+    lang={lang}
+    className="flex flex-col gap-3 rounded-xl bg-surface p-5 lg:px-8 lg:py-7"
+  >
     <Heading className="t-h4">{title.replace(/:\s*$/, '')}</Heading>
     <p className="font-serif text-base leading-[27px]">{description}</p>
     {descriptionList && (

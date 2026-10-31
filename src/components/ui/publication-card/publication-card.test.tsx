@@ -14,6 +14,7 @@ const card = {
   title: 'Харківські політологічні читання',
   date: '30.10.2026',
   linkToDownload: 'https://docs.google.com/uc?export=download&id=1',
+  lang: 'uk' as const,
 };
 
 describe('PublicationCard', () => {

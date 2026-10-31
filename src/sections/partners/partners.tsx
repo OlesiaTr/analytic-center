@@ -13,10 +13,11 @@ export const Partners = async () => {
   const next = t('partners.next');
   const partners = await getPartners();
 
-  const items = partners.map(({ image, width, height, name, href }) => ({
+  const items = partners.map(({ image, width, height, name, lang, href }) => ({
     key: href,
     node: (
       <a
+        lang={lang}
         href={href}
         target="_blank"
         rel="noopener noreferrer"

@@ -32,10 +32,15 @@ const loadFont = async (text: string) => {
   return (await fetch(url)).arrayBuffer();
 };
 
-export default async function OpengraphImage() {
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const [page, covers, logo] = await Promise.all([
-    getHomePage(),
-    getHeroCovers(),
+    getHomePage(locale),
+    getHeroCovers(locale),
     readFile(
       path.join(process.cwd(), 'public/meta/android-chrome-512x512.png'),
     ),
