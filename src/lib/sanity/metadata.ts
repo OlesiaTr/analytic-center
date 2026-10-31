@@ -68,8 +68,9 @@ export const rootMetadata = async (locale: Locale): Promise<Metadata> => {
     twitter: { title, description, card: 'summary_large_image' },
     ...STATIC,
     // English stays out of search engines until it is public.
-    ...(locale === 'en' &&
-      !ENGLISH_PUBLIC && { robots: { index: false, follow: true } }),
+    ...(locale === 'en' && !ENGLISH_PUBLIC
+      ? { robots: { index: false, follow: true } }
+      : {}),
   };
 };
 

@@ -6,11 +6,13 @@ import { afterEach, vi } from 'vitest';
 afterEach(cleanup);
 
 // Components render outside a locale request in unit tests: the locale-aware
-// helpers behave like the Ukrainian (default, unprefixed) locale.
+// helpers behave like the Ukrainian (default, unprefixed) locale. Tests set
+// the current page with vi.mocked(usePathname).mockReturnValue(...).
 vi.mock('@/i18n/navigation', () => ({
   Link: NextLink,
-  usePathname: () => '/',
+  usePathname: vi.fn(() => '/'),
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
-  getPathname: ({ href }: { href: string }) => href,
+  getPathname: ({ locale, href }: { locale: string; href: string }) =>
+    locale === 'en' ? `/en${href === '/' ? '' : href}` : href,
   redirect: vi.fn(),
 }));

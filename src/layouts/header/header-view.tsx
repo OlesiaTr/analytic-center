@@ -84,12 +84,7 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
             !ENGLISH_PUBLIC && 'lg:hidden',
           )}
         >
-          {ENGLISH_PUBLIC && (
-            <LanguageSwitch
-              current="uk"
-              hrefs={{ uk: pathname, en: `/en${pathname}` }}
-            />
-          )}
+          {ENGLISH_PUBLIC && <LanguageSwitch />}
           <button
             ref={menuButton}
             type="button"

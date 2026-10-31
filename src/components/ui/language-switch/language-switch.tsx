@@ -1,12 +1,13 @@
+'use client';
+
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FC } from 'react';
 
+import { getPathname, usePathname } from '@/i18n/navigation';
+
 interface Props {
-  current: 'uk' | 'en';
-  /** The same page in each locale (not the home page). */
-  hrefs: { uk: string; en: string };
   /** `light` for white grounds; default is for blue-800 / navy-900. */
   tone?: 'dark' | 'light';
 }
@@ -16,12 +17,14 @@ const LOCALES = [
   { code: 'en', short: 'ENG' },
 ] as const;
 
-/** «УКР / ENG» pill; never «UK», which Ukrainian readers parse as the United Kingdom. */
-export const LanguageSwitch: FC<Props> = ({
-  current,
-  hrefs,
-  tone = 'dark',
-}) => {
+/**
+ * «УКР / ENG» pill linking to the current page in each language; never «UK»,
+ * which Ukrainian readers parse as the United Kingdom.
+ */
+export const LanguageSwitch: FC<Props> = ({ tone = 'dark' }) => {
+  const current = useLocale();
+  // The path without the locale prefix: `/grants` on both /grants and /en/grants.
+  const pathname = usePathname();
   const t = useTranslations('header.languageSwitch');
   const label = t('label');
   const uk = t('uk');
@@ -42,7 +45,7 @@ export const LanguageSwitch: FC<Props> = ({
         return (
           <Link
             key={code}
-            href={hrefs[code]}
+            href={getPathname({ locale: code, href: pathname })}
             lang={code}
             aria-current={isCurrent ? 'true' : undefined}
             className={clsx(
