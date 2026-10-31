@@ -1,9 +1,11 @@
+import { getTranslations } from 'next-intl/server';
+
 import { DataTable } from '@/components/ui';
-import data from '@/data/common.json';
 import { getUsefulInfoPage } from '@/lib/sanity/content';
 
 export const SourceDescription = async () => {
-  const [typeHeader, exampleHeader] = data.usefulInfo.headers;
+  const t = await getTranslations('usefulInfo.headers');
+  const [typeHeader, exampleHeader] = [t('type'), t('example')];
   const table = (await getUsefulInfoPage())?.table;
   const title = table?.caption ?? '';
   const footnote = table?.footnote;

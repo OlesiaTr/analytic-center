@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 import { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -36,7 +37,8 @@ export const PublicationCard: FC<Props> = ({
 }) => {
   const { imgSrc, width, height, title, description, date, linkToDownload } =
     card;
-  const parts = wide ? formatDate(date) : null;
+  const locale = useLocale();
+  const parts = wide ? formatDate(date, locale) : null;
 
   const actions = (
     <div

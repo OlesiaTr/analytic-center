@@ -1,14 +1,12 @@
+// Navigation: the names live in messages/{uk,en}.json under `nav.<key>`.
 export const LINKS = [
-  { name: 'Головна', linkTo: '/' },
-  {
-    name: 'Про центр',
-    linkTo: '/about-center',
-  },
-  { name: 'Конференції', linkTo: '/conferences' },
-  { name: 'Монографії', linkTo: '/monographs' },
-  // { name: 'Журнали', linkTo: '/journals' },
-  { name: 'Бібліотека', linkTo: '/library' },
-  { name: 'Гранти', linkTo: '/grants' },
-  { name: 'Корисне', linkTo: '/useful-info' },
-  // { name: 'Контакти', linkTo: '/contacts' },
+  { key: 'home', linkTo: '/' },
+  { key: 'about', linkTo: '/about-center' },
+  { key: 'conferences', linkTo: '/conferences' },
+  { key: 'monographs', linkTo: '/monographs' },
+  // { key: 'journals', linkTo: '/journals' },
+  { key: 'library', linkTo: '/library' },
+  { key: 'grants', linkTo: '/grants' },
+  { key: 'useful', linkTo: '/useful-info' },
+  // { key: 'contacts', linkTo: '/contacts' },
 ] as const;

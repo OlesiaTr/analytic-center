@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { Icon } from '@/components/icons';
 import { TextLink } from '@/components/ui/text-link';
-import { toHost } from '@/utils';
 
 export interface Props {
   title: string;
@@ -11,7 +10,7 @@ export interface Props {
   date: string;
   linkTo: string;
   dueDateLabel: string;
-  /** «Детальніше на {host}» */
+  /** e.g. «Детальніше на fulbright.org.ua» */
   moreLabel: string;
   headingLevel?: 'h2' | 'h3' | 'h4';
 }
@@ -46,7 +45,7 @@ export const GrantProgram: FC<Props> = ({
         </span>
       </span>
       <TextLink href={linkTo} external>
-        {moreLabel.replace('{host}', toHost(linkTo))}
+        {moreLabel}
       </TextLink>
     </div>
   </div>

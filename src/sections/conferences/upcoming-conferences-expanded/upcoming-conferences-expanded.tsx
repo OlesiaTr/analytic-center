@@ -1,12 +1,21 @@
+import { getTranslations } from 'next-intl/server';
+
 import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
-import commonData from '@/data/common.json';
 import { getUpcomingConferences } from '@/lib/sanity/content';
 
 import { AboutAuthors } from '../about-authors';
 
 export const UpcomingConferencesExpanded = async () => {
-  const { title, buttonDownload, srDownload, empty } =
-    commonData.upcomingConferences;
+  const t = await getTranslations('upcomingConferences');
+  const title = t('title');
+  const buttonDownload = t('buttonDownload');
+  const srDownload = t('srDownload');
+  const empty = {
+    title: t('empty.title'),
+    text: t('empty.text'),
+    link: t('empty.link'),
+    href: '/conferences#archive',
+  };
   const list = await getUpcomingConferences();
 
   return (

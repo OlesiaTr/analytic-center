@@ -1,16 +1,24 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 import { Button, TextLink } from '@/components/ui';
 import { LINKS } from '@/constants';
-import data from '@/data/common.json';
 import { Header, SiteShell } from '@/layouts';
 
-export const metadata: Metadata = { title: data.notFound.title };
+export const generateMetadata = async (): Promise<Metadata> => ({
+  title: (await getTranslations('notFound'))('title'),
+});
 
-export default function NotFound() {
-  const { code, title, text, button } = data.notFound;
-  const links: string[] = data.notFound.links;
-  const suggested = LINKS.filter(({ linkTo }) => links.includes(linkTo));
+// Where lost visitors most likely meant to go.
+const SUGGESTED: readonly string[] = [
+  '/conferences',
+  '/monographs',
+  '/library',
+];
+
+export default async function NotFound() {
+  const t = await getTranslations();
+  const suggested = LINKS.filter(({ linkTo }) => SUGGESTED.includes(linkTo));
 
   // Rendered in the root layout, so it brings the site shell itself.
   return (
@@ -23,15 +31,15 @@ export default function NotFound() {
             aria-hidden
             className="text-8xl leading-24 font-extrabold tracking-[-0.03em] text-blue-600 lg:text-[160px] lg:leading-[150px]"
           >
-            {code}
+            {t('notFound.code')}
           </p>
-          <h1 className="t-h1">{title}</h1>
-          <p className="t-lead">{text}</p>
+          <h1 className="t-h1">{t('notFound.title')}</h1>
+          <p className="t-lead">{t('notFound.text')}</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Button href="/">{button}</Button>
-            {suggested.map(({ name, linkTo }) => (
+            <Button href="/">{t('notFound.button')}</Button>
+            {suggested.map(({ key, linkTo }) => (
               <TextLink key={linkTo} href={linkTo}>
-                {name}
+                {t(`nav.${key}`)}
               </TextLink>
             ))}
           </div>

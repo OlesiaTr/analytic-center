@@ -9,8 +9,8 @@ paths:
 # Content (Sanity)
 
 - Content lives in Sanity (project `xczp8pdn`, dataset `production`, Studio at
-  `/studio`). `src/data/common.json` holds **UI labels only** (buttons, aria
-  labels, plural forms, empty states): never put content back into it.
+  `/studio`). `messages/{uk,en}.json` hold **UI labels only** (buttons, aria
+  labels, plural forms, empty states): never put content into them.
 - Every text field is localized: `localeString` / `localeText` / `localeBlock`
   (`{ uk, en }`). Ukrainian is required (`ukRequired`), English arrives with
   PER-10. Queries read `.uk` for now.

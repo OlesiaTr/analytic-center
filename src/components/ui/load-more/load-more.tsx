@@ -1,9 +1,9 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { FC, ReactNode } from 'react';
 
 import { Button } from '@/components/ui/button';
-import data from '@/data/common.json';
 import { useLoadMore } from '@/hooks';
 
 export interface Props {
@@ -24,7 +24,7 @@ export const LoadMore: FC<Props> = ({
 }) => {
   const { shown, total, next, hasMore, showMore, firstNewIndex, firstNewRef } =
     useLoadMore<HTMLLIElement>(items.length, step);
-  const { count, more } = data.loadMore;
+  const t = useTranslations('loadMore');
 
   return (
     <>
@@ -43,9 +43,7 @@ export const LoadMore: FC<Props> = ({
 
       <div className="mt-10 flex flex-col items-center gap-3 text-center">
         <p aria-live="polite" className="t-sm font-semibold text-muted">
-          {count
-            .replace('{shown}', String(shown))
-            .replace('{total}', String(total))}
+          {t('count', { shown, total })}
         </p>
         <div aria-hidden className="h-1 w-50 max-w-full rounded-xs bg-line">
           <div
@@ -59,7 +57,7 @@ export const LoadMore: FC<Props> = ({
             onClick={showMore}
             className="w-full md:w-auto"
           >
-            {more.replace('{next}', String(next))}
+            {t('more', { next })}
           </Button>
         ) : (
           <p className="t-sm text-muted">{doneText}</p>

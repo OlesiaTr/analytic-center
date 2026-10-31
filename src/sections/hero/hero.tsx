@@ -1,11 +1,14 @@
+import { getTranslations } from 'next-intl/server';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui';
-import data from '@/data/common.json';
 import { getHeroCovers, getHomePage } from '@/lib/sanity/content';
 
 export const Hero = async () => {
-  const { button, redirectionTo } = data.hero;
+  const t = await getTranslations('hero');
+  const button = t('button');
+  const redirectionTo = '/about-center';
   const [page, covers] = await Promise.all([getHomePage(), getHeroCovers()]);
   const hero = page?.hero;
 

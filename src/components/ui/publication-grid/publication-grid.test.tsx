@@ -1,6 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
+
+import { renderWithIntl } from '@/test/render';
 
 import { PublicationGrid } from './publication-grid';
 
@@ -17,7 +19,7 @@ const list = Array.from({ length: 22 }, (_, i) => ({
 
 describe('PublicationGrid', () => {
   it('renders short lists in full', () => {
-    render(
+    renderWithIntl(
       <PublicationGrid list={list.slice(0, 3)} buttonLabel="Завантажити" />,
     );
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
@@ -26,7 +28,7 @@ describe('PublicationGrid', () => {
 
   it('loads long archives 8 at a time and focuses the first new item', async () => {
     const user = userEvent.setup();
-    render(
+    renderWithIntl(
       <PublicationGrid
         list={list}
         buttonLabel="Завантажити"
@@ -45,5 +47,18 @@ describe('PublicationGrid', () => {
     expect(screen.getByText('Показано 22 з 22')).toBeVisible();
     expect(screen.getByText('Це всі збірники архіву.')).toBeVisible();
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
+  it('counts in English on /en', () => {
+    renderWithIntl(
+      <PublicationGrid
+        list={list}
+        buttonLabel="Download"
+        loadMore={{ doneText: 'That’s every volume in the archive.' }}
+      />,
+      { locale: 'en' },
+    );
+    expect(screen.getByText('Showing 8 of 22')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Show 8 more' })).toBeVisible();
   });
 });

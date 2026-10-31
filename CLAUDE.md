@@ -49,7 +49,8 @@ webhook → `/api/revalidate`); adding English is planned in
 - `src/layouts/` - Header and Footer
 - `src/hooks/` - State logic (`useDisclosure`, `useLoadMore`, `useCarousel`)
 - `src/utils/` - Pure helpers (`formatDate`, `plural`, `toHost`)
-- `src/data/common.json` - UI labels only (content is in Sanity)
+- `messages/{uk,en}.json` - UI labels (next-intl, ICU plurals; content is in
+  Sanity)
 - `src/constants/` - Navigation links
 - `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
 - `e2e/` - Playwright smoke tests
@@ -66,11 +67,12 @@ those files.
 
 Content comes from Sanity through typed getters in `src/lib/sanity/content.ts`
 (GROQ in `queries.ts`, cached and tagged by document type). Server components
-await them; UI labels still import directly:
+await them; UI labels come from next-intl:
 
 ```typescript
 const list = await getUpcomingConferences();
-import data from '@/data/common.json'; // labels
+const t = await getTranslations('conferenceArchive'); // useTranslations in sync/client components
+t('count', { count: list.length });
 ```
 
 Rules for schemas, queries and content edits load from

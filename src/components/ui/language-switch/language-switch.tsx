@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { FC } from 'react';
-
-import data from '@/data/common.json';
 
 interface Props {
   current: 'uk' | 'en';
@@ -23,7 +22,10 @@ export const LanguageSwitch: FC<Props> = ({
   hrefs,
   tone = 'dark',
 }) => {
-  const { label, uk, en } = data.header.languageSwitch;
+  const t = useTranslations('header.languageSwitch');
+  const label = t('label');
+  const uk = t('uk');
+  const en = t('en');
   const names = { uk, en };
 
   return (

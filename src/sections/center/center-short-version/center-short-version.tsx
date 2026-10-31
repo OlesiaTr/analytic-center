@@ -1,11 +1,15 @@
+import { getTranslations } from 'next-intl/server';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui';
-import data from '@/data/common.json';
 import { getHomePage } from '@/lib/sanity/content';
 
 export const CenterShortVersion = async () => {
-  const { title, button, redirectionTo } = data.aboutCenter;
+  const t = await getTranslations('aboutCenter');
+  const title = t('title');
+  const button = t('button');
+  const redirectionTo = '/about-center';
   const about = (await getHomePage())?.about;
 
   return (

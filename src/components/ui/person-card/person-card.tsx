@@ -1,7 +1,6 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { FC } from 'react';
-
-import data from '@/data/common.json';
 
 type ProfileKey =
   | 'linkedin'
@@ -12,15 +11,15 @@ type ProfileKey =
   | 'scopus'
   | 'wos';
 
-// Display order and badge text; full names come from common.json.
-const PROFILES: { key: ProfileKey; short: string }[] = [
-  { key: 'linkedin', short: 'in' },
-  { key: 'googlescholar', short: 'GS' },
-  { key: 'naukovci', short: 'НУ' },
-  { key: 'orcid', short: 'iD' },
-  { key: 'researchgate', short: 'RG' },
-  { key: 'scopus', short: 'Sc' },
-  { key: 'wos', short: 'WoS' },
+// Display order; full names and badge text come from messages (profiles, profileBadges).
+const PROFILES: ProfileKey[] = [
+  'linkedin',
+  'googlescholar',
+  'naukovci',
+  'orcid',
+  'researchgate',
+  'scopus',
+  'wos',
 ];
 
 export type Person = {
@@ -34,7 +33,8 @@ export type Person = {
 /** Photo, name, position and text badges for research profiles. */
 export const PersonCard: FC<{ person: Person }> = ({ person }) => {
   const { image, width, height, name, position } = person;
-  const links = PROFILES.filter(({ key }) => person[key]);
+  const t = useTranslations();
+  const links = PROFILES.filter(key => person[key]);
 
   return (
     <article className="flex min-w-0 flex-col gap-2">
@@ -55,18 +55,18 @@ export const PersonCard: FC<{ person: Person }> = ({ person }) => {
       <p className="t-sm leading-5 text-muted">{position}</p>
       {links.length > 0 && (
         <ul className="mt-1 flex flex-wrap gap-1.5">
-          {links.map(({ key, short }) => (
+          {links.map(key => (
             <li key={key}>
               <a
                 href={person[key]}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={data.profiles[key]}
+                title={t(`profiles.${key}`)}
                 className="relative inline-flex h-8 min-w-9 items-center justify-center rounded-md border border-line-strong bg-white px-1.5 text-xs leading-4 font-bold text-blue-800 no-underline hover:border-blue-600 hover:bg-blue-50"
               >
-                {short}{' '}
+                {t(`profileBadges.${key}`)}{' '}
                 <span className="sr-only">
-                  {data.profiles[key]}, {name} {data.a11y.newTab}
+                  {t(`profiles.${key}`)}, {name} {t('a11y.newTab')}
                 </span>
               </a>
             </li>

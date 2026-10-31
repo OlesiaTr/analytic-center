@@ -195,3 +195,21 @@ test('the default locale has no /uk prefix', async ({ page }) => {
   await page.goto('/uk/grants');
   await expect(page).toHaveURL('/grants');
 });
+
+test('English pages use the English UI labels', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'header nav is desktop-only');
+
+  await page.goto('/en/conferences');
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(nav.getByRole('link', { name: 'Grants' })).toHaveAttribute(
+    'href',
+    '/en/grants',
+  );
+  const archive = page.locator('section', {
+    has: page.getByRole('heading', { name: 'Conference archive' }),
+  });
+  await expect(archive.getByText(/^Showing 8 of \d+$/)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Skip to content' }),
+  ).toBeAttached();
+});
