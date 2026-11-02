@@ -31,11 +31,11 @@
     }
   },
   "hero": {
-    "button": "Learn more"
+    "button": "About the Center"
   },
   "aboutCenter": {
     "title": "About the Center",
-    "button": "Learn more"
+    "button": "More about the Center"
   },
   "upcomingConferences": {
     "title": "Upcoming conferences",
