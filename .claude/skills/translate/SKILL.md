@@ -27,7 +27,7 @@ type.
 
 Fill `en` in that file. Leave `null` what must stay Ukrainian.
 
-- **Center name:** "Analytic Center of Modern Humanities" (as in
+- **Center name:** "Analytical Center of Modern Humanitarian Studies" (as in
   `messages/en.json`).
 - **People:** official transliteration (KMU 2010: Г→h, И→y, Х→kh, Ц→ts, Щ→shch,
   Ю/Я/Є→iu/ia/ie inside a word and yu/ya/ye at the start, ь and ' dropped),

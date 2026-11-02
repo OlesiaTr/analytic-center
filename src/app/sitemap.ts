@@ -1,11 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 import { ENGLISH_PUBLIC, LINKS } from '@/constants';
-import { getPathname } from '@/i18n/navigation';
-import { PUBLIC_BASE_URL } from '@/lib/sanity/metadata';
-
-const url = (locale: 'uk' | 'en', href: string) =>
-  new URL(getPathname({ locale, href }), PUBLIC_BASE_URL).toString();
+import { absoluteUrl as url } from '@/lib/sanity/metadata';
 
 /** The pages in the navigation; English joins once it is public. */
 export default function sitemap(): MetadataRoute.Sitemap {

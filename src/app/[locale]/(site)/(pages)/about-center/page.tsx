@@ -3,9 +3,10 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { PortableText } from 'next-sanity';
 
-import { PageHead, PersonCard, SectionHead } from '@/components/ui';
+import { JsonLd, PageHead, PersonCard, SectionHead } from '@/components/ui';
 import { getAboutPage, getPage, getPeople } from '@/lib/sanity/content';
-import { pageMetadata } from '@/lib/sanity/metadata';
+import { ORGANIZATION, pageMetadata } from '@/lib/sanity/metadata';
+import { graph, person } from '@/lib/seo/json-ld';
 import { OrganizationStatute } from '@/sections';
 
 export const generateMetadata = (): Promise<Metadata> =>
@@ -33,8 +34,18 @@ const Page = async () => {
         : people[index],
   }));
 
+  // One node per person, though some sit on more than one board.
+  const members = [
+    ...new Map(people.flat().map(member => [member.name, member])).values(),
+  ];
+
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
+      <JsonLd
+        data={graph(
+          members.map(member => person(member, { memberOf: ORGANIZATION })),
+        )}
+      />
       <PageHead
         title={page?.title ?? ''}
         lead={page?.lead ?? undefined}
