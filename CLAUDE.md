@@ -29,10 +29,10 @@ affect layout.
 
 ## Architecture
 
-**Next.js 16 site on Vercel** (App Router, React 19, Tailwind 4) for a Ukrainian
-analytic research center. Content comes from Sanity (Studio at `/studio`,
-webhook → `/api/revalidate`); adding English is planned in
-`docs/modernization.md`.
+**Next.js 16 site on Vercel** (App Router, React 19, Tailwind 4) for the
+Analytical Center of Modern Humanitarian Studies (acmhs.in.ua). Ukrainian at
+`/`, English at `/en` (next-intl). Content comes from Sanity (Studio at
+`/studio`, webhook → `/api/revalidate`). Env vars: `.env.example`.
 
 ### Directory Structure
 
@@ -41,7 +41,9 @@ webhook → `/api/revalidate`); adding English is planned in
 - `src/i18n/` - next-intl routing, navigation and request config; `src/proxy.ts`
   (Next 16's middleware) adds the locale
 - `sanity/` - Studio schemas; `sanity.config.ts`, `sanity.cli.ts` at the root
-- `src/lib/sanity/` - Sanity client and env
+- `src/lib/sanity/` - client, GROQ (`queries.ts`), typed getters (`content.ts`),
+  metadata; `src/lib/seo/` - JSON-LD builders
+- `src/app/llms.txt/`, `sitemap.ts`, `robots.ts` - machine-readable routes
 - `src/sections/` - Page sections (Hero, News, Grants, ...)
 - `src/components/ui/` - Design-system components (`Button`, `PublicationGrid`,
   `Accordion`, `DataTable`, ...); `src/components/icons/` - the `Icon` set;
@@ -51,8 +53,10 @@ webhook → `/api/revalidate`); adding English is planned in
 - `src/utils/` - Pure helpers (`formatDate`, `toHost`)
 - `messages/{uk,en}.json` - UI labels (next-intl, ICU plurals; content is in
   Sanity)
-- `src/constants/` - Navigation links
-- `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
+- `src/constants/` - Navigation links; `ENGLISH_PUBLIC` (language switch,
+  hreflang, /en indexing)
+- `scripts/` - Screenshots/visual diff, shared `routes.mts`,
+  `sanity-translations.mts`
 - `e2e/` - Playwright smoke tests
 
 Component and styling conventions load from `.claude/rules/` when you touch
@@ -77,8 +81,9 @@ t('count', { count: list.length });
 
 Rules for schemas, queries and content edits load from
 `.claude/rules/content.md`; adding a publication is the `add-publication` skill,
-English translations the `translate` skill. Agents edit content through the
-Sanity MCP server (`.mcp.json`).
+English translations the `translate` skill, releasing to production the
+`release-check` skill. Agents edit content through the Sanity MCP server
+(`.mcp.json`).
 
 ### Tailwind (v4)
 

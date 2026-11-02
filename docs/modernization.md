@@ -211,14 +211,18 @@ data layer behind the same components. Source of truth: the ACMHS design system
 
 ### 6. AI-readable + public release — PER-11
 
-- [ ] JSON-LD: Organization, Event, Book, Person
-- [ ] `llms.txt`
-- [ ] `PUBLIC_BASE_URL` from env; `.env.example`
-- [ ] Rewrite `CLAUDE.md` for the new stack (see [Claude setup](#claude-setup))
-- [ ] README (stack, architecture, before/after Lighthouse, screenshots),
-      LICENSE
+- [x] English launched: `ENGLISH_PUBLIC` on (switch, hreflang, /en indexed,
+      sitemap with alternates); /en SEO 69 → 100 (log below)
+- [x] JSON-LD: Organization on every page, Event, Book, Person (`src/lib/seo`)
+- [x] `llms.txt` from Sanity, in English with the Ukrainian pages linked
+- [x] `PUBLIC_BASE_URL` from `NEXT_PUBLIC_SITE_URL`; `.env.example`
+- [x] `CLAUDE.md` updated for the final stack; `skills/release-check`
+- [x] README (stack, architecture, before/after Lighthouse, screenshots), MIT
+      LICENSE for the code
 - [ ] Repo → public
-- [ ] Remove leftover `src/configs/gcp_cors_config.json` (old GCS hosting)
+- [x] Removed `src/configs/gcp_cors_config.json` (old GCS hosting)
+- English name fixed to "Analytical Center of Modern Humanitarian Studies"
+  (ACMHS) in code and Sanity
 
 ## Claude setup
 
@@ -276,45 +280,50 @@ permissions.
 
 ## Lighthouse log
 
-| Date       | Page                            | Perf  | A11y | SEO | Notes                                                                          |
-| ---------- | ------------------------------- | ----- | ---- | --- | ------------------------------------------------------------------------------ |
-| 2026-10-17 | `/` (live, mobile)              | 96    | 96   | 100 | Baseline. LCP 2.7 s, CLS 0, TBT 10 ms. Best Practices 100                      |
-| 2026-10-17 | `/conferences` (live, mobile)   | 74    | 100  | 100 | Baseline. LCP 3.2 s, **CLS 0.408**, TBT 0 ms. Best Practices 100               |
-| 2026-10-17 | `/` (local, develop)            | 83–94 | 96   | 100 | Pre-PER-6 local build, 3 runs. LCP 3.1–4.7 s. JS 177 KB                        |
-| 2026-10-17 | `/conferences` (local, develop) | 76    | 100  | 100 | Pre-PER-6, 3 runs. LCP 3.5 s, CLS 0.297                                        |
-| 2026-10-17 | `/` (local, PER-6)              | 84–87 | 96   | 100 | Turbopack, 3 runs. LCP 4.0–4.6 s. JS 231 KB (webpack build: 219 KB, LCP 3.4 s) |
-| 2026-10-17 | `/conferences` (local, PER-6)   | 63    | 100  | 100 | 3 runs. **CLS 0.667** (cover images, see PER-8); same with webpack             |
-| 2026-10-18 | `/` (local, PER-7)              | 86    | 96   | 100 | 3 runs. LCP 4.1 s, CLS 0. JS 239 KB                                            |
-| 2026-10-18 | `/conferences` (local, PER-7)   | 88    | 100  | 100 | 3 runs. LCP 3.9 s, **CLS 0** (CSS breakpoints + reserved image space)          |
-| 2026-10-18 | `/` (local, PER-8)              | 91–93 | 100  | 100 | 3 runs. LCP 3.2–3.6 s, CLS 0. JS 198 KB (logo out of the client bundle)        |
-| 2026-10-18 | `/conferences` (local, PER-8)   | 95    | 100  | 100 | 3 runs. LCP 3.0 s, CLS 0                                                       |
-| 2026-10-18 | `/grants` (local, PER-8)        | 99    | 100  | 100 | 3 runs. LCP 2.2 s                                                              |
-| 2026-10-18 | `/useful-info` (local, PER-8)   | 97–99 | 100  | 100 | 3 runs. LCP 2.2–2.6 s                                                          |
-| 2026-10-20 | `/` (local, PER-12)             | 91–96 | 100  | 100 | 3 runs. LCP 2.7–3.5 s, CLS 0. JS 158 KB (Swiper + heroicons removed)           |
-| 2026-10-20 | `/conferences` (local, PER-12)  | 93–98 | 100  | 100 | 3 runs (+1 cold-start outlier: 75, LCP 8.8 s). LCP 2.5–3.3 s, CLS 0            |
-| 2026-10-20 | `/monographs` (local, PER-12)   | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.3 s, CLS 0                                                   |
-| 2026-10-20 | `/grants` (local, PER-12)       | 95–98 | 100  | 100 | 3 runs. LCP 2.3–3.0 s, CLS 0                                                   |
-| 2026-10-20 | `/useful-info` (local, PER-12)  | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
-| 2026-10-20 | `/` (live, PER-12)              | 97    | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0, TBT 10–20 ms. Best Practices 100. JS 161 KB          |
-| 2026-10-20 | `/conferences` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.5 s, **CLS 0** (baseline 0.408). Best Practices 100          |
-| 2026-10-20 | `/monographs` (live, PER-12)    | 96–97 | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0                                                       |
-| 2026-10-20 | `/grants` (live, PER-12)        | 97–98 | 100  | 100 | 3 runs. LCP 2.4–2.6 s, CLS 0                                                   |
-| 2026-10-20 | `/useful-info` (live, PER-12)   | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.4 s, CLS 0                                                   |
-| 2026-10-26 | `/` (local, PER-9)              | 94–97 | 100  | 100 | 3 runs, `next start`. LCP 2.6–3.1 s, CLS 0. JS 159 KB; images 424–464 KB (CDN) |
-| 2026-10-26 | `/conferences` (local, PER-9)   | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 173 KB (CDN, sized by `sizes`)            |
-| 2026-10-26 | `/monographs` (local, PER-9)    | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 220 KB                                    |
-| 2026-10-26 | `/grants` (local, PER-9)        | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
-| 2026-10-26 | `/useful-info` (local, PER-9)   | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Best Practices 100 on all PER-9 runs             |
-| 2026-11-02 | `/` (local, PER-10)             | 92–96 | 100  | 100 | 3 runs (+1 cold-start outlier: 79, LCP 5.7 s). LCP 2.7–3.3 s, CLS 0            |
-| 2026-11-02 | `/conferences` (local, PER-10)  | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0. Best Practices 100 on all PER-10 runs            |
-| 2026-11-02 | `/monographs` (local, PER-10)   | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
-| 2026-11-02 | `/grants` (local, PER-10)       | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.2 s, CLS 0                                                   |
-| 2026-11-02 | `/useful-info` (local, PER-10)  | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
-| 2026-11-02 | `/en` (local, PER-10)           | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. SEO: only `noindex` fails until `ENGLISH_PUBLIC` |
-| 2026-11-02 | `/en/conferences` (local)       | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. Same `noindex`                                   |
-| 2026-11-02 | `/en/monographs` (local)        | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
-| 2026-11-02 | `/en/grants` (local)            | 94    | 100  | 69  | 3 runs. LCP 3.1 s, CLS 0                                                       |
-| 2026-11-02 | `/en/useful-info` (local)       | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| Date       | Page                             | Perf  | A11y | SEO | Notes                                                                          |
+| ---------- | -------------------------------- | ----- | ---- | --- | ------------------------------------------------------------------------------ |
+| 2026-10-17 | `/` (live, mobile)               | 96    | 96   | 100 | Baseline. LCP 2.7 s, CLS 0, TBT 10 ms. Best Practices 100                      |
+| 2026-10-17 | `/conferences` (live, mobile)    | 74    | 100  | 100 | Baseline. LCP 3.2 s, **CLS 0.408**, TBT 0 ms. Best Practices 100               |
+| 2026-10-17 | `/` (local, develop)             | 83–94 | 96   | 100 | Pre-PER-6 local build, 3 runs. LCP 3.1–4.7 s. JS 177 KB                        |
+| 2026-10-17 | `/conferences` (local, develop)  | 76    | 100  | 100 | Pre-PER-6, 3 runs. LCP 3.5 s, CLS 0.297                                        |
+| 2026-10-17 | `/` (local, PER-6)               | 84–87 | 96   | 100 | Turbopack, 3 runs. LCP 4.0–4.6 s. JS 231 KB (webpack build: 219 KB, LCP 3.4 s) |
+| 2026-10-17 | `/conferences` (local, PER-6)    | 63    | 100  | 100 | 3 runs. **CLS 0.667** (cover images, see PER-8); same with webpack             |
+| 2026-10-18 | `/` (local, PER-7)               | 86    | 96   | 100 | 3 runs. LCP 4.1 s, CLS 0. JS 239 KB                                            |
+| 2026-10-18 | `/conferences` (local, PER-7)    | 88    | 100  | 100 | 3 runs. LCP 3.9 s, **CLS 0** (CSS breakpoints + reserved image space)          |
+| 2026-10-18 | `/` (local, PER-8)               | 91–93 | 100  | 100 | 3 runs. LCP 3.2–3.6 s, CLS 0. JS 198 KB (logo out of the client bundle)        |
+| 2026-10-18 | `/conferences` (local, PER-8)    | 95    | 100  | 100 | 3 runs. LCP 3.0 s, CLS 0                                                       |
+| 2026-10-18 | `/grants` (local, PER-8)         | 99    | 100  | 100 | 3 runs. LCP 2.2 s                                                              |
+| 2026-10-18 | `/useful-info` (local, PER-8)    | 97–99 | 100  | 100 | 3 runs. LCP 2.2–2.6 s                                                          |
+| 2026-10-20 | `/` (local, PER-12)              | 91–96 | 100  | 100 | 3 runs. LCP 2.7–3.5 s, CLS 0. JS 158 KB (Swiper + heroicons removed)           |
+| 2026-10-20 | `/conferences` (local, PER-12)   | 93–98 | 100  | 100 | 3 runs (+1 cold-start outlier: 75, LCP 8.8 s). LCP 2.5–3.3 s, CLS 0            |
+| 2026-10-20 | `/monographs` (local, PER-12)    | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.3 s, CLS 0                                                   |
+| 2026-10-20 | `/grants` (local, PER-12)        | 95–98 | 100  | 100 | 3 runs. LCP 2.3–3.0 s, CLS 0                                                   |
+| 2026-10-20 | `/useful-info` (local, PER-12)   | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
+| 2026-10-20 | `/` (live, PER-12)               | 97    | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0, TBT 10–20 ms. Best Practices 100. JS 161 KB          |
+| 2026-10-20 | `/conferences` (live, PER-12)    | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.5 s, **CLS 0** (baseline 0.408). Best Practices 100          |
+| 2026-10-20 | `/monographs` (live, PER-12)     | 96–97 | 100  | 100 | 3 runs. LCP 2.6 s, CLS 0                                                       |
+| 2026-10-20 | `/grants` (live, PER-12)         | 97–98 | 100  | 100 | 3 runs. LCP 2.4–2.6 s, CLS 0                                                   |
+| 2026-10-20 | `/useful-info` (live, PER-12)    | 98–99 | 100  | 100 | 3 runs. LCP 2.0–2.4 s, CLS 0                                                   |
+| 2026-10-26 | `/` (local, PER-9)               | 94–97 | 100  | 100 | 3 runs, `next start`. LCP 2.6–3.1 s, CLS 0. JS 159 KB; images 424–464 KB (CDN) |
+| 2026-10-26 | `/conferences` (local, PER-9)    | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 173 KB (CDN, sized by `sizes`)            |
+| 2026-10-26 | `/monographs` (local, PER-9)     | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 220 KB                                    |
+| 2026-10-26 | `/grants` (local, PER-9)         | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
+| 2026-10-26 | `/useful-info` (local, PER-9)    | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Best Practices 100 on all PER-9 runs             |
+| 2026-11-02 | `/` (local, PER-10)              | 92–96 | 100  | 100 | 3 runs (+1 cold-start outlier: 79, LCP 5.7 s). LCP 2.7–3.3 s, CLS 0            |
+| 2026-11-02 | `/conferences` (local, PER-10)   | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0. Best Practices 100 on all PER-10 runs            |
+| 2026-11-02 | `/monographs` (local, PER-10)    | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/grants` (local, PER-10)        | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.2 s, CLS 0                                                   |
+| 2026-11-02 | `/useful-info` (local, PER-10)   | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en` (local, PER-10)            | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. SEO: only `noindex` fails until `ENGLISH_PUBLIC` |
+| 2026-11-02 | `/en/conferences` (local)        | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. Same `noindex`                                   |
+| 2026-11-02 | `/en/monographs` (local)         | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en/grants` (local)             | 94    | 100  | 69  | 3 runs. LCP 3.1 s, CLS 0                                                       |
+| 2026-11-02 | `/en/useful-info` (local)        | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en` (live, PER-11)             | 88–96 | 100  | 100 | 3 runs. LCP 2.8–3.6 s, CLS 0. Indexed: SEO 69 → 100. Best Practices 100        |
+| 2026-11-02 | `/en/conferences` (live, PER-11) | 89–98 | 100  | 100 | 3 runs. LCP 2.3–3.5 s, CLS 0                                                   |
+| 2026-11-02 | `/en/monographs` (live, PER-11)  | 92–99 | 100  | 100 | 3 runs. LCP 2.2–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en/grants` (live, PER-11)      | 95–99 | 100  | 100 | 3 runs. LCP 2.2–2.8 s, CLS 0                                                   |
+| 2026-11-02 | `/en/useful-info` (live, PER-11) | 89–99 | 100  | 100 | 3 runs. LCP 2.2–3.6 s, CLS 0                                                   |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single

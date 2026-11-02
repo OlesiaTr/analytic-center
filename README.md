@@ -1,48 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Analytical Center of Modern Humanitarian Studies
 
-## Getting Started
+Website of «Аналітичний центр сучасної гуманітаристики», a Ukrainian
+non-governmental research organization in the humanities: conferences,
+collective monographs, a free library, grants and the people behind them.
 
-First, run the development server:
+**Live:** [acmhs.in.ua](https://acmhs.in.ua) (Ukrainian) ·
+[acmhs.in.ua/en](https://acmhs.in.ua/en) (English)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<p>
+  <img src="docs/images/home-uk.jpg" alt="Home page in Ukrainian at 1280 px: navy header with the language switch, hero over a mosaic of conference covers" width="640">
+  <img src="docs/images/conferences-en-mobile.jpg" alt="Conferences page in English on a phone: upcoming conference card with cover, date and Download button" width="180">
+</p>
+
+## Stack
+
+| Layer   | Choice                                                                                                    |
+| ------- | --------------------------------------------------------------------------------------------------------- |
+| App     | Next.js 16 (App Router, Turbopack), React 19, TypeScript strict                                           |
+| Styling | Tailwind CSS 4: design tokens in `@theme`, no config file                                                 |
+| Content | Sanity (Studio at `/studio`, GROQ + TypeGen), images resized on Sanity's CDN                              |
+| i18n    | next-intl: Ukrainian at `/`, English at `/en`, hreflang, per-locale metadata and OG images                |
+| SEO/AI  | Sitemap, robots, JSON-LD (Organization, Event, Book, Person), [`/llms.txt`](https://acmhs.in.ua/llms.txt) |
+| Hosting | Vercel                                                                                                    |
+| Tests   | Vitest + Testing Library, Playwright (desktop + mobile), visual diff at 375 / 768 / 1280 px               |
+
+## How it fits together
+
+```
+Editor ── Sanity Studio (/studio) ── publish ──► Sanity Content Lake
+                                                   │        │
+                              webhook (signed)  ◄──┘        │ GROQ, $locale
+                                   │                        ▼
+                      /api/revalidate ── revalidateTag(_type) ──► cached fetches
+                                                                    │
+Visitor ──► proxy.ts (locale) ──► app/[locale]/(site)/* server components
+                                    ├─ UI labels: messages/{uk,en}.json
+                                    └─ content: src/lib/sanity/content.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+- **Content** lives in Sanity. Every text field is `{ uk, en }`. Queries read
+  the request's language and fall back to Ukrainian, marking the fallback with
+  `lang="uk"` so screen readers and search engines know.
+- **Caching:** every query is cached and tagged with its document type. A
+  publish in Studio calls the webhook, which revalidates just that type: no
+  redeploys for content.
+- **Upcoming vs archive** is derived from the date and which file is attached,
+  not a status field.
+- **Accessibility:** contrast checked against WCAG 2.2 AA in the design system;
+  keyboard paths and focus management are covered by e2e tests; Lighthouse
+  accessibility is 100 on every measured page.
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+## Results
 
-This project uses
-[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to
-automatically optimize and load Inter, a custom Google Font.
+Lighthouse, mobile, on the live site:
 
-## Learn More
+| Page           | Before (2026-10-17)            | After (latest live)             |
+| -------------- | ------------------------------ | ------------------------------- |
+| `/`            | Perf 96 · A11y 96 · SEO 100    | Perf 97 · A11y 100 · SEO 100    |
+| `/conferences` | Perf 74 · A11y 100 · CLS 0.408 | Perf 98–99 · A11y 100 · CLS 0   |
+| `/en`          | (no English)                   | Perf 88–96 · A11y 100 · SEO 100 |
 
-To learn more about Next.js, take a look at the following resources:
+The full log and the phase-by-phase plan are in
+[docs/modernization.md](docs/modernization.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run it
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js/) - your
-feedback and contributions are welcome!
+```bash
+cp .env.example .env.local   # the public Sanity project is filled in
+npm install
+npm run dev                  # http://localhost:3000, Studio at /studio
+```
 
-## Deploy on Vercel
+| Script                | What it does                                        |
+| --------------------- | --------------------------------------------------- |
+| `npm run test-all`    | Format, lint, types, unit tests, build, e2e (as CI) |
+| `npm test`            | Unit tests                                          |
+| `npm run test:e2e`    | Playwright against `next start` (build first)       |
+| `npm run typegen`     | Sanity schema + GROQ → `src/lib/sanity/types.ts`    |
+| `npm run screenshots` | Every route at 3 widths, for visual diffs           |
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+## Working with Claude Code
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/deployment) for more
-details.
+The repo is set up for AI-assisted work: `CLAUDE.md` for the essentials,
+path-scoped rules in `.claude/rules/`, and skills for repeatable jobs
+(`visual-check`, `add-publication`, `translate`, `release-check`). Content edits
+go through the Sanity MCP server.
+
+## License
+
+Code: [MIT](LICENSE). The content, logos, publications and photos belong to the
+Analytical Center of Modern Humanitarian Studies and are not covered by the
+license.
