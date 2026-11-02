@@ -48,7 +48,7 @@ webhook → `/api/revalidate`); adding English is planned in
   `src/components/base/` - mobile menu
 - `src/layouts/` - Header and Footer
 - `src/hooks/` - State logic (`useDisclosure`, `useLoadMore`, `useCarousel`)
-- `src/utils/` - Pure helpers (`formatDate`, `plural`, `toHost`)
+- `src/utils/` - Pure helpers (`formatDate`, `toHost`)
 - `messages/{uk,en}.json` - UI labels (next-intl, ICU plurals; content is in
   Sanity)
 - `src/constants/` - Navigation links
@@ -76,8 +76,9 @@ t('count', { count: list.length });
 ```
 
 Rules for schemas, queries and content edits load from
-`.claude/rules/content.md`; adding a publication is the `add-publication` skill.
-Agents edit content through the Sanity MCP server (`.mcp.json`).
+`.claude/rules/content.md`; adding a publication is the `add-publication` skill,
+English translations the `translate` skill. Agents edit content through the
+Sanity MCP server (`.mcp.json`).
 
 ### Tailwind (v4)
 
