@@ -177,13 +177,18 @@ test('the revalidate webhook rejects unsigned requests', async ({
 });
 
 test('each locale sets html lang and keeps its links', async ({ page }) => {
+  // The language switch is the one place that links across languages.
+  const OTHER_THAN_SWITCH = ':not([role="group"] a)';
+
   await page.goto('/grants');
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
-  await expect(page.locator('a[href^="/en"]')).toHaveCount(0);
+  await expect(page.locator(`a[href^="/en"]${OTHER_THAN_SWITCH}`)).toHaveCount(
+    0,
+  );
 
   await page.goto('/en/grants');
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  const internal = page.locator('header a[href^="/"]');
+  const internal = page.locator(`header a[href^="/"]${OTHER_THAN_SWITCH}`);
   for (const href of await internal.evaluateAll(links =>
     links.map(link => link.getAttribute('href')),
   )) {
@@ -214,23 +219,49 @@ test('English pages use the English UI labels', async ({ page }, info) => {
   ).toBeAttached();
 });
 
-test('English stays out of search until it is public', async ({ page }) => {
+test('both languages are indexed and linked', async ({ page, request }) => {
   await page.goto('/en/grants');
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-    'content',
-    /noindex/,
-  );
-  await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    'href',
-    /\/en\/grants$/,
-  );
-
-  await page.goto('/grants');
   await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
     'content',
     /noindex/,
   );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/en\/grants$/,
+  );
+  for (const [lang, path] of [
+    ['uk', /\/grants$/],
+    ['en', /\/en\/grants$/],
+    ['x-default', /\/grants$/],
+  ] as const) {
+    await expect(
+      page.locator(`link[rel="alternate"][hreflang="${lang}"]`),
+    ).toHaveAttribute('href', path);
+  }
+
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  expect(sitemap).toContain('https://acmhs.in.ua/en/grants');
+  expect(sitemap).toContain('hreflang="uk"');
+});
+
+test('the language switch keeps the page', async ({ page }) => {
+  await page.goto('/grants');
+  const group = page.getByRole('group', { name: 'Мова сайту' });
+  await expect(group.getByRole('link', { name: /УКР/ })).toHaveAttribute(
+    'aria-current',
+    'true',
+  );
+
+  await group.getByRole('link', { name: /ENG/ }).click();
+  await expect(page).toHaveURL(/\/en\/grants$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+
+  await page
+    .getByRole('group', { name: 'Site language' })
+    .getByRole('link', { name: /УКР/ })
+    .click();
+  await expect(page).toHaveURL(/\/grants$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
 });
 
 test('Ukrainian fallbacks on /en are marked lang="uk"', async ({ page }) => {
