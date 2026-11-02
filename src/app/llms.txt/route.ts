@@ -67,7 +67,7 @@ export async function GET() {
   const body = [
     `# ${settings?.name ?? ''}`,
     `> ${settings?.seo?.description ?? ''}`,
-    'A Ukrainian non-governmental research organization in the humanities. It holds all-Ukrainian and international scientific conferences, publishes collective monographs and shares its members’ books for free. The site is in Ukrainian at https://acmhs.in.ua/ and in English at https://acmhs.in.ua/en; publications are in Ukrainian.',
+    `A Ukrainian non-governmental research organization in the humanities. It holds all-Ukrainian and international scientific conferences, publishes collective monographs and shares its members’ books for free. The site is in Ukrainian at ${absoluteUrl('uk', '/')} and in English at ${absoluteUrl('en', '/')}; publications are in Ukrainian.`,
     '## Pages',
     LINKS.map(({ key, linkTo }, index) => {
       const lead = pages[index]?.lead ? `: ${pages[index].lead}` : '';
