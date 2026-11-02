@@ -85,7 +85,7 @@ describe('JSON-LD', () => {
     const data = graph([
       organization({
         id: ORG['@id'],
-        name: 'Analytic Center of Modern Humanities',
+        name: 'Analytical Center of Modern Humanitarian Studies',
         url: 'https://acmhs.in.ua/en',
         logo: 'https://acmhs.in.ua/meta/android-chrome-512x512.png',
         email: '',
