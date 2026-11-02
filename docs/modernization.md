@@ -219,7 +219,7 @@ data layer behind the same components. Source of truth: the ACMHS design system
 - [x] `CLAUDE.md` updated for the final stack; `skills/release-check`
 - [x] README (stack, architecture, before/after Lighthouse, screenshots), MIT
       LICENSE for the code
-- [ ] Repo → public
+- [x] Repo → public (2026-11-02, history scanned for secrets)
 - [x] Removed `src/configs/gcp_cors_config.json` (old GCS hosting)
 - English name fixed to "Analytical Center of Modern Humanitarian Studies"
   (ACMHS) in code and Sanity
