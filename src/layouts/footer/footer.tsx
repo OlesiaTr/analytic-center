@@ -1,21 +1,24 @@
-import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
 import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
 import { LINKS } from '@/constants';
-import data from '@/data/common.json';
 import { toContacts } from '@/lib/sanity/contacts';
 import { getSiteSettings } from '@/lib/sanity/content';
+import { Link } from '@/i18n/navigation';
 
 const footerLink =
   'inline-flex min-h-9 items-center gap-2.5 font-medium text-white no-underline hover:text-yellow-400 hover:underline hover:underline-offset-3';
 
 export const Footer = async () => {
-  const { navTitle, navLabel, rights } = data.footer;
+  const t = await getTranslations();
+  const navTitle = t('footer.navTitle');
+  const navLabel = t('footer.navLabel');
+  const rights = t('footer.rights');
   const settings = await getSiteSettings();
   const name = settings?.name ?? '';
   const contacts = {
-    title: data.footer.contacts.title,
+    title: t('footer.contacts.title'),
     ...toContacts(settings?.contacts),
   };
 
@@ -24,7 +27,7 @@ export const Footer = async () => {
       <div className="wrap grid gap-10 py-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)] md:py-16">
         <Link
           href={LINKS[0].linkTo}
-          aria-label={data.header.logoLabel}
+          aria-label={t('header.logoLabel')}
           className="flex max-w-[360px] items-center gap-4 self-start font-bold text-white no-underline"
         >
           <Logo className="h-14 w-auto flex-none" />
@@ -34,10 +37,10 @@ export const Footer = async () => {
         <nav aria-label={navLabel}>
           <h2 className="mb-4 t-over text-yellow-400">{navTitle}</h2>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-1">
-            {LINKS.map(({ name: label, linkTo }) => (
+            {LINKS.map(({ key, linkTo }) => (
               <li key={linkTo}>
                 <Link href={linkTo} className={footerLink}>
-                  {label}
+                  {t(`nav.${key}`)}
                 </Link>
               </li>
             ))}

@@ -1,17 +1,23 @@
+import { getTranslations } from 'next-intl/server';
+
 import Image from 'next/image';
 
 import { Carousel } from '@/components/ui';
-import data from '@/data/common.json';
 import { getPartners } from '@/lib/sanity/content';
 
 export const Partners = async () => {
-  const { title, listLabel, prev, next } = data.partners;
+  const t = await getTranslations();
+  const title = t('partners.title');
+  const listLabel = t('partners.listLabel');
+  const prev = t('partners.prev');
+  const next = t('partners.next');
   const partners = await getPartners();
 
-  const items = partners.map(({ image, width, height, name, href }) => ({
+  const items = partners.map(({ image, width, height, name, lang, href }) => ({
     key: href,
     node: (
       <a
+        lang={lang}
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -26,7 +32,7 @@ export const Partners = async () => {
           sizes="(min-width: 1024px) 220px, (min-width: 768px) 30vw, 45vw"
           className="size-full object-contain"
         />{' '}
-        <span className="sr-only">{data.a11y.newTab}</span>
+        <span className="sr-only">{t('a11y.newTab')}</span>
       </a>
     ),
   }));

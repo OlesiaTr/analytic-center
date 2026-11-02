@@ -1,10 +1,19 @@
+import { getTranslations } from 'next-intl/server';
+
 import { EmptyState, PublicationGrid, SectionHead } from '@/components/ui';
-import commonData from '@/data/common.json';
 import { getUpcomingMonographs } from '@/lib/sanity/content';
 
 export const UpcomingMonographsExpanded = async () => {
-  const { title, buttonDownload, srDownload, empty } =
-    commonData.upcomingMonographs;
+  const t = await getTranslations('upcomingMonographs');
+  const title = t('title');
+  const buttonDownload = t('buttonDownload');
+  const srDownload = t('srDownload');
+  const empty = {
+    title: t('empty.title'),
+    text: t('empty.text'),
+    link: t('empty.link'),
+    href: '/monographs#archive',
+  };
   const list = await getUpcomingMonographs();
 
   return (

@@ -1,0 +1,159 @@
+{
+  "skipLink": "Перейти до змісту",
+  "nav": {
+    "home": "Головна",
+    "about": "Про центр",
+    "conferences": "Конференції",
+    "monographs": "Монографії",
+    "library": "Бібліотека",
+    "grants": "Гранти",
+    "useful": "Корисне"
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "text": "Можливо, її перемістили або видалили. Скористайтеся меню або поверніться на головну.",
+    "button": "На головну",
+    "code": "404"
+  },
+  "header": {
+    "navLabel": "Основна навігація",
+    "homeLabel": "Головна",
+    "logoLabel": "Аналітичний центр сучасної гуманітаристики — на головну",
+    "mobileMenu": {
+      "openBtnAriaLabel": "Відкрити меню",
+      "closeBtnAriaLabel": "Закрити меню",
+      "navLabel": "Мобільне меню"
+    },
+    "languageSwitch": {
+      "label": "Мова сайту",
+      "uk": "Українська",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "button": "Дізнатися більше"
+  },
+  "aboutCenter": {
+    "title": "Про центр",
+    "button": "Дізнатися більше"
+  },
+  "upcomingConferences": {
+    "title": "Найближчі конференції",
+    "button": "Усі конференції",
+    "buttonDownload": "Завантажити",
+    "empty": {
+      "title": "Наразі немає запланованих конференцій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте збірники минулих конференцій.",
+      "link": "Архів конференцій"
+    },
+    "srDownload": "інформаційний лист"
+  },
+  "conferenceArchive": {
+    "title": "Архів конференцій",
+    "buttonDownload": "Завантажити",
+    "doneText": "Це всі збірники архіву.",
+    "srDownload": "збірник",
+    "count": "{count, plural, one {# збірник матеріалів} few {# збірники матеріалів} many {# збірників матеріалів} other {# збірника матеріалів}}"
+  },
+  "authorsForm": {
+    "columns": {
+      "field": "Поле",
+      "answer": "Відповідь"
+    },
+    "fieldCount": "{count, plural, one {# поле} few {# поля} many {# полів} other {# поля}}"
+  },
+  "partners": {
+    "title": "Партнери",
+    "listLabel": "Партнери центру",
+    "prev": "Попередні партнери",
+    "next": "Наступні партнери"
+  },
+  "upcomingMonographs": {
+    "title": "Запрошуються до написання монографії",
+    "button": "Усі монографії",
+    "buttonDownload": "Завантажити",
+    "empty": {
+      "title": "Наразі немає запланованих монографій",
+      "text": "Нові оголошення з’являться тут. Тим часом перегляньте архів монографій.",
+      "link": "Архів монографій"
+    },
+    "srDownload": "інформаційний лист"
+  },
+  "monographArchive": {
+    "title": "Архів монографій",
+    "buttonDownload": "Завантажити",
+    "doneText": "Це всі видання архіву.",
+    "srDownload": "монографію",
+    "count": "{count, plural, one {# видання} few {# видання} many {# видань} other {# видання}}"
+  },
+  "library": {
+    "listLabel": "Книги",
+    "buttonDownload": "Завантажити",
+    "srDownload": "книгу",
+    "kinds": {
+      "textbook": "Підручник",
+      "studyGuide": "Навчальний посібник",
+      "monograph": "Монографія"
+    }
+  },
+  "grants": {
+    "title": "Можливості та гранти",
+    "button": "Усі гранти",
+    "programCount": "{count, plural, one {# програма} few {# програми} many {# програм} other {# програми}}",
+    "moreOn": "Детальніше на {host}",
+    "listLabel": "Групи програм",
+    "dueDate": "Термін подання документів"
+  },
+  "about": {
+    "introLabel": "Про організацію",
+    "statute": {
+      "title": "Статутні документи",
+      "button": "PDF",
+      "srLabel": "Завантажити"
+    },
+    "peopleCount": "{count, plural, one {# особа} few {# особи} many {# осіб} other {# особи}}"
+  },
+  "usefulInfo": {
+    "headers": {
+      "type": "Характеристика джерела",
+      "example": "Приклад оформлення"
+    }
+  },
+  "news": {
+    "title": "Новини",
+    "more": "Детальніше"
+  },
+  "loadMore": {
+    "count": "Показано {shown} з {total}",
+    "more": "Показати ще {next}"
+  },
+  "footer": {
+    "navTitle": "Навігація",
+    "navLabel": "Навігація у футері",
+    "rights": "Всі права захищені.",
+    "contacts": {
+      "title": "Зв’язатися з нами"
+    }
+  },
+  "a11y": {
+    "newTab": "(відкривається в новій вкладці)"
+  },
+  "profiles": {
+    "linkedin": "LinkedIn",
+    "googlescholar": "Google Scholar",
+    "naukovci": "Науковці України",
+    "orcid": "ORCID",
+    "researchgate": "ResearchGate",
+    "scopus": "Scopus",
+    "wos": "Web of Science"
+  },
+  "profileBadges": {
+    "linkedin": "in",
+    "googlescholar": "GS",
+    "naukovci": "НУ",
+    "orcid": "iD",
+    "researchgate": "RG",
+    "scopus": "Sc",
+    "wos": "WoS"
+  }
+}

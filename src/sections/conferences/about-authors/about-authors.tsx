@@ -1,21 +1,22 @@
+import { getTranslations } from 'next-intl/server';
+
 import { DataTable, Panel } from '@/components/ui';
-import data from '@/data/common.json';
 import { getConferencesPage } from '@/lib/sanity/content';
-import { plural } from '@/utils';
 
 export const AboutAuthors = async () => {
-  const { fieldCount, columns } = data.authorsForm;
-  const [labelHead, valueHead] = columns;
+  const t = await getTranslations('authorsForm');
+  const [labelHead, valueHead] = [t('columns.field'), t('columns.answer')];
   const form = (await getConferencesPage())?.authorsForm;
-  const fields = (form?.fields ?? []).filter((f): f is string => !!f);
+  const fields = (form?.fields ?? [])
+    .map(field => field.text)
+    .filter((field): field is string => !!field);
   // «Шаблон, який надсилається разом із тезами — 13 полів»
-  const sub = `${form?.sub ?? ''} — {count}`;
 
   return (
     <Panel
       id="authors-form"
       title={form?.title ?? ''}
-      sub={sub.replace('{count}', plural(fields.length, fieldCount))}
+      sub={`${form?.sub ?? ''} — ${t('fieldCount', { count: fields.length })}`}
     >
       <DataTable
         columns={[labelHead, valueHead]}

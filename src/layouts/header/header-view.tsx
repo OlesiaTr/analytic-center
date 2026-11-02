@@ -1,16 +1,15 @@
 'use client';
 
 import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { FC, useCallback, useRef } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
 
 import { MobileMenu } from '@/components/base';
 import { Icon } from '@/components/icons';
 import { Logo } from '@/components/svg-icons';
 import { LanguageSwitch } from '@/components/ui';
-import { LINKS, SHOW_LANGUAGE_SWITCH } from '@/constants';
-import data from '@/data/common.json';
+import { LINKS, ENGLISH_PUBLIC } from '@/constants';
 import { useDisclosure, useEscapeKey } from '@/hooks';
 import type { Contacts } from '@/lib/sanity/contacts';
 
@@ -28,7 +27,7 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
   // Keyed by pathname, so the menu closes after navigating.
   const { isOpen, toggle, close } = useDisclosure(false, pathname);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const { mobileMenu } = data.header;
+  const t = useTranslations();
 
   // Escape closes the menu and returns focus to the button that opened it.
   const closeAndFocusButton = useCallback(() => {
@@ -52,26 +51,26 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
         <Link
           href={home.linkTo}
           className="-ml-1 inline-flex flex-none p-1"
-          aria-label={data.header.logoLabel}
+          aria-label={t('header.logoLabel')}
         >
           <Logo className="h-10 w-auto lg:h-13" />
         </Link>
 
         <nav
-          aria-label={data.header.navLabel}
+          aria-label={t('header.navLabel')}
           className="ml-auto hidden lg:block"
         >
           <ul className="flex items-center gap-1 xl:gap-2">
             <li>
               <NavLink href={home.linkTo} current={pathname === home.linkTo}>
                 <Icon name="home" />
-                <span className="sr-only">{data.header.homeLabel}</span>
+                <span className="sr-only">{t('header.homeLabel')}</span>
               </NavLink>
             </li>
-            {items.map(({ name, linkTo }) => (
+            {items.map(({ key, linkTo }) => (
               <li key={linkTo}>
                 <NavLink href={linkTo} current={pathname === linkTo}>
-                  {name}
+                  {t(`nav.${key}`)}
                 </NavLink>
               </li>
             ))}
@@ -82,15 +81,10 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
           className={clsx(
             'ml-auto flex items-center gap-2 lg:ml-2',
             // Only the burger lives here until the language switch ships.
-            !SHOW_LANGUAGE_SWITCH && 'lg:hidden',
+            !ENGLISH_PUBLIC && 'lg:hidden',
           )}
         >
-          {SHOW_LANGUAGE_SWITCH && (
-            <LanguageSwitch
-              current="uk"
-              hrefs={{ uk: pathname, en: `/en${pathname}` }}
-            />
-          )}
+          {ENGLISH_PUBLIC && <LanguageSwitch />}
           <button
             ref={menuButton}
             type="button"
@@ -99,8 +93,8 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
             aria-controls={MENU_ID}
             aria-label={
               isOpen
-                ? mobileMenu.closeBtnAriaLabel
-                : mobileMenu.openBtnAriaLabel
+                ? t('header.mobileMenu.closeBtnAriaLabel')
+                : t('header.mobileMenu.openBtnAriaLabel')
             }
             className="inline-flex size-11 cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-switch-border text-white hover:bg-white/12 lg:hidden"
           >
@@ -112,7 +106,7 @@ export const HeaderView: FC<Props> = ({ isHomePage = false, contacts }) => {
       {isOpen && (
         <MobileMenu
           id={MENU_ID}
-          label={mobileMenu.navLabel}
+          label={t('header.mobileMenu.navLabel')}
           closeModal={close}
           contacts={contacts}
         />

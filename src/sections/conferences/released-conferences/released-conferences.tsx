@@ -1,11 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import { PublicationGrid, SectionHead } from '@/components/ui';
-import data from '@/data/common.json';
 import { getArchivedConferences } from '@/lib/sanity/content';
-import { plural } from '@/utils';
 
 export const ReleasedConferences = async () => {
-  const { title, buttonDownload, srDownload, doneText, count } =
-    data.conferenceArchive;
+  const t = await getTranslations('conferenceArchive');
   const list = await getArchivedConferences();
 
   return (
@@ -17,14 +16,14 @@ export const ReleasedConferences = async () => {
       <div className="wrap">
         <SectionHead
           id="archive-title"
-          title={title}
-          sub={plural(list.length, count)}
+          title={t('title')}
+          sub={t('count', { count: list.length })}
         />
         <PublicationGrid
           list={list}
-          buttonLabel={buttonDownload}
-          srLabel={srDownload}
-          loadMore={{ doneText }}
+          buttonLabel={t('buttonDownload')}
+          srLabel={t('srDownload')}
+          loadMore={{ doneText: t('doneText') }}
         />
       </div>
     </section>

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import Link from 'next/link';
 import { ComponentProps, FC, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { Link } from '@/i18n/navigation';
 
 import { Icon, type IconName } from '@/components/icons';
 

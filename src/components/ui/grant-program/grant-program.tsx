@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { Icon } from '@/components/icons';
 import { TextLink } from '@/components/ui/text-link';
-import { toHost } from '@/utils';
 
 export interface Props {
   title: string;
@@ -11,9 +10,10 @@ export interface Props {
   date: string;
   linkTo: string;
   dueDateLabel: string;
-  /** «Детальніше на {host}» */
+  /** e.g. «Детальніше на fulbright.org.ua» */
   moreLabel: string;
   headingLevel?: 'h2' | 'h3' | 'h4';
+  lang?: 'uk' | 'en';
 }
 
 /** One grant program: prose, optional list, deadline and the official link. */
@@ -26,8 +26,12 @@ export const GrantProgram: FC<Props> = ({
   dueDateLabel,
   moreLabel,
   headingLevel: Heading = 'h3',
+  lang,
 }) => (
-  <div className="flex flex-col gap-3 rounded-xl bg-surface p-5 lg:px-8 lg:py-7">
+  <div
+    lang={lang}
+    className="flex flex-col gap-3 rounded-xl bg-surface p-5 lg:px-8 lg:py-7"
+  >
     <Heading className="t-h4">{title.replace(/:\s*$/, '')}</Heading>
     <p className="font-serif text-base leading-[27px]">{description}</p>
     {descriptionList && (
@@ -46,7 +50,7 @@ export const GrantProgram: FC<Props> = ({
         </span>
       </span>
       <TextLink href={linkTo} external>
-        {moreLabel.replace('{host}', toHost(linkTo))}
+        {moreLabel}
       </TextLink>
     </div>
   </div>

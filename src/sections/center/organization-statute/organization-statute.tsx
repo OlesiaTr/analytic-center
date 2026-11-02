@@ -1,9 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import { DocumentList, SectionHead } from '@/components/ui';
-import data from '@/data/common.json';
 import { getAboutPage } from '@/lib/sanity/content';
 
 export const OrganizationStatute = async () => {
-  const { title, button, srLabel } = data.about.statute;
+  const t = await getTranslations('about.statute');
   const list = ((await getAboutPage())?.statute ?? []).map(doc => ({
     title: doc.title ?? '',
     linkToDownload: doc.linkToDownload ?? '',
@@ -12,8 +13,12 @@ export const OrganizationStatute = async () => {
   return (
     <section aria-labelledby="statute-title" className="bg-surface sec">
       <div className="wrap">
-        <SectionHead id="statute-title" title={title} />
-        <DocumentList list={list} buttonLabel={button} srLabel={srLabel} />
+        <SectionHead id="statute-title" title={t('title')} />
+        <DocumentList
+          list={list}
+          buttonLabel={t('button')}
+          srLabel={t('srLabel')}
+        />
       </div>
     </section>
   );

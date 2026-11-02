@@ -1,11 +1,14 @@
+import { getTranslations } from 'next-intl/server';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui';
-import data from '@/data/common.json';
 import { getHeroCovers, getHomePage } from '@/lib/sanity/content';
 
 export const Hero = async () => {
-  const { button, redirectionTo } = data.hero;
+  const t = await getTranslations('hero');
+  const button = t('button');
+  const redirectionTo = '/about-center';
   const [page, covers] = await Promise.all([getHomePage(), getHeroCovers()]);
   const hero = page?.hero;
 
@@ -39,11 +42,15 @@ export const Hero = async () => {
 
       <div className="relative wrap flex min-h-150 flex-col justify-end pt-28 pb-12 md:min-h-130 md:justify-center md:pt-30 md:pb-18 lg:min-h-150 lg:pt-32">
         <div className="flex max-w-160 flex-col items-start gap-4 md:max-w-[470px] lg:max-w-150 lg:gap-5">
-          <p className="t-over text-yellow-400">{hero?.overline}</p>
-          <h1 id="hero-title" className="t-display">
+          <p lang={hero?.lang} className="t-over text-yellow-400">
+            {hero?.overline}
+          </p>
+          <h1 id="hero-title" lang={hero?.lang} className="t-display">
             {hero?.heading}
           </h1>
-          <p className="t-lead text-blue-50">{hero?.text}</p>
+          <p lang={hero?.lang} className="t-lead text-blue-50">
+            {hero?.text}
+          </p>
           <Button href={redirectionTo} variant="yellow" className="mt-2">
             {button}
           </Button>

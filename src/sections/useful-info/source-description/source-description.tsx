@@ -1,9 +1,11 @@
+import { getTranslations } from 'next-intl/server';
+
 import { DataTable } from '@/components/ui';
-import data from '@/data/common.json';
 import { getUsefulInfoPage } from '@/lib/sanity/content';
 
 export const SourceDescription = async () => {
-  const [typeHeader, exampleHeader] = data.usefulInfo.headers;
+  const t = await getTranslations('usefulInfo.headers');
+  const [typeHeader, exampleHeader] = [t('type'), t('example')];
   const table = (await getUsefulInfoPage())?.table;
   const title = table?.caption ?? '';
   const footnote = table?.footnote;
@@ -16,11 +18,12 @@ export const SourceDescription = async () => {
           caption={title}
           columns={[typeHeader, exampleHeader]}
           valueClassName="font-serif text-base leading-[26px] wrap-anywhere"
-          rows={rows.map(({ group, type, example }) => ({
+          rows={rows.map(({ group, type, example, exampleLang }) => ({
             key: `${group ?? ''}${type}`,
             group: group ?? undefined,
             label: type ?? '',
-            value: example,
+            // Examples follow the Ukrainian standard, so they often stay Ukrainian.
+            value: <span lang={exampleLang}>{example}</span>,
           }))}
         />
         <p className="mt-4 max-w-190 t-sm text-muted">{footnote}</p>

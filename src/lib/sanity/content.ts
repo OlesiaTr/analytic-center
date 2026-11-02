@@ -29,6 +29,8 @@ export interface Publication {
   description?: string;
   date: string;
   linkToDownload: string;
+  /** Language of the text: "uk" where English is missing on /en. */
+  lang: 'uk' | 'en';
 }
 
 // Content for the UI, in the shapes the components already take. Schema
@@ -52,6 +54,7 @@ type PublicationRow = {
   imgSrc: string | null;
   width: number | null;
   height: number | null;
+  lang: 'uk' | 'en';
 };
 
 const toPublication = (row: PublicationRow): Publication => ({
@@ -64,6 +67,7 @@ const toPublication = (row: PublicationRow): Publication => ({
   width: row.width ?? 0,
   height: row.height ?? 0,
   imgAlt: '',
+  lang: row.lang,
 });
 
 const image = (row: {
@@ -112,15 +116,19 @@ export const getLibrary = async (kinds: Record<string, string>) =>
       undefined,
   }));
 
-export const getHeroCovers = async () =>
+export const getHeroCovers = async (locale?: string) =>
   (
-    await sanityFetch(heroCoversQuery, { tags: ['conference', 'monograph'] })
+    await sanityFetch(heroCoversQuery, {
+      params: locale ? { locale } : {},
+      tags: ['conference', 'monograph'],
+    })
   ).map(image);
 
 export const getPartners = async () =>
   (await sanityFetch(partnersQuery, { tags: ['partner'] })).map(row => ({
     ...image(row),
     name: row.name ?? '',
+    lang: row.lang,
     href: row.href ?? '',
   }));
 
@@ -128,6 +136,7 @@ export const getNews = async () =>
   (await sanityFetch(newsQuery, { tags: ['news'] })).map(row => ({
     id: row.id,
     text: row.text ?? '',
+    lang: row.lang,
     date: row.date ? toDisplayDate(row.date) : '',
     linkTo: row.href ?? '#',
     imgSrc: row.imgSrc ?? '',
@@ -140,12 +149,14 @@ export const getGrantGroups = async () =>
     group => ({
       id: group.id,
       title: group.title ?? '',
+      lang: group.lang,
       programs: (group.programs ?? []).map(program => ({
         title: program.title ?? '',
         description: program.description ?? '',
-        descriptionList: program.points?.filter(
-          (point): point is string => !!point,
-        ),
+        lang: program.lang,
+        descriptionList: program.points
+          ?.map(point => point.text)
+          .filter((point): point is string => !!point),
         date: program.deadline ?? '',
         linkTo: program.link ?? '',
       })),
@@ -160,6 +171,7 @@ export const getPeople = async (board: 'council' | 'supervisory' | 'member') =>
       ...image(row),
       name: row.name ?? '',
       position: row.position ?? '',
+      lang: row.lang,
       ...row.profiles,
     }),
   );
@@ -167,8 +179,12 @@ export const getPeople = async (board: 'council' | 'supervisory' | 'member') =>
 export const getSiteSettings = () =>
   sanityFetch(siteSettingsQuery, { tags: ['siteSettings'] });
 
-export const getHomePage = () =>
-  sanityFetch(homePageQuery, { tags: ['homePage'] });
+/** `locale` only where the request has none to read (route handlers). */
+export const getHomePage = (locale?: string) =>
+  sanityFetch(homePageQuery, {
+    params: locale ? { locale } : {},
+    tags: ['homePage'],
+  });
 
 export const getPage = (
   id:

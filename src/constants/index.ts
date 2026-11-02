@@ -1,3 +1,3 @@
 export { LINKS } from './links';
 
-export { SHOW_LANGUAGE_SWITCH } from './features';
+export { ENGLISH_PUBLIC } from './features';

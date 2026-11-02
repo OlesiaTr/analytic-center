@@ -7,6 +7,8 @@ import { toDateTime } from '@/utils';
 
 export interface Props {
   text: string;
+  /** "uk" where English is missing on /en */
+  lang: 'uk' | 'en';
   date: string;
   linkTo: string;
   imgSrc: string;
@@ -18,6 +20,7 @@ export interface Props {
 /** News row: thumbnail, date chip (only for real dates), text and link. */
 export const NewsItem: FC<Props> = ({
   text,
+  lang,
   date,
   linkTo,
   imgSrc,
@@ -29,7 +32,10 @@ export const NewsItem: FC<Props> = ({
   const dateTime = toDateTime(date);
 
   return (
-    <article className="grid h-full grid-cols-[72px_minmax(0,1fr)] items-start gap-4 rounded-xl border border-line bg-white p-4 md:grid-cols-[112px_minmax(0,1fr)] md:gap-5 md:p-5">
+    <article
+      lang={lang}
+      className="grid h-full grid-cols-[72px_minmax(0,1fr)] items-start gap-4 rounded-xl border border-line bg-white p-4 md:grid-cols-[112px_minmax(0,1fr)] md:gap-5 md:p-5"
+    >
       <Image
         src={imgSrc}
         alt=""

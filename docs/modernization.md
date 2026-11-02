@@ -157,17 +157,25 @@ is a Next app on Vercel, every page prerendered and revalidated by tag.
 
 ### 5. i18n — PER-10
 
-- [ ] `next-intl` routing, `[locale]` segment, language switcher
-- [ ] `messages/{uk,en}.json` for UI copy — includes separating UI copy from
-      content in `common.json` (moved from PER-7)
-- [ ] AI-translated EN content in Sanity, reviewed before publishing
-- [ ] Localized metadata and `hreflang`; `app/sitemap.ts` and `app/robots.ts`
-      exist since PER-9 and need the `/en` alternates
-- [ ] Queries read `.uk` today: add a `$locale` param to the GROQ in
-      `src/lib/sanity/queries.ts` (`coalesce(title[$locale], title.uk)`) and
-      pass it from the `[locale]` segment through `content.ts`; tag caches per
-      locale only if needed
-- [ ] Move the UI labels in `src/data/common.json` to `messages/{uk,en}.json`
+- [x] `next-intl` 4 routing: uk at `/`, en at `/en` (`as-needed`, no locale
+      detection); `app/[locale]` root layout, Studio its own root layout,
+      `global-not-found`; `proxy.ts` (Next 16's middleware)
+- [x] `messages/{uk,en}.json` for UI labels with typed keys and ICU plurals
+      (replaces `src/data/common.json` and `utils/plural`); a test keeps keys
+      and arguments in sync
+- [x] Queries take `$locale` (`l()` in `queries.ts`) and fall back to Ukrainian,
+      marked `lang="uk"`; one cache tag per type refreshes both languages
+- [x] Localized metadata, canonical, OG locale and OG image; `hreflang` and the
+      `/en` sitemap entries behind `ENGLISH_PUBLIC`, `/en` noindex until then
+- [x] Language switch keeps the page (`/en` for home), shown once
+      `ENGLISH_PUBLIC` is on
+- [x] English content as Sanity drafts (`scripts/sanity-translations.mts`,
+      `skills/translate`, `rules/i18n.md`): 280 fields in 115 drafts on
+      2026-11-02, plus Ukrainian fixes (Latin numerals in conference titles,
+      stray `{' '}` in references); bibliographic examples stay Ukrainian
+- [x] Lighthouse: a11y 100 and CLS 0 on 5 routes per language (log below)
+- Left: review and publish the drafts in Studio; then flip `ENGLISH_PUBLIC`
+  (PER-11). News dates are still missing
 
 ### Redesign — PER-12
 
@@ -199,7 +207,7 @@ data layer behind the same components. Source of truth: the ACMHS design system
       sizes, locale-aware sort, profile names in JSON
 - [x] Lighthouse: a11y 100 and CLS 0 on all 5 routes (log below)
 - Left: grant groups pair with programs by index (PER-9 makes them references);
-  the language switch builds `/en/` for home (fix with routing in PER-10)
+  the language switch builds `/en/` for home (fixed in PER-10)
 
 ### 6. AI-readable + public release — PER-11
 
@@ -297,6 +305,16 @@ permissions.
 | 2026-10-26 | `/monographs` (local, PER-9)    | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Images 220 KB                                    |
 | 2026-10-26 | `/grants` (local, PER-9)        | 95–98 | 100  | 100 | 3 runs. LCP 2.5–3.0 s, CLS 0                                                   |
 | 2026-10-26 | `/useful-info` (local, PER-9)   | 94–97 | 100  | 100 | 3 runs. LCP 2.6–3.1 s, CLS 0. Best Practices 100 on all PER-9 runs             |
+| 2026-11-02 | `/` (local, PER-10)             | 92–96 | 100  | 100 | 3 runs (+1 cold-start outlier: 79, LCP 5.7 s). LCP 2.7–3.3 s, CLS 0            |
+| 2026-11-02 | `/conferences` (local, PER-10)  | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0. Best Practices 100 on all PER-10 runs            |
+| 2026-11-02 | `/monographs` (local, PER-10)   | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/grants` (local, PER-10)       | 93–97 | 100  | 100 | 3 runs. LCP 2.6–3.2 s, CLS 0                                                   |
+| 2026-11-02 | `/useful-info` (local, PER-10)  | 92–96 | 100  | 100 | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en` (local, PER-10)           | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. SEO: only `noindex` fails until `ENGLISH_PUBLIC` |
+| 2026-11-02 | `/en/conferences` (local)       | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0. Same `noindex`                                   |
+| 2026-11-02 | `/en/monographs` (local)        | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
+| 2026-11-02 | `/en/grants` (local)            | 94    | 100  | 69  | 3 runs. LCP 3.1 s, CLS 0                                                       |
+| 2026-11-02 | `/en/useful-info` (local)       | 92–96 | 100  | 69  | 3 runs. LCP 2.7–3.3 s, CLS 0                                                   |
 
 Measured with
 `npx lighthouse@12 <url> --form-factor=mobile --screenEmulation.mobile` (single

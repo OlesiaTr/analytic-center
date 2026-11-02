@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
+import { renderWithIntl } from '@/test/render';
 
 import { PublicationCard } from './publication-card';
 
@@ -12,11 +14,12 @@ const card = {
   title: 'Харківські політологічні читання',
   date: '30.10.2026',
   linkToDownload: 'https://docs.google.com/uc?export=download&id=1',
+  lang: 'uk' as const,
 };
 
 describe('PublicationCard', () => {
   it('shows the cover, date, title and download button', () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <PublicationCard card={card} buttonLabel="Завантажити" />,
     );
 
@@ -36,7 +39,7 @@ describe('PublicationCard', () => {
   });
 
   it('shows the description as a subtitle', () => {
-    render(
+    renderWithIntl(
       <PublicationCard
         card={{ ...card, description: '“Нова геополітична картина світу”' }}
         buttonLabel="Завантажити"
@@ -46,13 +49,15 @@ describe('PublicationCard', () => {
   });
 
   it('adds the big date in the wide layout', () => {
-    render(<PublicationCard card={card} buttonLabel="Завантажити" wide />);
+    renderWithIntl(
+      <PublicationCard card={card} buttonLabel="Завантажити" wide />,
+    );
     expect(screen.getByText('жовтня')).toBeInTheDocument();
     expect(screen.getByText('30', { exact: true })).toBeInTheDocument();
   });
 
   it('keeps bare years as the chip date', () => {
-    render(
+    renderWithIntl(
       <PublicationCard
         card={{ ...card, date: '2021' }}
         buttonLabel="Завантажити"
@@ -65,7 +70,7 @@ describe('PublicationCard', () => {
   });
 
   it('finishes the button name with the hidden label and title', () => {
-    render(
+    renderWithIntl(
       <PublicationCard
         card={card}
         buttonLabel="Завантажити"
@@ -77,5 +82,13 @@ describe('PublicationCard', () => {
         name: `Завантажити інформаційний лист: ${card.title}`,
       }),
     ).toBeVisible();
+  });
+
+  it('shows the English month on /en', () => {
+    renderWithIntl(
+      <PublicationCard card={card} buttonLabel="Download" wide />,
+      { locale: 'en' },
+    );
+    expect(screen.getByText('October')).toBeInTheDocument();
   });
 });

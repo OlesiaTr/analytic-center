@@ -9,11 +9,13 @@ paths:
 # Content (Sanity)
 
 - Content lives in Sanity (project `xczp8pdn`, dataset `production`, Studio at
-  `/studio`). `src/data/common.json` holds **UI labels only** (buttons, aria
-  labels, plural forms, empty states): never put content back into it.
+  `/studio`). `messages/{uk,en}.json` hold **UI labels only** (buttons, aria
+  labels, plural forms, empty states): never put content into them.
 - Every text field is localized: `localeString` / `localeText` / `localeBlock`
-  (`{ uk, en }`). Ukrainian is required (`ukRequired`), English arrives with
-  PER-10. Queries read `.uk` for now.
+  (`{ uk, en }`). Ukrainian is required (`ukRequired`), English is optional.
+  Queries read text with the `l('field')` helper in `queries.ts` (the field in
+  `$locale`, falling back to Ukrainian) and return `lang` so the item gets
+  `lang="uk"` on /en when it falls back. `sanityFetch` passes `$locale`.
 - Adding a field or type: schema in `sanity/schemaTypes/`, register it in
   `index.ts` (and `SINGLETONS` if there is one instance), then
   `npm run typegen`. Commit the regenerated `src/lib/sanity/types.ts`.
