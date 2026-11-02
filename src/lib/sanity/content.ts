@@ -111,6 +111,7 @@ export const getLibrary = async (kinds: Record<string, string>) =>
   (await sanityFetch(libraryQuery, { tags: ['libraryItem'] })).map(row => ({
     ...toPublication({ ...row, date: '' }),
     date: String(row.year ?? ''),
+    authors: row.authors ?? undefined,
     description:
       [row.authors, row.kind && kinds[row.kind]].filter(Boolean).join(' · ') ||
       undefined,
@@ -172,6 +173,7 @@ export const getPeople = async (board: 'council' | 'supervisory' | 'member') =>
       name: row.name ?? '',
       position: row.position ?? '',
       lang: row.lang,
+      profiles: row.profiles,
       ...row.profiles,
     }),
   );

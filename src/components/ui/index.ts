@@ -7,6 +7,7 @@ export { DocumentList } from './document-list';
 export { EmptyState } from './empty-state';
 export { GrantProgram } from './grant-program';
 export { IconButton } from './icon-button';
+export { JsonLd } from './json-ld';
 export { LanguageSwitch } from './language-switch';
 export { LoadMore } from './load-more';
 export { NewsItem } from './news-item';
