@@ -7,7 +7,17 @@ import type { Locale } from '@/i18n/routing';
 
 import { getPage, getSiteSettings } from './content';
 
-export const PUBLIC_BASE_URL = 'https://acmhs.in.ua/';
+/** Canonical origin with a trailing slash; set NEXT_PUBLIC_SITE_URL to change it. */
+export const PUBLIC_BASE_URL = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://acmhs.in.ua/',
+).href;
+
+/** Absolute URL of `href` in `locale` (`/grants` → https://acmhs.in.ua/en/grants). */
+export const absoluteUrl = (locale: Locale, href: string) =>
+  new URL(getPathname({ locale, href }), PUBLIC_BASE_URL).toString();
+
+/** The Organization node's `@id`, referenced by the other JSON-LD nodes. */
+export const ORGANIZATION = { '@id': `${PUBLIC_BASE_URL}#organization` };
 
 const OG_LOCALES: Record<Locale, string> = { uk: 'uk_UA', en: 'en_US' };
 

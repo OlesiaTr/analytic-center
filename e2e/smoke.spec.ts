@@ -269,3 +269,33 @@ test('Ukrainian fallbacks on /en are marked lang="uk"', async ({ page }) => {
   const cards = page.locator('main article');
   await expect(cards.first()).toHaveAttribute('lang', /^(uk|en)$/);
 });
+
+test('pages describe their content as schema.org JSON-LD', async ({ page }) => {
+  const types = async (path: string) => {
+    await page.goto(path);
+    const blocks = await page
+      .locator('script[type="application/ld+json"]')
+      .allTextContents();
+    return blocks.flatMap(block =>
+      (JSON.parse(block)['@graph'] as { '@type': string }[]).map(
+        node => node['@type'],
+      ),
+    );
+  };
+
+  expect(await types('/en/conferences')).toEqual(
+    expect.arrayContaining(['Organization', 'Event']),
+  );
+  expect(await types('/library')).toContain('Book');
+  expect(await types('/monographs')).toContain('Book');
+  expect(await types('/en/about-center')).toContain('Person');
+});
+
+test('llms.txt lists the pages in both languages', async ({ request }) => {
+  const response = await request.get('/llms.txt');
+  expect(response.headers()['content-type']).toContain('text/plain');
+  const text = await response.text();
+  expect(text).toMatch(/^# \S/);
+  expect(text).toContain('(https://acmhs.in.ua/en/conferences)');
+  expect(text).toContain('Ukrainian: https://acmhs.in.ua/conferences');
+});
