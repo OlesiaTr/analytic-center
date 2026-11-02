@@ -1,6 +1,6 @@
 /**
  * English is public: the language switch shows, /en is indexed, and hreflang +
- * sitemap list both languages. Off until the English content is reviewed in
- * Sanity (PER-10); /en works either way.
+ * sitemap list both languages. Turning it off hides English again; /en works
+ * either way.
  */
-export const ENGLISH_PUBLIC = false;
+export const ENGLISH_PUBLIC = true;
