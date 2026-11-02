@@ -290,3 +290,12 @@ test('pages describe their content as schema.org JSON-LD', async ({ page }) => {
   expect(await types('/monographs')).toContain('Book');
   expect(await types('/en/about-center')).toContain('Person');
 });
+
+test('llms.txt lists the pages in both languages', async ({ request }) => {
+  const response = await request.get('/llms.txt');
+  expect(response.headers()['content-type']).toContain('text/plain');
+  const text = await response.text();
+  expect(text).toMatch(/^# \S/);
+  expect(text).toContain('(https://acmhs.in.ua/en/conferences)');
+  expect(text).toContain('Ukrainian: https://acmhs.in.ua/conferences');
+});
