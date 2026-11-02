@@ -1,24 +1,45 @@
 import type { Metadata } from 'next';
+import { getLocale } from 'next-intl/server';
+
+import { ENGLISH_PUBLIC } from '@/constants';
+import { getPathname } from '@/i18n/navigation';
+import type { Locale } from '@/i18n/routing';
 
 import { getPage, getSiteSettings } from './content';
+
+export const PUBLIC_BASE_URL = 'https://acmhs.in.ua/';
+
+const OG_LOCALES: Record<Locale, string> = { uk: 'uk_UA', en: 'en_US' };
+
+/** Canonical URL in this locale; hreflang alternates once English is public. */
+const alternates = (locale: Locale, href: string): Metadata['alternates'] => ({
+  canonical: getPathname({ locale, href }),
+  ...(ENGLISH_PUBLIC
+    ? {
+        languages: {
+          uk: getPathname({ locale: 'uk', href }),
+          en: getPathname({ locale: 'en', href }),
+          'x-default': getPathname({ locale: 'uk', href }),
+        },
+      }
+    : {}),
+});
 
 /** Title, description and canonical URL of a page singleton, from its SEO fields. */
 export const pageMetadata = async (
   id: Parameters<typeof getPage>[0],
   path: string,
 ): Promise<Metadata> => {
-  const page = await getPage(id);
+  const [page, locale] = await Promise.all([getPage(id), getLocale()]);
   return {
     title: page?.seo?.title ?? page?.title ?? undefined,
     description: page?.seo?.description ?? page?.lead ?? undefined,
-    alternates: { canonical: path },
+    alternates: alternates(locale, path),
   };
 };
 
-export const PUBLIC_BASE_URL = 'https://acmhs.in.ua/';
-
 /** Site-wide metadata: SEO text from siteSettings, icons and manifest here. */
-export const rootMetadata = async (): Promise<Metadata> => {
+export const rootMetadata = async (locale: Locale): Promise<Metadata> => {
   const settings = await getSiteSettings();
   const title = settings?.seo?.title ?? settings?.name ?? undefined;
   const description = settings?.seo?.description ?? undefined;
@@ -28,15 +49,15 @@ export const rootMetadata = async (): Promise<Metadata> => {
     description,
     keywords: settings?.seo?.keywords ?? undefined,
     metadataBase: new URL(PUBLIC_BASE_URL),
-    alternates: { canonical: PUBLIC_BASE_URL },
+    alternates: alternates(locale, '/'),
     manifest: '/meta/site.webmanifest',
-    // The images come from app/opengraph-image.tsx (or an editor's override).
+    // The images come from app/[locale]/opengraph-image.tsx (or an editor's override).
     openGraph: {
       title,
       description,
-      url: PUBLIC_BASE_URL,
+      url: getPathname({ locale, href: '/' }),
       siteName: settings?.name ?? undefined,
-      locale: 'uk_UA',
+      locale: OG_LOCALES[locale],
       type: 'website',
       ...(settings?.seo?.ogImage && {
         images: [
@@ -46,6 +67,10 @@ export const rootMetadata = async (): Promise<Metadata> => {
     },
     twitter: { title, description, card: 'summary_large_image' },
     ...STATIC,
+    // English stays out of search engines until it is public.
+    ...(locale === 'en' && !ENGLISH_PUBLIC
+      ? { robots: { index: false, follow: true } }
+      : {}),
   };
 };
 

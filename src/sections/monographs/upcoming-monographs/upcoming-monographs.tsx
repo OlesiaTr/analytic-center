@@ -1,16 +1,16 @@
+import { getTranslations } from 'next-intl/server';
+
 import {
   Button,
   EmptyState,
   PublicationGrid,
   SectionHead,
 } from '@/components/ui';
-import data from '@/data/common.json';
 import { getUpcomingMonographs } from '@/lib/sanity/content';
 
 export const UpcomingMonographs = async () => {
   const list = await getUpcomingMonographs();
-  const { title, button, buttonDownload, srDownload, redirectionTo, empty } =
-    data.upcomingMonographs;
+  const t = await getTranslations('upcomingMonographs');
 
   return (
     <section
@@ -20,25 +20,25 @@ export const UpcomingMonographs = async () => {
       <div className="wrap">
         <SectionHead
           id="monographs-title"
-          title={title}
+          title={t('title')}
           action={
-            <Button href={redirectionTo} variant="yellow">
-              {button}
+            <Button href="/monographs" variant="yellow">
+              {t('button')}
             </Button>
           }
         />
         {list.length ? (
           <PublicationGrid
             list={list}
-            buttonLabel={buttonDownload}
-            srLabel={srDownload}
+            buttonLabel={t('buttonDownload')}
+            srLabel={t('srDownload')}
             layout="grid-3"
           />
         ) : (
           <EmptyState
-            title={empty.title}
-            text={empty.text}
-            link={{ href: empty.href, label: empty.link }}
+            title={t('empty.title')}
+            text={t('empty.text')}
+            link={{ href: '/monographs#archive', label: t('empty.link') }}
           />
         )}
       </div>

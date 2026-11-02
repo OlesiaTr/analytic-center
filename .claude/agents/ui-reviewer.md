@@ -46,7 +46,8 @@ files; you report findings for the main session to fix.
 - No two utilities for the same CSS property on one element; no `!important`;
   tokens instead of raw hex; arbitrary sizes set their own leading.
 - Content comes from Sanity (`src/lib/sanity/content.ts`) and UI strings from
-  `src/data/common.json`, not hard-coded JSX.
+  `messages/{uk,en}.json` via next-intl, not hard-coded JSX; both locales have
+  every key (`src/i18n/messages.test.ts`).
 
 ## Report
 

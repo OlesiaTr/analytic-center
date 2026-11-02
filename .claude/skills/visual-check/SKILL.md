@@ -80,7 +80,9 @@ with whether the change is visually safe to merge.
 - A build with `output: 'export'` (a baseline from before PER-9):
   `npx --yes serve@14 out -l <port>`
 - Otherwise: `npm start -- -p <port>`. The build reads Sanity's public project
-  ID and dataset from `.env.local`; a baseline worktree needs a copy of it.
+  ID and dataset from `.env.local`. A baseline worktree has none: build it with
+  the public values inline,
+  `NEXT_PUBLIC_SANITY_PROJECT_ID=xczp8pdn NEXT_PUBLIC_SANITY_DATASET=production npm run build`.
 
 Wait until `curl -sf http://localhost:<port>/` succeeds before capturing.
 

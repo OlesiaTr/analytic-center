@@ -36,8 +36,10 @@ webhook → `/api/revalidate`); adding English is planned in
 
 ### Directory Structure
 
-- `src/app/` - App Router: `(site)/` pages with the site shell, `studio/` for
-  Sanity Studio
+- `src/app/` - App Router: `[locale]/(site)/` pages (root layout per locale, uk
+  at `/`, en at `/en`), `studio/` for Sanity Studio (its own root layout)
+- `src/i18n/` - next-intl routing, navigation and request config; `src/proxy.ts`
+  (Next 16's middleware) adds the locale
 - `sanity/` - Studio schemas; `sanity.config.ts`, `sanity.cli.ts` at the root
 - `src/lib/sanity/` - Sanity client and env
 - `src/sections/` - Page sections (Hero, News, Grants, ...)
@@ -46,8 +48,9 @@ webhook → `/api/revalidate`); adding English is planned in
   `src/components/base/` - mobile menu
 - `src/layouts/` - Header and Footer
 - `src/hooks/` - State logic (`useDisclosure`, `useLoadMore`, `useCarousel`)
-- `src/utils/` - Pure helpers (`formatDate`, `plural`, `toHost`)
-- `src/data/common.json` - UI labels only (content is in Sanity)
+- `src/utils/` - Pure helpers (`formatDate`, `toHost`)
+- `messages/{uk,en}.json` - UI labels (next-intl, ICU plurals; content is in
+  Sanity)
 - `src/constants/` - Navigation links
 - `scripts/` - Image tooling, screenshots/visual diff, shared `routes.mts`
 - `e2e/` - Playwright smoke tests
@@ -64,16 +67,18 @@ those files.
 
 Content comes from Sanity through typed getters in `src/lib/sanity/content.ts`
 (GROQ in `queries.ts`, cached and tagged by document type). Server components
-await them; UI labels still import directly:
+await them; UI labels come from next-intl:
 
 ```typescript
 const list = await getUpcomingConferences();
-import data from '@/data/common.json'; // labels
+const t = await getTranslations('conferenceArchive'); // useTranslations in sync/client components
+t('count', { count: list.length });
 ```
 
 Rules for schemas, queries and content edits load from
-`.claude/rules/content.md`; adding a publication is the `add-publication` skill.
-Agents edit content through the Sanity MCP server (`.mcp.json`).
+`.claude/rules/content.md`; adding a publication is the `add-publication` skill,
+English translations the `translate` skill. Agents edit content through the
+Sanity MCP server (`.mcp.json`).
 
 ### Tailwind (v4)
 

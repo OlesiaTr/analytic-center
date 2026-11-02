@@ -18,8 +18,10 @@ paths:
 - Responsive differences are CSS, never JS: render both variants and toggle with
   `lg:hidden` / `hidden lg:contents` (`contents` keeps the child in its flex or
   grid parent). Don't measure the viewport.
-- Internal links: `next/link` (`Button` and `TextLink` pick `Link` for `/…`
-  hrefs). Files and external sites stay `<a>`.
+- Internal links: `Link` / `usePathname` from `@/i18n/navigation` (never
+  `next/link` or `next/navigation`'s `usePathname`), so links keep the locale
+  (`/grants` → `/en/grants`). `Button` and `TextLink` do this for `/…` hrefs.
+  Files and external sites stay `<a>`.
 - Images: `next/image` with the `width`/`height` that the GROQ query returns
   from `asset->metadata.dimensions`, plus `sizes`. The custom loader resizes on
   Sanity's CDN.

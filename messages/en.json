@@ -1,0 +1,159 @@
+{
+  "skipLink": "Skip to content",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "conferences": "Conferences",
+    "monographs": "Monographs",
+    "library": "Library",
+    "grants": "Grants",
+    "useful": "Resources"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "It may have been moved or deleted. Use the menu or go back to the home page.",
+    "button": "Go to the home page",
+    "code": "404"
+  },
+  "header": {
+    "navLabel": "Main navigation",
+    "homeLabel": "Home",
+    "logoLabel": "Analytic Center of Modern Humanities — home",
+    "mobileMenu": {
+      "openBtnAriaLabel": "Open menu",
+      "closeBtnAriaLabel": "Close menu",
+      "navLabel": "Mobile menu"
+    },
+    "languageSwitch": {
+      "label": "Site language",
+      "uk": "Українська",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "button": "About the Center"
+  },
+  "aboutCenter": {
+    "title": "About the Center",
+    "button": "More about the Center"
+  },
+  "upcomingConferences": {
+    "title": "Upcoming conferences",
+    "button": "All conferences",
+    "buttonDownload": "Download",
+    "empty": {
+      "title": "No conferences are scheduled yet",
+      "text": "New calls will appear here. Meanwhile, browse the proceedings of past conferences.",
+      "link": "Conference archive"
+    },
+    "srDownload": "call for papers"
+  },
+  "conferenceArchive": {
+    "title": "Conference archive",
+    "buttonDownload": "Download",
+    "doneText": "That’s every volume in the archive.",
+    "srDownload": "proceedings",
+    "count": "{count, plural, one {# volume of proceedings} other {# volumes of proceedings}}"
+  },
+  "authorsForm": {
+    "columns": {
+      "field": "Field",
+      "answer": "Answer"
+    },
+    "fieldCount": "{count, plural, one {# field} other {# fields}}"
+  },
+  "partners": {
+    "title": "Partners",
+    "listLabel": "Partners of the Center",
+    "prev": "Previous partners",
+    "next": "Next partners"
+  },
+  "upcomingMonographs": {
+    "title": "Call for monograph contributions",
+    "button": "All monographs",
+    "buttonDownload": "Download",
+    "empty": {
+      "title": "No monographs are planned yet",
+      "text": "New calls will appear here. Meanwhile, browse the monograph archive.",
+      "link": "Monograph archive"
+    },
+    "srDownload": "call for contributions"
+  },
+  "monographArchive": {
+    "title": "Monograph archive",
+    "buttonDownload": "Download",
+    "doneText": "That’s every book in the archive.",
+    "srDownload": "monograph",
+    "count": "{count, plural, one {# book} other {# books}}"
+  },
+  "library": {
+    "listLabel": "Books",
+    "buttonDownload": "Download",
+    "srDownload": "book",
+    "kinds": {
+      "textbook": "Textbook",
+      "studyGuide": "Study guide",
+      "monograph": "Monograph"
+    }
+  },
+  "grants": {
+    "title": "Opportunities and grants",
+    "button": "All grants",
+    "programCount": "{count, plural, one {# program} other {# programs}}",
+    "moreOn": "More on {host}",
+    "listLabel": "Program groups",
+    "dueDate": "Application deadline"
+  },
+  "about": {
+    "introLabel": "About the organization",
+    "statute": {
+      "title": "Founding documents",
+      "button": "PDF",
+      "srLabel": "Download"
+    },
+    "peopleCount": "{count, plural, one {# person} other {# people}}"
+  },
+  "usefulInfo": {
+    "headers": {
+      "type": "Type of source",
+      "example": "Example"
+    }
+  },
+  "news": {
+    "title": "News",
+    "more": "Read more"
+  },
+  "loadMore": {
+    "count": "Showing {shown} of {total}",
+    "more": "Show {next} more"
+  },
+  "footer": {
+    "navTitle": "Navigation",
+    "navLabel": "Footer navigation",
+    "rights": "All rights reserved.",
+    "contacts": {
+      "title": "Contact us"
+    }
+  },
+  "a11y": {
+    "newTab": "(opens in a new tab)"
+  },
+  "profiles": {
+    "linkedin": "LinkedIn",
+    "googlescholar": "Google Scholar",
+    "naukovci": "Scientists of Ukraine",
+    "orcid": "ORCID",
+    "researchgate": "ResearchGate",
+    "scopus": "Scopus",
+    "wos": "Web of Science"
+  },
+  "profileBadges": {
+    "linkedin": "in",
+    "googlescholar": "GS",
+    "naukovci": "SU",
+    "orcid": "iD",
+    "researchgate": "RG",
+    "scopus": "Sc",
+    "wos": "WoS"
+  }
+}

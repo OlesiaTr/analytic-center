@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-import { ROUTES } from '../scripts/routes.mts';
+import { EN_ROUTES, ROUTES } from '../scripts/routes.mts';
 
-for (const route of ROUTES) {
+for (const route of [...ROUTES, ...EN_ROUTES]) {
   test(`${route} renders without errors`, async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -174,4 +174,67 @@ test('the revalidate webhook rejects unsigned requests', async ({
   // 401 with a secret configured, 500 where it isn't (local runs and CI).
   expect([401, 500]).toContain(response.status());
   expect(response.ok()).toBe(false);
+});
+
+test('each locale sets html lang and keeps its links', async ({ page }) => {
+  await page.goto('/grants');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+  await expect(page.locator('a[href^="/en"]')).toHaveCount(0);
+
+  await page.goto('/en/grants');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  const internal = page.locator('header a[href^="/"]');
+  for (const href of await internal.evaluateAll(links =>
+    links.map(link => link.getAttribute('href')),
+  )) {
+    expect(href).toMatch(/^\/en(\/|$)/);
+  }
+});
+
+test('the default locale has no /uk prefix', async ({ page }) => {
+  await page.goto('/uk/grants');
+  await expect(page).toHaveURL('/grants');
+});
+
+test('English pages use the English UI labels', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'header nav is desktop-only');
+
+  await page.goto('/en/conferences');
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(nav.getByRole('link', { name: 'Grants' })).toHaveAttribute(
+    'href',
+    '/en/grants',
+  );
+  const archive = page.locator('section', {
+    has: page.getByRole('heading', { name: 'Conference archive' }),
+  });
+  await expect(archive.getByText(/^Showing 8 of \d+$/)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Skip to content' }),
+  ).toBeAttached();
+});
+
+test('English stays out of search until it is public', async ({ page }) => {
+  await page.goto('/en/grants');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    /noindex/,
+  );
+  await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/en\/grants$/,
+  );
+
+  await page.goto('/grants');
+  await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+    'content',
+    /noindex/,
+  );
+});
+
+test('Ukrainian fallbacks on /en are marked lang="uk"', async ({ page }) => {
+  await page.goto('/en/conferences');
+  const cards = page.locator('main article');
+  await expect(cards.first()).toHaveAttribute('lang', /^(uk|en)$/);
 });

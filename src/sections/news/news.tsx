@@ -1,9 +1,12 @@
+import { getTranslations } from 'next-intl/server';
+
 import { NewsItem } from '@/components/ui';
-import data from '@/data/common.json';
 import { getNews } from '@/lib/sanity/content';
 
 export const News = async () => {
-  const { title, more } = data.news;
+  const t = await getTranslations('news');
+  const title = t('title');
+  const more = t('more');
   const list = await getNews();
 
   return (

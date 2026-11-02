@@ -10,4 +10,8 @@ export const ROUTES = [
   '/journals',
   '/contacts',
 ];
+// The same pages in English (Ukrainian has no prefix).
+export const EN_ROUTES = ROUTES.map(route =>
+  route === '/' ? '/en' : `/en${route}`,
+);
 export const WIDTHS = [375, 768, 1280];

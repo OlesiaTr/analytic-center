@@ -1,11 +1,15 @@
+import { getTranslations } from 'next-intl/server';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui';
-import data from '@/data/common.json';
 import { getHomePage } from '@/lib/sanity/content';
 
 export const CenterShortVersion = async () => {
-  const { title, button, redirectionTo } = data.aboutCenter;
+  const t = await getTranslations('aboutCenter');
+  const title = t('title');
+  const button = t('button');
+  const redirectionTo = '/about-center';
   const about = (await getHomePage())?.about;
 
   return (
@@ -15,7 +19,9 @@ export const CenterShortVersion = async () => {
           <h2 id="about-title" className="sec-title t-h2">
             {title}
           </h2>
-          <p className="prose">{about?.text}</p>
+          <p lang={about?.lang} className="prose">
+            {about?.text}
+          </p>
           <Button href={redirectionTo}>{button}</Button>
         </div>
         <div className="aspect-4/3 overflow-hidden rounded-xl bg-blue-50">

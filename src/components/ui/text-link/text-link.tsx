@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { FC, ReactNode } from 'react';
+import { Link } from '@/i18n/navigation';
 
 import { Icon } from '@/components/icons';
-import data from '@/data/common.json';
 
 interface Props {
   href: string;
@@ -25,8 +25,9 @@ export const TextLink: FC<Props> = ({
   external,
   className,
   describedBy,
-}) =>
-  external ? (
+}) => {
+  const t = useTranslations('a11y');
+  return external ? (
     <a
       href={href}
       target="_blank"
@@ -36,7 +37,7 @@ export const TextLink: FC<Props> = ({
     >
       {children}
       <Icon name="external" className="size-4" />{' '}
-      <span className="sr-only">{data.a11y.newTab}</span>
+      <span className="sr-only">{t('newTab')}</span>
     </a>
   ) : (
     <Link
@@ -47,3 +48,4 @@ export const TextLink: FC<Props> = ({
       {children}
     </Link>
   );
+};

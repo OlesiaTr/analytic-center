@@ -1,12 +1,11 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { FC, useEffect, useRef } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
 
 import { LINKS } from '@/constants';
-import data from '@/data/common.json';
 import type { Contacts } from '@/lib/sanity/contacts';
 
 export interface Props {
@@ -20,7 +19,8 @@ export interface Props {
 export const MobileMenu: FC<Props> = ({ id, label, closeModal, contacts }) => {
   const firstLink = useRef<HTMLAnchorElement>(null);
   const pathname = usePathname();
-  const { title } = data.footer.contacts;
+  const t = useTranslations();
+  const title = t('footer.contacts.title');
 
   // Move focus into the menu when it opens.
   useEffect(() => firstLink.current?.focus(), []);
@@ -33,7 +33,7 @@ export const MobileMenu: FC<Props> = ({ id, label, closeModal, contacts }) => {
     >
       <div className="wrap">
         <ul>
-          {LINKS.map(({ name, linkTo }, index) => {
+          {LINKS.map(({ key, linkTo }, index) => {
             const current = pathname === linkTo;
             return (
               <li key={linkTo}>
@@ -49,7 +49,7 @@ export const MobileMenu: FC<Props> = ({ id, label, closeModal, contacts }) => {
                       : 'text-white',
                   )}
                 >
-                  {name}
+                  {t(`nav.${key}`)}
                 </Link>
               </li>
             );

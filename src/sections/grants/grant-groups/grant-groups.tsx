@@ -1,7 +1,8 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Accordion, GrantProgram } from '@/components/ui';
-import data from '@/data/common.json';
 import { getGrantGroups } from '@/lib/sanity/content';
-import { plural } from '@/utils';
+import { toHost } from '@/utils';
 
 interface Props {
   /** h2 on /grants (the groups aren't headings), h3 under the home section h2. */
@@ -10,17 +11,18 @@ interface Props {
 
 /** Grant groups as <details>, the first one open, each with its programs. */
 export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
-  const { programCount, moreOn, dueDate } = data.grants;
+  const t = await getTranslations('grants');
   const groups = await getGrantGroups();
 
   return (
     <div>
-      {groups.map(({ id, title, programs }, index) => {
+      {groups.map(({ id, title, lang, programs }, index) => {
         return (
           <Accordion
             key={id}
             title={title}
-            sub={plural(programs.length, programCount)}
+            lang={lang}
+            sub={t('programCount', { count: programs.length })}
             defaultOpen={index === 0}
           >
             {programs.map(program => (
@@ -31,9 +33,10 @@ export const GrantGroups = async ({ headingLevel = 'h3' }: Props) => {
                 descriptionList={program.descriptionList}
                 date={program.date}
                 linkTo={program.linkTo}
-                dueDateLabel={dueDate}
-                moreLabel={moreOn}
+                dueDateLabel={t('dueDate')}
+                moreLabel={t('moreOn', { host: toHost(program.linkTo) })}
                 headingLevel={headingLevel}
+                lang={program.lang}
               />
             ))}
           </Accordion>
